@@ -38,6 +38,9 @@ export function Footer() {
                 alt="Quantum Blaze Logo" 
                 className="w-10 h-10 object-contain"
               />
+              <span className="text-lg font-bold tracking-wider font-quantum text-white uppercase">
+                Quantum <span className="text-sky-400">Blaze</span>
+              </span>
             </div>
             <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-muted)" }}>
               Engineering scalable, high-end digital solutions that define the future.

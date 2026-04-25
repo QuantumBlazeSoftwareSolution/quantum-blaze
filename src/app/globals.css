@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'Quantum';
+  src: url('/fonts/Quantum.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -24,7 +30,7 @@
   --text-muted: #64748b;
 
   /* Glass */
-  --glass-bg: rgba(10, 18, 32, 0.4);
+  --glass-bg: rgba(10, 18, 32, 0.75);
   --glass-border: rgba(56, 189, 248, 0.1);
   --glass-border-hover: rgba(56, 189, 248, 0.25);
   --background: oklch(1 0 0);
@@ -72,6 +78,7 @@
 
   --font-grotesk: "Space Grotesk", sans-serif;
   --font-inter: "Inter", sans-serif;
+  --font-quantum: "Quantum", sans-serif;
 }
 
 @layer base {
@@ -174,8 +181,8 @@
   /* ─── Utility Classes ─── */
   .glass {
     background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     border: 1px solid var(--glass-border);
   }
 

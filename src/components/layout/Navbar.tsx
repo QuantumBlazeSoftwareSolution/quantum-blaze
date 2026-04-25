@@ -43,8 +43,8 @@ export function Navbar() {
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "glass border-b border-sky-500/10 py-3"
-            : "bg-transparent py-5"
+            ? "glass border-b border-sky-500/10 py-3 shadow-lg shadow-black/20"
+            : "bg-gradient-to-b from-black/40 to-transparent py-5"
         }`}
       >
         <div className="container-wide flex items-center justify-between">
@@ -61,6 +61,13 @@ export function Navbar() {
               alt="Quantum Blaze Logo" 
               className="w-9 h-9 object-contain"
             />
+            <span
+              className="text-lg font-bold tracking-wider font-quantum uppercase"
+              style={{ color: "var(--text-primary)" }}
+            >
+              Quantum{" "}
+              <span style={{ color: "var(--accent-blue)" }}>Blaze</span>
+            </span>
           </motion.a>
 
           {/* Desktop Nav Links */}
