@@ -20,7 +20,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Quantum Blaze — Premium Software Development Agency",
+  metadataBase: new URL("https://quantumblaze.io"),
+  title: {
+    default: "Quantum Blaze — Premium Software Development Agency",
+    template: "%s | Quantum Blaze",
+  },
   description:
     "We architect and engineer scalable, high-end digital products. Enterprise SaaS, mobile apps, and custom web applications built by a world-class team.",
   keywords: [
@@ -43,6 +47,14 @@ export const metadata: Metadata = {
     description:
       "We architect and engineer scalable, high-end digital products. Enterprise SaaS, mobile apps, and custom web applications.",
     siteName: "Quantum Blaze",
+    images: [
+      {
+        url: "/BLACK_BACKGROUND_LOGO.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Quantum Blaze — Premium Software Development Agency",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -50,6 +62,12 @@ export const metadata: Metadata = {
     description:
       "We architect and engineer scalable, high-end digital products.",
     creator: "@quantumblaze",
+    images: ["/BLACK_BACKGROUND_LOGO.jpg"],
+  },
+  icons: {
+    icon: "/QB LOGO TRANSPARENT CROPED.png",
+    shortcut: "/QB LOGO TRANSPARENT CROPED.png",
+    apple: "/QB LOGO TRANSPARENT CROPED.png",
   },
   robots: {
     index: true,
