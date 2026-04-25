@@ -121,7 +121,7 @@ export function Contact() {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center gap-4 glass px-5 py-3 rounded-xl w-full max-w-[280px]"
+                  className="flex items-center gap-4 glass px-5 py-3 rounded-xl w-auto"
                 >
                   <span className="text-xl">{item.icon}</span>
                   <div className="flex flex-col text-left">

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { team } from "@/lib/data";
+import { FaLinkedin, FaGithub } from "react-icons/fa6";
 
 function TeamCard({ member, index }: { member: typeof team[0]; index: number }) {
   const [hovered, setHovered] = useState(false);
@@ -57,11 +58,19 @@ function TeamCard({ member, index }: { member: typeof team[0]; index: number }) 
               filter: "blur(8px)",
             }}
           />
-          {/* Avatar circle */}
+          {/* Avatar container */}
           <div
-            className={`relative w-24 h-24 rounded-full flex items-center justify-center text-2xl font-bold text-white z-10 bg-gradient-to-br ${member.gradient}`}
+            className={`relative w-24 h-24 rounded-full flex items-center justify-center text-2xl font-bold text-white z-10 bg-gradient-to-br ${member.gradient} overflow-hidden border-2 border-white/10`}
           >
-            {initials}
+            {member.image ? (
+              <img 
+                src={member.image} 
+                alt={member.name} 
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            ) : (
+              initials
+            )}
           </div>
         </div>
 
@@ -103,15 +112,16 @@ function TeamCard({ member, index }: { member: typeof team[0]; index: number }) 
           }`}
         >
           {[
-            { label: "LinkedIn", href: member.linkedin },
-            { label: "GitHub", href: member.github },
+            { label: "LinkedIn", href: member.linkedin, icon: FaLinkedin },
+            { label: "GitHub", href: member.github, icon: FaGithub },
           ].map((s) => (
             <a
               key={s.label}
               href={s.href}
               className="w-8 h-8 rounded-lg glass flex items-center justify-center text-xs text-sky-400 hover:bg-sky-400/10 transition-colors"
+              title={s.label}
             >
-              {s.label[0]}
+              <s.icon size={14} />
             </a>
           ))}
         </div>
