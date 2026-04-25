@@ -137,7 +137,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
                   {/* Screen */}
                   <div
                     className="absolute inset-2 rounded-[2rem] overflow-hidden flex items-center justify-center"
-                    style={{ background: "var(--bg-secondary)" }}
+                    style={{ background: "var(--bg-primary)" }}
                   >
                     <div className="text-center px-4">
                       <div
@@ -167,7 +167,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
                   {/* Screen content */}
                   <div
                     className="absolute inset-2 rounded-lg overflow-hidden"
-                    style={{ background: "var(--bg-secondary)" }}
+                    style={{ background: "var(--bg-primary)" }}
                   >
                     {/* Window chrome */}
                     <div
@@ -233,7 +233,7 @@ export function Projects() {
     <section
       id="projects"
       className="relative overflow-hidden"
-      style={{ background: "var(--bg-secondary)" }}
+      style={{ background: "var(--bg-primary)" }}
     >
       {/* Section header */}
       <div className="container-wide pt-20 pb-10 text-center">

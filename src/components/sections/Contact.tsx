@@ -54,7 +54,7 @@ export function Contact() {
     <section
       id="contact"
       className="relative section-padding overflow-hidden"
-      style={{ background: "var(--bg-secondary)" }}
+      style={{ background: "var(--bg-primary)" }}
     >
       {/* Glow orb behind form */}
       <div

@@ -61,9 +61,7 @@ export function About() {
   const lines = [
     "We don't just write code.",
     "We architect digital ecosystems",
-    "where ideas become industry-defining products.",
-    "Quantum Blaze was founded on a simple belief:",
-    "exceptional software changes everything.",
+    "that redefine industries.",
   ];
 
   return (
@@ -71,7 +69,7 @@ export function About() {
       id="about"
       ref={sectionRef}
       className="relative section-padding overflow-hidden"
-      style={{ background: "var(--bg-secondary)" }}
+      style={{ background: "var(--bg-primary)" }}
     >
       {/* Background elements */}
       <div
@@ -124,9 +122,7 @@ export function About() {
                 className="reveal-line text-base md:text-lg leading-relaxed"
                 style={{ color: "var(--text-muted)" }}
               >
-                From discovery to deployment, we obsess over every architectural
-                decision, every pixel, and every millisecond of load time —
-                because your success is our reputation.
+                We obsess over every architectural decision, pixel, and millisecond. Because your success is our reputation.
               </p>
             </div>
           </div>
