@@ -43,8 +43,8 @@ export function Navbar() {
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "glass border-b border-sky-500/10 py-3 shadow-lg shadow-black/20"
-            : "bg-gradient-to-b from-black/40 to-transparent py-5"
+            ? "glass border-b border-sky-500/10 py-3 shadow-2xl shadow-black/50"
+            : "bg-gradient-to-b from-[#050B14] via-[#050B14]/90 to-transparent py-5"
         }`}
       >
         <div className="container-wide flex items-center justify-between">
@@ -132,11 +132,11 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="fixed top-16 left-0 right-0 z-40 glass border-b border-sky-500/10 p-6 flex flex-col gap-4"
+            className="fixed inset-x-0 top-[60px] z-40 glass border-b border-sky-500/10 p-8 flex flex-col gap-6 shadow-2xl"
           >
             {navLinks.map((link) => (
               <button

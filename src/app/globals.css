@@ -180,9 +180,9 @@
 @layer components {
   /* ─── Utility Classes ─── */
   .glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    background: rgba(5, 11, 20, 0.95);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
     border: 1px solid var(--glass-border);
   }
 
