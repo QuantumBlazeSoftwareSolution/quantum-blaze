@@ -99,8 +99,8 @@ export function Process() {
             className="mt-4 text-base max-w-xl mx-auto"
             style={{ color: "var(--text-muted)" }}
           >
-            A battle-tested methodology that delivers exceptional results — every
-            single time.
+            A battle-tested methodology that delivers exceptional results —
+            every single time.
           </motion.p>
         </div>
 
@@ -144,9 +144,7 @@ export function Process() {
                 <div
                   key={step.number}
                   className={`process-step relative flex items-start gap-6 md:gap-0 ${
-                    isEven
-                      ? "md:flex-row"
-                      : "md:flex-row-reverse"
+                    isEven ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
                 >
                   {/* Step content */}
@@ -205,8 +203,7 @@ export function Process() {
                     <div
                       className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold z-10"
                       style={{
-                        background:
-                          "linear-gradient(135deg, #0ea5e9, #0369a1)",
+                        background: "linear-gradient(135deg, #0ea5e9, #0369a1)",
                         boxShadow:
                           "0 0 20px rgba(14,165,233,0.5), 0 0 40px rgba(14,165,233,0.2)",
                         color: "white",

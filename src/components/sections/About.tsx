@@ -122,7 +122,8 @@ export function About() {
                 className="reveal-line text-base md:text-lg leading-relaxed"
                 style={{ color: "var(--text-muted)" }}
               >
-                We obsess over every architectural decision, pixel, and millisecond. Because your success is our reputation.
+                We obsess over every architectural decision, pixel, and
+                millisecond. Because your success is our reputation.
               </p>
             </div>
           </div>

@@ -6,7 +6,12 @@ export const services = [
     title: "Enterprise SaaS Solutions",
     description:
       "We architect and build scalable, multi-tenant SaaS platforms that handle millions of users. From subscription billing to complex permission systems — we engineer the backbone of modern digital businesses.",
-    features: ["Multi-tenant Architecture", "Real-time Analytics", "API-first Design", "Auto-scaling Infrastructure"],
+    features: [
+      "Multi-tenant Architecture",
+      "Real-time Analytics",
+      "API-first Design",
+      "Auto-scaling Infrastructure",
+    ],
     accent: "#38bdf8",
   },
   {
@@ -15,7 +20,12 @@ export const services = [
     title: "Mobile App Development",
     description:
       "High-performance iOS & Android applications built with Flutter and React Native. Buttery-smooth animations, offline-first architecture, and pixel-perfect UIs that users love.",
-    features: ["Flutter & React Native", "Offline-first Architecture", "60fps Animations", "App Store Optimization"],
+    features: [
+      "Flutter & React Native",
+      "Offline-first Architecture",
+      "60fps Animations",
+      "App Store Optimization",
+    ],
     accent: "#0ea5e9",
   },
   {
@@ -24,7 +34,12 @@ export const services = [
     title: "Custom Web Apps & Portals",
     description:
       "Complex web applications engineered for performance and scale. Enterprise portals, customer dashboards, real-time collaboration tools — built with modern frameworks that stand the test of time.",
-    features: ["Next.js & React", "Real-time Collaboration", "Progressive Web Apps", "SEO & Core Web Vitals"],
+    features: [
+      "Next.js & React",
+      "Real-time Collaboration",
+      "Progressive Web Apps",
+      "SEO & Core Web Vitals",
+    ],
     accent: "#7dd3fc",
   },
 ];
@@ -50,7 +65,14 @@ export const projects = [
     subtitle: "Consumer Mobile App",
     description:
       "A comprehensive roadside assistance app connecting drivers to certified mechanics in real-time. Features GPS tracking, in-app payments, service history, and a mechanic marketplace — all in a blazingly fast Flutter app.",
-    tech: ["Flutter", "Node.js", "Google Maps API", "Stripe", "Firebase", "PostgreSQL"],
+    tech: [
+      "Flutter",
+      "Node.js",
+      "Google Maps API",
+      "Stripe",
+      "Firebase",
+      "PostgreSQL",
+    ],
     metrics: ["10K+ Downloads", "4.8★ App Rating", "< 3min Response"],
     color: "#0ea5e9",
     mockupType: "mobile",
@@ -149,7 +171,8 @@ export const team = [
     name: "Aryan Perera",
     role: "CEO & Co-Founder",
     bio: "Visionary leader with 10+ years building scalable digital products for global markets.",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=256&h=256",
+    image:
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
     github: "#",
     gradient: "from-sky-500 to-blue-700",
@@ -159,7 +182,8 @@ export const team = [
     name: "Kavinda Silva",
     role: "CTO & Lead Architect",
     bio: "Full-stack engineer and cloud architect. Expert in distributed systems and high-scale applications.",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=256&h=256",
+    image:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
     github: "#",
     gradient: "from-blue-500 to-indigo-700",
@@ -169,7 +193,8 @@ export const team = [
     name: "Nimasha Fernando",
     role: "Head of Design",
     bio: "UI/UX designer obsessed with creating immersive digital experiences that convert and delight.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=256&h=256",
+    image:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
     github: "#",
     gradient: "from-cyan-500 to-sky-700",
@@ -179,7 +204,8 @@ export const team = [
     name: "Ravindu Jayaweera",
     role: "Lead Mobile Engineer",
     bio: "Flutter & React Native specialist. Has shipped 20+ apps to the App Store and Google Play.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=256&h=256",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
     github: "#",
     gradient: "from-sky-400 to-cyan-700",

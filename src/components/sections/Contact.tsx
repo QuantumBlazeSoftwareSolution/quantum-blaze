@@ -64,7 +64,6 @@ export function Contact() {
 
       <div className="container-wide">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
-          
           {/* Left Side: Headline and Info */}
           <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
             <motion.div
@@ -89,9 +88,7 @@ export function Contact() {
               }}
             >
               Let&apos;s Build Something{" "}
-              <span className="gradient-text block">
-                Extraordinary
-              </span>
+              <span className="gradient-text block">Extraordinary</span>
             </motion.h2>
 
             <motion.p
@@ -125,8 +122,13 @@ export function Contact() {
                 >
                   <span className="text-xl">{item.icon}</span>
                   <div className="flex flex-col text-left">
-                    <span className="text-[10px] uppercase tracking-widest text-slate-500 font-semibold mb-0.5">{item.sub}</span>
-                    <span className="text-sm font-medium" style={{ color: "var(--text-secondary)" }}>
+                    <span className="text-[10px] uppercase tracking-widest text-slate-500 font-semibold mb-0.5">
+                      {item.sub}
+                    </span>
+                    <span
+                      className="text-sm font-medium"
+                      style={{ color: "var(--text-secondary)" }}
+                    >
                       {item.label}
                     </span>
                   </div>
@@ -223,19 +225,21 @@ export function Contact() {
                     value={formState.projectType}
                     onChange={handleChange}
                     className={`${inputClass} appearance-none cursor-pointer`}
-                    style={{ color: formState.projectType ? "white" : "#64748b" }}
+                    style={{
+                      color: formState.projectType ? "white" : "#64748b",
+                    }}
                   >
                     <option value="" disabled style={{ background: "#0a1628" }}>
                       Select a project type...
                     </option>
                     {projectTypes.map((type) => (
                       <option
-                         key={type}
-                         value={type}
-                         style={{ background: "#0a1628", color: "white" }}
-                       >
-                         {type}
-                       </option>
+                        key={type}
+                        value={type}
+                        style={{ background: "#0a1628", color: "white" }}
+                      >
+                        {type}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -309,9 +313,7 @@ export function Contact() {
                 >
                   {loading ? (
                     <span className="flex items-center gap-2">
-                      <span
-                        className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"
-                      />
+                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                       Sending...
                     </span>
                   ) : (
@@ -330,7 +332,6 @@ export function Contact() {
               </form>
             )}
           </motion.div>
-
         </div>
       </div>
     </section>

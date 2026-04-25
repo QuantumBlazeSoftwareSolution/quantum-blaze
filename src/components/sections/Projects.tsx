@@ -4,7 +4,13 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { projects } from "@/lib/data";
 
-function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: (typeof projects)[0];
+  index: number;
+}) {
   const cardRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -12,7 +18,11 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.3]);
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.8, 1],
+    [0, 1, 1, 0.3]
+  );
   const isEven = index % 2 === 0;
 
   return (
@@ -49,13 +59,18 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
             <div className="flex items-center gap-4 mb-6">
               <span
                 className="text-5xl font-bold opacity-20"
-                style={{ color: project.color, fontFamily: "var(--font-grotesk)" }}
+                style={{
+                  color: project.color,
+                  fontFamily: "var(--font-grotesk)",
+                }}
               >
                 {project.number}
               </span>
               <div
                 className="h-px flex-grow"
-                style={{ background: `linear-gradient(90deg, ${project.color}40, transparent)` }}
+                style={{
+                  background: `linear-gradient(90deg, ${project.color}40, transparent)`,
+                }}
               />
             </div>
 
@@ -131,7 +146,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
                   style={{
                     border: `2px solid ${project.color}30`,
                     boxShadow: `0 0 60px ${project.color}20, 0 30px 80px rgba(0,0,0,0.5)`,
-                    transform: "perspective(1200px) rotateY(-8deg) rotateX(4deg)",
+                    transform:
+                      "perspective(1200px) rotateY(-8deg) rotateX(4deg)",
                   }}
                 >
                   {/* Screen */}
@@ -146,9 +162,18 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
                       >
                         📱
                       </div>
-                      <div className="w-full h-2 rounded mb-2" style={{ background: `${project.color}30` }} />
-                      <div className="w-3/4 h-2 rounded mb-2" style={{ background: `${project.color}20` }} />
-                      <div className="w-5/6 h-2 rounded" style={{ background: `${project.color}15` }} />
+                      <div
+                        className="w-full h-2 rounded mb-2"
+                        style={{ background: `${project.color}30` }}
+                      />
+                      <div
+                        className="w-3/4 h-2 rounded mb-2"
+                        style={{ background: `${project.color}20` }}
+                      />
+                      <div
+                        className="w-5/6 h-2 rounded"
+                        style={{ background: `${project.color}15` }}
+                      />
                     </div>
                   </div>
                   {/* Notch */}
@@ -161,7 +186,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
                   style={{
                     border: `2px solid ${project.color}30`,
                     boxShadow: `0 0 60px ${project.color}20, 0 30px 80px rgba(0,0,0,0.5)`,
-                    transform: "perspective(1200px) rotateY(-8deg) rotateX(6deg)",
+                    transform:
+                      "perspective(1200px) rotateY(-8deg) rotateX(6deg)",
                   }}
                 >
                   {/* Screen content */}
@@ -221,7 +247,10 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       {index < projects.length - 1 && (
         <div
           className="absolute bottom-0 left-0 right-0 h-px"
-          style={{ background: "linear-gradient(90deg, transparent, rgba(56,189,248,0.1), transparent)" }}
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, rgba(56,189,248,0.1), transparent)",
+          }}
         />
       )}
     </motion.div>
@@ -266,7 +295,8 @@ export function Projects() {
           className="mt-4 text-base max-w-xl mx-auto"
           style={{ color: "var(--text-muted)" }}
         >
-          A selection of digital products we&apos;ve engineered for real businesses — each one solving a real problem at scale.
+          A selection of digital products we&apos;ve engineered for real
+          businesses — each one solving a real problem at scale.
         </motion.p>
       </div>
 

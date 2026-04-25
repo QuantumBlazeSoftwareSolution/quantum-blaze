@@ -5,7 +5,13 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { team } from "@/lib/data";
 import { FaLinkedin, FaGithub } from "react-icons/fa6";
 
-function TeamCard({ member, index }: { member: typeof team[0]; index: number }) {
+function TeamCard({
+  member,
+  index,
+}: {
+  member: (typeof team)[0];
+  index: number;
+}) {
   const [hovered, setHovered] = useState(false);
 
   // Generate initials for avatar placeholder
@@ -63,9 +69,9 @@ function TeamCard({ member, index }: { member: typeof team[0]; index: number }) 
             className={`relative w-24 h-24 rounded-full flex items-center justify-center text-2xl font-bold text-white z-10 bg-gradient-to-br ${member.gradient} overflow-hidden border-2 border-white/10`}
           >
             {member.image ? (
-              <img 
-                src={member.image} 
-                alt={member.name} 
+              <img
+                src={member.image}
+                alt={member.name}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
             ) : (
@@ -100,7 +106,10 @@ function TeamCard({ member, index }: { member: typeof team[0]; index: number }) 
             opacity: hovered ? 1 : 0,
           }}
         >
-          <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+          <p
+            className="text-sm leading-relaxed"
+            style={{ color: "var(--text-muted)" }}
+          >
             {member.bio}
           </p>
         </div>

@@ -4,7 +4,13 @@ import { FaLinkedin, FaGithub, FaXTwitter, FaDribbble } from "react-icons/fa6";
 
 const footerLinks = {
   Company: ["About Us", "Services", "Projects", "Team"],
-  Services: ["Enterprise SaaS", "Mobile Apps", "Web Apps", "UI/UX Design", "Cloud & DevOps"],
+  Services: [
+    "Enterprise SaaS",
+    "Mobile Apps",
+    "Web Apps",
+    "UI/UX Design",
+    "Cloud & DevOps",
+  ],
   Contact: ["hello@quantumblaze.io", "+94 77 000 0000", "Colombo, Sri Lanka"],
 };
 
@@ -19,7 +25,10 @@ export function Footer() {
   return (
     <footer
       className="relative border-t overflow-hidden"
-      style={{ borderColor: "rgba(56,189,248,0.08)", background: "var(--bg-primary)" }}
+      style={{
+        borderColor: "rgba(56,189,248,0.08)",
+        background: "var(--bg-primary)",
+      }}
     >
       {/* Background glow */}
       <div
@@ -33,17 +42,21 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-              <img 
-                src="/QB LOGO TRANSPARENT.png" 
-                alt="Quantum Blaze Logo" 
+              <img
+                src="/QB LOGO TRANSPARENT.png"
+                alt="Quantum Blaze Logo"
                 className="w-10 h-10 object-contain"
               />
               <span className="text-lg font-bold tracking-wider font-quantum text-white uppercase">
                 Quantum <span className="text-sky-400">Blaze</span>
               </span>
             </div>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-muted)" }}>
-              Engineering scalable, high-end digital solutions that define the future.
+            <p
+              className="text-sm leading-relaxed mb-6"
+              style={{ color: "var(--text-muted)" }}
+            >
+              Engineering scalable, high-end digital solutions that define the
+              future.
             </p>
             {/* Social links */}
             <div className="flex gap-3">
@@ -95,7 +108,7 @@ export function Footer() {
           <div className="flex gap-6">
             {[
               { label: "Privacy Policy", href: "/privacy" },
-              { label: "Terms of Service", href: "/terms" }
+              { label: "Terms of Service", href: "/terms" },
             ].map((link) => (
               <a
                 key={link.label}

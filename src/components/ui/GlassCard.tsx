@@ -47,7 +47,10 @@ export function GlassCard({
       className={`glass rounded-2xl transition-all duration-300 ${
         glowOnHover ? "glass-hover cursor-pointer" : ""
       } ${className}`}
-      style={{ transition: "transform 0.1s ease, border-color 0.3s ease, box-shadow 0.3s ease" }}
+      style={{
+        transition:
+          "transform 0.1s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+      }}
     >
       {children}
     </div>

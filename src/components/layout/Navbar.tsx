@@ -56,17 +56,16 @@ export function Navbar() {
             transition={{ delay: 0.2 }}
             className="flex items-center gap-2.5"
           >
-            <img 
-              src="/QB LOGO TRANSPARENT.png" 
-              alt="Quantum Blaze Logo" 
+            <img
+              src="/QB LOGO TRANSPARENT.png"
+              alt="Quantum Blaze Logo"
               className="w-9 h-9 object-contain"
             />
             <span
               className="text-lg font-bold tracking-wider font-quantum uppercase"
               style={{ color: "var(--text-primary)" }}
             >
-              Quantum{" "}
-              <span style={{ color: "var(--accent-blue)" }}>Blaze</span>
+              Quantum <span style={{ color: "var(--accent-blue)" }}>Blaze</span>
             </span>
           </motion.a>
 

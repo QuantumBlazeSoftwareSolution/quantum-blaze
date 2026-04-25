@@ -144,7 +144,9 @@ export function Services() {
                 {/* Bottom accent line */}
                 <div
                   className="absolute bottom-0 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-500 ease-out rounded-b-2xl"
-                  style={{ background: `linear-gradient(90deg, transparent, ${service.accent}, transparent)` }}
+                  style={{
+                    background: `linear-gradient(90deg, transparent, ${service.accent}, transparent)`,
+                  }}
                 />
               </GlassCard>
             </motion.div>
