@@ -1,24 +1,25 @@
 "use client";
 import { motion } from "framer-motion";
+import { FaLinkedin, FaGithub, FaXTwitter, FaDribbble } from "react-icons/fa6";
 
 const footerLinks = {
-  Company: ["About Us", "Services", "Projects", "Team", "Careers"],
+  Company: ["About Us", "Services", "Projects", "Team"],
   Services: ["Enterprise SaaS", "Mobile Apps", "Web Apps", "UI/UX Design", "Cloud & DevOps"],
   Contact: ["hello@quantumblaze.io", "+94 77 000 0000", "Colombo, Sri Lanka"],
 };
 
 const socialLinks = [
-  { label: "LinkedIn", href: "#" },
-  { label: "GitHub", href: "#" },
-  { label: "Twitter", href: "#" },
-  { label: "Dribbble", href: "#" },
+  { label: "LinkedIn", href: "#", icon: FaLinkedin },
+  { label: "GitHub", href: "#", icon: FaGithub },
+  { label: "X", href: "#", icon: FaXTwitter },
+  { label: "Dribbble", href: "#", icon: FaDribbble },
 ];
 
 export function Footer() {
   return (
     <footer
       className="relative border-t overflow-hidden"
-      style={{ borderColor: "rgba(56,189,248,0.08)", background: "var(--bg-secondary)" }}
+      style={{ borderColor: "rgba(56,189,248,0.08)", background: "var(--bg-primary)" }}
     >
       {/* Background glow */}
       <div
@@ -58,7 +59,7 @@ export function Footer() {
                   className="w-8 h-8 rounded-lg glass flex items-center justify-center text-xs text-sky-400 hover:border-sky-400/40 transition-all duration-200 hover:text-white"
                   title={s.label}
                 >
-                  {s.label[0]}
+                  <s.icon size={14} />
                 </a>
               ))}
             </div>
