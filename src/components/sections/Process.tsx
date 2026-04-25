@@ -10,18 +10,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Process() {
   const sectionRef = useRef<HTMLElement>(null);
-  const lineRef = useRef<SVGLineElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Animate the vertical connecting line
       if (lineRef.current) {
-        const totalLength = 800;
         gsap.fromTo(
           lineRef.current,
-          { strokeDashoffset: totalLength },
+          { scaleY: 0 },
           {
-            strokeDashoffset: 0,
+            scaleY: 1,
             ease: "none",
             scrollTrigger: {
               trigger: sectionRef.current,
@@ -106,34 +105,18 @@ export function Process() {
 
         {/* Timeline */}
         <div className="relative max-w-4xl mx-auto">
-          {/* Animated SVG line */}
-          <div className="absolute left-[40px] md:left-1/2 md:-translate-x-0.5 top-0 bottom-0 w-px overflow-hidden hidden md:block">
-            <svg
-              width="2"
-              height="100%"
-              className="w-full h-full"
-              style={{ overflow: "visible" }}
-            >
-              <defs>
-                <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.8" />
-                  <stop offset="50%" stopColor="#0ea5e9" stopOpacity="0.6" />
-                  <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.2" />
-                </linearGradient>
-              </defs>
-              <line
-                ref={lineRef}
-                x1="1"
-                y1="0"
-                x2="1"
-                y2="800"
-                stroke="url(#lineGrad)"
-                strokeWidth="2"
-                strokeDasharray="800"
-                strokeDashoffset="800"
-              />
-            </svg>
-          </div>
+          {/* Vertical connecting line */}
+          <div
+            ref={lineRef}
+            className="hidden md:block absolute left-1/2 -translate-x-px top-6 bottom-6"
+            style={{
+              width: "2px",
+              background:
+                "linear-gradient(to bottom, #38bdf8cc, #0ea5e9aa, #38bdf833)",
+              transformOrigin: "top",
+              transform: "scaleY(0)",
+            }}
+          />
 
           {/* Steps */}
           <div className="space-y-12">

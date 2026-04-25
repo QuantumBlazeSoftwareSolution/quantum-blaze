@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { team } from "@/lib/data";
@@ -12,127 +11,144 @@ function TeamCard({
   member: (typeof team)[0];
   index: number;
 }) {
-  const [hovered, setHovered] = useState(false);
-
-  // Generate initials for avatar placeholder
-  const initials = member.name
-    .split(" ")
-    .map((n) => n[0])
-    .join("");
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="group relative cursor-default"
+      className="group"
+      style={{ perspective: "1000px" }}
     >
+      {/* Card wrapper — flips on hover */}
       <div
-        className="glass rounded-2xl p-8 text-center transition-all duration-400 relative overflow-hidden"
+        className="relative w-full transition-transform duration-700 cursor-default"
         style={{
-          borderColor: hovered
-            ? "rgba(56,189,248,0.35)"
-            : "var(--glass-border)",
-          transform: hovered ? "translateY(-6px)" : "translateY(0)",
-          boxShadow: hovered
-            ? "0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(56,189,248,0.1)"
-            : "none",
-          transition:
-            "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
+          transformStyle: "preserve-3d",
+          height: "300px",
+          transform: "rotateY(0deg)",
+        }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLDivElement).style.transform =
+            "rotateY(180deg)";
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLDivElement).style.transform = "rotateY(0deg)";
         }}
       >
-        {/* Background gradient on hover */}
+        {/* ── FRONT ── */}
         <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{
-            background: `radial-gradient(ellipse at top, rgba(14,165,233,0.05) 0%, transparent 70%)`,
-          }}
-        />
-
-        {/* Avatar */}
-        <div className="relative mx-auto mb-6 w-24 h-24">
-          {/* Glow ring */}
+          className="absolute inset-0 glass rounded-2xl flex flex-col items-center justify-center p-8 text-center"
+          style={{ backfaceVisibility: "hidden" }}
+        >
+          {/* Subtle hover gradient */}
           <div
-            className={`absolute inset-0 rounded-full transition-all duration-500 ${
-              hovered ? "opacity-100 scale-110" : "opacity-0 scale-100"
-            }`}
+            className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
             style={{
-              background: `linear-gradient(135deg, #0ea5e9, #7dd3fc)`,
-              filter: "blur(8px)",
+              background:
+                "radial-gradient(ellipse at top, rgba(14,165,233,0.05) 0%, transparent 70%)",
             }}
           />
-          {/* Avatar container */}
-          <div
-            className={`relative w-24 h-24 rounded-full flex items-center justify-center text-2xl font-bold text-white z-10 bg-gradient-to-br ${member.gradient} overflow-hidden border-2 border-white/10`}
-          >
-            {member.image ? (
-              <img
-                src={member.image}
-                alt={member.name}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-            ) : (
-              initials
-            )}
+
+          {/* Avatar */}
+          <div className="relative mb-5 w-24 h-24">
+            <div
+              className="absolute inset-0 rounded-full"
+              style={{
+                background: "linear-gradient(135deg, #0ea5e9, #7dd3fc)",
+                filter: "blur(10px)",
+                opacity: 0.5,
+              }}
+            />
+            <div
+              className={`relative w-24 h-24 rounded-full overflow-hidden border-2 border-sky-400/30 z-10 bg-gradient-to-br ${member.gradient}`}
+            >
+              {member.image && (
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </div>
           </div>
-        </div>
 
-        {/* Name */}
-        <h3
-          className="text-white font-bold text-lg mb-1 group-hover:text-sky-100 transition-colors duration-200"
-          style={{ fontFamily: "var(--font-grotesk)" }}
-        >
-          {member.name}
-        </h3>
-
-        {/* Role — always visible but glows on hover */}
-        <p
-          className="text-xs font-semibold tracking-widest uppercase mb-4 transition-colors duration-200"
-          style={{
-            color: hovered ? "var(--accent-blue)" : "var(--text-muted)",
-          }}
-        >
-          {member.role}
-        </p>
-
-        {/* Bio — slides in on hover */}
-        <div
-          className="overflow-hidden transition-all duration-400"
-          style={{
-            maxHeight: hovered ? "100px" : "0",
-            opacity: hovered ? 1 : 0,
-          }}
-        >
+          <h3 className="text-white font-bold text-lg mb-1">{member.name}</h3>
           <p
-            className="text-sm leading-relaxed"
+            className="text-xs font-semibold tracking-widest uppercase"
             style={{ color: "var(--text-muted)" }}
           >
-            {member.bio}
+            {member.role}
           </p>
         </div>
 
-        {/* Social links */}
+        {/* ── BACK ── */}
         <div
-          className={`flex items-center justify-center gap-3 mt-4 transition-all duration-300 ${
-            hovered ? "opacity-100" : "opacity-0"
-          }`}
+          className="absolute inset-0 glass rounded-2xl p-6 flex flex-col justify-between"
+          style={{
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+            background: "rgba(5, 11, 20, 0.97)",
+            borderColor: "rgba(56,189,248,0.25)",
+          }}
         >
-          {[
-            { label: "LinkedIn", href: member.linkedin, icon: FaLinkedin },
-            { label: "GitHub", href: member.github, icon: FaGithub },
-          ].map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              className="w-8 h-8 rounded-lg glass flex items-center justify-center text-xs text-sky-400 hover:bg-sky-400/10 transition-colors"
-              title={s.label}
+          {/* Top row: small circular avatar + name/role */}
+          <div className="flex items-center gap-3">
+            <div
+              className={`w-11 h-11 rounded-full overflow-hidden border-2 border-sky-400/40 flex-shrink-0 bg-gradient-to-br ${member.gradient}`}
             >
-              <s.icon size={14} />
-            </a>
-          ))}
+              {member.image && (
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </div>
+            <div>
+              <p className="text-white font-bold text-sm leading-tight">
+                {member.name}
+              </p>
+              <p
+                className="text-xs font-semibold tracking-wider uppercase"
+                style={{ color: "var(--accent-blue)" }}
+              >
+                {member.role}
+              </p>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div
+            className="w-full h-px my-4"
+            style={{ background: "rgba(56,189,248,0.15)" }}
+          />
+
+          {/* Bio */}
+          <p
+            className="text-sm leading-relaxed flex-1"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            {member.bio}
+          </p>
+
+          {/* Social icons */}
+          <div className="flex items-center gap-3 mt-5">
+            {[
+              { label: "LinkedIn", href: member.linkedin, icon: FaLinkedin },
+              { label: "GitHub", href: member.github, icon: FaGithub },
+            ].map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                aria-label={s.label}
+                className="w-9 h-9 rounded-xl flex items-center justify-center text-sky-400 hover:text-white hover:bg-sky-500/20 transition-all duration-200 border border-sky-500/20 hover:border-sky-400/50"
+                title={s.label}
+              >
+                <s.icon size={15} />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </motion.div>
