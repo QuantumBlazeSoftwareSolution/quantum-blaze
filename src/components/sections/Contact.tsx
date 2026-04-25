@@ -58,273 +58,280 @@ export function Contact() {
     >
       {/* Glow orb behind form */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full blur-[120px] pointer-events-none"
-        style={{ background: "rgba(14,165,233,0.05)" }}
+        className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[600px] rounded-full blur-[150px] pointer-events-none"
+        style={{ background: "rgba(14,165,233,0.03)" }}
       />
 
       <div className="container-wide">
-        {/* Big CTA headline */}
-        <div className="text-center mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+          
+          {/* Left Side: Headline and Info */}
+          <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex justify-center lg:justify-start mb-6"
+            >
+              <SectionLabel>Get In Touch</SectionLabel>
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.8 }}
+              className="font-bold leading-[1.1] mb-6"
+              style={{
+                fontSize: "clamp(3rem, 6vw, 5rem)",
+                fontFamily: "var(--font-grotesk)",
+                color: "white",
+              }}
+            >
+              Let&apos;s Build Something{" "}
+              <span className="gradient-text block">
+                Extraordinary
+              </span>
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.25 }}
+              className="text-base md:text-lg max-w-xl"
+              style={{ color: "var(--text-muted)" }}
+            >
+              Tell us about your project. We&apos;ll get back to you within 24
+              hours with a free consultation and project roadmap.
+            </motion.p>
+
+            {/* Contact info chips */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="flex flex-wrap justify-center lg:justify-start gap-4 mt-12"
+            >
+              {[
+                { icon: "📧", label: "hello@quantumblaze.io", sub: "Email Us" },
+                { icon: "📍", label: "Colombo, Sri Lanka", sub: "Our Office" },
+                { icon: "⏱", label: "Within 24h", sub: "Response Time" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="flex items-center gap-4 glass px-5 py-3 rounded-xl w-full max-w-[280px]"
+                >
+                  <span className="text-xl">{item.icon}</span>
+                  <div className="flex flex-col text-left">
+                    <span className="text-[10px] uppercase tracking-widest text-slate-500 font-semibold mb-0.5">{item.sub}</span>
+                    <span className="text-sm font-medium" style={{ color: "var(--text-secondary)" }}>
+                      {item.label}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right Side: Form */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex justify-center mb-6"
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="w-full max-w-xl mx-auto lg:mx-0 lg:ml-auto"
           >
-            <SectionLabel>Get In Touch</SectionLabel>
+            {submitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="glass rounded-3xl p-12 text-center"
+              >
+                <div className="text-5xl mb-4">🚀</div>
+                <h3
+                  className="text-2xl font-bold text-white mb-3"
+                  style={{ fontFamily: "var(--font-grotesk)" }}
+                >
+                  Message Sent!
+                </h3>
+                <p style={{ color: "var(--text-muted)" }}>
+                  We&apos;ll be in touch within 24 hours. Excited to work with
+                  you!
+                </p>
+              </motion.div>
+            ) : (
+              <form
+                onSubmit={handleSubmit}
+                className="glass rounded-3xl p-8 md:p-10 space-y-5"
+              >
+                {/* Name + Email row */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      className="block text-xs font-semibold tracking-wider uppercase mb-2"
+                      style={{ color: "var(--text-muted)" }}
+                      htmlFor="name"
+                    >
+                      Full Name
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      placeholder="John Doe"
+                      value={formState.name}
+                      onChange={handleChange}
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      className="block text-xs font-semibold tracking-wider uppercase mb-2"
+                      style={{ color: "var(--text-muted)" }}
+                      htmlFor="email"
+                    >
+                      Email Address
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="john@company.com"
+                      value={formState.email}
+                      onChange={handleChange}
+                      className={inputClass}
+                    />
+                  </div>
+                </div>
+
+                {/* Project type */}
+                <div>
+                  <label
+                    className="block text-xs font-semibold tracking-wider uppercase mb-2"
+                    style={{ color: "var(--text-muted)" }}
+                    htmlFor="projectType"
+                  >
+                    Project Type
+                  </label>
+                  <select
+                    id="projectType"
+                    name="projectType"
+                    value={formState.projectType}
+                    onChange={handleChange}
+                    className={`${inputClass} appearance-none cursor-pointer`}
+                    style={{ color: formState.projectType ? "white" : "#64748b" }}
+                  >
+                    <option value="" disabled style={{ background: "#0a1628" }}>
+                      Select a project type...
+                    </option>
+                    {projectTypes.map((type) => (
+                      <option
+                         key={type}
+                         value={type}
+                         style={{ background: "#0a1628", color: "white" }}
+                       >
+                         {type}
+                       </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Budget */}
+                <div>
+                  <label
+                    className="block text-xs font-semibold tracking-wider uppercase mb-2"
+                    style={{ color: "var(--text-muted)" }}
+                    htmlFor="budget"
+                  >
+                    Estimated Budget
+                  </label>
+                  <select
+                    id="budget"
+                    name="budget"
+                    value={formState.budget}
+                    onChange={handleChange}
+                    className={`${inputClass} appearance-none cursor-pointer`}
+                    style={{ color: formState.budget ? "white" : "#64748b" }}
+                  >
+                    <option value="" disabled style={{ background: "#0a1628" }}>
+                      Select budget range...
+                    </option>
+                    {[
+                      "< $10,000",
+                      "$10,000 – $25,000",
+                      "$25,000 – $50,000",
+                      "$50,000 – $100,000",
+                      "$100,000+",
+                    ].map((b) => (
+                      <option
+                        key={b}
+                        value={b}
+                        style={{ background: "#0a1628", color: "white" }}
+                      >
+                        {b}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label
+                    className="block text-xs font-semibold tracking-wider uppercase mb-2"
+                    style={{ color: "var(--text-muted)" }}
+                    htmlFor="message"
+                  >
+                    Tell Us About Your Project
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={4}
+                    placeholder="Describe your vision, goals, timeline, and any technical requirements..."
+                    value={formState.message}
+                    onChange={handleChange}
+                    className={`${inputClass} resize-none`}
+                  />
+                </div>
+
+                {/* Submit */}
+                <GlowButton
+                  type="submit"
+                  variant="solid"
+                  size="lg"
+                  className="w-full justify-center mt-2"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <span className="flex items-center gap-2">
+                      <span
+                        className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"
+                      />
+                      Sending...
+                    </span>
+                  ) : (
+                    <>
+                      Send Message <span>→</span>
+                    </>
+                  )}
+                </GlowButton>
+
+                <p
+                  className="text-center text-[11px] uppercase tracking-wider font-semibold mt-4"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  Free consultation · No commitment
+                </p>
+              </form>
+            )}
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.8 }}
-            className="font-bold leading-none mb-6"
-            style={{
-              fontSize: "clamp(2.5rem, 7vw, 6rem)",
-              fontFamily: "var(--font-grotesk)",
-              color: "white",
-            }}
-          >
-            Let&apos;s Build Something{" "}
-            <span className="gradient-text block md:inline">
-              Extraordinary
-            </span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.25 }}
-            className="text-base md:text-lg max-w-2xl mx-auto"
-            style={{ color: "var(--text-muted)" }}
-          >
-            Tell us about your project. We&apos;ll get back to you within 24
-            hours with a free consultation.
-          </motion.p>
         </div>
-
-        {/* Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="max-w-2xl mx-auto"
-        >
-          {submitted ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="glass rounded-3xl p-12 text-center"
-            >
-              <div className="text-5xl mb-4">🚀</div>
-              <h3
-                className="text-2xl font-bold text-white mb-3"
-                style={{ fontFamily: "var(--font-grotesk)" }}
-              >
-                Message Sent!
-              </h3>
-              <p style={{ color: "var(--text-muted)" }}>
-                We&apos;ll be in touch within 24 hours. Excited to work with
-                you!
-              </p>
-            </motion.div>
-          ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="glass rounded-3xl p-8 md:p-12 space-y-5"
-            >
-              {/* Name + Email row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    className="block text-xs font-semibold tracking-wider uppercase mb-2"
-                    style={{ color: "var(--text-muted)" }}
-                    htmlFor="name"
-                  >
-                    Full Name
-                  </label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    placeholder="John Doe"
-                    value={formState.name}
-                    onChange={handleChange}
-                    className={inputClass}
-                  />
-                </div>
-                <div>
-                  <label
-                    className="block text-xs font-semibold tracking-wider uppercase mb-2"
-                    style={{ color: "var(--text-muted)" }}
-                    htmlFor="email"
-                  >
-                    Email Address
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="john@company.com"
-                    value={formState.email}
-                    onChange={handleChange}
-                    className={inputClass}
-                  />
-                </div>
-              </div>
-
-              {/* Project type */}
-              <div>
-                <label
-                  className="block text-xs font-semibold tracking-wider uppercase mb-2"
-                  style={{ color: "var(--text-muted)" }}
-                  htmlFor="projectType"
-                >
-                  Project Type
-                </label>
-                <select
-                  id="projectType"
-                  name="projectType"
-                  value={formState.projectType}
-                  onChange={handleChange}
-                  className={`${inputClass} appearance-none cursor-pointer`}
-                  style={{ color: formState.projectType ? "white" : "#64748b" }}
-                >
-                  <option value="" disabled style={{ background: "#0a1628" }}>
-                    Select a project type...
-                  </option>
-                  {projectTypes.map((type) => (
-                    <option
-                      key={type}
-                      value={type}
-                      style={{ background: "#0a1628", color: "white" }}
-                    >
-                      {type}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Budget */}
-              <div>
-                <label
-                  className="block text-xs font-semibold tracking-wider uppercase mb-2"
-                  style={{ color: "var(--text-muted)" }}
-                  htmlFor="budget"
-                >
-                  Estimated Budget
-                </label>
-                <select
-                  id="budget"
-                  name="budget"
-                  value={formState.budget}
-                  onChange={handleChange}
-                  className={`${inputClass} appearance-none cursor-pointer`}
-                  style={{ color: formState.budget ? "white" : "#64748b" }}
-                >
-                  <option value="" disabled style={{ background: "#0a1628" }}>
-                    Select budget range...
-                  </option>
-                  {[
-                    "< $10,000",
-                    "$10,000 – $25,000",
-                    "$25,000 – $50,000",
-                    "$50,000 – $100,000",
-                    "$100,000+",
-                  ].map((b) => (
-                    <option
-                      key={b}
-                      value={b}
-                      style={{ background: "#0a1628", color: "white" }}
-                    >
-                      {b}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Message */}
-              <div>
-                <label
-                  className="block text-xs font-semibold tracking-wider uppercase mb-2"
-                  style={{ color: "var(--text-muted)" }}
-                  htmlFor="message"
-                >
-                  Tell Us About Your Project
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={5}
-                  placeholder="Describe your vision, goals, timeline, and any technical requirements..."
-                  value={formState.message}
-                  onChange={handleChange}
-                  className={`${inputClass} resize-none`}
-                />
-              </div>
-
-              {/* Submit */}
-              <GlowButton
-                type="submit"
-                variant="solid"
-                size="lg"
-                className="w-full justify-center"
-                disabled={loading}
-              >
-                {loading ? (
-                  <span className="flex items-center gap-2">
-                    <span
-                      className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"
-                    />
-                    Sending...
-                  </span>
-                ) : (
-                  <>
-                    Send Message <span>→</span>
-                  </>
-                )}
-              </GlowButton>
-
-              <p
-                className="text-center text-xs"
-                style={{ color: "var(--text-muted)" }}
-              >
-                Free consultation · No commitment · 24hr response
-              </p>
-            </form>
-          )}
-        </motion.div>
-
-        {/* Contact info chips */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="flex flex-wrap justify-center gap-4 mt-10"
-        >
-          {[
-            { icon: "📧", label: "hello@quantumblaze.io" },
-            { icon: "📍", label: "Colombo, Sri Lanka" },
-            { icon: "⏱", label: "Response within 24h" },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="flex items-center gap-2 glass px-4 py-2 rounded-xl"
-            >
-              <span>{item.icon}</span>
-              <span className="text-xs font-medium" style={{ color: "var(--text-secondary)" }}>
-                {item.label}
-              </span>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
