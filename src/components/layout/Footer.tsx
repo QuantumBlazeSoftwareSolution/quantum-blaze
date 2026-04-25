@@ -33,18 +33,11 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-              <div
-                className="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm text-white"
-                style={{
-                  background: "linear-gradient(135deg, #0ea5e9, #0369a1)",
-                  boxShadow: "0 0 20px rgba(14,165,233,0.3)",
-                }}
-              >
-                QB
-              </div>
-              <span className="text-lg font-bold text-white">
-                Quantum <span className="text-sky-400">Blaze</span>
-              </span>
+              <img 
+                src="/QB LOGO TRANSPARENT.png" 
+                alt="Quantum Blaze Logo" 
+                className="w-10 h-10 object-contain"
+              />
             </div>
             <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-muted)" }}>
               Engineering scalable, high-end digital solutions that define the future.
@@ -97,14 +90,17 @@ export function Footer() {
             © 2025 Quantum Blaze. All rights reserved.
           </p>
           <div className="flex gap-6">
-            {["Privacy Policy", "Terms of Service"].map((t) => (
+            {[
+              { label: "Privacy Policy", href: "/privacy" },
+              { label: "Terms of Service", href: "/terms" }
+            ].map((link) => (
               <a
-                key={t}
-                href="#"
+                key={link.label}
+                href={link.href}
                 className="text-xs hover:text-sky-400 transition-colors"
                 style={{ color: "var(--text-muted)" }}
               >
-                {t}
+                {link.label}
               </a>
             ))}
           </div>

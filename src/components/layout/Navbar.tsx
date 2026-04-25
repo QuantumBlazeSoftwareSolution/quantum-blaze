@@ -56,22 +56,11 @@ export function Navbar() {
             transition={{ delay: 0.2 }}
             className="flex items-center gap-2.5"
           >
-            <div
-              className="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm"
-              style={{
-                background: "linear-gradient(135deg, #0ea5e9, #0369a1)",
-                boxShadow: "0 0 20px rgba(14,165,233,0.4)",
-              }}
-            >
-              QB
-            </div>
-            <span
-              className="text-lg font-bold tracking-tight"
-              style={{ color: "var(--text-primary)" }}
-            >
-              Quantum{" "}
-              <span style={{ color: "var(--accent-blue)" }}>Blaze</span>
-            </span>
+            <img 
+              src="/QB LOGO TRANSPARENT.png" 
+              alt="Quantum Blaze Logo" 
+              className="w-9 h-9 object-contain"
+            />
           </motion.a>
 
           {/* Desktop Nav Links */}
