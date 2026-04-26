@@ -58,11 +58,7 @@ export function About() {
     return () => ctx.revert();
   }, []);
 
-  const lines = [
-    "We don't just write code.",
-    "We architect digital ecosystems",
-    "that redefine industries.",
-  ];
+  const lines = ["Engineering", "Beyond Code."];
 
   return (
     <section
@@ -98,7 +94,7 @@ export function About() {
             <div
               className="space-y-1 mb-8"
               style={{
-                fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)",
+                fontSize: "clamp(2rem, 4vw, 3.5rem)",
                 fontWeight: 700,
                 lineHeight: 1.2,
                 fontFamily: "var(--font-grotesk)",
@@ -119,11 +115,16 @@ export function About() {
 
             <div className="overflow-hidden">
               <p
-                className="reveal-line text-base md:text-lg leading-relaxed"
+                className="reveal-line text-base md:text-lg leading-relaxed max-w-xl"
                 style={{ color: "var(--text-muted)" }}
               >
-                We obsess over every architectural decision, pixel, and
-                millisecond. Because your success is our reputation.
+                We believe that exceptional software isn't just about lines of
+                code; it's about the architecture of innovation. Our team
+                deep-dives into every technical detail, from system scalability
+                to micro-interactions, ensuring your digital ecosystem is
+                robust, performant, and future-proof. We obsess over every
+                architectural decision, pixel, and millisecond to ensure your
+                success defines our reputation.
               </p>
             </div>
           </div>
