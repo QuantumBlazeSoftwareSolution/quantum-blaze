@@ -221,13 +221,13 @@ export function Team() {
           className="text-center mt-14"
         >
           <p className="text-sm mb-4" style={{ color: "var(--text-muted)" }}>
-            We&apos;re always looking for exceptional talent.
+            Ready to bring your vision to life with our expertise?
           </p>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 text-sm font-semibold text-sky-400 hover:text-sky-300 transition-colors"
           >
-            View open positions <span>→</span>
+            Connect with our team <span>→</span>
           </a>
         </motion.div>
       </div>
