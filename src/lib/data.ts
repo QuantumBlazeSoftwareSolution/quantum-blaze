@@ -222,3 +222,53 @@ export const stats = [
   { value: "5+", label: "Years of Excellence" },
   { value: "99.9%", label: "Uptime Guaranteed" },
 ];
+
+// ─── Industries ──────────────────────────────────────────────────────────────
+export const industries = [
+  {
+    id: "healthcare",
+    title: "Healthcare & MedTech",
+    description: "HIPAA-compliant platforms, telemedicine apps, and secure patient portals.",
+    icon: "HeartPulse",
+    metric: "10M+",
+    metricLabel: "Patient Records Secured",
+    color: "#06b6d4", // Cyan
+  },
+  {
+    id: "edtech",
+    title: "Education & EdTech",
+    description: "Scalable LMS platforms, virtual classrooms, and student analytics dashboards.",
+    icon: "GraduationCap",
+    metric: "200+",
+    metricLabel: "Institutions Onboarded",
+    color: "#3b82f6", // Blue
+  },
+  {
+    id: "fintech",
+    title: "FinTech & Banking",
+    description: "High-frequency trading platforms, digital wallets, and blockchain solutions.",
+    icon: "Wallet",
+    metric: "$2B+",
+    metricLabel: "Transactions Processed",
+    color: "#10b981", // Emerald
+  },
+  {
+    id: "retail",
+    title: "E-commerce & Retail",
+    description: "Omnichannel retail systems, multi-vendor marketplaces, and smart inventory.",
+    icon: "ShoppingCart",
+    metric: "50K+",
+    metricLabel: "Daily Orders Handled",
+    color: "#8b5cf6", // Violet
+  },
+  {
+    id: "logistics",
+    title: "Logistics & Supply Chain",
+    description: "Real-time fleet tracking, warehouse automation, and predictive route planning.",
+    icon: "Truck",
+    metric: "99.9%",
+    metricLabel: "Tracking Accuracy",
+    color: "#f59e0b", // Amber
+  },
+];
+
