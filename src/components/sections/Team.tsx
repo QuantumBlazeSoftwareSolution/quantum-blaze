@@ -20,21 +20,9 @@ function TeamCard({
       className="group"
       style={{ perspective: "1000px" }}
     >
-      {/* Card wrapper — flips on hover */}
+      {/* Card wrapper — actual rotating element */}
       <div
-        className="relative w-full transition-transform duration-700 cursor-default"
-        style={{
-          transformStyle: "preserve-3d",
-          height: "300px",
-          transform: "rotateY(0deg)",
-        }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLDivElement).style.transform =
-            "rotateY(180deg)";
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLDivElement).style.transform = "rotateY(0deg)";
-        }}
+        className="relative w-full h-[300px] transition-transform duration-700 cursor-default [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]"
       >
         {/* ── FRONT ── */}
         <div
