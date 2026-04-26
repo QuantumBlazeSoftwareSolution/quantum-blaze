@@ -167,9 +167,9 @@ export const techStack = [
 // ─── Team ────────────────────────────────────────────────────────────────────
 export const team = [
   {
-    id: "ceo",
-    name: "Aryan Perera",
-    role: "CEO & Co-Founder",
+    id: "founder",
+    name: "Vihanga Heshan",
+    role: "Founder & CEO",
     bio: "Visionary leader with 10+ years building scalable digital products for global markets.",
     image:
       "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=256&h=256",
@@ -179,8 +179,8 @@ export const team = [
   },
   {
     id: "cto",
-    name: "Kavinda Silva",
-    role: "CTO & Lead Architect",
+    name: "Ravishka Indraji",
+    role: "Software Developer",
     bio: "Full-stack engineer and cloud architect. Expert in distributed systems and high-scale applications.",
     image:
       "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=256&h=256",
@@ -189,26 +189,26 @@ export const team = [
     gradient: "from-blue-500 to-indigo-700",
   },
   {
-    id: "design",
-    name: "Nimasha Fernando",
+    id: "mobile",
+    name: "Lakshan Maduranga",
     role: "Head of Design",
     bio: "UI/UX designer obsessed with creating immersive digital experiences that convert and delight.",
-    image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=256&h=256",
-    linkedin: "#",
-    github: "#",
-    gradient: "from-cyan-500 to-sky-700",
-  },
-  {
-    id: "mobile",
-    name: "Ravindu Jayaweera",
-    role: "Lead Mobile Engineer",
-    bio: "Flutter & React Native specialist. Has shipped 20+ apps to the App Store and Google Play.",
     image:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
     github: "#",
     gradient: "from-sky-400 to-cyan-700",
+  },
+  {
+    id: "design",
+    name: "Supun Sulakshana",
+    role: "Software Developer",
+    bio: "Flutter & React Native specialist. Has shipped 20+ apps to the App Store and Google Play.",
+    image:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=256&h=256",
+    linkedin: "#",
+    github: "#",
+    gradient: "from-cyan-500 to-sky-700",
   },
 ];
 
