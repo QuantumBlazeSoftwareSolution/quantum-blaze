@@ -51,9 +51,9 @@ export function Hero() {
                 shineColor="#ffffff"
                 color="var(--accent-blue)"
               />
-              <span className="block text-white mt-1">Next-Gen Software</span>
+              <span className="block text-white mt-1">The Future Of</span>
               <span className="block text-slate-400/80 text-[clamp(1.75rem,3vw,2.5rem)] mt-2 font-medium tracking-normal">
-                For Forward-Thinking Brands
+                Digital Products
               </span>
             </h1>
           </motion.div>
@@ -64,9 +64,7 @@ export function Hero() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-lg md:text-xl text-slate-300/90 leading-relaxed font-light mb-12 max-w-xl"
           >
-            From immersive enterprise platforms to cutting-edge mobile
-            applications, we transform visionary concepts into revolutionary
-            digital products that define the future.
+            We build scalable, high-performance software that turns bold ideas into market-leading realities.
           </motion.p>
 
           <motion.div
@@ -75,18 +73,37 @@ export function Hero() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="flex items-center gap-6 mb-16"
           >
-            <GlowButton
-              size="lg"
-              variant="solid"
+            <button
               onClick={() =>
                 document
                   .querySelector("#contact")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="px-8 py-4 text-base rounded-full tracking-wide shadow-[0_0_30px_rgba(56,189,248,0.15)] hover:shadow-[0_0_40px_rgba(56,189,248,0.3)]"
+              className="group relative flex items-center justify-center gap-3 px-8 py-4 rounded-full overflow-hidden bg-slate-900 border border-sky-500/30 shadow-[0_0_20px_rgba(14,165,233,0.2)] hover:shadow-[0_0_40px_rgba(14,165,233,0.5)] hover:-translate-y-1 transition-all duration-300 hover:border-sky-400"
             >
-              Start a Project
-            </GlowButton>
+              {/* Background gradient that reveals on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-sky-600/30 to-blue-800/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              {/* Shine effect sweeping across */}
+              <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+
+              <span className="relative font-bold text-white tracking-wide text-base flex items-center gap-2">
+                Start a Project
+                <svg
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 text-sky-400 group-hover:text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2.5}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </span>
+            </button>
           </motion.div>
 
           {/* Services Pills */}
