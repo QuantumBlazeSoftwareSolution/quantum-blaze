@@ -171,10 +171,22 @@ export function About() {
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           {[
-            { icon: <Zap className="w-5 h-5 text-sky-400" />, label: "Innovation-Driven" },
-            { icon: <ShieldCheck className="w-5 h-5 text-sky-400" />, label: "Quality First" },
-            { icon: <Eye className="w-5 h-5 text-sky-400" />, label: "Transparent" },
-            { icon: <Target className="w-5 h-5 text-sky-400" />, label: "Results-Focused" },
+            {
+              icon: <Zap className="w-5 h-5 text-sky-400" />,
+              label: "Innovation-Driven",
+            },
+            {
+              icon: <ShieldCheck className="w-5 h-5 text-sky-400" />,
+              label: "Quality First",
+            },
+            {
+              icon: <Eye className="w-5 h-5 text-sky-400" />,
+              label: "Transparent",
+            },
+            {
+              icon: <Target className="w-5 h-5 text-sky-400" />,
+              label: "Results-Focused",
+            },
           ].map((val) => (
             <div
               key={val.label}

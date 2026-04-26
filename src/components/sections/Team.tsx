@@ -22,9 +22,7 @@ function TeamCard({
       style={{ perspective: "1000px" }}
     >
       {/* Card wrapper — actual rotating element */}
-      <div
-        className="relative w-full h-[300px] transition-transform duration-700 cursor-default [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]"
-      >
+      <div className="relative w-full h-[300px] transition-transform duration-700 cursor-default [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
         {/* ── FRONT ── */}
         <div
           className="absolute inset-0 glass rounded-2xl flex flex-col items-center justify-center p-8 text-center"

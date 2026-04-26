@@ -57,6 +57,7 @@ export const projects = [
     metrics: ["50K+ Active Users", "200+ Institutions", "99.9% Uptime"],
     color: "#38bdf8",
     mockupType: "desktop",
+    image: "/images/projects/lms.png",
   },
   {
     id: "roadservice",
@@ -76,6 +77,7 @@ export const projects = [
     metrics: ["10K+ Downloads", "4.8★ App Rating", "< 3min Response"],
     color: "#0ea5e9",
     mockupType: "mobile",
+    image: "/images/projects/roadservice.png",
   },
   {
     id: "pos",
@@ -88,6 +90,7 @@ export const projects = [
     metrics: ["10K+ Daily Txns", "Multi-Store", "Offline-ready"],
     color: "#7dd3fc",
     mockupType: "desktop",
+    image: "/images/projects/pos.png",
   },
 ];
 

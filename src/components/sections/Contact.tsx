@@ -128,20 +128,20 @@ export function Contact() {
               className="flex flex-wrap justify-center lg:justify-start gap-4 mt-12"
             >
               {[
-                { 
-                  icon: <Mail className="w-5 h-5 text-sky-400" />, 
-                  label: "hello@quantumblaze.io", 
-                  sub: "Email Us" 
+                {
+                  icon: <Mail className="w-5 h-5 text-sky-400" />,
+                  label: "hello@quantumblaze.io",
+                  sub: "Email Us",
                 },
-                { 
-                  icon: <MapPin className="w-5 h-5 text-sky-400" />, 
-                  label: "Colombo, Sri Lanka", 
-                  sub: "Our Office" 
+                {
+                  icon: <MapPin className="w-5 h-5 text-sky-400" />,
+                  label: "Colombo, Sri Lanka",
+                  sub: "Our Office",
                 },
-                { 
-                  icon: <Clock className="w-5 h-5 text-sky-400" />, 
-                  label: "Within 24h", 
-                  sub: "Response Time" 
+                {
+                  icon: <Clock className="w-5 h-5 text-sky-400" />,
+                  label: "Within 24h",
+                  sub: "Response Time",
                 },
               ].map((item) => (
                 <div
