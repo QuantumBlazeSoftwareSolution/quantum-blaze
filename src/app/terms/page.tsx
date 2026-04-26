@@ -140,9 +140,9 @@ export default function TermsOfService() {
                 <br />
                 <strong>Quantum Blaze</strong>
                 <br />
-                Colombo, Sri Lanka
+                Urapola, Sri Lanka
                 <br />
-                Email: hello@quantumblaze.io
+                Email: quantumblazesoftwaresolution@gmail.com
               </p>
             </section>
           </div>
