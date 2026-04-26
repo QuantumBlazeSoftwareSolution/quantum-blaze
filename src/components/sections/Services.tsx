@@ -108,13 +108,13 @@ export function Services() {
 
                 {/* Icon */}
                 <div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl mb-6 flex-shrink-0"
+                  className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 flex-shrink-0"
                   style={{
                     background: `${service.accent}15`,
                     border: `1px solid ${service.accent}30`,
                   }}
                 >
-                  {service.icon}
+                  {IconMap[service.icon] || service.icon}
                 </div>
 
                 {/* Content */}

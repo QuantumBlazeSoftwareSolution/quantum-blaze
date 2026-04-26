@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { stats } from "@/lib/data";
+import { Zap, ShieldCheck, Eye, Target } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -170,16 +171,18 @@ export function About() {
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           {[
-            { icon: "⚡", label: "Innovation-Driven" },
-            { icon: "🔒", label: "Quality First" },
-            { icon: "🤝", label: "Transparent" },
-            { icon: "🚀", label: "Results-Focused" },
+            { icon: <Zap className="w-5 h-5 text-sky-400" />, label: "Innovation-Driven" },
+            { icon: <ShieldCheck className="w-5 h-5 text-sky-400" />, label: "Quality First" },
+            { icon: <Eye className="w-5 h-5 text-sky-400" />, label: "Transparent" },
+            { icon: <Target className="w-5 h-5 text-sky-400" />, label: "Results-Focused" },
           ].map((val) => (
             <div
               key={val.label}
-              className="flex items-center gap-3 glass rounded-xl px-5 py-4"
+              className="flex items-center gap-3 glass rounded-xl px-5 py-4 border border-sky-500/10 hover:border-sky-500/30 transition-colors"
             >
-              <span className="text-xl">{val.icon}</span>
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-sky-500/5 flex items-center justify-center">
+                {val.icon}
+              </div>
               <span
                 className="text-sm font-semibold"
                 style={{ color: "var(--text-secondary)" }}
