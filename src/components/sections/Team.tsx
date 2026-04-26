@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { team } from "@/lib/data";
 import { FaLinkedin, FaGithub } from "react-icons/fa6";
+import BorderGlow from "@/components/BorderGlow";
 
 function TeamCard({
   member,
@@ -71,73 +72,78 @@ function TeamCard({
         </div>
 
         {/* ── BACK ── */}
-        <div
-          className="absolute inset-0 glass rounded-2xl p-6 flex flex-col justify-between"
+        <BorderGlow
+          className="absolute inset-0"
+          borderRadius={24}
+          backgroundColor="rgba(5, 11, 20, 0.98)"
+          glowColor="200 80 40"
+          colors={["#0284c7", "#0ea5e9", "#38bdf8"]}
+          glowIntensity={0.5}
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
-            background: "rgba(5, 11, 20, 0.97)",
-            borderColor: "rgba(56,189,248,0.25)",
           }}
         >
-          {/* Top row: small circular avatar + name/role */}
-          <div className="flex items-center gap-3">
+          <div className="p-6 flex flex-col justify-between h-full">
+            {/* Top row: small circular avatar + name/role */}
+            <div className="flex items-center gap-3">
+              <div
+                className={`w-11 h-11 rounded-full overflow-hidden border-2 border-sky-400/40 flex-shrink-0 bg-gradient-to-br ${member.gradient}`}
+              >
+                {member.image && (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </div>
+              <div>
+                <p className="text-white font-bold text-sm leading-tight">
+                  {member.name}
+                </p>
+                <p
+                  className="text-xs font-semibold tracking-wider uppercase"
+                  style={{ color: "var(--accent-blue)" }}
+                >
+                  {member.role}
+                </p>
+              </div>
+            </div>
+
+            {/* Divider */}
             <div
-              className={`w-11 h-11 rounded-full overflow-hidden border-2 border-sky-400/40 flex-shrink-0 bg-gradient-to-br ${member.gradient}`}
+              className="w-full h-px my-4"
+              style={{ background: "rgba(56,189,248,0.15)" }}
+            />
+
+            {/* Bio */}
+            <p
+              className="text-sm leading-relaxed flex-1"
+              style={{ color: "var(--text-secondary)" }}
             >
-              {member.image && (
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                />
-              )}
-            </div>
-            <div>
-              <p className="text-white font-bold text-sm leading-tight">
-                {member.name}
-              </p>
-              <p
-                className="text-xs font-semibold tracking-wider uppercase"
-                style={{ color: "var(--accent-blue)" }}
-              >
-                {member.role}
-              </p>
+              {member.bio}
+            </p>
+
+            {/* Social icons */}
+            <div className="flex items-center gap-3 mt-5">
+              {[
+                { label: "LinkedIn", href: member.linkedin, icon: FaLinkedin },
+                { label: "GitHub", href: member.github, icon: FaGithub },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  aria-label={s.label}
+                  className="w-9 h-9 rounded-xl flex items-center justify-center text-sky-400 hover:text-white hover:bg-sky-500/20 transition-all duration-200 border border-sky-500/20 hover:border-sky-400/50"
+                  title={s.label}
+                >
+                  <s.icon size={15} />
+                </a>
+              ))}
             </div>
           </div>
-
-          {/* Divider */}
-          <div
-            className="w-full h-px my-4"
-            style={{ background: "rgba(56,189,248,0.15)" }}
-          />
-
-          {/* Bio */}
-          <p
-            className="text-sm leading-relaxed flex-1"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            {member.bio}
-          </p>
-
-          {/* Social icons */}
-          <div className="flex items-center gap-3 mt-5">
-            {[
-              { label: "LinkedIn", href: member.linkedin, icon: FaLinkedin },
-              { label: "GitHub", href: member.github, icon: FaGithub },
-            ].map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                aria-label={s.label}
-                className="w-9 h-9 rounded-xl flex items-center justify-center text-sky-400 hover:text-white hover:bg-sky-500/20 transition-all duration-200 border border-sky-500/20 hover:border-sky-400/50"
-                title={s.label}
-              >
-                <s.icon size={15} />
-              </a>
-            ))}
-          </div>
-        </div>
+        </BorderGlow>
       </div>
     </motion.div>
   );

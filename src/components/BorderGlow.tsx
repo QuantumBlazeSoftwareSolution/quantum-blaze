@@ -19,6 +19,7 @@ interface BorderGlowProps {
   animated?: boolean;
   colors?: string[];
   fillOpacity?: number;
+  style?: React.CSSProperties;
 }
 
 function parseHSL(hslStr: string): { h: number; s: number; l: number } {
@@ -130,6 +131,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
   animated = false,
   colors = ["#c084fc", "#f472b6", "#38bdf8"],
   fillOpacity = 0.5,
+  style = {},
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -246,13 +248,14 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
       onPointerMove={handlePointerMove}
       onPointerEnter={() => setIsHovered(true)}
       onPointerLeave={() => setIsHovered(false)}
-      className={`relative grid isolate border border-white/15 ${className}`}
+      className={`${className} relative h-full w-full grid isolate border border-white/15`}
       style={{
         background: backgroundColor,
         borderRadius: `${borderRadius}px`,
-        transform: "translate3d(0, 0, 0.01px)",
         boxShadow:
           "rgba(0,0,0,0.1) 0 1px 2px, rgba(0,0,0,0.1) 0 2px 4px, rgba(0,0,0,0.1) 0 4px 8px, rgba(0,0,0,0.1) 0 8px 16px, rgba(0,0,0,0.1) 0 16px 32px, rgba(0,0,0,0.1) 0 32px 64px",
+        transform: "translate3d(0, 0, 0.01px)",
+        ...style,
       }}
     >
       {/* mesh gradient border */}
@@ -336,7 +339,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
         />
       </span>
 
-      <div className="flex flex-col relative overflow-auto z-[1]">
+      <div className="flex flex-col h-full relative overflow-auto z-[1]">
         {children}
       </div>
     </div>
