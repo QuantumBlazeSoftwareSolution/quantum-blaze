@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Services } from "@/components/sections/Services";
+import { Industries } from "@/components/sections/Industries";
 import { Projects } from "@/components/sections/Projects";
 import { Process } from "@/components/sections/Process";
 import { TechStack } from "@/components/sections/TechStack";
@@ -36,6 +37,7 @@ export default function Home() {
       <Hero />
       <About />
       <Services />
+      <Industries />
       <Projects />
       <Process />
       <TechStack />

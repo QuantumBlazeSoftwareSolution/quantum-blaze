@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Mail, MapPin, Clock } from "lucide-react";
+import { Mail, MapPin, Clock, Phone } from "lucide-react";
 
 const projectTypes = [
   "Enterprise SaaS Platform",
@@ -128,20 +128,20 @@ export function Contact() {
               className="flex flex-wrap justify-center lg:justify-start gap-4 mt-12"
             >
               {[
-                { 
-                  icon: <Mail className="w-5 h-5 text-sky-400" />, 
-                  label: "hello@quantumblaze.io", 
-                  sub: "Email Us" 
+                {
+                  icon: <Mail className="w-5 h-5 text-sky-400" />,
+                  label: "quantumblazesoftwaresolution@gmail.com",
+                  sub: "Email Us",
                 },
-                { 
-                  icon: <MapPin className="w-5 h-5 text-sky-400" />, 
-                  label: "Colombo, Sri Lanka", 
-                  sub: "Our Office" 
+                {
+                  icon: <Phone className="w-5 h-5 text-sky-400" />,
+                  label: "+94 71 989 2932 / +94 78 805 6838",
+                  sub: "Call Us",
                 },
-                { 
-                  icon: <Clock className="w-5 h-5 text-sky-400" />, 
-                  label: "Within 24h", 
-                  sub: "Response Time" 
+                {
+                  icon: <MapPin className="w-5 h-5 text-sky-400" />,
+                  label: "Urapola, Sri Lanka",
+                  sub: "Our Office",
                 },
               ].map((item) => (
                 <div

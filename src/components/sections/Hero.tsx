@@ -64,7 +64,8 @@ export function Hero() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-lg md:text-xl text-slate-300/90 leading-relaxed font-light mb-12 max-w-xl"
           >
-            We build scalable, high-performance software that turns bold ideas into market-leading realities.
+            We build scalable, high-performance software that turns bold ideas
+            into market-leading realities.
           </motion.p>
 
           <motion.div
@@ -83,7 +84,7 @@ export function Hero() {
             >
               {/* Background gradient that reveals on hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-sky-600/30 to-blue-800/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
+
               {/* Shine effect sweeping across */}
               <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
 

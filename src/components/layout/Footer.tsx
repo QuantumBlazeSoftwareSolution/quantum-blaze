@@ -11,7 +11,12 @@ const footerLinks = {
     "UI/UX Design",
     "Cloud & DevOps",
   ],
-  Contact: ["hello@quantumblaze.io", "+94 77 000 0000", "Colombo, Sri Lanka"],
+  Contact: [
+    "quantumblazesoftwaresolution@gmail.com",
+    "+94 71 989 2932",
+    "+94 78 805 6838",
+    "Urapola, Sri Lanka",
+  ],
 };
 
 const socialLinks = [
