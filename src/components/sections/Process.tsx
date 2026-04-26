@@ -5,6 +5,15 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { processSteps } from "@/lib/data";
+import { Search, Palette, Layers, Code2, Rocket } from "lucide-react";
+
+const IconMap: Record<string, React.ReactNode> = {
+  Search: <Search className="w-6 h-6 text-sky-400" />,
+  Palette: <Palette className="w-6 h-6 text-sky-400" />,
+  Layers: <Layers className="w-6 h-6 text-sky-400" />,
+  Code2: <Code2 className="w-6 h-6 text-sky-400" />,
+  Rocket: <Rocket className="w-6 h-6 text-sky-400" />,
+};
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -146,7 +155,9 @@ export function Process() {
                       </div>
 
                       <div className="flex items-start gap-3 mb-3">
-                        <span className="text-2xl">{step.icon}</span>
+                        <div className="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center flex-shrink-0">
+                          {IconMap[step.icon] || step.icon}
+                        </div>
                         <div>
                           <h3
                             className="text-white font-bold text-lg"

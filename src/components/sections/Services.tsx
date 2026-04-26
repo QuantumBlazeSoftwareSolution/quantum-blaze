@@ -4,6 +4,13 @@ import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { services } from "@/lib/data";
+import { Layout, Smartphone, Globe } from "lucide-react";
+
+const IconMap: Record<string, React.ReactNode> = {
+  Layout: <Layout className="w-6 h-6 text-sky-400" />,
+  Smartphone: <Smartphone className="w-6 h-6 text-sky-400" />,
+  Globe: <Globe className="w-6 h-6 text-sky-400" />,
+};
 
 export function Services() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -101,13 +108,13 @@ export function Services() {
 
                 {/* Icon */}
                 <div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl mb-6 flex-shrink-0"
+                  className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 flex-shrink-0"
                   style={{
                     background: `${service.accent}15`,
                     border: `1px solid ${service.accent}30`,
                   }}
                 >
-                  {service.icon}
+                  {IconMap[service.icon] || service.icon}
                 </div>
 
                 {/* Content */}
