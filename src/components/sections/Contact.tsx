@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { Mail, MapPin, Clock } from "lucide-react";
 
 const projectTypes = [
   "Enterprise SaaS Platform",
@@ -23,6 +24,7 @@ export function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -30,15 +32,29 @@ export function Contact() {
     >
   ) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
+    if (error) setError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate submission
-    await new Promise((r) => setTimeout(r, 1500));
-    setLoading(false);
-    setSubmitted(true);
+    setError(null);
+
+    try {
+      const { sendContactEmail } = await import("@/lib/actions/email/contact");
+      const result = await sendContactEmail(formState);
+
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setError(result.error || "Something went wrong.");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputClass = `
@@ -112,15 +128,29 @@ export function Contact() {
               className="flex flex-wrap justify-center lg:justify-start gap-4 mt-12"
             >
               {[
-                { icon: "📧", label: "hello@quantumblaze.io", sub: "Email Us" },
-                { icon: "📍", label: "Colombo, Sri Lanka", sub: "Our Office" },
-                { icon: "⏱", label: "Within 24h", sub: "Response Time" },
+                { 
+                  icon: <Mail className="w-5 h-5 text-sky-400" />, 
+                  label: "hello@quantumblaze.io", 
+                  sub: "Email Us" 
+                },
+                { 
+                  icon: <MapPin className="w-5 h-5 text-sky-400" />, 
+                  label: "Colombo, Sri Lanka", 
+                  sub: "Our Office" 
+                },
+                { 
+                  icon: <Clock className="w-5 h-5 text-sky-400" />, 
+                  label: "Within 24h", 
+                  sub: "Response Time" 
+                },
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center gap-4 glass px-5 py-3 rounded-xl w-auto"
+                  className="flex items-center gap-4 glass px-5 py-3 rounded-xl w-auto border border-sky-500/10 hover:border-sky-500/30 transition-colors"
                 >
-                  <span className="text-xl">{item.icon}</span>
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-sky-500/5 flex items-center justify-center">
+                    {item.icon}
+                  </div>
                   <div className="flex flex-col text-left">
                     <span className="text-[10px] uppercase tracking-widest text-slate-500 font-semibold mb-0.5">
                       {item.sub}
@@ -265,11 +295,11 @@ export function Contact() {
                       Select budget range...
                     </option>
                     {[
-                      "< $10,000",
-                      "$10,000 – $25,000",
-                      "$25,000 – $50,000",
-                      "$50,000 – $100,000",
-                      "$100,000+",
+                      "< 100,000 LKR",
+                      "100,000 – 500,000 LKR",
+                      "500,000 – 1,000,000 LKR",
+                      "1,000,000 – 5,000,000 LKR",
+                      "5,000,000+ LKR",
                     ].map((b) => (
                       <option
                         key={b}
@@ -302,6 +332,17 @@ export function Contact() {
                     className={`${inputClass} resize-none`}
                   />
                 </div>
+
+                {/* Error Message */}
+                {error && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-red-400 text-xs font-semibold bg-red-400/10 p-3 rounded-xl border border-red-400/20"
+                  >
+                    {error}
+                  </motion.p>
+                )}
 
                 {/* Submit */}
                 <GlowButton

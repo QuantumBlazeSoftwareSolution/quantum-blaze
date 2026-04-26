@@ -2,7 +2,7 @@
 export const services = [
   {
     id: "saas",
-    icon: "🏗️",
+    icon: "Layout",
     title: "Enterprise SaaS Solutions",
     description:
       "We architect and build scalable, multi-tenant SaaS platforms that handle millions of users. From subscription billing to complex permission systems — we engineer the backbone of modern digital businesses.",
@@ -16,7 +16,7 @@ export const services = [
   },
   {
     id: "mobile",
-    icon: "📱",
+    icon: "Smartphone",
     title: "Mobile App Development",
     description:
       "High-performance iOS & Android applications built with Flutter and React Native. Buttery-smooth animations, offline-first architecture, and pixel-perfect UIs that users love.",
@@ -30,7 +30,7 @@ export const services = [
   },
   {
     id: "web",
-    icon: "🌐",
+    icon: "Globe",
     title: "Custom Web Apps & Portals",
     description:
       "Complex web applications engineered for performance and scale. Enterprise portals, customer dashboards, real-time collaboration tools — built with modern frameworks that stand the test of time.",
@@ -99,7 +99,7 @@ export const processSteps = [
     subtitle: "Understanding Your Vision",
     description:
       "Deep-dive sessions to understand your goals, users, and technical constraints. We map out every requirement before writing a single line of code.",
-    icon: "🔍",
+    icon: "Search",
     duration: "Week 1",
   },
   {
@@ -108,7 +108,7 @@ export const processSteps = [
     subtitle: "Crafting the Experience",
     description:
       "High-fidelity prototypes and system design documentation. We validate the architecture and UX with your team before development begins.",
-    icon: "🎨",
+    icon: "Palette",
     duration: "Week 2–3",
   },
   {
@@ -117,7 +117,7 @@ export const processSteps = [
     subtitle: "Engineering the Foundation",
     description:
       "We design scalable system architecture with security, performance, and maintainability as first-class concerns — built to grow with your business.",
-    icon: "🏛️",
+    icon: "Layers",
     duration: "Week 3–4",
   },
   {
@@ -126,7 +126,7 @@ export const processSteps = [
     subtitle: "Building with Precision",
     description:
       "Sprint-based development with CI/CD pipelines, automated testing, and weekly demos. You see real progress every single week.",
-    icon: "⚡",
+    icon: "Code2",
     duration: "Week 4–12",
   },
   {
@@ -135,7 +135,7 @@ export const processSteps = [
     subtitle: "Launching to the World",
     description:
       "Zero-downtime deployments, performance monitoring, and post-launch support. We don't just ship — we ensure your product thrives in production.",
-    icon: "🚀",
+    icon: "Rocket",
     duration: "Week 12+",
   },
 ];

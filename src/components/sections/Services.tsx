@@ -4,6 +4,13 @@ import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { services } from "@/lib/data";
+import { Layout, Smartphone, Globe } from "lucide-react";
+
+const IconMap: Record<string, React.ReactNode> = {
+  Layout: <Layout className="w-6 h-6 text-sky-400" />,
+  Smartphone: <Smartphone className="w-6 h-6 text-sky-400" />,
+  Globe: <Globe className="w-6 h-6 text-sky-400" />,
+};
 
 export function Services() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });

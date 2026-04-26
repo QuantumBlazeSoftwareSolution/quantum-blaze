@@ -71,8 +71,15 @@ function TeamCard({
         </div>
 
         {/* ── BACK ── */}
-        <div
-          className="absolute inset-0 glass rounded-2xl p-6 flex flex-col justify-between"
+        <BorderGlow
+          className="absolute inset-0"
+          borderRadius={24}
+          edgeSensitivity={0}
+          glowRadius={80}
+          backgroundColor="rgba(5, 11, 20, 0.98)"
+          glowColor="200 80 40"
+          colors={["#0284c7", "#0ea5e9", "#38bdf8"]}
+          glowIntensity={0.5}
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
