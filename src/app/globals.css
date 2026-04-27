@@ -213,15 +213,15 @@
   }
 
   .container-wide {
+    width: 90%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
   }
 
   .container-narrow {
+    width: 90%;
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 2rem;
   }
 
   /* ─── Noise Texture Overlay ─── */
