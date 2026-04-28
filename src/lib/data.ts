@@ -222,7 +222,8 @@ export const fullTeam = [
     name: "Kasun Perera",
     role: "Frontend Engineer",
     bio: "React and Next.js specialist focused on creating buttery-smooth user interfaces.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=256&h=256",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
     github: "#",
     gradient: "from-sky-500 to-blue-600",
@@ -232,7 +233,8 @@ export const fullTeam = [
     name: "Nimesh Silva",
     role: "Backend Engineer",
     bio: "Node.js and Database expert. Ensures our APIs are blazing fast and secure.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=256&h=256",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
     github: "#",
     gradient: "from-blue-600 to-indigo-800",
@@ -242,7 +244,8 @@ export const fullTeam = [
     name: "Amandi Fernando",
     role: "QA Automation Engineer",
     bio: "Dedicated to breaking things before users do. Masters in automated testing pipelines.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=256&h=256",
+    image:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
     github: "#",
     gradient: "from-cyan-400 to-sky-600",
@@ -252,7 +255,8 @@ export const fullTeam = [
     name: "Thilina Bandara",
     role: "Mobile Developer",
     bio: "Flutter enthusiast. Builds beautiful iOS and Android apps from a single codebase.",
-    image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=256&h=256",
+    image:
+      "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
     github: "#",
     gradient: "from-sky-600 to-cyan-800",
@@ -272,7 +276,8 @@ export const industries = [
   {
     id: "healthcare",
     title: "Healthcare & MedTech",
-    description: "HIPAA-compliant platforms, telemedicine apps, and secure patient portals.",
+    description:
+      "HIPAA-compliant platforms, telemedicine apps, and secure patient portals.",
     icon: "HeartPulse",
     metric: "10M+",
     metricLabel: "Patient Records Secured",
@@ -281,7 +286,8 @@ export const industries = [
   {
     id: "edtech",
     title: "Education & EdTech",
-    description: "Scalable LMS platforms, virtual classrooms, and student analytics dashboards.",
+    description:
+      "Scalable LMS platforms, virtual classrooms, and student analytics dashboards.",
     icon: "GraduationCap",
     metric: "200+",
     metricLabel: "Institutions Onboarded",
@@ -290,7 +296,8 @@ export const industries = [
   {
     id: "fintech",
     title: "FinTech & Banking",
-    description: "High-frequency trading platforms, digital wallets, and blockchain solutions.",
+    description:
+      "High-frequency trading platforms, digital wallets, and blockchain solutions.",
     icon: "Wallet",
     metric: "$2B+",
     metricLabel: "Transactions Processed",
@@ -299,7 +306,8 @@ export const industries = [
   {
     id: "retail",
     title: "E-commerce & Retail",
-    description: "Omnichannel retail systems, multi-vendor marketplaces, and smart inventory.",
+    description:
+      "Omnichannel retail systems, multi-vendor marketplaces, and smart inventory.",
     icon: "ShoppingCart",
     metric: "50K+",
     metricLabel: "Daily Orders Handled",
@@ -308,11 +316,11 @@ export const industries = [
   {
     id: "logistics",
     title: "Logistics & Supply Chain",
-    description: "Real-time fleet tracking, warehouse automation, and predictive route planning.",
+    description:
+      "Real-time fleet tracking, warehouse automation, and predictive route planning.",
     icon: "Truck",
     metric: "99.9%",
     metricLabel: "Tracking Accuracy",
     color: "#f59e0b", // Amber
   },
 ];
-

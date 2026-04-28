@@ -3,7 +3,13 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { industries } from "@/lib/data";
-import { HeartPulse, GraduationCap, Wallet, ShoppingCart, Truck } from "lucide-react";
+import {
+  HeartPulse,
+  GraduationCap,
+  Wallet,
+  ShoppingCart,
+  Truck,
+} from "lucide-react";
 
 const IconMap: Record<string, React.ReactNode> = {
   HeartPulse: <HeartPulse className="w-8 h-8" />,
@@ -32,7 +38,10 @@ export function Industries() {
       {/* Glow orb */}
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[120px] pointer-events-none opacity-40"
-        style={{ background: "radial-gradient(circle, var(--accent-blue-dim), transparent 70%)" }}
+        style={{
+          background:
+            "radial-gradient(circle, var(--accent-blue-dim), transparent 70%)",
+        }}
       />
 
       <div className="container-wide relative z-10">
@@ -66,12 +75,13 @@ export function Industries() {
             className="mt-4 text-base max-w-xl mx-auto"
             style={{ color: "var(--text-muted)" }}
           >
-            We don't just build software; we engineer specialized solutions that solve complex challenges across diverse sectors.
+            We don't just build software; we engineer specialized solutions that
+            solve complex challenges across diverse sectors.
           </motion.p>
         </div>
 
         {/* Clean, Minimalist Grid */}
-        <motion.div 
+        <motion.div
           style={{ y }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
@@ -90,7 +100,7 @@ export function Industries() {
               }}
             >
               {/* Watermark Icon */}
-              <div 
+              <div
                 className="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity duration-700 pointer-events-none scale-[2.5] rotate-12"
                 style={{ color: ind.color }}
               >
@@ -98,7 +108,7 @@ export function Industries() {
               </div>
 
               {/* Subtle background glow on hover */}
-              <div 
+              <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700 rounded-2xl pointer-events-none"
                 style={{ background: ind.color }}
               />
@@ -106,17 +116,17 @@ export function Industries() {
               <div className="relative z-10 flex flex-col h-full">
                 {/* Header: Icon + Title */}
                 <div className="flex items-center gap-4 mb-8">
-                  <div 
+                  <div
                     className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"
-                    style={{ 
+                    style={{
                       background: `${ind.color}10`,
                       color: ind.color,
-                      border: `1px solid ${ind.color}20`
+                      border: `1px solid ${ind.color}20`,
                     }}
                   >
                     {IconMap[ind.icon]}
                   </div>
-                  <h3 
+                  <h3
                     className="text-xl font-bold text-white tracking-wide leading-tight"
                     style={{ fontFamily: "var(--font-grotesk)" }}
                   >
@@ -125,7 +135,7 @@ export function Industries() {
                 </div>
 
                 {/* Description */}
-                <p 
+                <p
                   className="text-sm leading-relaxed mb-10 flex-grow"
                   style={{ color: "var(--text-muted)", opacity: 0.8 }}
                 >
@@ -136,22 +146,23 @@ export function Industries() {
                 <div className="mt-auto pt-6 border-t border-white/5">
                   <div className="flex items-end justify-between">
                     <div className="flex flex-col">
-                      <span 
+                      <span
                         className="text-xs uppercase tracking-[0.2em] font-bold mb-1"
-                        style={{ color: "var(--text-muted)", fontSize: '10px' }}
+                        style={{ color: "var(--text-muted)", fontSize: "10px" }}
                       >
                         {ind.metricLabel}
                       </span>
-                      <span 
+                      <span
                         className="text-3xl font-bold tracking-tight"
-                        style={{ color: ind.color, fontFamily: "var(--font-grotesk)" }}
+                        style={{
+                          color: ind.color,
+                          fontFamily: "var(--font-grotesk)",
+                        }}
                       >
                         {ind.metric}
                       </span>
                     </div>
-                    <div 
-                      className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-2 group-hover:translate-x-0"
-                    >
+                    <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-2 group-hover:translate-x-0">
                       <span className="text-white text-xs">→</span>
                     </div>
                   </div>

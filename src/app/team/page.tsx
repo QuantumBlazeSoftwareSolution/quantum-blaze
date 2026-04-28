@@ -16,7 +16,10 @@ export default function TeamPage() {
   }, []);
 
   return (
-    <main className="relative min-h-screen" style={{ background: "var(--bg-primary)" }}>
+    <main
+      className="relative min-h-screen"
+      style={{ background: "var(--bg-primary)" }}
+    >
       <Navbar />
 
       <section className="relative pt-40 pb-20 overflow-hidden">
@@ -35,7 +38,7 @@ export default function TeamPage() {
             >
               <SectionLabel>Our People</SectionLabel>
             </motion.div>
-            
+
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -44,12 +47,12 @@ export default function TeamPage() {
               style={{
                 fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
                 fontFamily: "var(--font-grotesk)",
-                lineHeight: 1.1
+                lineHeight: 1.1,
               }}
             >
               Meet the <span className="gradient-text">Quantum Blaze</span> Team
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -57,7 +60,9 @@ export default function TeamPage() {
               className="text-lg"
               style={{ color: "var(--text-muted)" }}
             >
-              We are a collective of engineers, designers, and innovators united by a single purpose: building software that sets new industry standards.
+              We are a collective of engineers, designers, and innovators united
+              by a single purpose: building software that sets new industry
+              standards.
             </motion.p>
           </div>
 

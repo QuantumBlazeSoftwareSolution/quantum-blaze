@@ -80,7 +80,10 @@ export function TeamCard({
           {/* Mobile-only Bio & Links (Hidden on Desktop) */}
           <div className="lg:hidden flex flex-col items-center mt-4">
             <div className="w-8 h-px bg-sky-500/20 mb-4" />
-            <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
+            <p
+              className="text-sm leading-relaxed mb-6"
+              style={{ color: "var(--text-secondary)" }}
+            >
               {member.bio}
             </p>
             <div className="flex items-center gap-3">
@@ -100,9 +103,8 @@ export function TeamCard({
             </div>
           </div>
         </div>
-
         {/* ── BACK (Desktop Only) ── */}
-        <div 
+        <div
           className="hidden lg:block absolute inset-0"
           style={{
             backfaceVisibility: "hidden",
@@ -163,7 +165,11 @@ export function TeamCard({
               {/* Social icons */}
               <div className="flex items-center gap-3 mt-5">
                 {[
-                  { label: "LinkedIn", href: member.linkedin, icon: FaLinkedin },
+                  {
+                    label: "LinkedIn",
+                    href: member.linkedin,
+                    icon: FaLinkedin,
+                  },
                   { label: "GitHub", href: member.github, icon: FaGithub },
                 ].map((s) => (
                   <a
@@ -179,7 +185,8 @@ export function TeamCard({
               </div>
             </div>
           </BorderGlow>
-        </div>      </div>
+        </div>{" "}
+      </div>
     </motion.div>
   );
 }
