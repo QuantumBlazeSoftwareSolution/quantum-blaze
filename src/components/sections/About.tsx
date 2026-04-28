@@ -131,7 +131,7 @@ export function About() {
           </div>
 
           {/* Right: Stats grid */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -139,7 +139,7 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="glass rounded-2xl p-8 text-center group hover:border-sky-400/30 transition-all duration-300"
+                className="glass rounded-2xl p-6 md:p-8 text-center group hover:border-sky-400/30 transition-all duration-300"
                 style={{
                   borderColor: "var(--glass-border)",
                 }}
@@ -168,7 +168,7 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="mt-16 md:mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
         >
           {[
             {

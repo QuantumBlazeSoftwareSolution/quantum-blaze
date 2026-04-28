@@ -98,7 +98,7 @@ export function Contact() {
               transition={{ delay: 0.1, duration: 0.8 }}
               className="font-bold leading-[1.1] mb-6"
               style={{
-                fontSize: "clamp(3rem, 6vw, 5rem)",
+                fontSize: "clamp(2.5rem, 8vw, 5rem)",
                 fontFamily: "var(--font-grotesk)",
                 color: "white",
               }}
@@ -146,17 +146,17 @@ export function Contact() {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center gap-4 glass px-5 py-3 rounded-xl w-auto border border-sky-500/10 hover:border-sky-500/30 transition-colors"
+                  className="flex items-center gap-4 glass px-5 py-3 rounded-xl w-full sm:w-auto border border-sky-500/10 hover:border-sky-500/30 transition-colors"
                 >
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-sky-500/5 flex items-center justify-center">
                     {item.icon}
                   </div>
-                  <div className="flex flex-col text-left">
+                  <div className="flex flex-col text-left overflow-hidden flex-1">
                     <span className="text-[10px] uppercase tracking-widest text-slate-500 font-semibold mb-0.5">
                       {item.sub}
                     </span>
                     <span
-                      className="text-sm font-medium"
+                      className="text-sm font-medium break-all sm:break-normal"
                       style={{ color: "var(--text-secondary)" }}
                     >
                       {item.label}

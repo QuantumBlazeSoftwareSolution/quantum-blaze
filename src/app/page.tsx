@@ -41,7 +41,7 @@ export default function Home() {
       <Projects />
       <Process />
       <TechStack />
-      <Team />
+      {process.env.NEXT_PUBLIC_TEAM_SECTION === "true" && <Team />}
       <Contact />
 
       <Footer />

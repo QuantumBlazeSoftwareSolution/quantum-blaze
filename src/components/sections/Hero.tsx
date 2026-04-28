@@ -28,7 +28,7 @@ export function Hero() {
         }}
       />
 
-      <div className="container-wide relative z-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center pt-32 pb-24">
+      <div className="container-wide relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center pt-32 pb-24">
         {/* Left Column: Content */}
         <div className="flex flex-col items-start text-left max-w-2xl">
           <motion.div

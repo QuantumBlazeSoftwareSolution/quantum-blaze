@@ -42,7 +42,7 @@ function ProjectCard({
         }}
       />
 
-      <div className="container-wide w-full">
+      <div className="container-wide">
         <div
           className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
             isEven ? "" : "lg:flex-row-reverse"

@@ -112,7 +112,7 @@ export function TechStack() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="container-wide mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
+        className="container-wide mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
       >
         {[
           { label: "Technologies", value: "20+" },

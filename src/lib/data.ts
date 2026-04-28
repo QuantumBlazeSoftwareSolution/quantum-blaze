@@ -183,7 +183,7 @@ export const team = [
   {
     id: "cto",
     name: "Ravishka Indraji",
-    role: "Software Developer",
+    role: "Tech Lead",
     bio: "Full-stack engineer and cloud architect. Expert in distributed systems and high-scale applications.",
     image:
       "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=256&h=256",
@@ -205,8 +205,8 @@ export const team = [
   {
     id: "design",
     name: "Supun Sulakshana",
-    role: "Software Developer",
-    bio: "Flutter & React Native specialist. Has shipped 20+ apps to the App Store and Google Play.",
+    role: "Administrator & HR",
+    bio: "Administrator and HR with a passion for building great products.",
     image:
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
