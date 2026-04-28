@@ -209,19 +209,32 @@
   }
 
   .section-padding {
-    padding: 7rem 1.5rem;
+    padding: 5rem 0;
+  }
+  @media (min-width: 768px) {
+    .section-padding {
+      padding: 7rem 0;
+    }
   }
 
   .container-wide {
-    width: 90%;
+    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
+    padding: 0 1.25rem; /* 20px on mobile */
   }
 
   .container-narrow {
-    width: 90%;
+    width: 100%;
     max-width: 800px;
     margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-wide, .container-narrow {
+      padding: 0 2rem;
+    }
   }
 
   /* ─── Noise Texture Overlay ─── */

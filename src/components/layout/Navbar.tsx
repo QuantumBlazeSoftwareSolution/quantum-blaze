@@ -8,7 +8,9 @@ const navLinks = [
   { label: "Services", href: "#services" },
   { label: "Projects", href: "#projects" },
   { label: "Process", href: "#process" },
-  { label: "Team", href: "#team" },
+  ...(process.env.NEXT_PUBLIC_TEAM_SECTION === "true"
+    ? [{ label: "Team", href: "#team" }]
+    : []),
 ];
 
 export function Navbar() {

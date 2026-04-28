@@ -21,11 +21,11 @@ function TeamCard({
       className="group"
       style={{ perspective: "1000px" }}
     >
-      {/* Card wrapper — actual rotating element */}
-      <div className="relative w-full h-[300px] transition-transform duration-700 cursor-default [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+      {/* Card wrapper — actual rotating element on desktop */}
+      <div className="relative w-full lg:h-[300px] transition-transform duration-700 cursor-default lg:[transform-style:preserve-3d] lg:group-hover:[transform:rotateY(180deg)]">
         {/* ── FRONT ── */}
         <div
-          className="absolute inset-0 glass rounded-2xl flex flex-col items-center justify-center p-8 text-center"
+          className="relative lg:absolute inset-0 glass rounded-2xl flex flex-col items-center justify-center p-8 text-center"
           style={{ backfaceVisibility: "hidden" }}
         >
           {/* Subtle hover gradient */}
@@ -62,71 +62,19 @@ function TeamCard({
 
           <h3 className="text-white font-bold text-lg mb-1">{member.name}</h3>
           <p
-            className="text-xs font-semibold tracking-widest uppercase"
+            className="text-xs font-semibold tracking-widest uppercase mb-2 lg:mb-0"
             style={{ color: "var(--text-muted)" }}
           >
             {member.role}
           </p>
-        </div>
 
-        {/* ── BACK ── */}
-        <BorderGlow
-          className="absolute inset-0"
-          borderRadius={24}
-          edgeSensitivity={0}
-          glowRadius={80}
-          backgroundColor="rgba(5, 11, 20, 0.98)"
-          glowColor="200 80 40"
-          colors={["#0284c7", "#0ea5e9", "#38bdf8"]}
-          glowIntensity={0.5}
-          style={{
-            backfaceVisibility: "hidden",
-            transform: "rotateY(180deg)",
-          }}
-        >
-          <div className="p-6 flex flex-col justify-between h-full">
-            {/* Top row: small circular avatar + name/role */}
-            <div className="flex items-center gap-3">
-              <div
-                className={`w-11 h-11 rounded-full overflow-hidden border-2 border-sky-400/40 flex-shrink-0 bg-gradient-to-br ${member.gradient}`}
-              >
-                {member.image && (
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                )}
-              </div>
-              <div>
-                <p className="text-white font-bold text-sm leading-tight">
-                  {member.name}
-                </p>
-                <p
-                  className="text-xs font-semibold tracking-wider uppercase"
-                  style={{ color: "var(--accent-blue)" }}
-                >
-                  {member.role}
-                </p>
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div
-              className="w-full h-px my-4"
-              style={{ background: "rgba(56,189,248,0.15)" }}
-            />
-
-            {/* Bio */}
-            <p
-              className="text-sm leading-relaxed flex-1"
-              style={{ color: "var(--text-secondary)" }}
-            >
+          {/* Mobile-only Bio & Links (Hidden on Desktop) */}
+          <div className="lg:hidden flex flex-col items-center mt-4">
+            <div className="w-8 h-px bg-sky-500/20 mb-4" />
+            <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
               {member.bio}
             </p>
-
-            {/* Social icons */}
-            <div className="flex items-center gap-3 mt-5">
+            <div className="flex items-center gap-3">
               {[
                 { label: "LinkedIn", href: member.linkedin, icon: FaLinkedin },
                 { label: "GitHub", href: member.github, icon: FaGithub },
@@ -135,16 +83,94 @@ function TeamCard({
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-xl flex items-center justify-center text-sky-400 hover:text-white hover:bg-sky-500/20 transition-all duration-200 border border-sky-500/20 hover:border-sky-400/50"
-                  title={s.label}
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-sky-400 hover:text-white bg-sky-500/10 border border-sky-500/20 hover:border-sky-400/50 transition-all"
                 >
-                  <s.icon size={15} />
+                  <s.icon size={16} />
                 </a>
               ))}
             </div>
           </div>
-        </BorderGlow>
-      </div>
+        </div>
+
+        {/* ── BACK (Desktop Only) ── */}
+        <div 
+          className="hidden lg:block absolute inset-0"
+          style={{
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+          }}
+        >
+          <BorderGlow
+            className="w-full h-full"
+            borderRadius={24}
+            edgeSensitivity={0}
+            glowRadius={80}
+            backgroundColor="rgba(5, 11, 20, 0.98)"
+            glowColor="200 80 40"
+            colors={["#0284c7", "#0ea5e9", "#38bdf8"]}
+            glowIntensity={0.5}
+          >
+            <div className="p-6 flex flex-col justify-between h-full">
+              {/* Top row: small circular avatar + name/role */}
+              <div className="flex items-center gap-3">
+                <div
+                  className={`w-11 h-11 rounded-full overflow-hidden border-2 border-sky-400/40 flex-shrink-0 bg-gradient-to-br ${member.gradient}`}
+                >
+                  {member.image && (
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                </div>
+                <div>
+                  <p className="text-white font-bold text-sm leading-tight">
+                    {member.name}
+                  </p>
+                  <p
+                    className="text-xs font-semibold tracking-wider uppercase"
+                    style={{ color: "var(--accent-blue)" }}
+                  >
+                    {member.role}
+                  </p>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div
+                className="w-full h-px my-4"
+                style={{ background: "rgba(56,189,248,0.15)" }}
+              />
+
+              {/* Bio */}
+              <p
+                className="text-sm leading-relaxed flex-1"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                {member.bio}
+              </p>
+
+              {/* Social icons */}
+              <div className="flex items-center gap-3 mt-5">
+                {[
+                  { label: "LinkedIn", href: member.linkedin, icon: FaLinkedin },
+                  { label: "GitHub", href: member.github, icon: FaGithub },
+                ].map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    aria-label={s.label}
+                    className="w-9 h-9 rounded-xl flex items-center justify-center text-sky-400 hover:text-white hover:bg-sky-500/20 transition-all duration-200 border border-sky-500/20 hover:border-sky-400/50"
+                    title={s.label}
+                  >
+                    <s.icon size={15} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </BorderGlow>
+        </div>      </div>
     </motion.div>
   );
 }
