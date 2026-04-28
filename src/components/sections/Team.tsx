@@ -5,11 +5,20 @@ import { team } from "@/lib/data";
 import { FaLinkedin, FaGithub } from "react-icons/fa6";
 import BorderGlow from "@/components/BorderGlow";
 
-function TeamCard({
+export function TeamCard({
   member,
   index,
 }: {
-  member: (typeof team)[0];
+  member: {
+    id: string;
+    name: string;
+    role: string;
+    bio: string;
+    image: string;
+    linkedin: string;
+    github: string;
+    gradient: string;
+  };
   index: number;
 }) {
   return (
@@ -244,7 +253,7 @@ export function Team() {
             Ready to bring your vision to life with our expertise?
           </p>
           <a
-            href="#contact"
+            href="/team"
             className="inline-flex items-center gap-2 text-sm font-semibold text-sky-400 hover:text-sky-300 transition-colors"
           >
             Connect with our team <span>→</span>

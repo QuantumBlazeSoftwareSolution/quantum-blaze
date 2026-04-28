@@ -192,7 +192,7 @@ export const team = [
     gradient: "from-blue-500 to-indigo-700",
   },
   {
-    id: "mobile",
+    id: "design",
     name: "Lakshan Maduranga",
     role: "Head of Design",
     bio: "UI/UX designer obsessed with creating immersive digital experiences that convert and delight.",
@@ -203,7 +203,7 @@ export const team = [
     gradient: "from-sky-400 to-cyan-700",
   },
   {
-    id: "design",
+    id: "admin",
     name: "Supun Sulakshana",
     role: "Administrator & HR",
     bio: "Administrator and HR with a passion for building great products.",
@@ -212,6 +212,50 @@ export const team = [
     linkedin: "#",
     github: "#",
     gradient: "from-cyan-500 to-sky-700",
+  },
+];
+
+export const fullTeam = [
+  ...team,
+  {
+    id: "frontend",
+    name: "Kasun Perera",
+    role: "Frontend Engineer",
+    bio: "React and Next.js specialist focused on creating buttery-smooth user interfaces.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=256&h=256",
+    linkedin: "#",
+    github: "#",
+    gradient: "from-sky-500 to-blue-600",
+  },
+  {
+    id: "backend",
+    name: "Nimesh Silva",
+    role: "Backend Engineer",
+    bio: "Node.js and Database expert. Ensures our APIs are blazing fast and secure.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=256&h=256",
+    linkedin: "#",
+    github: "#",
+    gradient: "from-blue-600 to-indigo-800",
+  },
+  {
+    id: "qa",
+    name: "Amandi Fernando",
+    role: "QA Automation Engineer",
+    bio: "Dedicated to breaking things before users do. Masters in automated testing pipelines.",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=256&h=256",
+    linkedin: "#",
+    github: "#",
+    gradient: "from-cyan-400 to-sky-600",
+  },
+  {
+    id: "mobile_dev",
+    name: "Thilina Bandara",
+    role: "Mobile Developer",
+    bio: "Flutter enthusiast. Builds beautiful iOS and Android apps from a single codebase.",
+    image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=256&h=256",
+    linkedin: "#",
+    github: "#",
+    gradient: "from-sky-600 to-cyan-800",
   },
 ];
 
