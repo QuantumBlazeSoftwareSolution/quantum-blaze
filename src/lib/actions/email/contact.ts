@@ -25,18 +25,20 @@ export async function sendContactEmail(formData: {
   try {
     const { renderToStaticMarkup } = await import("react-dom/server");
 
+    const fromEmail = process.env.EMAIL_FROM || process.env.EMAIL_USER;
+
     // 1. Send Email to Admin
     const adminEmailHtml = renderToStaticMarkup(
       AdminEmailTemplate({ name, email, projectType, budget, message })
     );
 
     await transporter.sendMail({
-      from: `"Quantum Blaze" <${process.env.EMAIL_USER}>`,
+      from: `"Quantum Blaze" <${fromEmail}>`,
       to: process.env.CONTACT_EMAIL || process.env.EMAIL_USER,
       cc: [
         "vihangaheshan37@gmail.com",
         "supunsulakshana2001@gmail.com",
-        "ravishkaindrajith9.9@gmail.com",
+        "ravishka@quantumblaze.lk",
       ],
       subject: `New Project Inquiry from ${name}`,
       html: adminEmailHtml,
@@ -48,7 +50,7 @@ export async function sendContactEmail(formData: {
     );
 
     await transporter.sendMail({
-      from: `"Quantum Blaze" <${process.env.EMAIL_USER}>`,
+      from: `"Quantum Blaze" <${fromEmail}>`,
       to: email,
       subject: `We've received your message! - Quantum Blaze`,
       html: customerEmailHtml,
