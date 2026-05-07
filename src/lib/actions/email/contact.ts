@@ -36,8 +36,8 @@ export async function sendContactEmail(formData: {
       from: `"Quantum Blaze" <${fromEmail}>`,
       to: process.env.CONTACT_EMAIL || process.env.EMAIL_USER,
       cc: [
-        "vihangaheshan37@gmail.com",
-        "supunsulakshana2001@gmail.com",
+        "vihanga@quantumblaze.lk",
+        "supun@quantumblaze.lk",
         "ravishka@quantumblaze.lk",
       ],
       subject: `New Project Inquiry from ${name}`,
