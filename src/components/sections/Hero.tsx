@@ -43,14 +43,7 @@ export function Hero() {
                 fontFamily: "var(--font-inter)",
               }}
             >
-              <ShinyText
-                text="Architecting"
-                disabled={false}
-                speed={5}
-                className="block text-sky-400"
-                shineColor="#ffffff"
-                color="var(--accent-blue)"
-              />
+              <span className="block text-sky-400">Architecting</span>
               <span className="block text-white mt-1">The Future Of</span>
               <span className="block text-slate-500/80 text-[clamp(1.75rem,3vw,2.5rem)] mt-3 font-semibold tracking-normal">
                 Digital Products
