@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { fullTeam } from "@/lib/data";
 import { useLenis } from "@/hooks/useLenis";
-import { FaLinkedin, FaGithub } from "react-icons/fa6";
+import { FaLinkedin, FaEnvelope } from "react-icons/fa6";
 
 function MinimalTeamCard({ member, index }: { member: any; index: number }) {
   return (
@@ -34,8 +34,8 @@ function MinimalTeamCard({ member, index }: { member: any; index: number }) {
             <a href={member.linkedin} className="text-sky-400 hover:text-white transition-colors">
               <FaLinkedin size={20} />
             </a>
-            <a href={member.github} className="text-sky-400 hover:text-white transition-colors">
-              <FaGithub size={20} />
+            <a href={`mailto:${member.email}`} className="text-sky-400 hover:text-white transition-colors">
+              <FaEnvelope size={20} />
             </a>
           </div>
         </div>

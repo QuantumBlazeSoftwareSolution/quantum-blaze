@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { team } from "@/lib/data";
-import { FaLinkedin, FaGithub } from "react-icons/fa6";
+import { FaLinkedin, FaEnvelope } from "react-icons/fa6";
 import BorderGlow from "@/components/BorderGlow";
 
 export function TeamCard({
@@ -13,10 +13,10 @@ export function TeamCard({
     id: string;
     name: string;
     role: string;
+    email: string;
     bio: string;
     image: string;
     linkedin: string;
-    github: string;
     gradient: string;
   };
   index: number;
@@ -87,19 +87,20 @@ export function TeamCard({
               {member.bio}
             </p>
             <div className="flex items-center gap-3">
-              {[
-                { label: "LinkedIn", href: member.linkedin, icon: FaLinkedin },
-                { label: "GitHub", href: member.github, icon: FaGithub },
-              ].map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-sky-400 hover:text-white bg-sky-500/10 border border-sky-500/20 hover:border-sky-400/50 transition-all"
-                >
-                  <s.icon size={16} />
-                </a>
-              ))}
+              <a
+                href={member.linkedin}
+                aria-label="LinkedIn"
+                className="w-10 h-10 rounded-full flex items-center justify-center text-sky-400 hover:text-white bg-sky-500/10 border border-sky-500/20 hover:border-sky-400/50 transition-all"
+              >
+                <FaLinkedin size={16} />
+              </a>
+              <a
+                href={`mailto:${member.email}`}
+                aria-label="Email"
+                className="w-10 h-10 rounded-full flex items-center justify-center text-sky-400 hover:text-white bg-sky-500/10 border border-sky-500/20 hover:border-sky-400/50 transition-all"
+              >
+                <FaEnvelope size={16} />
+              </a>
             </div>
           </div>
         </div>
@@ -164,24 +165,22 @@ export function TeamCard({
 
               {/* Social icons */}
               <div className="flex items-center gap-3 mt-5">
-                {[
-                  {
-                    label: "LinkedIn",
-                    href: member.linkedin,
-                    icon: FaLinkedin,
-                  },
-                  { label: "GitHub", href: member.github, icon: FaGithub },
-                ].map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    aria-label={s.label}
-                    className="w-9 h-9 rounded-xl flex items-center justify-center text-sky-400 hover:text-white hover:bg-sky-500/20 transition-all duration-200 border border-sky-500/20 hover:border-sky-400/50"
-                    title={s.label}
-                  >
-                    <s.icon size={15} />
-                  </a>
-                ))}
+                <a
+                  href={member.linkedin}
+                  aria-label="LinkedIn"
+                  className="w-9 h-9 rounded-xl flex items-center justify-center text-sky-400 hover:text-white hover:bg-sky-500/20 transition-all duration-200 border border-sky-500/20 hover:border-sky-400/50"
+                  title="LinkedIn"
+                >
+                  <FaLinkedin size={15} />
+                </a>
+                <a
+                  href={`mailto:${member.email}`}
+                  aria-label="Email"
+                  className="w-9 h-9 rounded-xl flex items-center justify-center text-sky-400 hover:text-white hover:bg-sky-500/20 transition-all duration-200 border border-sky-500/20 hover:border-sky-400/50"
+                  title="Email"
+                >
+                  <FaEnvelope size={15} />
+                </a>
               </div>
             </div>
           </BorderGlow>
