@@ -68,41 +68,44 @@ export function About() {
       className="relative section-padding overflow-hidden"
       style={{ background: "var(--bg-primary)" }}
     >
-      {/* Background elements */}
+      {/* Precision background glows */}
       <div
-        className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px] pointer-events-none"
-        style={{ background: "rgba(14,165,233,0.04)" }}
+        className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[130px] pointer-events-none opacity-50"
+        style={{ background: "rgba(14,165,233,0.05)" }}
       />
       <div
-        className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none"
+        className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full blur-[150px] pointer-events-none opacity-40"
         style={{ background: "rgba(56,189,248,0.03)" }}
       />
 
-      <div className="container-wide">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Left: Text reveal */}
-          <div ref={textRef}>
+      <div className="container-wide relative z-10">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
+          {/* Left: Narrative Side */}
+          <div className="w-full lg:w-[45%]" ref={textRef}>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="mb-8"
+              className="mb-10"
             >
-              <SectionLabel>Our Vision</SectionLabel>
+              <div className="flex items-center gap-4">
+                <div className="w-8 h-[2px] bg-sky-500 rounded-full" />
+                <span className="text-xs font-bold uppercase tracking-[0.3em] text-sky-400">Our Vision</span>
+              </div>
             </motion.div>
 
             <div
-              className="space-y-1 mb-8"
+              className="space-y-2 mb-10"
               style={{
-                fontSize: "clamp(2rem, 4vw, 3.5rem)",
+                fontSize: "clamp(2.5rem, 5vw, 4rem)",
                 fontWeight: 700,
-                lineHeight: 1.2,
+                lineHeight: 1.1,
                 fontFamily: "var(--font-grotesk)",
               }}
             >
               {lines.map((line, i) => (
-                <div key={i} className="overflow-hidden">
+                <div key={i} className="overflow-hidden pb-2">
                   <span
                     className={`reveal-line block ${
                       i === 1 ? "gradient-text" : "text-white"
@@ -114,95 +117,100 @@ export function About() {
               ))}
             </div>
 
-            <div className="overflow-hidden">
+            <div className="overflow-hidden border-l border-slate-800/60 pl-6 ml-2">
               <p
-                className="reveal-line text-base md:text-lg leading-relaxed max-w-xl"
-                style={{ color: "var(--text-muted)" }}
+                className="reveal-line text-lg leading-relaxed max-w-xl text-slate-400 font-light"
               >
                 We believe that exceptional software isn't just about lines of
                 code; it's about the architecture of innovation. Our team
                 deep-dives into every technical detail, from system scalability
                 to micro-interactions, ensuring your digital ecosystem is
-                robust, performant, and future-proof. We obsess over every
-                architectural decision, pixel, and millisecond to ensure your
-                success defines our reputation.
+                robust, performant, and future-proof.
               </p>
             </div>
           </div>
 
-          {/* Right: Stats grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-            {stats.map((stat, i) => (
+          {/* Right: Premium Bento Stats */}
+          <div className="w-full lg:w-[55%]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Large Feature Stat */}
               <motion.div
-                key={stat.label}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="glass rounded-2xl p-6 md:p-8 text-center group hover:border-sky-400/30 transition-all duration-300"
-                style={{
-                  borderColor: "var(--glass-border)",
-                }}
+                transition={{ duration: 0.6 }}
+                className="md:col-span-2 relative p-8 md:p-10 rounded-3xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden"
               >
+                <div className="absolute inset-0 bg-gradient-to-br from-sky-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div
-                  className="stat-counter text-4xl md:text-5xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300"
-                  data-target={stat.value}
-                  style={{ color: "var(--accent-blue)" }}
+                  className="stat-counter text-6xl md:text-7xl font-bold mb-3 tracking-tighter"
+                  data-target={stats[0].value}
+                  style={{ color: "var(--text-primary)" }}
                 >
-                  {stat.value}
+                  {stats[0].value}
                 </div>
-                <div
-                  className="text-xs font-semibold tracking-widest uppercase"
-                  style={{ color: "var(--text-muted)" }}
-                >
-                  {stat.label}
+                <div className="text-sm font-semibold tracking-widest uppercase text-sky-400">
+                  {stats[0].label}
                 </div>
+                
+                {/* Micro-detail line */}
+                <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent opacity-50" />
               </motion.div>
-            ))}
+
+              {/* Smaller Stats */}
+              {stats.slice(1).map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 * (i + 1) }}
+                  className="relative p-8 rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-sm group hover:bg-slate-900/40 transition-colors duration-500"
+                >
+                  <div
+                    className="stat-counter text-4xl md:text-5xl font-bold mb-2 tracking-tight"
+                    data-target={stat.value}
+                    style={{ color: "var(--text-primary)" }}
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="text-xs font-semibold tracking-widest uppercase text-slate-500 group-hover:text-sky-400/80 transition-colors">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Core values strip */}
+        {/* Refined Core Values */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mt-16 md:mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
+          className="mt-20 pt-10 border-t border-slate-800/50"
         >
-          {[
-            {
-              icon: <Zap className="w-5 h-5 text-sky-400" />,
-              label: "Innovation-Driven",
-            },
-            {
-              icon: <ShieldCheck className="w-5 h-5 text-sky-400" />,
-              label: "Quality First",
-            },
-            {
-              icon: <Eye className="w-5 h-5 text-sky-400" />,
-              label: "Transparent",
-            },
-            {
-              icon: <Target className="w-5 h-5 text-sky-400" />,
-              label: "Results-Focused",
-            },
-          ].map((val) => (
-            <div
-              key={val.label}
-              className="flex items-center gap-3 glass rounded-xl px-5 py-4 border border-sky-500/10 hover:border-sky-500/30 transition-colors"
-            >
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-sky-500/5 flex items-center justify-center">
-                {val.icon}
-              </div>
-              <span
-                className="text-sm font-semibold"
-                style={{ color: "var(--text-secondary)" }}
+          <div className="flex flex-wrap justify-center md:justify-between gap-8 md:gap-4">
+            {[
+              { icon: <Zap className="w-4 h-4 text-sky-400" />, label: "Innovation-Driven" },
+              { icon: <ShieldCheck className="w-4 h-4 text-sky-400" />, label: "Quality First" },
+              { icon: <Eye className="w-4 h-4 text-sky-400" />, label: "Transparent" },
+              { icon: <Target className="w-4 h-4 text-sky-400" />, label: "Results-Focused" },
+            ].map((val) => (
+              <div
+                key={val.label}
+                className="flex items-center gap-3 group"
               >
-                {val.label}
-              </span>
-            </div>
-          ))}
+                <div className="flex-shrink-0 w-8 h-8 rounded-full border border-slate-800 bg-slate-900/50 flex items-center justify-center group-hover:border-sky-500/50 group-hover:shadow-[0_0_15px_rgba(14,165,233,0.2)] transition-all duration-300">
+                  {val.icon}
+                </div>
+                <span className="text-sm font-medium text-slate-400 group-hover:text-slate-200 transition-colors">
+                  {val.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
