@@ -80,18 +80,18 @@ export function Hero() {
                   .querySelector("#contact")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="group relative flex items-center justify-center gap-3 px-8 py-4 rounded-full overflow-hidden bg-slate-900 border border-sky-500/30 shadow-[0_0_20px_rgba(14,165,233,0.2)] hover:shadow-[0_0_40px_rgba(14,165,233,0.5)] hover:-translate-y-1 transition-all duration-300 hover:border-sky-400"
+              className="group relative flex items-center justify-center gap-3 px-10 py-5 rounded-full overflow-hidden bg-sky-600 shadow-[0_0_30px_rgba(14,165,233,0.3)] hover:shadow-[0_0_50px_rgba(14,165,233,0.6)] hover:-translate-y-1.5 transition-all duration-500"
             >
-              {/* Background gradient that reveals on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-sky-600/30 to-blue-800/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Background gradient - more vibrant */}
+              <div className="absolute inset-0 bg-gradient-to-r from-sky-500 via-blue-600 to-sky-400 opacity-100 group-hover:scale-110 transition-transform duration-700" />
 
-              {/* Shine effect sweeping across */}
-              <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+              {/* Sophisticated glass sweep */}
+              <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
 
-              <span className="relative font-bold text-white tracking-wide text-base flex items-center gap-2">
+              <span className="relative font-extrabold text-white tracking-wider text-lg flex items-center gap-3">
                 Start a Project
                 <svg
-                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 text-sky-400 group-hover:text-white"
+                  className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -99,7 +99,7 @@ export function Hero() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2.5}
+                    strokeWidth={3}
                     d="M14 5l7 7m0 0l-7 7m7-7H3"
                   />
                 </svg>
