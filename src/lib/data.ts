@@ -230,7 +230,7 @@ export const fullTeam = [
   },
   {
     id: "creator",
-    name: "Thenuranga Dananjaya",
+    name: "Thenuranga Dhananjaya",
     role: "Digital Creator",
     email: "thenuranga@quantumblaze.lk",
     bio: "Creative mind behind our digital storytelling and brand content, bridging the gap between tech and creativity.",
