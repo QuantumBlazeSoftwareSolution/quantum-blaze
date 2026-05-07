@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GlowButton } from "@/components/ui/GlowButton";
+import { usePathname, useRouter } from "next/navigation";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -14,6 +15,8 @@ const navLinks = [
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [lastY, setLastY] = useState(0);
@@ -32,6 +35,10 @@ export function Navbar() {
   }, [lastY]);
 
   const scrollTo = (href: string) => {
+    if (pathname !== "/") {
+      router.push("/" + href);
+      return;
+    }
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth" });
     setMobileOpen(false);
@@ -45,14 +52,14 @@ export function Navbar() {
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "glass border-b border-sky-500/10 py-3 shadow-2xl shadow-black/50"
+            ? "glass !border-none border-b border-sky-500/10 py-3 shadow-2xl shadow-black/50"
             : "bg-gradient-to-b from-[#050B14] via-[#050B14]/90 to-transparent py-5"
         }`}
       >
         <div className="container-wide flex items-center justify-between">
           {/* Logo */}
           <motion.a
-            href="#"
+            href="/"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
