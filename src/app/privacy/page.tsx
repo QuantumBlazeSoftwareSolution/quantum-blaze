@@ -129,7 +129,7 @@ export default function PrivacyPolicy() {
                 <br />
                 Urapola, Sri Lanka
                 <br />
-                Email: quantumblazesoftwaresolution@gmail.com
+                Email: contact@quantumblaze.lk
               </p>
             </section>
           </div>

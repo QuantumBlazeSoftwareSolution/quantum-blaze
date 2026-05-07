@@ -130,7 +130,7 @@ export function Contact() {
               {[
                 {
                   icon: <Mail className="w-5 h-5 text-sky-400" />,
-                  label: "quantumblazesoftwaresolution@gmail.com",
+                  label: "contact@quantumblaze.lk",
                   sub: "Email Us",
                 },
                 {

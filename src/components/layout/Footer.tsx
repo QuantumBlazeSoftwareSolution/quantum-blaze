@@ -12,7 +12,7 @@ const footerLinks = {
     "Cloud & DevOps",
   ],
   Contact: [
-    "quantumblazesoftwaresolution@gmail.com",
+    "contact@quantumblaze.lk",
     "+94 71 989 2932",
     "+94 78 805 6838",
     "Urapola, Sri Lanka",
