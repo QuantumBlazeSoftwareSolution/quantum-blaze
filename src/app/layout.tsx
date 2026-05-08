@@ -65,9 +65,9 @@ export const metadata: Metadata = {
     images: ["/BLACK_BACKGROUND_LOGO.jpg"],
   },
   icons: {
-    icon: "/QB LOGO TRANSPARENT CROPED.png",
-    shortcut: "/QB LOGO TRANSPARENT CROPED.png",
-    apple: "/QB LOGO TRANSPARENT CROPED.png",
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
   robots: {
     index: true,

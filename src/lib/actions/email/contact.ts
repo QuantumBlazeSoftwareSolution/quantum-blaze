@@ -56,9 +56,76 @@ export async function sendContactEmail(formData: {
       html: customerEmailHtml,
     });
 
+    // 3. Save to Google Sheet (CRM)
+    const excelUrl = process.env.EXCEL_URL;
+    if (excelUrl) {
+      try {
+        console.log("Sending data to Google Sheet...");
+        const response = await fetch(excelUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            projectType,
+            budget,
+            message,
+          }),
+          redirect: "follow",
+        });
+        
+        if (response.ok) {
+          console.log("✅ Lead successfully saved to Google Sheet");
+        } else {
+          console.log(`❌ Google Sheet Error: ${response.status} ${response.statusText}`);
+        }
+      } catch (sheetError) {
+        console.error("❌ Failed to connect to Google Sheet:", sheetError);
+      }
+    }
+
+    // 4. Send Telegram Notification (Instant Alert)
+    const tgToken = process.env.TELEGRAM_BOT_TOKEN;
+    const tgChatId = process.env.TELEGRAM_CHAT_ID;
+
+    if (tgToken && tgChatId) {
+      try {
+        const messageText = `
+🚀 *New Lead: Quantum Blaze*
+
+👤 *Name:* ${name}
+📧 *Email:* ${email}
+💼 *Service:* ${projectType}
+💰 *Budget:* ${budget}
+
+📝 *Message:*
+${message}
+
+📅 _Submitted on: ${new Date().toLocaleString()}_
+        `;
+
+        await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: tgChatId,
+            text: messageText,
+            parse_mode: "Markdown",
+          }),
+        });
+        console.log("✅ Telegram notification sent");
+      } catch (tgError) {
+        console.error("❌ Telegram Notification Failed:", tgError);
+      }
+    }
+
     return { success: true };
   } catch (error) {
-    console.error("Email sending failed:", error);
-    return { success: false, error: "Failed to send email. Please try again." };
+    console.error("❌ Action failed:", error);
+    return { success: false, error: "Process failed." };
   }
 }
