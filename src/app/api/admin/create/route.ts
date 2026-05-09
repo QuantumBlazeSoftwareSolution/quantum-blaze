@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createAdminUser } from "@/lib/db/crud/admins/write";
+import bcrypt from "bcryptjs";
 
 export async function POST(request: Request) {
   try {
@@ -14,14 +15,13 @@ export async function POST(request: Request) {
       );
     }
 
-    // IMPORTANT: In a real production app, you MUST hash the password here 
-    // using bcrypt or argon2 before saving it to the database!
-    // Example: const hashedPassword = await bcrypt.hash(password, 10);
+    // Hash the password securely
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // 3. Create Admin in Database
     const newAdmin = await createAdminUser({
       email,
-      password, // Should be hashed
+      password: hashedPassword,
       name,
       role: role || "admin",
       status: "active",

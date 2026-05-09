@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { verifyToken } from "./lib/auth";
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const url = request.nextUrl;
   const hostname = request.headers.get("host");
 
@@ -14,10 +15,14 @@ export function proxy(request: NextRequest) {
   // 1. Admin Subdomain Routing & Security
   if (currentHost === "admin") {
     const isLoginPage = url.pathname === "/login";
-    const hasAdminToken = request.cookies.has("admin-token");
+    const token = request.cookies.get("admin-token")?.value;
+    
+    // Verify the JWT signature at the Edge
+    const payload = token ? await verifyToken(token) : null;
+    const isAuthenticated = !!payload;
 
     // Redirect to login if not authenticated and not on login page
-    if (!hasAdminToken && !isLoginPage) {
+    if (!isAuthenticated && !isLoginPage) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
 
