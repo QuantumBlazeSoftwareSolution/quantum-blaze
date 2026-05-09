@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1778310703484,
+      "tag": "0000_workable_vector",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1778314930149,
+      "tag": "0001_previous_malice",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1778335583367,
+      "tag": "0002_flashy_bucky",
+      "breakpoints": true
+    }
+  ]
+}

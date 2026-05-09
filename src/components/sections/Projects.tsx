@@ -3,14 +3,16 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { projects } from "@/lib/data";
+import type { Project } from "@/lib/db/schemas/projects";
 
 function ProjectCard({
   project,
   index,
+  total,
 }: {
-  project: (typeof projects)[0];
+  project: Project;
   index: number;
+  total: number;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -26,6 +28,9 @@ function ProjectCard({
   );
   const isEven = index % 2 === 0;
 
+  const techStack = Array.isArray(project.techStack) ? project.techStack : [];
+  const metrics = Array.isArray(project.metrics) ? project.metrics : [];
+
   return (
     <motion.div
       ref={cardRef}
@@ -37,8 +42,8 @@ function ProjectCard({
         className="absolute inset-0 pointer-events-none"
         style={{
           background: isEven
-            ? `radial-gradient(ellipse 60% 60% at 80% 50%, ${project.color}08, transparent)`
-            : `radial-gradient(ellipse 60% 60% at 20% 50%, ${project.color}08, transparent)`,
+            ? `radial-gradient(ellipse 60% 60% at 80% 50%, ${project.themeColor}08, transparent)`
+            : `radial-gradient(ellipse 60% 60% at 20% 50%, ${project.themeColor}08, transparent)`,
         }}
       />
 
@@ -61,16 +66,16 @@ function ProjectCard({
               <span
                 className="text-5xl font-bold opacity-20"
                 style={{
-                  color: project.color,
+                  color: project.themeColor,
                   fontFamily: "var(--font-grotesk)",
                 }}
               >
-                {project.number}
+                {project.orderNumber}
               </span>
               <div
                 className="h-px flex-grow"
                 style={{
-                  background: `linear-gradient(90deg, ${project.color}40, transparent)`,
+                  background: `linear-gradient(90deg, ${project.themeColor}40, transparent)`,
                 }}
               />
             </div>
@@ -98,30 +103,30 @@ function ProjectCard({
 
             {/* Metrics */}
             <div className="flex flex-wrap gap-3 mb-8">
-              {project.metrics.map((metric) => (
+              {metrics.map((metric: any) => (
                 <span
-                  key={metric}
+                  key={String(metric)}
                   className="px-3 py-1.5 rounded-lg text-xs font-semibold"
                   style={{
-                    background: `${project.color}12`,
-                    border: `1px solid ${project.color}30`,
-                    color: project.color,
+                    background: `${project.themeColor}12`,
+                    border: `1px solid ${project.themeColor}30`,
+                    color: project.themeColor,
                   }}
                 >
-                  {metric}
+                  {String(metric)}
                 </span>
               ))}
             </div>
 
             {/* Tech stack */}
             <div className="flex flex-wrap gap-2">
-              {project.tech.map((tech) => (
+              {techStack.map((tech: any) => (
                 <span
-                  key={tech}
+                  key={String(tech)}
                   className="glass px-3 py-1 rounded-lg text-xs font-medium"
                   style={{ color: "var(--text-secondary)" }}
                 >
-                  {tech}
+                  {String(tech)}
                 </span>
               ))}
             </div>
@@ -136,15 +141,15 @@ function ProjectCard({
               {/* Glow backdrop */}
               <div
                 className="absolute inset-0 blur-3xl rounded-3xl scale-75 opacity-30 pointer-events-none"
-                style={{ background: project.color }}
+                style={{ background: project.themeColor }}
               />
 
               {/* Image Container */}
               <div
                 className="relative rounded-[2rem] overflow-hidden glass group"
                 style={{
-                  border: `1px solid ${project.color}30`,
-                  boxShadow: `0 0 60px ${project.color}20, 0 30px 80px rgba(0,0,0,0.5)`,
+                  border: `1px solid ${project.themeColor}30`,
+                  boxShadow: `0 0 60px ${project.themeColor}20, 0 30px 80px rgba(0,0,0,0.5)`,
                   aspectRatio:
                     project.mockupType === "mobile" ? "9/19" : "16/10",
                   width: project.mockupType === "mobile" ? "60%" : "100%",
@@ -152,9 +157,9 @@ function ProjectCard({
                 }}
               >
                 {/* The actual Image */}
-                {project.image && (
+                {project.imageUrl && (
                   <Image
-                    src={project.image}
+                    src={project.imageUrl}
                     alt={project.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -171,7 +176,7 @@ function ProjectCard({
       </div>
 
       {/* Bottom divider */}
-      {index < projects.length - 1 && (
+      {index < total - 1 && (
         <div
           className="absolute bottom-0 left-0 right-0 h-px"
           style={{
@@ -184,7 +189,7 @@ function ProjectCard({
   );
 }
 
-export function Projects() {
+export function Projects({ projects }: { projects: Project[] }) {
   return (
     <section
       id="projects"
@@ -230,7 +235,7 @@ export function Projects() {
       {/* Projects */}
       <div>
         {projects.map((project, i) => (
-          <ProjectCard key={project.id} project={project} index={i} />
+          <ProjectCard key={project.id} project={project} index={i} total={projects.length} />
         ))}
       </div>
     </section>

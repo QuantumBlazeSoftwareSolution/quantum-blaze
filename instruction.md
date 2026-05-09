@@ -12,7 +12,14 @@ Premium agency landing page for Quantum Blaze software development company.
 - anime.js
 - AOS
 
+- NeonDB (PostgreSQL)
+- Drizzle ORM
+- @neondatabase/serverless
+
 ## Architecture
+- `src/lib/db/` — Database configuration and connection
+- `src/lib/db/schemas/` — Database table definitions (Drizzle)
+- `src/lib/db/crud/` — Database operation functions (Read/Write/Update)
 - `src/components/sections/` — All page sections
 - `src/components/three/` — Three.js / R3F components (HeroScene, FloatingOrbs, ParticleField)
 - `src/components/layout/` — Navbar, Footer
