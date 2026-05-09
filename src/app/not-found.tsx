@@ -46,7 +46,7 @@ export default function NotFound() {
 
           <p className="text-slate-400 max-w-lg mx-auto mb-10 text-lg leading-relaxed">
             Even our errors are engineered with excellence. The destination you
-            are looking for has been moved or doesn't exist. Let's get you back
+            are looking for has been moved or doesn&apos;t exist. Let&apos;s get you back
             on track.
           </p>
 

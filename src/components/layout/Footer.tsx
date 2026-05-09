@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaXTwitter, FaDribbble } from "react-icons/fa6";
+import Image from "next/image";
 
 const footerLinks = {
   Company: [
@@ -55,9 +56,11 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-              <img
+              <Image
                 src="/qb-logo-final.png"
                 alt="Quantum Blaze Logo"
+                width={40}
+                height={40}
                 className="w-10 h-10 object-contain"
               />
               <span className="text-lg font-bold tracking-wider font-quantum text-white uppercase">

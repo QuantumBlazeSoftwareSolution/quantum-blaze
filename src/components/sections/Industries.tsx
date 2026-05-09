@@ -75,7 +75,7 @@ export function Industries() {
             className="mt-4 text-base max-w-xl mx-auto"
             style={{ color: "var(--text-muted)" }}
           >
-            We don't just build software; we engineer specialized solutions that
+            We don&apos;t just build software; we engineer specialized solutions that
             solve complex challenges across diverse sectors.
           </motion.p>
         </div>

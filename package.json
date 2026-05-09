@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "prettier-check": "prettier --config .prettierrc '**/*.{js,jsx,ts,tsx}' --check",
     "prettier-write": "prettier --config .prettierrc '**/*.{js,jsx,ts,tsx}' --write"
   },
@@ -43,6 +43,8 @@
     "@types/nodemailer": "^8.0.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.4",
     "prettier": "^3.8.3",
     "tailwindcss": "^4",
     "typescript": "^5"

@@ -4,6 +4,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { team } from "@/lib/data";
 import { FaLinkedin, FaEnvelope } from "react-icons/fa6";
 import BorderGlow from "@/components/BorderGlow";
+import Image from "next/image";
 
 export function TeamCard({
   member,
@@ -60,10 +61,11 @@ export function TeamCard({
               className={`relative w-24 h-24 rounded-full overflow-hidden border-2 border-sky-400/30 z-10 bg-gradient-to-br ${member.gradient}`}
             >
               {member.image && (
-                <img
+                <Image
                   src={member.image}
                   alt={member.name}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                 />
               )}
             </div>
@@ -129,10 +131,11 @@ export function TeamCard({
                   className={`w-11 h-11 rounded-full overflow-hidden border-2 border-sky-400/40 flex-shrink-0 bg-gradient-to-br ${member.gradient}`}
                 >
                   {member.image && (
-                    <img
+                    <Image
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   )}
                 </div>

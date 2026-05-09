@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GlowButton } from "@/components/ui/GlowButton";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
 const navLinks = [
@@ -65,9 +66,11 @@ export function Navbar() {
             transition={{ delay: 0.2 }}
             className="flex items-center gap-2.5"
           >
-            <img
+            <Image
               src="/qb-logo-final.png"
               alt="Quantum Blaze Logo"
+              width={36}
+              height={36}
               className="w-9 h-9 object-contain"
             />
             <span

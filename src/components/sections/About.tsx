@@ -121,8 +121,8 @@ export function About() {
 
             <div className="overflow-hidden border-l border-slate-800/60 pl-6 ml-2">
               <p className="reveal-line text-lg leading-relaxed max-w-xl text-slate-400 font-light">
-                We believe that exceptional software isn't just about lines of
-                code; it's about the architecture of innovation. Our team
+                We believe that exceptional software isn&apos;t just about lines of
+                code; it&apos;s about the architecture of innovation. Our team
                 deep-dives into every technical detail, from system scalability
                 to micro-interactions, ensuring your digital ecosystem is
                 robust, performant, and future-proof.

@@ -71,7 +71,7 @@ export default function TermsOfService() {
                 Unless otherwise indicated, the Site is our proprietary property
                 and all source code, databases, functionality, software, website
                 designs, audio, video, text, photographs, and graphics on the
-                Site (collectively, the "Content") and the trademarks, service
+                Site (collectively, the &quot;Content&quot;) and the trademarks, service
                 marks, and logos contained therein are owned or controlled by us
                 or licensed to us.
               </p>

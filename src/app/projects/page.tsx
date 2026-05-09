@@ -49,7 +49,7 @@ export default function ProjectsPage() {
             </h1>
 
             <p className="text-slate-400 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed mb-12">
-              A curated selection of digital products we've engineered for
+              A curated selection of digital products we&apos;ve engineered for
               ambitious businesses. Each project represents our commitment to
               scale, performance, and elite design.
             </p>
@@ -209,7 +209,7 @@ export default function ProjectsPage() {
               Ready to Architect Your Digital Future?
             </h2>
             <p className="text-slate-400 text-lg mb-10">
-              Stop settling for average software. Let's build a
+              Stop settling for average software. Let&apos;s build a
               high-performance, scalable product that dominates your industry.
             </p>
             <div className="flex justify-center">

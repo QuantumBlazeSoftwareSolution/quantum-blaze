@@ -58,6 +58,7 @@ export async function GET(request: Request) {
               marginBottom: "40px",
             }}
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://dev.quantumblaze.lk/rectangle-icon.png"
               alt="Quantum Blaze"
