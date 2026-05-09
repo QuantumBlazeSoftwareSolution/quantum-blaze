@@ -16,7 +16,7 @@ export default async function AdminUsersPage() {
   const admins = await getAllAdmins();
 
   return (
-    <div className="w-full px-8 py-10 space-y-8">
+    <div className="w-full space-y-8">
       <UserManager initialAdmins={admins} />
     </div>
   );

@@ -4,6 +4,7 @@ import { getAdminUserByEmail } from "@/lib/db/crud/admins/read";
 import bcrypt from "bcryptjs";
 import { signToken } from "@/lib/auth";
 import { cookies } from "next/headers";
+import { sendMonitorAlert } from "@/lib/monitor";
 
 export async function loginAdmin(prevState: any, formData: FormData) {
   try {
@@ -49,6 +50,9 @@ export async function loginAdmin(prevState: any, formData: FormData) {
       // NOTE: Intentionally omitting `maxAge` or `expires` makes this a Session Cookie.
       // The browser will delete it when the window is closed.
     });
+
+    // 5. Notify Monitor Bot
+    await sendMonitorAlert("ANALYTICS", `🔐 *Admin Login Successful*\n\nUser: ${admin.email}\nRole: ${admin.role}\nStatus: ${admin.status}`);
 
     return { success: true };
   } catch (error) {

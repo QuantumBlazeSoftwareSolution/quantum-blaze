@@ -19,7 +19,7 @@ export function AdminClientLayout({
       <Sidebar userRole={session.role} />
       <div className="flex-1 ml-80 flex flex-col min-h-screen relative z-10">
         <AdminTopNav />
-        <main className="flex-1 p-8">
+        <main className="flex-1 px-8 pb-8 pt-2">
           {children}
         </main>
       </div>
