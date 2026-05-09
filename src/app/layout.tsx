@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://quantumblaze.io",
+    url: "https://quantumblaze.lk",
     title: "Quantum Blaze — Premium Software Development Agency",
     description:
       "We architect and engineer scalable, high-end digital products. Enterprise SaaS, mobile apps, and custom web applications.",
