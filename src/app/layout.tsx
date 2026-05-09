@@ -49,10 +49,10 @@ export const metadata: Metadata = {
     siteName: "Quantum Blaze",
     images: [
       {
-        url: "/BLACK_BACKGROUND_LOGO.jpg",
+        url: "/api/og?title=Premium Software Development Agency",
         width: 1200,
         height: 630,
-        alt: "Quantum Blaze — Premium Software Development Agency",
+        alt: "Quantum Blaze",
       },
     ],
   },
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     description:
       "We architect and engineer scalable, high-end digital products.",
     creator: "@quantumblaze",
-    images: ["/BLACK_BACKGROUND_LOGO.jpg"],
+    images: ["/api/og?title=Premium Software Development Agency"],
   },
   icons: {
     icon: "/icon.png",
@@ -74,6 +74,8 @@ export const metadata: Metadata = {
     follow: true,
   },
 };
+
+import { CommandPalette } from "@/components/ui/CommandPalette";
 
 export default function RootLayout({
   children,
@@ -96,7 +98,10 @@ export default function RootLayout({
         <meta name="theme-color" content="#020c1b" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <CommandPalette />
+      </body>
     </html>
   );
 }
