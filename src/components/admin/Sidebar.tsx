@@ -19,7 +19,19 @@ import {
 } from "lucide-react";
 import { logoutAdmin } from "@/lib/actions/auth";
 
-const navItems = [
+type NavItem = {
+  name: string;
+  href: string;
+  icon: any;
+  roles?: string[];
+};
+
+type NavGroup = {
+  group: string;
+  items: NavItem[];
+};
+
+const navItems: NavGroup[] = [
   { group: "Menu", items: [
     { name: "Dashboard", href: "/", icon: LayoutDashboard },
     { name: "Projects", href: "/projects", icon: Briefcase },

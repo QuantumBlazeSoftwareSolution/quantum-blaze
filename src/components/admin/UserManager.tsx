@@ -38,12 +38,8 @@ export function UserManager({ initialAdmins }: { initialAdmins: AdminUserDisplay
 
   return (
     <div className="space-y-8 relative">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-white mb-1 tracking-tight">System Administrators</h2>
-          <p className="text-slate-400 text-sm font-medium">Manage access and roles for the Quantum Admin panel.</p>
-        </div>
+      {/* Header Actions */}
+      <div className="flex items-center justify-end">
         <GlowButton variant="solid" size="sm" onClick={() => setIsAdding(true)}>
           <Plus className="w-4 h-4 mr-2 inline-block" />
           Add Administrator

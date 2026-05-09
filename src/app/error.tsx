@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { sendMonitorAlert } from "@/lib/monitor";
+import { reportErrorAction } from "@/lib/actions/monitor";
 import { GlowButton } from "@/components/ui/GlowButton";
 
 export default function Error({
@@ -12,13 +12,13 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log the error to the monitoring bot
-    sendMonitorAlert("ERROR", error.message, {
+    // Log the error to the monitoring bot via Server Action
+    reportErrorAction(error.message, {
       name: error.name,
       digest: error.digest,
       stack: error.stack,
     });
-  }, [error]);
+  }, [error.message, error.name, error.digest, error.stack]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#050b14] px-4">
