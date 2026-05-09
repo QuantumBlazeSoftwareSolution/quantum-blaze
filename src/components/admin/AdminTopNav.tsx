@@ -23,6 +23,10 @@ const ROUTE_MAP: Record<string, { title: string; subtitle: string }> = {
     title: "General Settings", 
     subtitle: "Configure your system preferences and security." 
   },
+  "/team": {
+    title: "Team Members",
+    subtitle: "Manage the team profiles displayed on the public website.",
+  },
 };
 
 export function AdminTopNav() {

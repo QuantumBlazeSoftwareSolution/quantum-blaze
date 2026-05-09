@@ -15,7 +15,8 @@ import {
   FileText,
   Palette,
   LayoutTemplate,
-  Globe
+  Globe,
+  Users as UsersIcon
 } from "lucide-react";
 import { logoutAdmin } from "@/lib/actions/auth";
 
@@ -44,10 +45,17 @@ const navItems: NavGroup[] = [
   ]}
 ];
 
-const contentItems = [
-  { name: "Pages", icon: LayoutTemplate },
-  { name: "Gallery", icon: Palette },
-  { name: "Blog", icon: Globe },
+type ContentItem = {
+  name: string;
+  href: string;
+  icon: any;
+};
+
+const contentItems: ContentItem[] = [
+  { name: "Pages", href: "#", icon: LayoutTemplate },
+  { name: "Gallery", href: "#", icon: Palette },
+  { name: "Blog", href: "#", icon: Globe },
+  { name: "Team Members", href: "/team", icon: UsersIcon },
 ];
 
 export function Sidebar({ userRole }: { userRole?: string }) {
@@ -135,15 +143,32 @@ export function Sidebar({ userRole }: { userRole?: string }) {
           
           {isContentOpen && (
             <div className="mt-2 ml-4 p-2 bg-white/[0.03] border border-white/5 rounded-2xl space-y-1">
-              {contentItems.map((subItem) => (
-                <button
-                  key={subItem.name}
-                  className="flex items-center w-full px-4 py-2.5 rounded-xl text-slate-400 hover:text-sky-400 hover:bg-white/5 transition-all group"
-                >
-                  <subItem.icon className="w-4 h-4 mr-3 text-slate-500 group-hover:text-sky-400 transition-colors" />
-                  <span className="text-xs font-bold tracking-wide">{subItem.name}</span>
-                </button>
-              ))}
+              {contentItems.map((subItem) => {
+                const isSubActive = pathname === subItem.href;
+                return subItem.href === "#" ? (
+                  <button
+                    key={subItem.name}
+                    className="flex items-center w-full px-4 py-2.5 rounded-xl text-slate-500 cursor-not-allowed transition-all group opacity-50"
+                  >
+                    <subItem.icon className="w-4 h-4 mr-3 text-slate-600" />
+                    <span className="text-xs font-bold tracking-wide">{subItem.name}</span>
+                    <span className="ml-auto text-[9px] text-slate-600 font-bold uppercase tracking-wider">Soon</span>
+                  </button>
+                ) : (
+                  <Link
+                    key={subItem.name}
+                    href={subItem.href}
+                    className={`flex items-center w-full px-4 py-2.5 rounded-xl transition-all group relative ${
+                      isSubActive
+                        ? "bg-white/5 text-sky-400"
+                        : "text-slate-400 hover:text-sky-400 hover:bg-white/5"
+                    }`}
+                  >
+                    <subItem.icon className={`w-4 h-4 mr-3 transition-colors ${isSubActive ? "text-sky-400" : "text-slate-500 group-hover:text-sky-400"}`} />
+                    <span className="text-xs font-bold tracking-wide">{subItem.name}</span>
+                  </Link>
+                );
+              })}
             </div>
           )}
         </div>
