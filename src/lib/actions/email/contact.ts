@@ -77,14 +77,20 @@ export async function sendContactEmail(formData: {
           }),
           redirect: "follow",
         });
-        
+
         if (response.ok) {
           console.log("Contact Action: Google Sheets sync successful");
         } else {
-          console.log("Contact Action: Google Sheets error status:", response.status);
+          console.log(
+            "Contact Action: Google Sheets error status:",
+            response.status
+          );
         }
       } catch (sheetError) {
-        console.error("Contact Action: Google Sheets connection failed:", sheetError);
+        console.error(
+          "Contact Action: Google Sheets connection failed:",
+          sheetError
+        );
       }
     }
 

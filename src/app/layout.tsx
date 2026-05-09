@@ -105,22 +105,22 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "Quantum Blaze",
-              "url": "https://quantumblaze.lk",
-              "logo": "https://quantumblaze.lk/qb-logo-final.png",
-              "sameAs": [
+              name: "Quantum Blaze",
+              url: "https://quantumblaze.lk",
+              logo: "https://quantumblaze.lk/qb-logo-final.png",
+              sameAs: [
                 "https://www.linkedin.com/company/quantum-blaze-software-solution-pvt-ltd",
                 // "https://twitter.com/quantumblaze"
-                "https://www.facebook.com/QuantumBlazeSoftwareSolutions"
+                "https://www.facebook.com/QuantumBlazeSoftwareSolutions",
               ],
-              "contactPoint": {
+              contactPoint: {
                 "@type": "ContactPoint",
-                "telephone": "+94-78-805-6838",
-                "contactType": "customer service",
-                "areaServed": "Global",
-                "availableLanguage": ["English", "Sinhala"]
-              }
-            })
+                telephone: "+94-78-805-6838",
+                contactType: "customer service",
+                areaServed: "Global",
+                availableLanguage: ["English", "Sinhala"],
+              },
+            }),
           }}
         />
         <script
@@ -129,14 +129,14 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "Quantum Blaze",
-              "url": "https://quantumblaze.lk",
-              "potentialAction": {
+              name: "Quantum Blaze",
+              url: "https://quantumblaze.lk",
+              potentialAction: {
                 "@type": "SearchAction",
-                "target": "https://quantumblaze.lk/?s={search_term_string}",
-                "query-input": "required name=search_term_string"
-              }
-            })
+                target: "https://quantumblaze.lk/?s={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
           }}
         />
         {children}

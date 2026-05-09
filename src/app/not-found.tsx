@@ -21,24 +21,39 @@ export default function NotFound() {
         >
           {/* Subtle logo or graphic */}
           <div className="w-16 h-16 mb-8 opacity-50">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#0ea5e9" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                stroke="#0ea5e9"
+                strokeWidth="1"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </div>
 
           <h1 className="text-8xl md:text-9xl font-bold font-quantum text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20 mb-4 tracking-tighter">
             404
           </h1>
-          
+
           <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4">
             System Deflection Detected
           </h2>
-          
+
           <p className="text-slate-400 max-w-lg mx-auto mb-10 text-lg leading-relaxed">
-            Even our errors are engineered with excellence. The destination you are looking for has been moved or doesn't exist. Let's get you back on track.
+            Even our errors are engineered with excellence. The destination you
+            are looking for has been moved or doesn't exist. Let's get you back
+            on track.
           </p>
 
-          <GlowButton variant="solid" onClick={() => window.location.href = "/"}>
+          <GlowButton
+            variant="solid"
+            onClick={() => (window.location.href = "/")}
+          >
             Return to Command Center
           </GlowButton>
         </motion.div>

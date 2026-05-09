@@ -61,8 +61,6 @@ export function Hero() {
             into market-leading realities.
           </motion.p>
 
-
-
           {/* Services Pills */}
           <motion.div
             initial={{ opacity: 0 }}

@@ -17,7 +17,10 @@ const footerLinks = {
     { label: "Cloud & DevOps", href: "/#services" },
   ],
   Contact: [
-    { label: "contact@quantumblaze.lk", href: "mailto:contact@quantumblaze.lk" },
+    {
+      label: "contact@quantumblaze.lk",
+      href: "mailto:contact@quantumblaze.lk",
+    },
     { label: "+94 71 989 2932", href: "tel:+94719892932" },
     { label: "+94 78 805 6838", href: "tel:+94788056838" },
     { label: "Urapola, Sri Lanka", href: "/#contact" },

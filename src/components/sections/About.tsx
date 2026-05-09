@@ -91,7 +91,9 @@ export function About() {
             >
               <div className="flex items-center gap-4">
                 <div className="w-8 h-[2px] bg-sky-500 rounded-full" />
-                <span className="text-xs font-bold uppercase tracking-[0.3em] text-sky-400">Our Vision</span>
+                <span className="text-xs font-bold uppercase tracking-[0.3em] text-sky-400">
+                  Our Vision
+                </span>
               </div>
             </motion.div>
 
@@ -118,9 +120,7 @@ export function About() {
             </div>
 
             <div className="overflow-hidden border-l border-slate-800/60 pl-6 ml-2">
-              <p
-                className="reveal-line text-lg leading-relaxed max-w-xl text-slate-400 font-light"
-              >
+              <p className="reveal-line text-lg leading-relaxed max-w-xl text-slate-400 font-light">
                 We believe that exceptional software isn't just about lines of
                 code; it's about the architecture of innovation. Our team
                 deep-dives into every technical detail, from system scalability
@@ -152,7 +152,7 @@ export function About() {
                 <div className="text-sm font-semibold tracking-widest uppercase text-sky-400">
                   {stats[0].label}
                 </div>
-                
+
                 {/* Micro-detail line */}
                 <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent opacity-50" />
               </motion.div>
@@ -193,15 +193,24 @@ export function About() {
         >
           <div className="flex flex-wrap justify-center md:justify-between gap-8 md:gap-4">
             {[
-              { icon: <Zap className="w-4 h-4 text-sky-400" />, label: "Innovation-Driven" },
-              { icon: <ShieldCheck className="w-4 h-4 text-sky-400" />, label: "Quality First" },
-              { icon: <Eye className="w-4 h-4 text-sky-400" />, label: "Transparent" },
-              { icon: <Target className="w-4 h-4 text-sky-400" />, label: "Results-Focused" },
+              {
+                icon: <Zap className="w-4 h-4 text-sky-400" />,
+                label: "Innovation-Driven",
+              },
+              {
+                icon: <ShieldCheck className="w-4 h-4 text-sky-400" />,
+                label: "Quality First",
+              },
+              {
+                icon: <Eye className="w-4 h-4 text-sky-400" />,
+                label: "Transparent",
+              },
+              {
+                icon: <Target className="w-4 h-4 text-sky-400" />,
+                label: "Results-Focused",
+              },
             ].map((val) => (
-              <div
-                key={val.label}
-                className="flex items-center gap-3 group"
-              >
+              <div key={val.label} className="flex items-center gap-3 group">
                 <div className="flex-shrink-0 w-8 h-8 rounded-full border border-slate-800 bg-slate-900/50 flex items-center justify-center group-hover:border-sky-500/50 group-hover:shadow-[0_0_15px_rgba(14,165,233,0.2)] transition-all duration-300">
                   {val.icon}
                 </div>

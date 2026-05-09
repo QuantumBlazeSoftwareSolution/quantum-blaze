@@ -23,7 +23,9 @@ export default function Error({
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#050b14] px-4">
       <div className="text-center">
-        <h2 className="text-3xl font-bold text-white mb-4">Something went wrong!</h2>
+        <h2 className="text-3xl font-bold text-white mb-4">
+          Something went wrong!
+        </h2>
         <p className="text-slate-400 mb-8 max-w-md mx-auto">
           We've been notified and are looking into the issue. Please try again.
         </p>
@@ -31,7 +33,10 @@ export default function Error({
           <GlowButton variant="solid" onClick={() => reset()}>
             Try again
           </GlowButton>
-          <GlowButton variant="outline" onClick={() => window.location.href = "/"}>
+          <GlowButton
+            variant="outline"
+            onClick={() => (window.location.href = "/")}
+          >
             Go Home
           </GlowButton>
         </div>

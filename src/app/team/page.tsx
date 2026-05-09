@@ -14,7 +14,11 @@ function MinimalTeamCard({ member, index }: { member: any; index: number }) {
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.21, 0.45, 0.32, 0.9] }}
+      transition={{
+        duration: 0.8,
+        delay: index * 0.1,
+        ease: [0.21, 0.45, 0.32, 0.9],
+      }}
       className="group relative"
     >
       {/* Image Container */}
@@ -24,17 +28,23 @@ function MinimalTeamCard({ member, index }: { member: any; index: number }) {
           alt={member.name}
           className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out group-hover:scale-110"
         />
-        
+
         {/* Minimal Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#050B14] via-[#050B14]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out p-8 flex flex-col justify-end">
           <p className="text-sm text-slate-300 leading-relaxed mb-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
             {member.bio}
           </p>
           <div className="flex items-center gap-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-150">
-            <a href={member.linkedin} className="text-sky-400 hover:text-white transition-colors">
+            <a
+              href={member.linkedin}
+              className="text-sky-400 hover:text-white transition-colors"
+            >
               <FaLinkedin size={20} />
             </a>
-            <a href={`mailto:${member.email}`} className="text-sky-400 hover:text-white transition-colors">
+            <a
+              href={`mailto:${member.email}`}
+              className="text-sky-400 hover:text-white transition-colors"
+            >
               <FaEnvelope size={20} />
             </a>
           </div>
@@ -43,7 +53,9 @@ function MinimalTeamCard({ member, index }: { member: any; index: number }) {
 
       {/* Info Below Image */}
       <div className="mt-6 space-y-1">
-        <h3 className="text-xl font-bold text-white tracking-tight">{member.name}</h3>
+        <h3 className="text-xl font-bold text-white tracking-tight">
+          {member.name}
+        </h3>
         <p className="text-xs font-medium uppercase tracking-[0.2em] text-sky-400/80">
           {member.role}
         </p>
@@ -60,19 +72,17 @@ export default function TeamPage() {
   }, []);
 
   return (
-    <main
-      className="relative min-h-screen"
-      style={{ background: "#050B14" }}
-    >
+    <main className="relative min-h-screen" style={{ background: "#050B14" }}>
       <Navbar />
 
       <section className="relative pt-40 pb-32 overflow-hidden">
         {/* Subtle background element */}
         <div
           className="absolute top-0 left-0 w-full h-[800px] pointer-events-none opacity-20"
-          style={{ 
-            background: "radial-gradient(circle at 50% -20%, #0ea5e9 0%, transparent 70%)",
-            filter: "blur(120px)"
+          style={{
+            background:
+              "radial-gradient(circle at 50% -20%, #0ea5e9 0%, transparent 70%)",
+            filter: "blur(120px)",
           }}
         />
 
@@ -108,8 +118,9 @@ export default function TeamPage() {
                 className="text-xl max-w-xl pb-2"
                 style={{ color: "var(--text-muted)", lineHeight: 1.6 }}
               >
-                A collective of specialized engineers and designers united by a 
-                rigorous engineering culture and a relentless pursuit of digital excellence.
+                A collective of specialized engineers and designers united by a
+                rigorous engineering culture and a relentless pursuit of digital
+                excellence.
               </motion.p>
             </div>
           </div>

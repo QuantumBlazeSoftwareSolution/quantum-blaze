@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { Command } from "cmdk";
-import { 
-  MonitorPlay, 
-  Code2, 
-  Paintbrush, 
+import {
+  MonitorPlay,
+  Code2,
+  Paintbrush,
   Database,
   Mail,
   User,
-  Search
+  Search,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -41,10 +41,10 @@ export function CommandPalette() {
       >
         <div className="flex items-center border-b border-sky-500/10 px-4">
           <Search className="w-5 h-5 text-sky-400 mr-3" />
-          <Command.Input 
+          <Command.Input
             autoFocus
-            className="w-full bg-transparent text-white outline-none placeholder:text-slate-500 py-4 text-lg" 
-            placeholder="Type a command or search..." 
+            className="w-full bg-transparent text-white outline-none placeholder:text-slate-500 py-4 text-lg"
+            placeholder="Type a command or search..."
           />
         </div>
 
@@ -53,30 +53,45 @@ export function CommandPalette() {
             No results found.
           </Command.Empty>
 
-          <Command.Group heading="Services" className="px-2 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">
-            <Command.Item 
-              onSelect={() => { router.push("/#services"); setOpen(false); }}
+          <Command.Group
+            heading="Services"
+            className="px-2 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider"
+          >
+            <Command.Item
+              onSelect={() => {
+                router.push("/#services");
+                setOpen(false);
+              }}
               className="flex items-center px-3 py-3 mt-1 rounded-md text-sm text-slate-200 hover:bg-sky-500/10 hover:text-sky-400 cursor-pointer transition-colors"
             >
               <MonitorPlay className="w-4 h-4 mr-3" />
               Enterprise SaaS
             </Command.Item>
-            <Command.Item 
-              onSelect={() => { router.push("/#services"); setOpen(false); }}
+            <Command.Item
+              onSelect={() => {
+                router.push("/#services");
+                setOpen(false);
+              }}
               className="flex items-center px-3 py-3 rounded-md text-sm text-slate-200 hover:bg-sky-500/10 hover:text-sky-400 cursor-pointer transition-colors"
             >
               <Code2 className="w-4 h-4 mr-3" />
               Mobile Applications
             </Command.Item>
-            <Command.Item 
-              onSelect={() => { router.push("/#services"); setOpen(false); }}
+            <Command.Item
+              onSelect={() => {
+                router.push("/#services");
+                setOpen(false);
+              }}
               className="flex items-center px-3 py-3 rounded-md text-sm text-slate-200 hover:bg-sky-500/10 hover:text-sky-400 cursor-pointer transition-colors"
             >
               <Paintbrush className="w-4 h-4 mr-3" />
               UI/UX Engineering
             </Command.Item>
-            <Command.Item 
-              onSelect={() => { router.push("/#services"); setOpen(false); }}
+            <Command.Item
+              onSelect={() => {
+                router.push("/#services");
+                setOpen(false);
+              }}
               className="flex items-center px-3 py-3 rounded-md text-sm text-slate-200 hover:bg-sky-500/10 hover:text-sky-400 cursor-pointer transition-colors"
             >
               <Database className="w-4 h-4 mr-3" />
@@ -84,16 +99,25 @@ export function CommandPalette() {
             </Command.Item>
           </Command.Group>
 
-          <Command.Group heading="Company" className="px-2 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider border-t border-sky-500/10">
-            <Command.Item 
-              onSelect={() => { router.push("/#contact"); setOpen(false); }}
+          <Command.Group
+            heading="Company"
+            className="px-2 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider border-t border-sky-500/10"
+          >
+            <Command.Item
+              onSelect={() => {
+                router.push("/#contact");
+                setOpen(false);
+              }}
               className="flex items-center px-3 py-3 mt-1 rounded-md text-sm text-slate-200 hover:bg-sky-500/10 hover:text-sky-400 cursor-pointer transition-colors"
             >
               <Mail className="w-4 h-4 mr-3" />
               Contact Us
             </Command.Item>
-            <Command.Item 
-              onSelect={() => { router.push("/#team"); setOpen(false); }}
+            <Command.Item
+              onSelect={() => {
+                router.push("/#team");
+                setOpen(false);
+              }}
               className="flex items-center px-3 py-3 rounded-md text-sm text-slate-200 hover:bg-sky-500/10 hover:text-sky-400 cursor-pointer transition-colors"
             >
               <User className="w-4 h-4 mr-3" />
@@ -104,10 +128,16 @@ export function CommandPalette() {
 
         <div className="bg-[#050b14] px-4 py-3 border-t border-sky-500/10 flex justify-between items-center text-xs text-slate-500">
           <div>
-            <kbd className="bg-slate-800 px-2 py-1 rounded text-slate-300 font-mono">↑↓</kbd> to navigate
+            <kbd className="bg-slate-800 px-2 py-1 rounded text-slate-300 font-mono">
+              ↑↓
+            </kbd>{" "}
+            to navigate
           </div>
           <div>
-            <kbd className="bg-slate-800 px-2 py-1 rounded text-slate-300 font-mono">esc</kbd> to close
+            <kbd className="bg-slate-800 px-2 py-1 rounded text-slate-300 font-mono">
+              esc
+            </kbd>{" "}
+            to close
           </div>
         </div>
       </Command>

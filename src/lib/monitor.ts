@@ -1,4 +1,8 @@
-export const sendMonitorAlert = async (type: "ERROR" | "ANALYTICS", message: string, details?: any) => {
+export const sendMonitorAlert = async (
+  type: "ERROR" | "ANALYTICS",
+  message: string,
+  details?: any
+) => {
   const tgToken = process.env.MONITOR_BOT_TOKEN;
   const tgChatId = process.env.MONITOR_CHAT_ID;
 

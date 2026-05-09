@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://quantumblaze.lk";
-  
+
   // Get current date for lastModified
   const currentDate = new Date();
 
