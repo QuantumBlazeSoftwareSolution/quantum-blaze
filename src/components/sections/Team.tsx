@@ -1,27 +1,22 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { team } from "@/lib/data";
 import { FaLinkedin, FaEnvelope } from "react-icons/fa6";
 import BorderGlow from "@/components/BorderGlow";
 import Image from "next/image";
+import { getTeamGradient } from "@/lib/utils/team";
+import type { TeamMember } from "@/lib/db/schemas/team";
 
 export function TeamCard({
   member,
   index,
 }: {
-  member: {
-    id: string;
-    name: string;
-    role: string;
-    email: string;
-    bio: string;
-    image: string;
-    linkedin: string;
-    gradient: string;
-  };
+  member: TeamMember;
   index: number;
 }) {
+  const gradientClass = getTeamGradient(member.gradient);
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -58,7 +53,7 @@ export function TeamCard({
               }}
             />
             <div
-              className={`relative w-24 h-24 rounded-full overflow-hidden border-2 border-sky-400/30 z-10 bg-gradient-to-br ${member.gradient}`}
+              className={`relative w-24 h-24 rounded-full overflow-hidden border-2 border-sky-400/30 z-10 bg-gradient-to-br ${gradientClass}`}
             >
               {member.image && (
                 <Image
@@ -90,8 +85,10 @@ export function TeamCard({
             </p>
             <div className="flex items-center gap-3">
               <a
-                href={member.linkedin}
+                href={member.linkedin || "#"}
                 aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full flex items-center justify-center text-sky-400 hover:text-white bg-sky-500/10 border border-sky-500/20 hover:border-sky-400/50 transition-all"
               >
                 <FaLinkedin size={16} />
@@ -128,7 +125,7 @@ export function TeamCard({
               {/* Top row: small circular avatar + name/role */}
               <div className="flex items-center gap-3">
                 <div
-                  className={`w-11 h-11 rounded-full overflow-hidden border-2 border-sky-400/40 flex-shrink-0 bg-gradient-to-br ${member.gradient}`}
+                  className={`relative w-11 h-11 rounded-full overflow-hidden border-2 border-sky-400/40 flex-shrink-0 bg-gradient-to-br ${gradientClass}`}
                 >
                   {member.image && (
                     <Image
@@ -169,8 +166,10 @@ export function TeamCard({
               {/* Social icons */}
               <div className="flex items-center gap-3 mt-5">
                 <a
-                  href={member.linkedin}
+                  href={member.linkedin || "#"}
                   aria-label="LinkedIn"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-9 h-9 rounded-xl flex items-center justify-center text-sky-400 hover:text-white hover:bg-sky-500/20 transition-all duration-200 border border-sky-500/20 hover:border-sky-400/50"
                   title="LinkedIn"
                 >
@@ -193,7 +192,12 @@ export function TeamCard({
   );
 }
 
-export function Team() {
+export function Team({ members }: { members: TeamMember[] }) {
+  // Only show the first 4 members on the landing page for a clean grid
+  const displayMembers = members.slice(0, 4);
+  
+  if (!displayMembers.length) return null;
+
   return (
     <section
       id="team"
@@ -245,7 +249,7 @@ export function Team() {
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {team.map((member, i) => (
+          {displayMembers.map((member, i) => (
             <TeamCard key={member.id} member={member} index={i} />
           ))}
         </div>

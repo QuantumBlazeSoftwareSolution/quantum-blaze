@@ -11,9 +11,13 @@ import { Team } from "@/components/sections/Team";
 import { Contact } from "@/components/sections/Contact";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { getAllProjects } from "@/lib/db/crud/projects/read";
+import { getAllTeamMembers } from "@/lib/db/crud/team/read";
 
 export default async function Home() {
-  const projects = await getAllProjects();
+  const [projects, members] = await Promise.all([
+    getAllProjects(),
+    getAllTeamMembers()
+  ]);
 
   return (
     <SmoothScrollProvider>
@@ -27,7 +31,9 @@ export default async function Home() {
         <Projects projects={projects} />
         <Process />
         <TechStack />
-        {process.env.NEXT_PUBLIC_TEAM_SECTION === "true" && <Team />}
+        {process.env.NEXT_PUBLIC_TEAM_SECTION === "true" && (
+          <Team members={members} />
+        )}
         <Contact />
 
         <Footer />
