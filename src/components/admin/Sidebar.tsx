@@ -30,10 +30,13 @@ export function Sidebar({ userRole }: { userRole?: string }) {
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-[#141b2d] border-r border-[#1e293b] flex flex-col z-40 transition-all duration-300">
       {/* Logo Area */}
-      <div className="h-20 flex items-center px-8 border-b border-[#1e293b]/50">
-        <h1 className="text-xl font-bold text-white tracking-wide">
-          Quantum <span className="text-sky-400">Admin</span>
-        </h1>
+      <div className="h-24 flex items-center px-8 border-b border-[#1e293b]/50">
+        <div className="flex items-center gap-3">
+          <img src="/qb-logo-final.png" alt="QB Logo" className="w-10 h-10 object-contain" />
+          <h1 className="text-xl font-bold text-white tracking-wide font-quantum uppercase"> 
+            Quantum <span className="text-sky-400">Admin</span>
+          </h1>
+        </div>
       </div>
 
       {/* Navigation */}

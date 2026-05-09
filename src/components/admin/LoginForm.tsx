@@ -24,9 +24,12 @@ export function LoginForm() {
       <div className="w-full max-w-md p-10 bg-[#141b2d]/50 border border-white/10 rounded-[2rem] backdrop-blur-xl shadow-2xl relative z-10">
         <div className="text-center mb-10">
           <div className="inline-block p-4 bg-sky-500/10 rounded-2xl mb-6">
-            <h1 className="text-3xl font-bold text-white tracking-tighter font-quantum uppercase">
-              Quantum <span className="text-sky-400">Admin</span>
-            </h1>
+            <div className="flex flex-col items-center gap-4">
+              <img src="/qb-logo-final.png" alt="Quantum Blaze Logo" className="w-16 h-16 object-contain" />
+              <h1 className="text-3xl font-bold text-white tracking-tighter font-quantum uppercase">
+                Quantum <span className="text-sky-400">Admin</span>
+              </h1>
+            </div>
           </div>
           <p className="text-slate-400 text-sm font-medium tracking-tight">Sign in to access the secure control panel</p>
         </div>
