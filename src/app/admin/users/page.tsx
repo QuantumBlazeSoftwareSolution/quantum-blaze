@@ -10,7 +10,7 @@ export default async function AdminUsersPage() {
 
   // Strict RBAC: Only super_admin can access this page
   if (!session || session.role !== "super_admin") {
-    redirect("/admin"); // Redirect unauthorized users to dashboard
+    redirect("/"); // Redirect unauthorized users to dashboard
   }
 
   const admins = await getAllAdmins();

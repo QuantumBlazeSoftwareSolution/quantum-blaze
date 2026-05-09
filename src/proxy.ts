@@ -26,6 +26,11 @@ export async function proxy(request: NextRequest) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
 
+    // Redirect to dashboard if authenticated and trying to access login page
+    if (isAuthenticated && isLoginPage) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+
     // Rewrite to the internal /admin folder
     return NextResponse.rewrite(new URL(`/admin${url.pathname}${url.search}`, request.url));
   }

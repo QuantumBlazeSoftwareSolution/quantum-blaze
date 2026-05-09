@@ -13,7 +13,7 @@ import {
 import { logoutAdmin } from "@/lib/actions/auth";
 
 const navItems = [
-  { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
+  { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "Projects", href: "/projects", icon: Briefcase },
   { name: "Users", href: "/users", icon: Users, roles: ["super_admin"] },
   { name: "Settings", href: "/settings", icon: Settings },
@@ -72,8 +72,8 @@ export function Sidebar({ userRole }: { userRole?: string }) {
       {/* Bottom Area (Logout) */}
       <div className="p-4 border-t border-[#1e293b]/50">
         <button
-          onClick={() => {
-            logoutAdmin();
+          onClick={async () => {
+            await logoutAdmin();
             window.location.href = "/login";
           }}
           className="flex items-center w-full px-6 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors group"

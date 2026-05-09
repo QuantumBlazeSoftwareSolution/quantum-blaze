@@ -23,10 +23,14 @@ export default async function AdminLayout({
 }) {
   const session = await getServerSession();
 
-  // If there's no session, redirect to login. This adds an extra layer of protection
-  // although middleware already handles it.
+  // If there's no session, we just render the children (e.g. the Login page)
+  // without the sidebar and navigation. The middleware handles the redirect to /login.
   if (!session) {
-    redirect("/admin/login");
+    return (
+      <div className={`min-h-screen bg-[#020813] text-white ${inter.className}`}>
+        {children}
+      </div>
+    );
   }
 
   return (
