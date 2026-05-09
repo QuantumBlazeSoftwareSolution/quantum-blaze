@@ -98,7 +98,7 @@
     @apply bg-background text-foreground;
   }
   * {
-    @apply border-border outline-ring/50;
+    @apply outline-ring/50;
   }
 }
 
@@ -310,13 +310,16 @@
   }
 
   .glow-btn-solid {
-    background: linear-gradient(135deg, var(--accent-blue-dim), var(--accent-blue-dark));
-    border: none;
+    background: #0a1220;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   }
 
   .glow-btn-solid:hover {
-    box-shadow: 0 0 40px rgba(56, 189, 248, 0.5), 0 0 80px rgba(56, 189, 248, 0.2);
+    box-shadow: 0 0 30px rgba(14, 165, 233, 0.15);
+    border-color: rgba(56, 189, 248, 0.4);
+    background: #0f172a;
     transform: translateY(-2px);
   }
 

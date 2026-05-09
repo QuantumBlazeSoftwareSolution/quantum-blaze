@@ -15,12 +15,12 @@ const spaceGrotesk = Space_Grotesk({
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://quantumblaze.io"),
+  metadataBase: new URL("https://quantumblaze.lk"),
   title: {
     default: "Quantum Blaze — Premium Software Development Agency",
     template: "%s | Quantum Blaze",
@@ -42,17 +42,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://quantumblaze.io",
+    url: "https://quantumblaze.lk",
     title: "Quantum Blaze — Premium Software Development Agency",
     description:
       "We architect and engineer scalable, high-end digital products. Enterprise SaaS, mobile apps, and custom web applications.",
     siteName: "Quantum Blaze",
     images: [
       {
-        url: "/BLACK_BACKGROUND_LOGO.jpg",
+        url: "/api/og?title=Premium Software Development Agency",
         width: 1200,
         height: 630,
-        alt: "Quantum Blaze — Premium Software Development Agency",
+        alt: "Quantum Blaze",
       },
     ],
   },
@@ -62,18 +62,20 @@ export const metadata: Metadata = {
     description:
       "We architect and engineer scalable, high-end digital products.",
     creator: "@quantumblaze",
-    images: ["/BLACK_BACKGROUND_LOGO.jpg"],
+    images: ["/api/og?title=Premium Software Development Agency"],
   },
   icons: {
-    icon: "/QB LOGO TRANSPARENT CROPED.png",
-    shortcut: "/QB LOGO TRANSPARENT CROPED.png",
-    apple: "/QB LOGO TRANSPARENT CROPED.png",
+    icon: "/circle-icon.png",
+    shortcut: "/circle-icon.png",
+    apple: "/circle-icon.png",
   },
   robots: {
     index: true,
     follow: true,
   },
 };
+
+import { CommandPalette } from "@/components/ui/CommandPalette";
 
 export default function RootLayout({
   children,
@@ -92,11 +94,54 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <link rel="canonical" href="https://quantumblaze.io" />
+        <link rel="canonical" href="https://quantumblaze.lk" />
         <meta name="theme-color" content="#020c1b" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Quantum Blaze",
+              url: "https://quantumblaze.lk",
+              logo: "https://quantumblaze.lk/qb-logo-final.png",
+              sameAs: [
+                "https://www.linkedin.com/company/quantum-blaze-software-solution-pvt-ltd",
+                // "https://twitter.com/quantumblaze"
+                "https://www.facebook.com/QuantumBlazeSoftwareSolutions",
+              ],
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+94-78-805-6838",
+                contactType: "customer service",
+                areaServed: "Global",
+                availableLanguage: ["English", "Sinhala"],
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Quantum Blaze",
+              url: "https://quantumblaze.lk",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://quantumblaze.lk/?s={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+        {children}
+        <CommandPalette />
+      </body>
     </html>
   );
 }

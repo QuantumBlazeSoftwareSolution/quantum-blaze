@@ -145,7 +145,8 @@ function ProjectCard({
                 style={{
                   border: `1px solid ${project.color}30`,
                   boxShadow: `0 0 60px ${project.color}20, 0 30px 80px rgba(0,0,0,0.5)`,
-                  aspectRatio: project.mockupType === "mobile" ? "9/19" : "16/10",
+                  aspectRatio:
+                    project.mockupType === "mobile" ? "9/19" : "16/10",
                   width: project.mockupType === "mobile" ? "60%" : "100%",
                   margin: "0 auto",
                 }}

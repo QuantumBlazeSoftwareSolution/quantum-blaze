@@ -1,21 +1,30 @@
 "use client";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaXTwitter, FaDribbble } from "react-icons/fa6";
+import Image from "next/image";
 
 const footerLinks = {
-  Company: ["About Us", "Services", "Projects", "Team"],
+  Company: [
+    { label: "About Us", href: "/#about" },
+    { label: "Services", href: "/#services" },
+    { label: "Projects", href: "/projects" },
+    { label: "Team", href: "/#team" },
+  ],
   Services: [
-    "Enterprise SaaS",
-    "Mobile Apps",
-    "Web Apps",
-    "UI/UX Design",
-    "Cloud & DevOps",
+    { label: "Enterprise SaaS", href: "/#services" },
+    { label: "Mobile Apps", href: "/#services" },
+    { label: "Web Apps", href: "/#services" },
+    { label: "UI/UX Design", href: "/#services" },
+    { label: "Cloud & DevOps", href: "/#services" },
   ],
   Contact: [
-    "quantumblazesoftwaresolution@gmail.com",
-    "+94 71 989 2932",
-    "+94 78 805 6838",
-    "Urapola, Sri Lanka",
+    {
+      label: "contact@quantumblaze.lk",
+      href: "mailto:contact@quantumblaze.lk",
+    },
+    { label: "+94 71 989 2932", href: "tel:+94719892932" },
+    { label: "+94 78 805 6838", href: "tel:+94788056838" },
+    { label: "Urapola, Sri Lanka", href: "/#contact" },
   ],
 };
 
@@ -47,9 +56,11 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-              <img
-                src="/QB LOGO TRANSPARENT CROPED.png"
+              <Image
+                src="/qb-logo-final.png"
                 alt="Quantum Blaze Logo"
+                width={40}
+                height={40}
                 className="w-10 h-10 object-contain"
               />
               <span className="text-lg font-bold tracking-wider font-quantum text-white uppercase">
@@ -87,13 +98,13 @@ export function Footer() {
               </h4>
               <ul className="space-y-2.5">
                 {links.map((link) => (
-                  <li key={link}>
+                  <li key={link.label}>
                     <a
-                      href="#"
+                      href={link.href}
                       className="text-sm transition-colors duration-200 hover:text-sky-400"
                       style={{ color: "var(--text-muted)" }}
                     >
-                      {link}
+                      {link.label}
                     </a>
                   </li>
                 ))}

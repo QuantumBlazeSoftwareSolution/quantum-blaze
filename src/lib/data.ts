@@ -173,45 +173,71 @@ export const team = [
     id: "founder",
     name: "Vihanga Heshan",
     role: "Founder & CEO",
-    bio: "Visionary leader with 10+ years building scalable digital products for global markets.",
+    email: "vihanga@quantumblaze.lk",
+    bio: "Visionary leader with a passion for building scalable digital products and architecting the future of tech.",
     image:
       "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
-    github: "#",
     gradient: "from-sky-500 to-blue-700",
   },
   {
-    id: "cto",
-    name: "Ravishka Indraji",
-    role: "Tech Lead",
-    bio: "Full-stack engineer and cloud architect. Expert in distributed systems and high-scale applications.",
+    id: "co-founder",
+    name: "Akil Abimanash",
+    role: "Co Founder",
+    email: "akil@quantumblaze.lk",
+    bio: "Driving growth and strategic partnerships to establish Quantum Blaze as a market leader in digital innovation.",
     image:
       "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
-    github: "#",
     gradient: "from-blue-500 to-indigo-700",
   },
   {
-    id: "mobile",
-    name: "Lakshan Maduranga",
-    role: "Head of Design",
-    bio: "UI/UX designer obsessed with creating immersive digital experiences that convert and delight.",
+    id: "lead-dev",
+    name: "Ravishka Indraji",
+    role: "Lead Software Developer",
+    email: "ravishka@quantumblaze.lk",
+    bio: "Expert in complex system architecture and full-stack engineering, ensuring robust and high-performance solutions.",
     image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=256&h=256",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
-    github: "#",
     gradient: "from-sky-400 to-cyan-700",
   },
   {
     id: "design",
-    name: "Supun Sulakshana",
-    role: "Administrator & HR",
-    bio: "Administrator and HR with a passion for building great products.",
+    name: "Lakshan Maduranga",
+    role: "Head of Design",
+    email: "lakshan@quantumblaze.lk",
+    bio: "UI/UX specialist focused on creating immersive, premium digital experiences that define our brand aesthetic.",
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=256&h=256",
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
-    github: "#",
     gradient: "from-cyan-500 to-sky-700",
+  },
+];
+
+export const fullTeam = [
+  ...team,
+  {
+    id: "developer",
+    name: "Supun Sulakshana",
+    role: "Software Developer",
+    email: "supun@quantumblaze.lk",
+    bio: "Dedicated software engineer focused on building efficient, scalable backend systems and seamless integrations.",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=256&h=256",
+    linkedin: "#",
+    gradient: "from-sky-500 to-blue-600",
+  },
+  {
+    id: "creator",
+    name: "Thenuranga Dhananjaya",
+    role: "Digital Creator",
+    email: "thenuranga@quantumblaze.lk",
+    bio: "Creative mind behind our digital storytelling and brand content, bridging the gap between tech and creativity.",
+    image:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=256&h=256",
+    linkedin: "#",
+    gradient: "from-blue-600 to-indigo-800",
   },
 ];
 
@@ -228,7 +254,8 @@ export const industries = [
   {
     id: "healthcare",
     title: "Healthcare & MedTech",
-    description: "HIPAA-compliant platforms, telemedicine apps, and secure patient portals.",
+    description:
+      "HIPAA-compliant platforms, telemedicine apps, and secure patient portals.",
     icon: "HeartPulse",
     metric: "10M+",
     metricLabel: "Patient Records Secured",
@@ -237,7 +264,8 @@ export const industries = [
   {
     id: "edtech",
     title: "Education & EdTech",
-    description: "Scalable LMS platforms, virtual classrooms, and student analytics dashboards.",
+    description:
+      "Scalable LMS platforms, virtual classrooms, and student analytics dashboards.",
     icon: "GraduationCap",
     metric: "200+",
     metricLabel: "Institutions Onboarded",
@@ -246,7 +274,8 @@ export const industries = [
   {
     id: "fintech",
     title: "FinTech & Banking",
-    description: "High-frequency trading platforms, digital wallets, and blockchain solutions.",
+    description:
+      "High-frequency trading platforms, digital wallets, and blockchain solutions.",
     icon: "Wallet",
     metric: "$2B+",
     metricLabel: "Transactions Processed",
@@ -255,7 +284,8 @@ export const industries = [
   {
     id: "retail",
     title: "E-commerce & Retail",
-    description: "Omnichannel retail systems, multi-vendor marketplaces, and smart inventory.",
+    description:
+      "Omnichannel retail systems, multi-vendor marketplaces, and smart inventory.",
     icon: "ShoppingCart",
     metric: "50K+",
     metricLabel: "Daily Orders Handled",
@@ -264,11 +294,11 @@ export const industries = [
   {
     id: "logistics",
     title: "Logistics & Supply Chain",
-    description: "Real-time fleet tracking, warehouse automation, and predictive route planning.",
+    description:
+      "Real-time fleet tracking, warehouse automation, and predictive route planning.",
     icon: "Truck",
     metric: "99.9%",
     metricLabel: "Tracking Accuracy",
     color: "#f59e0b", // Amber
   },
 ];
-

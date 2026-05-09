@@ -37,22 +37,15 @@ export function Hero() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <h1
-              className="font-bold leading-[1.1] tracking-tight mb-6"
+              className="font-bold leading-[1.1] tracking-tight mb-8"
               style={{
-                fontSize: "clamp(3rem, 5.5vw, 5rem)",
-                fontFamily: "var(--font-grotesk)",
+                fontSize: "clamp(3.5rem, 6.5vw, 5.5rem)",
+                fontFamily: "var(--font-inter)",
               }}
             >
-              <ShinyText
-                text="Architecting"
-                disabled={false}
-                speed={5}
-                className="block text-sky-400"
-                shineColor="#ffffff"
-                color="var(--accent-blue)"
-              />
+              <span className="block text-sky-400">Architecting</span>
               <span className="block text-white mt-1">The Future Of</span>
-              <span className="block text-slate-400/80 text-[clamp(1.75rem,3vw,2.5rem)] mt-2 font-medium tracking-normal">
+              <span className="block text-slate-500/80 text-[clamp(1.75rem,3vw,2.5rem)] mt-3 font-semibold tracking-normal">
                 Digital Products
               </span>
             </h1>
@@ -67,45 +60,6 @@ export function Hero() {
             We build scalable, high-performance software that turns bold ideas
             into market-leading realities.
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="flex items-center gap-6 mb-16"
-          >
-            <button
-              onClick={() =>
-                document
-                  .querySelector("#contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="group relative flex items-center justify-center gap-3 px-8 py-4 rounded-full overflow-hidden bg-slate-900 border border-sky-500/30 shadow-[0_0_20px_rgba(14,165,233,0.2)] hover:shadow-[0_0_40px_rgba(14,165,233,0.5)] hover:-translate-y-1 transition-all duration-300 hover:border-sky-400"
-            >
-              {/* Background gradient that reveals on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-sky-600/30 to-blue-800/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              {/* Shine effect sweeping across */}
-              <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
-
-              <span className="relative font-bold text-white tracking-wide text-base flex items-center gap-2">
-                Start a Project
-                <svg
-                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 text-sky-400 group-hover:text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2.5}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
-                </svg>
-              </span>
-            </button>
-          </motion.div>
 
           {/* Services Pills */}
           <motion.div
