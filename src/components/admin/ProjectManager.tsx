@@ -6,7 +6,7 @@ import { createProjectAction, deleteProjectAction } from "@/lib/actions/projects
 import type { Project } from "@/lib/db/schemas/projects";
 import { Trash2, Plus, X } from "lucide-react";
 
-const initialState = { error: undefined, success: undefined };
+const initialState: any = { error: undefined, success: undefined };
 
 export function ProjectManager({ initialProjects }: { initialProjects: Project[] }) {
   const [isAdding, setIsAdding] = useState(false);
@@ -39,37 +39,87 @@ export function ProjectManager({ initialProjects }: { initialProjects: Project[]
         </GlowButton>
       </div>
 
-      {/* Projects List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {initialProjects.map((project) => (
-          <div key={project.id} className="glass p-5 rounded-2xl border border-white/10 flex flex-col">
-            <div className="flex justify-between items-start mb-4">
-              <div 
-                className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm bg-white/5 border border-white/10"
-                style={{ color: project.themeColor }}
-              >
-                {project.orderNumber}
-              </div>
-              <button 
-                onClick={() => handleDelete(project.id)}
-                className="p-2 text-slate-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
-                title="Delete Project"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
-            </div>
-            
-            <h3 className="text-lg font-bold text-white mb-1 leading-tight line-clamp-2">{project.title}</h3>
-            <p className="text-sky-400 text-xs font-semibold uppercase tracking-wider mb-4">{project.subtitle}</p>
-            
-            <p className="text-slate-400 text-sm line-clamp-3 mb-6 flex-grow">{project.description}</p>
-            
-            <div className="pt-4 border-t border-white/5 mt-auto flex items-center justify-between text-xs text-slate-500">
-              <span>{project.slug}</span>
-              <span className="capitalize">{project.mockupType}</span>
-            </div>
+      {/* Projects Table */}
+      <div className="bg-[#1a2235] rounded-xl border border-[#1e293b] overflow-hidden shadow-2xl">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm whitespace-nowrap">
+            <thead>
+              <tr className="bg-[#1f293f] text-slate-400 font-medium border-b border-[#2a3653]">
+                <th className="px-6 py-4 w-12 text-center">No.</th>
+                <th className="px-6 py-4">Project Title</th>
+                <th className="px-6 py-4">Slug</th>
+                <th className="px-6 py-4">Mockup</th>
+                <th className="px-6 py-4">Theme</th>
+                <th className="px-6 py-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#1e293b]">
+              {initialProjects.map((project) => (
+                <tr 
+                  key={project.id} 
+                  className="hover:bg-[#1e293b]/50 transition-colors group text-slate-300"
+                >
+                  <td className="px-6 py-4 text-center">
+                    <span 
+                      className="font-mono text-xs px-2 py-1 rounded bg-black/20 border border-white/5"
+                      style={{ color: project.themeColor }}
+                    >
+                      {project.orderNumber}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 font-medium text-white flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#0a192f] border border-white/5 overflow-hidden flex items-center justify-center">
+                       {/* Placeholder for project icon or tiny preview */}
+                       <div className="w-3 h-3 rounded-full" style={{ backgroundColor: project.themeColor }} />
+                    </div>
+                    <div>
+                      {project.title}
+                      <span className="block text-xs text-slate-500 font-normal mt-0.5">{project.subtitle}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-slate-400">{project.slug}</td>
+                  <td className="px-6 py-4">
+                    <span className="px-2.5 py-1 rounded-full text-xs font-medium border border-white/10 bg-white/5 capitalize text-slate-400">
+                      {project.mockupType}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-2 text-xs">
+                      <div className="w-3 h-3 rounded-full border border-white/20" style={{ backgroundColor: project.themeColor }} />
+                      <span className="uppercase text-slate-400">{project.themeColor}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <button 
+                      onClick={() => handleDelete(project.id)}
+                      className="p-2 text-slate-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                      title="Delete Project"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+              
+              {initialProjects.length === 0 && (
+                <tr>
+                  <td colSpan={6} className="px-6 py-12 text-center text-slate-500">
+                    No projects found. Click "Add Project" to get started.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+        
+        {/* Table Footer / Pagination placeholder */}
+        <div className="bg-[#1f293f]/50 border-t border-[#1e293b] px-6 py-4 flex items-center justify-between text-xs text-slate-400">
+          <div>Showing {initialProjects.length} projects</div>
+          <div className="flex gap-2">
+            <button className="px-3 py-1 rounded bg-[#2a3653] hover:bg-[#344265] text-white transition-colors cursor-not-allowed opacity-50">Previous</button>
+            <button className="px-3 py-1 rounded bg-[#2a3653] hover:bg-[#344265] text-white transition-colors cursor-not-allowed opacity-50">Next</button>
           </div>
-        ))}
+        </div>
       </div>
 
       {/* Add Project Modal */}

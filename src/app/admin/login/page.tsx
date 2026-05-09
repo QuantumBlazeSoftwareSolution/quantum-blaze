@@ -4,7 +4,7 @@ import { useActionState, useEffect } from "react";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { loginAdmin } from "@/lib/actions/auth";
 
-const initialState = { error: undefined, success: undefined };
+const initialState: any = { error: undefined, success: undefined };
 
 export default function AdminLogin() {
   const [state, formAction, isPending] = useActionState(loginAdmin, initialState);
