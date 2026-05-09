@@ -12,6 +12,7 @@ export async function sendContactEmail(formData: {
   message: string;
 }) {
   const { name, email, projectType, budget, message } = formData;
+  console.log("Contact Action: Started for", name);
 
   // Create transporter
   const transporter = nodemailer.createTransport({
@@ -24,10 +25,10 @@ export async function sendContactEmail(formData: {
 
   try {
     const { renderToStaticMarkup } = await import("react-dom/server");
-
     const fromEmail = process.env.EMAIL_FROM || process.env.EMAIL_USER;
 
     // 1. Send Email to Admin
+    console.log("Contact Action: Sending admin email...");
     const adminEmailHtml = renderToStaticMarkup(
       AdminEmailTemplate({ name, email, projectType, budget, message })
     );
@@ -45,6 +46,7 @@ export async function sendContactEmail(formData: {
     });
 
     // 2. Send Auto-reply to Customer
+    console.log("Contact Action: Sending customer auto-reply...");
     const customerEmailHtml = renderToStaticMarkup(
       CustomerEmailTemplate({ name })
     );
@@ -60,7 +62,7 @@ export async function sendContactEmail(formData: {
     const excelUrl = process.env.EXCEL_URL;
     if (excelUrl) {
       try {
-        console.log("Sending data to Google Sheet...");
+        console.log("Contact Action: Syncing to Google Sheets...");
         const response = await fetch(excelUrl, {
           method: "POST",
           headers: {
@@ -77,12 +79,12 @@ export async function sendContactEmail(formData: {
         });
         
         if (response.ok) {
-          console.log("✅ Lead successfully saved to Google Sheet");
+          console.log("Contact Action: Google Sheets sync successful");
         } else {
-          console.log(`❌ Google Sheet Error: ${response.status} ${response.statusText}`);
+          console.log("Contact Action: Google Sheets error status:", response.status);
         }
       } catch (sheetError) {
-        console.error("❌ Failed to connect to Google Sheet:", sheetError);
+        console.error("Contact Action: Google Sheets connection failed:", sheetError);
       }
     }
 
@@ -92,6 +94,7 @@ export async function sendContactEmail(formData: {
 
     if (tgToken && tgChatId) {
       try {
+        console.log("Contact Action: Sending Telegram notification...");
         const messageText = `
 🚀 *New Lead: Quantum Blaze*
 
@@ -117,15 +120,16 @@ ${message}
             parse_mode: "Markdown",
           }),
         });
-        console.log("✅ Telegram notification sent");
+        console.log("Contact Action: Telegram notification successful");
       } catch (tgError) {
-        console.error("❌ Telegram Notification Failed:", tgError);
+        console.error("Contact Action: Telegram notification failed:", tgError);
       }
     }
 
+    console.log("Contact Action: Completed successfully for", name);
     return { success: true };
   } catch (error) {
-    console.error("❌ Action failed:", error);
+    console.error("Contact Action: Process failed:", error);
     return { success: false, error: "Process failed." };
   }
 }
