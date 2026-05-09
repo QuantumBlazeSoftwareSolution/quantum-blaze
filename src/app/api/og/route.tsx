@@ -54,41 +54,30 @@ export async function GET(request: Request) {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "15px",
+                justifyContent: "center",
                 marginBottom: "40px",
               }}
             >
-              {/* Logo placeholder - using text as fallback since we can't easily fetch local files in Edge runtime without absolute URLs */}
-              <div
+              <img
+                src="https://dev.quantumblaze.lk/rectangle-icon.png"
+                alt="Quantum Blaze"
                 style={{
-                  color: "#0ea5e9",
-                  fontSize: "60px",
-                  fontWeight: "800",
-                  letterSpacing: "0.05em",
+                  width: "500px",
+                  height: "auto",
+                  objectFit: "contain",
                 }}
-              >
-                ⚛
-              </div>
-              <div
-                style={{
-                  color: "#ffffff",
-                  fontSize: "50px",
-                  fontWeight: "800",
-                  letterSpacing: "0.1em",
-                }}
-              >
-                QUANTUM <span style={{ color: "#0ea5e9" }}>BLAZE</span>
-              </div>
+              />
             </div>
 
             <div
               style={{
                 color: "#ffffff",
-                fontSize: "72px",
+                fontSize: "64px",
                 fontWeight: "900",
                 textAlign: "center",
-                maxWidth: "900px",
-                lineHeight: 1.2,
+                maxWidth: "1000px",
+                lineHeight: 1.1,
+                marginBottom: "20px",
               }}
             >
               {title}
@@ -97,10 +86,24 @@ export async function GET(request: Request) {
             <div
               style={{
                 color: "#94a3b8",
-                fontSize: "30px",
-                marginTop: "30px",
-                fontWeight: "500",
-                letterSpacing: "0.05em",
+                fontSize: "24px",
+                textAlign: "center",
+                maxWidth: "800px",
+                lineHeight: 1.5,
+                fontWeight: "400",
+              }}
+            >
+              We architect and engineer scalable, high-end digital products. Enterprise SaaS, mobile apps, and custom web applications.
+            </div>
+
+            <div
+              style={{
+                color: "#0ea5e9",
+                fontSize: "20px",
+                marginTop: "40px",
+                fontWeight: "700",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
               }}
             >
               Architecting Digital Futures
