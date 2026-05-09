@@ -23,6 +23,7 @@ export async function createAdminAction(prevState: any, formData: FormData) {
     const name = formData.get("name") as string;
     const password = formData.get("password") as string;
     const role = formData.get("role") as "admin" | "super_admin";
+    const baseUrl = formData.get("baseUrl") as string;
 
     if (!email || !name || !password) {
       return { error: "Name, email, and password are required." };
@@ -42,6 +43,12 @@ export async function createAdminAction(prevState: any, formData: FormData) {
 
     if (!result) {
       return { error: "Failed to create admin. Email might already exist." };
+    }
+
+    // Send Invite Email
+    if (baseUrl) {
+      const { sendAdminInviteEmail } = await import("./email/invite");
+      await sendAdminInviteEmail({ name, email, baseUrl });
     }
 
     // Notify Monitor Bot

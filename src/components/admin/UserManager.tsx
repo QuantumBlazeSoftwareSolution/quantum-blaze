@@ -224,6 +224,7 @@ export function UserManager({ initialAdmins }: { initialAdmins: AdminUserDisplay
             
             {/* Form */}
             <form action={formAction} className="p-8 space-y-5">
+              <input type="hidden" name="baseUrl" value={typeof window !== "undefined" ? window.location.origin : ""} />
               {state.error && (
                 <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-medium rounded-xl flex items-start gap-3">
                   <ShieldAlert className="w-5 h-5 shrink-0" />
