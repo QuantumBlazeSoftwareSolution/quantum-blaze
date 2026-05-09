@@ -9,7 +9,7 @@ export default async function AdminProjectsPage() {
   const projects = await getAllProjects();
 
   return (
-    <div className="max-w-6xl mx-auto p-8 pt-12 space-y-8">
+    <div className="w-full px-8 py-10 space-y-8">
       <ProjectManager initialProjects={projects} />
     </div>
   );

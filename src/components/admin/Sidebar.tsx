@@ -14,13 +14,18 @@ import { logoutAdmin } from "@/lib/actions/auth";
 
 const navItems = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { name: "Projects", href: "/admin/projects", icon: Briefcase },
-  { name: "Users", href: "/admin/users", icon: Users },
-  { name: "Settings", href: "/admin/settings", icon: Settings },
+  { name: "Projects", href: "/projects", icon: Briefcase },
+  { name: "Users", href: "/users", icon: Users, roles: ["super_admin"] },
+  { name: "Settings", href: "/settings", icon: Settings },
 ];
 
-export function Sidebar() {
+export function Sidebar({ userRole }: { userRole?: string }) {
   const pathname = usePathname();
+
+  // Filter items based on role
+  const visibleItems = navItems.filter(
+    item => !item.roles || (userRole && item.roles.includes(userRole))
+  );
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-[#141b2d] border-r border-[#1e293b] flex flex-col z-40 transition-all duration-300">
@@ -34,7 +39,7 @@ export function Sidebar() {
       {/* Navigation */}
       <div className="flex-1 overflow-y-auto py-6">
         <nav className="space-y-1">
-          {navItems.map((item) => {
+          {visibleItems.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
             return (
               <Link
