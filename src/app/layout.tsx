@@ -65,9 +65,9 @@ export const metadata: Metadata = {
     images: ["/api/og?title=Premium Software Development Agency"],
   },
   icons: {
-    icon: "/qb-logo-final.png",
-    shortcut: "/qb-logo-final.png",
-    apple: "/qb-logo-final.png",
+    icon: "/circle-icon.png",
+    shortcut: "/circle-icon.png",
+    apple: "/circle-icon.png",
   },
   robots: {
     index: true,
