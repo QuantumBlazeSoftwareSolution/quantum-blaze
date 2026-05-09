@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "prettier-check": "prettier --config .prettierrc '**/*.{js,jsx,ts,tsx}' --check",
-    "prettier-write": "prettier --config .prettierrc '**/*.{js,jsx,ts,tsx}' --write"
+    "prettier-write": "prettier --config .prettierrc '**/*.{js,jsx,ts,tsx}' --write",
+    "db:seed": "tsx --env-file=.env src/lib/db/seed-projects.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
@@ -53,6 +54,7 @@
     "eslint-config-next": "^14.2.4",
     "prettier": "^3.8.3",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
