@@ -3,6 +3,7 @@
 import { useTheme } from "@/components/admin/ThemeContext";
 import { Sidebar } from "@/components/admin/Sidebar";
 import { AdminTopNav } from "@/components/admin/AdminTopNav";
+import { CustomContextMenu } from "@/components/admin/CustomContextMenu";
 
 export function AdminClientLayout({ 
   children, 
@@ -23,6 +24,7 @@ export function AdminClientLayout({
           {children}
         </main>
       </div>
+      <CustomContextMenu />
     </div>
   );
 }
