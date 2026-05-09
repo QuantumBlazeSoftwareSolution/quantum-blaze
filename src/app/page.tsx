@@ -1,5 +1,3 @@
-"use client";
-import { useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
@@ -11,40 +9,29 @@ import { Process } from "@/components/sections/Process";
 import { TechStack } from "@/components/sections/TechStack";
 import { Team } from "@/components/sections/Team";
 import { Contact } from "@/components/sections/Contact";
-import { useLenis } from "@/hooks/useLenis";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { getAllProjects } from "@/lib/db/crud/projects/read";
 
-gsap.registerPlugin(ScrollTrigger);
-
-export default function Home() {
-  // Initialize Lenis smooth scroll
-  useLenis();
-
-  useEffect(() => {
-    // Refresh ScrollTrigger after mount to fix any position miscalculations
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, []);
+export default async function Home() {
+  const projects = await getAllProjects();
 
   return (
-    <main className="relative">
-      <Navbar />
+    <SmoothScrollProvider>
+      <main className="relative">
+        <Navbar />
 
-      <Hero />
-      <About />
-      <Services />
-      <Industries />
-      <Projects />
-      <Process />
-      <TechStack />
-      {process.env.NEXT_PUBLIC_TEAM_SECTION === "true" && <Team />}
-      <Contact />
+        <Hero />
+        <About />
+        <Services />
+        <Industries />
+        <Projects projects={projects} />
+        <Process />
+        <TechStack />
+        {process.env.NEXT_PUBLIC_TEAM_SECTION === "true" && <Team />}
+        <Contact />
 
-      <Footer />
-    </main>
+        <Footer />
+      </main>
+    </SmoothScrollProvider>
   );
 }
