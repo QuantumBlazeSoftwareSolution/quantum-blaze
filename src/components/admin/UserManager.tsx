@@ -4,6 +4,7 @@ import { useActionState, useEffect, useState, useTransition } from "react";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { createAdminAction, updateAdminStatusAction } from "@/lib/actions/admins";
 import { ShieldAlert, Plus, X, UserCog, Power, PowerOff } from "lucide-react";
+import { ViewToggle, type ViewMode } from "./ViewToggle";
 
 const initialState: any = { error: undefined, success: undefined };
 
@@ -19,6 +20,7 @@ export function UserManager({ initialAdmins }: { initialAdmins: AdminUserDisplay
   const [isAdding, setIsAdding] = useState(false);
   const [state, formAction, isPending] = useActionState(createAdminAction, initialState);
   const [isPendingStatus, startTransition] = useTransition();
+  const [viewMode, setViewMode] = useState<ViewMode>("list");
 
   // Close modal on success
   useEffect(() => {
@@ -39,14 +41,83 @@ export function UserManager({ initialAdmins }: { initialAdmins: AdminUserDisplay
   return (
     <div className="space-y-8 relative">
       {/* Header Actions */}
-      <div className="flex items-center justify-end">
+      <div className="flex items-center justify-end gap-3">
+        <ViewToggle view={viewMode} onToggle={setViewMode} />
         <GlowButton variant="solid" size="sm" onClick={() => setIsAdding(true)}>
           <Plus className="w-4 h-4 mr-2 inline-block" />
           Add Administrator
         </GlowButton>
       </div>
 
-      {/* Users Table */}
+      {/* Grid View */}
+      {viewMode === "grid" && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+          {initialAdmins.map((admin) => (
+            <div
+              key={admin.id}
+              className="group bg-[#141b2d] border border-white/8 rounded-2xl p-6 hover:border-white/20 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 flex flex-col gap-4"
+            >
+              {/* Avatar & Info */}
+              <div className="flex items-center gap-4">
+                <div className="relative shrink-0">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-500/20 to-purple-500/20 border border-white/10 flex items-center justify-center">
+                    <span className="text-xl font-bold text-white uppercase">{admin.name.charAt(0)}</span>
+                  </div>
+                  {/* Status dot */}
+                  <div className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-[#141b2d] ${
+                    admin.status === "active" ? "bg-emerald-400" :
+                    admin.status === "suspended" ? "bg-amber-400" : "bg-slate-600"
+                  }`} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-bold text-white truncate">{admin.name}</p>
+                  <p className="text-[11px] text-slate-500 truncate mt-0.5">{admin.email}</p>
+                </div>
+              </div>
+
+              {/* Role & Status */}
+              <div className="flex items-center justify-between">
+                <span className={`px-3 py-1 rounded-full text-xs font-semibold tracking-wide border ${
+                  admin.role === "super_admin"
+                    ? "bg-purple-500/10 text-purple-400 border-purple-500/20"
+                    : "bg-sky-500/10 text-sky-400 border-sky-500/20"
+                }`}>
+                  {admin.role === "super_admin" ? "Super Admin" : "Admin"}
+                </span>
+                <span className={`text-xs font-medium capitalize ${
+                  admin.status === "active" ? "text-emerald-400" :
+                  admin.status === "suspended" ? "text-amber-400" : "text-slate-500"
+                }`}>{admin.status}</span>
+              </div>
+
+              {/* Actions */}
+              {admin.role !== "super_admin" && (
+                <button
+                  onClick={() => handleToggleStatus(admin.id, admin.status)}
+                  disabled={isPendingStatus}
+                  className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold transition-all border ${
+                    admin.status === "active"
+                      ? "text-red-400 border-red-500/20 hover:bg-red-500/10"
+                      : "text-emerald-400 border-emerald-500/20 hover:bg-emerald-500/10"
+                  } disabled:opacity-50`}
+                >
+                  {admin.status === "active" ? <PowerOff className="w-3.5 h-3.5" /> : <Power className="w-3.5 h-3.5" />}
+                  {admin.status === "active" ? "Disable Account" : "Activate Account"}
+                </button>
+              )}
+            </div>
+          ))}
+
+          {initialAdmins.length === 0 && (
+            <div className="col-span-3 py-20 text-center text-slate-500 font-medium">
+              No administrators found.
+            </div>
+          )}
+        </div>
+      )}
+
+      {viewMode === "list" && (
+        <>{/* Users Table */}
       <div className="bg-[#1a2235] rounded-xl border border-[#1e293b] overflow-hidden shadow-2xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm whitespace-nowrap">
@@ -128,6 +199,8 @@ export function UserManager({ initialAdmins }: { initialAdmins: AdminUserDisplay
           </table>
         </div>
       </div>
+      </>
+      )}
 
       {/* Add Admin Modal (Slide-over style but centered for minimalist feel) */}
       {isAdding && (

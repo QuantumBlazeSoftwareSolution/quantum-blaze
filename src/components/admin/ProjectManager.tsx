@@ -4,7 +4,8 @@ import { useActionState, useEffect, useState } from "react";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { createProjectAction, deleteProjectAction, updateProjectAction } from "@/lib/actions/projects";
 import type { Project } from "@/lib/db/schemas/projects";
-import { Trash2, Plus, X, Eye } from "lucide-react";
+import { Trash2, Plus, X, Eye, Pencil } from "lucide-react";
+import { ViewToggle, type ViewMode } from "./ViewToggle";
 import Image from "next/image";
 
 const initialState: any = { error: undefined, success: undefined };
@@ -12,6 +13,7 @@ const initialState: any = { error: undefined, success: undefined };
 export function ProjectManager({ initialProjects }: { initialProjects: Project[] }) {
   const [isAdding, setIsAdding] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>("list");
 
   const [addState, addFormAction, isAddPending] = useActionState(createProjectAction, initialState);
   const [updateState, updateFormAction, isUpdatePending] = useActionState(updateProjectAction, initialState);
@@ -34,14 +36,88 @@ export function ProjectManager({ initialProjects }: { initialProjects: Project[]
   return (
     <div className="space-y-8 relative">
       {/* Header Actions */}
-      <div className="flex items-center justify-end">
+      <div className="flex items-center justify-end gap-3">
+        <ViewToggle view={viewMode} onToggle={setViewMode} />
         <GlowButton variant="solid" size="sm" onClick={() => setIsAdding(true)}>
           <Plus className="w-4 h-4 mr-2 inline-block" />
           Add Project
         </GlowButton>
       </div>
 
-      {/* Projects Table */}
+      {/* Grid View */}
+      {viewMode === "grid" && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+          {initialProjects.map((project) => (
+            <div
+              key={project.id}
+              className="group relative bg-[#141b2d] border border-white/8 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+            >
+              {/* Mockup Image */}
+              <div className="relative h-44 overflow-hidden bg-[#0a1020]">
+                <div
+                  className="absolute inset-0 opacity-30"
+                  style={{ background: `radial-gradient(circle at 60% 30%, ${project.themeColor}50, transparent 70%)` }}
+                />
+                <Image
+                  src={project.imageUrl}
+                  alt={project.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
+                />
+                {/* Overlay actions on hover */}
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+                  <button
+                    onClick={() => setEditingProject(project)}
+                    className="p-2.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white hover:bg-sky-500/30 hover:border-sky-400/40 transition-all"
+                    title="Edit Project"
+                  >
+                    <Pencil className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(project.id)}
+                    className="p-2.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white hover:bg-red-500/30 hover:border-red-400/40 transition-all"
+                    title="Delete Project"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+                {/* Mockup type badge */}
+                <div className="absolute top-3 right-3">
+                  <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest bg-black/40 backdrop-blur-sm border border-white/10 rounded-full text-slate-300">
+                    {project.mockupType}
+                  </span>
+                </div>
+              </div>
+
+              {/* Card Body */}
+              <div className="p-5">
+                <div className="flex items-start gap-3">
+                  <div
+                    className="w-2 h-2 rounded-full mt-1.5 shrink-0"
+                    style={{ backgroundColor: project.themeColor, boxShadow: `0 0 8px ${project.themeColor}80` }}
+                  />
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-bold text-white truncate">{project.title}</h3>
+                    <p className="text-[11px] text-slate-500 truncate mt-0.5">{project.subtitle}</p>
+                  </div>
+                  <span className="text-[10px] font-mono text-slate-600 shrink-0">#{project.orderNumber}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {initialProjects.length === 0 && (
+            <div className="col-span-3 py-20 text-center text-slate-500 font-medium">
+              No projects found. Click "Add Project" to get started.
+            </div>
+          )}
+        </div>
+      )}
+
+      {viewMode === "list" && (
+        <>
+        {/* Projects Table */}
       <div className="bg-[#1a2235] rounded-xl border border-[#1e293b] overflow-hidden shadow-2xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm whitespace-nowrap">
@@ -131,6 +207,8 @@ export function ProjectManager({ initialProjects }: { initialProjects: Project[]
           </div>
         </div>
       </div>
+      </>
+      )}
 
       {/* Add Project Modal */}
       {isAdding && (
