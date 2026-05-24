@@ -17,6 +17,7 @@ export async function createProjectAction(prevState: any, formData: FormData) {
     const themeColor = formData.get("themeColor") as string;
     const mockupType = formData.get("mockupType") as "desktop" | "mobile";
     const rawImageUrl = formData.get("imageUrl") as string;
+    const status = (formData.get("status") as "draft" | "published") || "published";
 
     // Parse JSON arrays
     const techStackStr = formData.get("techStack") as string;
@@ -45,6 +46,7 @@ export async function createProjectAction(prevState: any, formData: FormData) {
       themeColor: themeColor || "#38bdf8",
       mockupType,
       imageUrl,
+      status,
     });
 
     if (!result) {
@@ -78,6 +80,7 @@ export async function updateProjectAction(prevState: any, formData: FormData) {
     const themeColor = formData.get("themeColor") as string;
     const mockupType = formData.get("mockupType") as "desktop" | "mobile";
     const rawImageUrl = formData.get("imageUrl") as string;
+    const status = (formData.get("status") as "draft" | "published") || "published";
 
     // Parse JSON arrays
     const techStackStr = formData.get("techStack") as string;
@@ -106,6 +109,7 @@ export async function updateProjectAction(prevState: any, formData: FormData) {
       themeColor: themeColor || "#38bdf8",
       mockupType,
       imageUrl,
+      status,
     });
 
     if (!result) {

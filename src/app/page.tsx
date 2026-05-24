@@ -10,12 +10,14 @@ import { TechStack } from "@/components/sections/TechStack";
 import { Team } from "@/components/sections/Team";
 import { Contact } from "@/components/sections/Contact";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-import { getAllProjects } from "@/lib/db/crud/projects/read";
+import { getPublishedProjects } from "@/lib/db/crud/projects/read";
 import { getAllTeamMembers } from "@/lib/db/crud/team/read";
+
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const [projects, members] = await Promise.all([
-    getAllProjects(),
+    getPublishedProjects(),
     getAllTeamMembers()
   ]);
 

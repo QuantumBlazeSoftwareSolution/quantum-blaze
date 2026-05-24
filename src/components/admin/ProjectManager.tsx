@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect, useState, useTransition } from "react";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { createProjectAction, deleteProjectAction, updateProjectAction } from "@/lib/actions/projects";
 import type { Project } from "@/lib/db/schemas/projects";
@@ -14,6 +14,7 @@ export function ProjectManager({ initialProjects }: { initialProjects: Project[]
   const [isAdding, setIsAdding] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>("list");
+  const [, startTransition] = useTransition();
 
   const [addState, addFormAction, isAddPending] = useActionState(createProjectAction, initialState);
   const [updateState, updateFormAction, isUpdatePending] = useActionState(updateProjectAction, initialState);
@@ -27,9 +28,11 @@ export function ProjectManager({ initialProjects }: { initialProjects: Project[]
     if (updateState.success) setEditingProject(null);
   }, [updateState.success]);
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = (id: string) => {
     if (confirm("Are you sure you want to delete this project?")) {
-      await deleteProjectAction(id);
+      startTransition(async () => {
+        await deleteProjectAction(id);
+      });
     }
   };
 
@@ -82,6 +85,21 @@ export function ProjectManager({ initialProjects }: { initialProjects: Project[]
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
+                {/* Status badge */}
+                <div className="absolute top-3 left-3">
+                  {project.status === "published" ? (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest bg-emerald-500/80 backdrop-blur-sm border border-emerald-400/20 rounded-full text-emerald-100">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
+                      Active
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest bg-amber-500/80 backdrop-blur-sm border border-amber-400/20 rounded-full text-amber-100">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-300" />
+                      Draft
+                    </span>
+                  )}
+                </div>
+
                 {/* Mockup type badge */}
                 <div className="absolute top-3 right-3">
                   <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest bg-black/40 backdrop-blur-sm border border-white/10 rounded-full text-slate-300">
@@ -128,6 +146,7 @@ export function ProjectManager({ initialProjects }: { initialProjects: Project[]
                 <th className="px-6 py-4">Slug</th>
                 <th className="px-6 py-4">Mockup</th>
                 <th className="px-6 py-4">Theme</th>
+                <th className="px-6 py-4">Status</th>
                 <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
@@ -166,6 +185,19 @@ export function ProjectManager({ initialProjects }: { initialProjects: Project[]
                       <span className="uppercase text-slate-400">{project.themeColor}</span>
                     </div>
                   </td>
+                  <td className="px-6 py-4">
+                    {project.status === "published" ? (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        Published
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-500/10 border border-amber-500/20 text-amber-400">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                        Draft
+                      </span>
+                    )}
+                  </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       <button 
@@ -189,7 +221,7 @@ export function ProjectManager({ initialProjects }: { initialProjects: Project[]
               
               {initialProjects.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="px-6 py-12 text-center text-slate-500">
+                  <td colSpan={7} className="px-6 py-12 text-center text-slate-500">
                     No projects found. Click "Add Project" to get started.
                   </td>
                 </tr>
@@ -278,6 +310,14 @@ export function ProjectManager({ initialProjects }: { initialProjects: Project[]
                   <select name="mockupType" className="w-full px-4 py-3 bg-[#0a192f]/50 border border-white/10 rounded-xl text-white focus:outline-none focus:border-sky-500/50 appearance-none cursor-pointer">
                     <option value="desktop">Desktop (16:10)</option>
                     <option value="mobile">Mobile (9:19)</option>
+                  </select>
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs text-slate-400 uppercase tracking-wider mb-2">Status</label>
+                  <select name="status" defaultValue="published" className="w-full px-4 py-3 bg-[#0a192f]/50 border border-white/10 rounded-xl text-white focus:outline-none focus:border-sky-500/50 appearance-none cursor-pointer">
+                    <option value="published">Published (Visible on website)</option>
+                    <option value="draft">Draft (Hidden from website)</option>
                   </select>
                 </div>
 
@@ -405,6 +445,14 @@ export function ProjectManager({ initialProjects }: { initialProjects: Project[]
                     <select name="mockupType" defaultValue={editingProject.mockupType || "desktop"} className="w-full px-4 py-3 bg-[#0a192f]/50 border border-white/10 rounded-xl text-white focus:outline-none focus:border-sky-500/50 appearance-none cursor-pointer">
                       <option value="desktop">Desktop (16:10)</option>
                       <option value="mobile">Mobile (9:19)</option>
+                    </select>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label className="block text-xs text-slate-400 uppercase tracking-wider mb-2">Status</label>
+                    <select name="status" defaultValue={editingProject.status || "published"} className="w-full px-4 py-3 bg-[#0a192f]/50 border border-white/10 rounded-xl text-white focus:outline-none focus:border-sky-500/50 appearance-none cursor-pointer">
+                      <option value="published">Published (Visible on website)</option>
+                      <option value="draft">Draft (Hidden from website)</option>
                     </select>
                   </div>
 

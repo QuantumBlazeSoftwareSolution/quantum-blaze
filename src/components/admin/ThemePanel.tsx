@@ -1,6 +1,7 @@
 "use client";
 
-import { X, RotateCcw, Palette, Check } from "lucide-react";
+import { useRef, useEffect, useState } from "react";
+import { X, RotateCcw, Palette, Check, Upload, Trash2 } from "lucide-react";
 import { useTheme } from "./ThemeContext";
 import { GlowButton } from "@/components/ui/GlowButton";
 
@@ -16,6 +17,51 @@ const THEME_IMAGES = [
 
 export function ThemePanel({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const { theme, setBgImage, setOpacity, resetTheme } = useTheme();
+  const [customImage, setCustomImage] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Load custom background on mount
+  useEffect(() => {
+    const savedCustom = localStorage.getItem("admin-custom-bg");
+    if (savedCustom) {
+      setCustomImage(savedCustom);
+    }
+  }, []);
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("Please upload a valid image file!");
+      return;
+    }
+
+    // Limit to 1.5MB to prevent localStorage size overflow
+    if (file.size > 1.5 * 1024 * 1024) {
+      alert("Image is too large! Please upload an image under 1.5MB to ensure fast loading.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const base64 = event.target?.result as string;
+      if (base64) {
+        localStorage.setItem("admin-custom-bg", base64);
+        setCustomImage(base64);
+        setBgImage(base64); // Apply immediately
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleDeleteCustomImage = () => {
+    localStorage.removeItem("admin-custom-bg");
+    if (theme.bgImage === customImage) {
+      setBgImage(null);
+    }
+    setCustomImage(null);
+  };
 
   if (!isOpen) return null;
 
@@ -80,6 +126,92 @@ export function ThemePanel({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                 </button>
               ))}
             </div>
+          </section>
+
+          {/* Custom Background Upload */}
+          <section className="space-y-4 pt-4 border-t border-white/5">
+            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Custom Background</h4>
+            
+            <input 
+              type="file" 
+              ref={fileInputRef} 
+              onChange={handleImageUpload} 
+              accept="image/*" 
+              className="hidden" 
+            />
+
+            {customImage ? (
+              <button
+                onClick={() => setBgImage(customImage)}
+                className={`group relative w-full aspect-video rounded-xl overflow-hidden border-2 transition-all text-left ${
+                  theme.bgImage === customImage ? 'border-sky-500 ring-4 ring-sky-500/20' : 'border-white/5 hover:border-white/20'
+                }`}
+              >
+                <img src={customImage} alt="Custom Background" className="w-full h-full object-cover" />
+                <div className={`absolute inset-0 bg-black/50 flex items-center justify-center gap-3 transition-opacity ${theme.bgImage === customImage ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
+                  {theme.bgImage === customImage ? (
+                    <div className="flex gap-2">
+                      <div className="p-2 bg-sky-500/20 border border-sky-400/30 rounded-lg text-sky-400">
+                        <Check className="w-4 h-4" />
+                      </div>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          fileInputRef.current?.click();
+                        }}
+                        className="p-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white rounded-lg transition-all"
+                        title="Change Custom Image"
+                      >
+                        <Upload className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteCustomImage();
+                        }}
+                        className="p-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 text-red-400 rounded-lg transition-all"
+                        title="Delete Custom Image"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex gap-2">
+                      <span className="text-[10px] font-bold text-white uppercase tracking-widest mr-2 self-center">Apply Custom</span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          fileInputRef.current?.click();
+                        }}
+                        className="p-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white rounded-lg transition-all"
+                        title="Change Custom Image"
+                      >
+                        <Upload className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteCustomImage();
+                        }}
+                        className="p-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 text-red-400 rounded-lg transition-all"
+                        title="Delete Custom Image"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </button>
+            ) : (
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="w-full aspect-video rounded-xl border-2 border-dashed border-white/10 hover:border-sky-500/50 bg-white/[0.01] hover:bg-sky-500/[0.02] flex flex-col items-center justify-center gap-2 group transition-all"
+              >
+                <Upload className="w-5 h-5 text-slate-500 group-hover:text-sky-400 group-hover:-translate-y-0.5 transition-all" />
+                <span className="text-xs font-bold text-slate-400 group-hover:text-sky-400 tracking-wider">Upload Custom Image</span>
+                <span className="text-[9px] font-medium text-slate-600 tracking-normal">Max size: 1.5MB</span>
+              </button>
+            )}
           </section>
 
           {/* Opacity Control */}

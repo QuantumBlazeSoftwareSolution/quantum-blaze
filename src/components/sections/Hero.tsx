@@ -43,10 +43,11 @@ export function Hero() {
                 fontFamily: "var(--font-inter)",
               }}
             >
-              <span className="block text-sky-400">Architecting</span>
-              <span className="block text-white mt-1">The Future Of</span>
-              <span className="block text-slate-500/80 text-[clamp(1.75rem,3vw,2.5rem)] mt-3 font-semibold tracking-normal">
-                Digital Products
+              <span className="block text-white">
+                <span className="text-sky-400">Think</span> Beyond
+              </span>
+              <span className="block bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-500 bg-clip-text text-transparent mt-2">
+                Limitation
               </span>
             </h1>
           </motion.div>

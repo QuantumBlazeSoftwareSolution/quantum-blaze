@@ -1,4 +1,4 @@
-import { getAllProjects } from "@/lib/db/crud/projects/read";
+import { getPublishedProjects } from "@/lib/db/crud/projects/read";
 import { ProjectsClient } from "./ProjectsClient";
 
 export const metadata = {
@@ -6,8 +6,10 @@ export const metadata = {
   description: "A curated selection of our digital products and case studies.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function ProjectsPage() {
-  const projects = await getAllProjects();
+  const projects = await getPublishedProjects();
 
   return <ProjectsClient projects={projects} />;
 }

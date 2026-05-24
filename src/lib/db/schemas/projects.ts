@@ -1,6 +1,7 @@
 import { pgTable, text, timestamp, uuid, jsonb, pgEnum } from "drizzle-orm/pg-core";
 
 export const mockupTypeEnum = pgEnum("mockup_type", ["desktop", "mobile"]);
+export const projectStatusEnum = pgEnum("project_status", ["draft", "published"]);
 
 export const projectsTable = pgTable("projects", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -14,6 +15,7 @@ export const projectsTable = pgTable("projects", {
   themeColor: text("theme_color").notNull().default("#38bdf8"),
   mockupType: mockupTypeEnum("mockup_type").notNull().default("desktop"),
   imageUrl: text("image_url").notNull(),
+  status: projectStatusEnum("status").notNull().default("published"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at")
     .notNull()

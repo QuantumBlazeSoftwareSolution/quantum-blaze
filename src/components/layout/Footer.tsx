@@ -22,8 +22,8 @@ const footerLinks = {
       label: "contact@quantumblaze.lk",
       href: "mailto:contact@quantumblaze.lk",
     },
-    { label: "+94 71 989 2932", href: "tel:+94719892932" },
     { label: "+94 78 805 6838", href: "tel:+94788056838" },
+    { label: "+94 71 968 1816", href: "tel:+94719681816" },
     { label: "Urapola, Sri Lanka", href: "/#contact" },
   ],
 };
@@ -55,7 +55,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
+            <div className="flex items-center gap-2.5 mb-2">
               <Image
                 src="/qb-logo-final.png"
                 alt="Quantum Blaze Logo"
@@ -71,8 +71,7 @@ export function Footer() {
               className="text-sm leading-relaxed mb-6"
               style={{ color: "var(--text-muted)" }}
             >
-              Engineering scalable, high-end digital solutions that define the
-              future.
+              Think beyond limitation
             </p>
             {/* Social links */}
             <div className="flex gap-3">
@@ -119,7 +118,7 @@ export function Footer() {
           style={{ borderColor: "rgba(56,189,248,0.08)" }}
         >
           <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-            © 2025 Quantum Blaze. All rights reserved.
+            © 2024 - {new Date().getFullYear()} Quantum Blaze. All rights reserved.
           </p>
           <div className="flex gap-6">
             {[

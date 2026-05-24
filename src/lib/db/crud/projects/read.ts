@@ -43,3 +43,19 @@ export async function getProjectById(id: string) {
     return null;
   }
 }
+
+/**
+ * Fetch only published projects, ordered by their order number.
+ */
+export async function getPublishedProjects() {
+  try {
+    return await db.query.projectsTable.findMany({
+      where: eq(projectsTable.status, "published"),
+      orderBy: [asc(projectsTable.orderNumber)],
+    });
+  } catch (error) {
+    console.error("Error fetching published projects:", error);
+    return [];
+  }
+}
+

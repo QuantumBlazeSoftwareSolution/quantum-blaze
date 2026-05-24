@@ -135,7 +135,7 @@ export function Contact() {
                 },
                 {
                   icon: <Phone className="w-5 h-5 text-sky-400" />,
-                  label: "+94 71 989 2932 / +94 78 805 6838",
+                  label: "+94 78 805 6838 / +94 71 968 1816",
                   sub: "Call Us",
                 },
                 {
