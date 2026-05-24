@@ -165,7 +165,9 @@ export function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 * (i + 1) }}
-                  className="relative p-8 rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-sm group hover:bg-slate-900/40 transition-colors duration-500"
+                  className={`relative p-8 rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-sm group hover:bg-slate-900/40 transition-colors duration-500 ${
+                    i === 2 ? "md:col-span-2" : ""
+                  }`}
                 >
                   <div
                     className="stat-counter text-4xl md:text-5xl font-bold mb-2 tracking-tight"

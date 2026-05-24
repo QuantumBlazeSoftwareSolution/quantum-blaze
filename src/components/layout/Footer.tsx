@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { FaLinkedin, FaGithub, FaXTwitter, FaDribbble } from "react-icons/fa6";
+import { FaLinkedin, FaFacebook } from "react-icons/fa6";
 import Image from "next/image";
 
 const footerLinks = {
@@ -29,10 +29,16 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { label: "LinkedIn", href: "#", icon: FaLinkedin },
-  { label: "GitHub", href: "#", icon: FaGithub },
-  { label: "X", href: "#", icon: FaXTwitter },
-  { label: "Dribbble", href: "#", icon: FaDribbble },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/quantum-blaze-software-solution-pvt-ltd",
+    icon: FaLinkedin,
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/share/18mwK8iVng",
+    icon: FaFacebook,
+  },
 ];
 
 export function Footer() {
@@ -79,6 +85,8 @@ export function Footer() {
                 <a
                   key={s.label}
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={s.label}
                   className="w-8 h-8 rounded-lg glass flex items-center justify-center text-xs text-sky-400 hover:border-sky-400/40 transition-all duration-200 hover:text-white"
                   title={s.label}
