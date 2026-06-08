@@ -207,7 +207,7 @@ export function Hero() {
             transform: "scale(0.93)",
             borderRadius: "40px",
             borderWidth: "16px",
-            borderColor: "#ffffff",
+            borderColor: "#e0f2fe",
           }}
           className="relative w-full h-full bg-[#050C18] border-solid flex flex-col justify-between overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.85)]"
         >
@@ -215,7 +215,7 @@ export function Hero() {
           {/* Center Logo Notch (Slides Up on Scroll) */}
           <div 
             ref={notchTopRef}
-            className="absolute left-1/2 -translate-x-1/2 -top-4 bg-white px-8 pb-4 pt-5 rounded-b-[2rem] shadow-[0_12px_24px_-10px_rgba(0,0,0,0.3)] flex items-center justify-center gap-3 border-t-0 z-40"
+            className="absolute left-1/2 -translate-x-1/2 -top-4 bg-[#e0f2fe] px-8 pb-4 pt-5 rounded-b-[2rem] shadow-[0_12px_24px_-10px_rgba(0,0,0,0.3)] flex items-center justify-center gap-3 border-t-0 z-40"
           >
             <Image
               src="/original-logo.png"
@@ -448,7 +448,7 @@ export function Hero() {
           {/* Centered Scroll Indicator Notch (Slides Down on Scroll) */}
           <div 
             ref={notchBottomRef}
-            className="absolute left-1/2 -translate-x-1/2 -bottom-4 bg-white w-14 pt-2 pb-5 rounded-t-[1rem] shadow-sm flex items-center justify-center cursor-pointer border-b-0 hover:bg-slate-50 transition-colors z-40"
+            className="absolute left-1/2 -translate-x-1/2 -bottom-4 bg-[#e0f2fe] w-14 pt-2 pb-5 rounded-t-[1rem] shadow-sm flex items-center justify-center cursor-pointer border-b-0 hover:bg-sky-200/50 transition-colors z-40"
             onClick={() => scrollToSection("about")}
           >
             <ArrowDown className="w-4 h-4 text-slate-900 animate-bounce" />
