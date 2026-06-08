@@ -3,6 +3,8 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { GlowButton } from "@/components/ui/GlowButton";
+import Link from "next/link";
 import type { Project } from "@/lib/db/schemas/projects";
 
 function ProjectCard({
@@ -237,6 +239,26 @@ export function Projects({ projects }: { projects: Project[] }) {
         {projects.map((project, i) => (
           <ProjectCard key={project.id} project={project} index={i} total={projects.length} />
         ))}
+      </div>
+
+      {/* View All Projects CTA */}
+      <div className="container-wide pb-24 text-center mt-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+        >
+          <Link href="/projects" passHref>
+            <GlowButton
+              variant="outline"
+              size="lg"
+              className="px-10 py-4 text-xs font-bold uppercase tracking-wider rounded-full shadow-lg shadow-sky-500/5 cursor-pointer"
+            >
+              View All Projects <span className="ml-2">→</span>
+            </GlowButton>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

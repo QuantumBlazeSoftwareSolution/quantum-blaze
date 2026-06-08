@@ -22,163 +22,165 @@ export function Hero() {
 
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
+    const mm = gsap.matchMedia();
+    const container = containerRef.current;
+    const card = cardRef.current;
 
-    // GSAP ScrollTrigger timeline to pin the Hero section and zoom the frame
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: "+=120%", // Pins the section for 120% of the viewport height of scroll
-        pin: true,
-        scrub: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-      },
-    });
+    // Only apply scroll-driven zoom/pin animation on desktop viewports (min-width: 1024px)
+    mm.add("(min-width: 1024px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: "top top",
+          end: "+=120%", // Pins the section for 120% of the viewport height of scroll
+          pin: true,
+          scrub: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
 
-    // Animate scale, border-radius, border-width of the inner frame
-    tl.to(
-      cardRef.current,
-      {
-        scale: 1.0,
-        borderRadius: "0px",
-        borderWidth: "0px",
-        duration: 1,
-        ease: "none",
-      },
-      0
-    );
-
-    // Animate outer padding of the container wrapper
-    tl.to(
-      cardRef.current.parentElement,
-      {
-        padding: "0px",
-        duration: 1,
-        ease: "none",
-      },
-      0
-    );
-
-    // Slide out and fade the top notch
-    if (notchTopRef.current) {
+      // Animate scale, border-radius, border-width of the inner frame
       tl.to(
-        notchTopRef.current,
+        card,
+        {
+          scale: 1.0,
+          borderRadius: "0px",
+          borderWidth: "0px",
+          duration: 1,
+          ease: "none",
+        },
+        0
+      );
+
+      // Animate outer padding of the container wrapper
+      if (card.parentElement) {
+        tl.to(
+          card.parentElement,
+          {
+            padding: "0px",
+            duration: 1,
+            ease: "none",
+          },
+          0
+        );
+      }
+
+      // Slide out and fade the top notch
+      if (notchTopRef.current) {
+        tl.to(
+          notchTopRef.current,
+          {
+            y: -120,
+            opacity: 0,
+            duration: 0.95,
+            ease: "none",
+          },
+          0
+        );
+        tl.set(notchTopRef.current, { visibility: "hidden" }, 0.95);
+      }
+
+      // Slide out and fade the bottom scroll indicator notch
+      if (notchBottomRef.current) {
+        tl.to(
+          notchBottomRef.current,
+          {
+            y: 120,
+            opacity: 0,
+            duration: 0.95,
+            ease: "none",
+          },
+          0
+        );
+        tl.set(notchBottomRef.current, { visibility: "hidden" }, 0.95);
+      }
+
+      // Fade out Left & Right header elements
+      if (headerLinksRef.current) {
+        tl.to(
+          headerLinksRef.current,
+          {
+            opacity: 0,
+            duration: 0.95,
+            ease: "none",
+          },
+          0
+        );
+        tl.set(headerLinksRef.current, { visibility: "hidden" }, 0.95);
+      }
+
+      // Fade out footer elements
+      if (footerIconsRef.current) {
+        tl.to(
+          footerIconsRef.current,
+          {
+            opacity: 0,
+            duration: 0.95,
+            ease: "none",
+          },
+          0
+        );
+        tl.set(footerIconsRef.current, { visibility: "hidden" }, 0.95);
+      }
+
+      if (copyrightRef.current) {
+        tl.to(
+          copyrightRef.current,
+          {
+            opacity: 0,
+            duration: 0.95,
+            ease: "none",
+          },
+          0
+        );
+        tl.set(copyrightRef.current, { visibility: "hidden" }, 0.95);
+      }
+
+      // Synchronized parallax movements for floating cards & center image
+      tl.to(
+        ".floating-card-1",
         {
           y: -120,
-          opacity: 0,
-          duration: 0.95,
+          duration: 1,
           ease: "none",
         },
         0
       );
-      tl.set(notchTopRef.current, { visibility: "hidden" }, 0.95);
-    }
 
-    // Slide out and fade the bottom scroll indicator notch
-    if (notchBottomRef.current) {
       tl.to(
-        notchBottomRef.current,
+        ".floating-card-2",
         {
-          y: 120,
-          opacity: 0,
-          duration: 0.95,
+          y: 130,
+          duration: 1,
           ease: "none",
         },
         0
       );
-      tl.set(notchBottomRef.current, { visibility: "hidden" }, 0.95);
-    }
 
-    // Fade out Left & Right header elements
-    if (headerLinksRef.current) {
       tl.to(
-        headerLinksRef.current,
+        ".floating-card-3",
         {
-          opacity: 0,
-          duration: 0.95,
+          y: -85,
+          duration: 1,
           ease: "none",
         },
         0
       );
-      tl.set(headerLinksRef.current, { visibility: "hidden" }, 0.95);
-    }
 
-    // Fade out footer elements
-    if (footerIconsRef.current) {
       tl.to(
-        footerIconsRef.current,
+        ".hero-center-image",
         {
-          opacity: 0,
-          duration: 0.95,
+          scale: 1.35,
+          duration: 1,
           ease: "none",
         },
         0
       );
-      tl.set(footerIconsRef.current, { visibility: "hidden" }, 0.95);
-    }
-
-    if (copyrightRef.current) {
-      tl.to(
-        copyrightRef.current,
-        {
-          opacity: 0,
-          duration: 0.95,
-          ease: "none",
-        },
-        0
-      );
-      tl.set(copyrightRef.current, { visibility: "hidden" }, 0.95);
-    }
-
-    // Synchronized parallax movements for floating cards & center image
-    tl.to(
-      ".floating-card-1",
-      {
-        y: -120,
-        duration: 1,
-        ease: "none",
-      },
-      0
-    );
-
-    tl.to(
-      ".floating-card-2",
-      {
-        y: 130,
-        duration: 1,
-        ease: "none",
-      },
-      0
-    );
-
-    tl.to(
-      ".floating-card-3",
-      {
-        y: -85,
-        duration: 1,
-        ease: "none",
-      },
-      0
-    );
-
-    tl.to(
-      ".hero-center-image",
-      {
-        scale: 1.35,
-        duration: 1,
-        ease: "none",
-      },
-      0
-    );
+    });
 
     return () => {
-      // Clean up ScrollTrigger instances on component unmount
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.trigger === containerRef.current) {
-          t.kill();
-        }
-      });
+      mm.revert();
     };
   }, []);
 
@@ -197,25 +199,19 @@ export function Hero() {
     >
       {/* Container wrapper for padding animation */}
       <div 
-        className="w-full h-full flex items-center justify-center overflow-hidden z-20 p-6 md:p-8"
+        className="w-full h-full flex items-center justify-center overflow-hidden z-20 p-0 lg:p-8"
       >
         
         {/* Animated App Shell Frame */}
         <div
           ref={cardRef}
-          style={{
-            transform: "scale(0.93)",
-            borderRadius: "40px",
-            borderWidth: "16px",
-            borderColor: "#e0f2fe",
-          }}
-          className="relative w-full h-full bg-[#050C18] border-solid flex flex-col justify-between overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.85)]"
+          className="relative w-full h-full bg-[#050C18] border-solid border-0 lg:border-[16px] border-[#e0f2fe] rounded-none lg:rounded-[40px] scale-100 lg:scale-[0.93] flex flex-col justify-between overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.85)]"
         >
           
           {/* Center Logo Notch (Slides Up on Scroll) */}
           <div 
             ref={notchTopRef}
-            className="absolute left-1/2 -translate-x-1/2 -top-4 bg-[#e0f2fe] px-8 pb-4 pt-5 rounded-b-[2rem] shadow-[0_12px_24px_-10px_rgba(0,0,0,0.3)] flex items-center justify-center gap-3 border-t-0 z-40"
+            className="hidden lg:flex absolute left-1/2 -translate-x-1/2 -top-4 bg-[#e0f2fe] px-8 pb-4 pt-5 rounded-b-[2rem] shadow-[0_12px_24px_-10px_rgba(0,0,0,0.3)] flex items-center justify-center gap-3 border-t-0 z-40"
           >
             <Image
               src="/original-logo.png"
@@ -337,7 +333,7 @@ export function Hero() {
                 >
                   <div className="hero-center-image w-full h-full flex items-center justify-center">
                     <Image
-                      src="/hero-section-image.png"
+                      src="/hero-image.png"
                       alt="Quantum Blaze 3D Glass Cubes"
                       width={400}
                       height={400}
@@ -349,7 +345,7 @@ export function Hero() {
               </div>
 
               {/* Right Side: Features & Free Consultation Box */}
-              <div className="flex flex-col items-start lg:items-end text-left lg:text-right lg:col-span-4 xl:col-span-4 gap-8">
+              <div className="hidden lg:flex flex-col items-start lg:items-end text-left lg:text-right lg:col-span-4 xl:col-span-4 gap-8">
                 
                 {/* Feature Tags List */}
                 <div className="space-y-4 w-full max-w-[240px] ml-auto">
@@ -448,7 +444,7 @@ export function Hero() {
           {/* Centered Scroll Indicator Notch (Slides Down on Scroll) */}
           <div 
             ref={notchBottomRef}
-            className="absolute left-1/2 -translate-x-1/2 -bottom-4 bg-[#e0f2fe] w-14 pt-2 pb-5 rounded-t-[1rem] shadow-sm flex items-center justify-center cursor-pointer border-b-0 hover:bg-sky-200/50 transition-colors z-40"
+            className="hidden lg:flex absolute left-1/2 -translate-x-1/2 -bottom-4 bg-[#e0f2fe] w-14 pt-2 pb-5 rounded-t-[1rem] shadow-sm flex items-center justify-center cursor-pointer border-b-0 hover:bg-sky-200/50 transition-colors z-40"
             onClick={() => scrollToSection("about")}
           >
             <ArrowDown className="w-4 h-4 text-slate-900 animate-bounce" />
