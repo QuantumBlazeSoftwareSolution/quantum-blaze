@@ -101,7 +101,7 @@ export function TeamContent({ members }: { members: TeamMember[] }) {
               <SectionLabel>Our Architecture</SectionLabel>
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
+            <div className="max-w-4xl space-y-6">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -120,7 +120,7 @@ export function TeamContent({ members }: { members: TeamMember[] }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="text-xl max-w-xl pb-2"
+                className="text-xl max-w-2xl"
                 style={{ color: "var(--text-muted)", lineHeight: 1.6 }}
               >
                 A collective of specialized engineers and designers united by a

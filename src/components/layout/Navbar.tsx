@@ -67,7 +67,7 @@ export function Navbar() {
             className="flex items-center gap-2.5"
           >
             <Image
-              src="/qb-logo-final.png"
+              src="/original-logo.png"
               alt="Quantum Blaze Logo"
               width={36}
               height={36}

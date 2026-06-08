@@ -63,7 +63,7 @@ export function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-2">
               <Image
-                src="/qb-logo-final.png"
+                src="/original-logo.png"
                 alt="Quantum Blaze Logo"
                 width={40}
                 height={40}

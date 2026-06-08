@@ -65,9 +65,9 @@ export const metadata: Metadata = {
     images: ["/api/og?title=Premium Software Development Agency"],
   },
   icons: {
-    icon: "/circle-icon.png",
-    shortcut: "/circle-icon.png",
-    apple: "/circle-icon.png",
+    icon: "/original-logo.png",
+    shortcut: "/original-logo.png",
+    apple: "/original-logo.png",
   },
   robots: {
     index: true,
@@ -107,7 +107,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Quantum Blaze",
               url: "https://quantumblaze.lk",
-              logo: "https://quantumblaze.lk/qb-logo-final.png",
+              logo: "https://quantumblaze.lk/original-logo.png",
               sameAs: [
                 "https://www.linkedin.com/company/quantum-blaze-software-solution-pvt-ltd",
                 // "https://twitter.com/quantumblaze"
