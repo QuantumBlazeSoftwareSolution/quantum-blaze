@@ -254,7 +254,7 @@ export function Logo3D({
         
         <LogoScene color={color} />
 
-        {interactive && <OrbitControls enableZoom={false} autoRotate={false} />}
+        {interactive && <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />}
         
         {/* Environment map for realistic reflections */}
         <Environment preset="city" />
