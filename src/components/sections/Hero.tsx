@@ -1,279 +1,263 @@
 "use client";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { GlowButton } from "@/components/ui/GlowButton";
-import ShinyText from "@/components/ShinyText";
-import BorderGlow from "@/components/BorderGlow";
-
-const SERVICES = [
-  "Cloud Architecture",
-  "AI/ML Solutions",
-  "SaaS Platforms",
-  "FinTech",
-  "HealthTech",
-];
+import Image from "next/image";
+import { Rocket, Shield, Users, TrendingUp, Code, ArrowDown, PhoneCall } from "lucide-react";
+import { FaLinkedin, FaFacebook } from "react-icons/fa6";
 
 export function Hero() {
+  const containerRef = useRef<HTMLElement>(null);
+  
+  // Set up scroll tracking on the Hero section for the parallax effect
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Create smooth vertical parallax translations for floating elements
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -60]); 
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 60]);  
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: "var(--bg-primary)" }}
+      ref={containerRef}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020813] p-4 md:p-6 lg:p-8"
     >
-      {/* Subtle top-left radial gradient (Liveroom style) */}
-      <div
-        className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full opacity-[0.15] pointer-events-none blur-[120px]"
-        style={{
-          background:
-            "radial-gradient(circle, var(--accent-blue) 0%, transparent 70%)",
-        }}
-      />
+      {/* Outer White Frame Wrapper - Luxury Studio Canvas */}
+      <div className="relative w-full max-w-7xl mx-auto rounded-[2.5rem] md:rounded-[3.5rem] bg-[#050C18] border-[12px] md:border-[16px] border-white shadow-[0_30px_100px_rgba(0,0,0,0.8)] overflow-hidden min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-between">
+        
+        {/* Top Header Row with Center Notch */}
+        <header className="relative w-full z-30 px-6 md:px-12 py-6 flex items-center justify-between">
+          {/* Left Nav Links */}
+          <div className="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest text-slate-400">
+            <button onClick={() => scrollToSection("about")} className="hover:text-sky-400 transition-colors cursor-pointer">About</button>
+            <button onClick={() => scrollToSection("services")} className="hover:text-sky-400 transition-colors cursor-pointer">Services</button>
+          </div>
 
-      <div className="container-wide relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center pt-32 pb-24">
-        {/* Left Column: Content */}
-        <div className="flex flex-col items-start text-left max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <h1
-              className="font-bold leading-[1.1] tracking-tight mb-8"
-              style={{
-                fontSize: "clamp(3.5rem, 6.5vw, 5.5rem)",
-                fontFamily: "var(--font-inter)",
-              }}
-            >
-              <span className="block text-white">
-                <span className="text-sky-400">Think</span> Beyond
-              </span>
-              <span className="block bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-500 bg-clip-text text-transparent mt-2">
-                Limitation
-              </span>
-            </h1>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-lg md:text-xl text-slate-300/90 leading-relaxed font-light mb-12 max-w-xl"
-          >
-            We build scalable, high-performance software that turns bold ideas
-            into market-leading realities.
-          </motion.p>
-
-          {/* Services Pills */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="flex flex-wrap items-center gap-3"
-          >
-            <span className="text-sm font-semibold tracking-widest text-slate-500 mr-2 uppercase">
-              Expertise:
+          {/* Center Logo Notch */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 bg-white px-8 pb-4 pt-0 rounded-b-[2rem] shadow-md flex items-center justify-center gap-3 border-t-0 z-40">
+            <Image
+              src="/original-logo.png"
+              alt="Quantum Blaze Logo"
+              width={32}
+              height={32}
+              className="w-8 h-8 object-contain"
+            />
+            <span className="text-sm font-bold tracking-widest font-quantum text-slate-900 uppercase">
+              Quantum <span className="text-sky-600">Blaze</span>
             </span>
-            {SERVICES.map((service, i) => (
-              <div
-                key={service}
-                className="px-4 py-2 rounded-full text-sm border border-slate-700/50 bg-slate-800/30 text-slate-300 backdrop-blur-sm transition-colors hover:border-sky-500/30 hover:bg-sky-900/10 cursor-default"
-              >
-                {service}
-              </div>
-            ))}
-          </motion.div>
-        </div>
+          </div>
 
-        {/* Right Column: Floating Cards Constellation */}
-        <div className="relative h-[600px] hidden lg:block w-full pointer-events-none">
-          {/* Main Center Card (Large Icon/Logo representation) */}
-          <motion.div
-            animate={{ y: [0, -15, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 z-20 pointer-events-auto"
-          >
-            <div className="w-full h-full rounded-full bg-slate-800/40 backdrop-blur-xl border border-white/5 flex items-center justify-center shadow-2xl shadow-black/50 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-              <svg
-                className="w-24 h-24 text-slate-300 opacity-90 transition-transform duration-500 group-hover:scale-110"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1}
-                  d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
+          {/* Right Nav Links & Actions */}
+          <div className="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest text-slate-400 ml-auto">
+            <button onClick={() => scrollToSection("projects")} className="hover:text-sky-400 transition-colors cursor-pointer">Projects</button>
+            <button onClick={() => scrollToSection("contact")} className="hover:text-sky-400 transition-colors cursor-pointer">Contact</button>
+            <div className="flex items-center gap-2 text-slate-300 bg-sky-950/40 border border-sky-500/20 px-3.5 py-1.5 rounded-full text-[10px] tracking-wider font-bold">
+              <PhoneCall className="w-3.5 h-3.5 text-sky-400" />
+              +94 78 805 6838
             </div>
-          </motion.div>
+          </div>
+          
+          {/* Mobile Brand Name Fallback (Hidden on Desktop Notch) */}
+          <div className="flex lg:hidden items-center gap-2.5">
+            <Image
+              src="/original-logo.png"
+              alt="Quantum Blaze Logo"
+              width={28}
+              height={28}
+              className="w-7 h-7 object-contain"
+            />
+            <span className="text-xs font-bold tracking-widest font-quantum text-white uppercase">
+              Quantum <span className="text-sky-400">Blaze</span>
+            </span>
+          </div>
+        </header>
 
-          {/* SaaS Platform Card */}
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1,
-            }}
-            className="absolute top-[25%] left-[5%] w-64 z-10 pointer-events-auto"
-          >
-            <BorderGlow
-              glowColor="200 80 40"
-              colors={["#0284c7", "#0ea5e9", "#38bdf8"]}
-              backgroundColor="#0a1220"
-              className="p-5 rounded-2xl border border-white/5 shadow-xl"
-              animated={true}
-              glowIntensity={0.3}
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-sky-500/20 flex items-center justify-center text-sky-400">
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-                    />
-                  </svg>
+        {/* Hero Body Content Container */}
+        <div className="relative flex-1 w-full px-6 md:px-12 py-8 flex flex-col justify-center">
+          
+          {/* Giant Background Logo Text Layer (Lies Behind the 3D Cube) */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
+            <div className="w-full flex justify-between items-center px-4 md:px-12 max-w-6xl">
+              <h1 className="text-[12vw] font-black tracking-tighter text-white/[0.03] uppercase leading-none font-sans">
+                Quan
+              </h1>
+              <h1 className="text-[12vw] font-black tracking-tighter text-white/[0.03] uppercase leading-none font-sans">
+                tum
+              </h1>
+            </div>
+          </div>
+
+          {/* Radial glow directly behind the center cube */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-sky-500/[0.03] blur-[100px] pointer-events-none z-0" />
+
+          {/* Main Grid Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center z-10 relative">
+            
+            {/* Left Side: Tagline, Description & Action */}
+            <div className="flex flex-col items-start text-left lg:col-span-4 xl:col-span-4 max-w-md">
+              
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-500/10 bg-sky-950/10 backdrop-blur-sm text-[10px] font-bold tracking-[0.2em] text-slate-400 uppercase mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+                Think Beyond <span className="text-sky-400">Limitation</span>
+              </div>
+
+              {/* Tagline Heading */}
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white leading-tight mb-4">
+                We Build Scalable, High-Performance Software.
+              </h2>
+
+              {/* Description */}
+              <p className="text-xs md:text-sm text-slate-400 leading-relaxed mb-8 max-w-xs font-light">
+                We design and engineer bespoke digital solutions that turn bold ideas into market-leading realities.
+              </p>
+
+              {/* Primary Call to Action */}
+              <GlowButton
+                variant="solid"
+                size="md"
+                onClick={() => scrollToSection("services")}
+                className="px-6 py-3.5 text-xs font-bold shadow-lg shadow-sky-500/10 cursor-pointer rounded-full"
+              >
+                Explore Services <span className="ml-1.5">→</span>
+              </GlowButton>
+            </div>
+
+            {/* Center: Interactive 3D Cubes (Lies Over the Giant Background Text) */}
+            <div className="lg:col-span-4 xl:col-span-4 h-[350px] md:h-[450px] w-full flex items-center justify-center relative my-8 lg:my-0">
+              
+              {/* Concentric radar circles */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="absolute w-[240px] h-[240px] rounded-full border border-sky-500/[0.04]" />
+                <div className="absolute w-[360px] h-[360px] rounded-full border border-sky-500/[0.03]" />
+                <div className="absolute w-[480px] h-[480px] rounded-full border border-sky-500/[0.015]" />
+              </div>
+
+              {/* The Massive 3D Cube */}
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="relative w-[340px] h-[340px] md:w-[420px] md:h-[420px] z-10 flex items-center justify-center"
+              >
+                <Image
+                  src="/hero-section-image.png"
+                  alt="Quantum Blaze 3D Glass Cubes"
+                  width={420}
+                  height={420}
+                  priority
+                  className="w-full h-full object-contain drop-shadow-[0_0_60px_rgba(14,165,233,0.18)]"
+                />
+              </motion.div>
+            </div>
+
+            {/* Right Side: Features & Free Consultation Box */}
+            <div className="flex flex-col items-start lg:items-end text-left lg:text-right lg:col-span-4 xl:col-span-4 gap-8">
+              
+              {/* Feature Tags List */}
+              <div className="space-y-4 w-full max-w-[240px] ml-auto">
+                {/* Feature 1 */}
+                <motion.div
+                  style={{ y: y1 }}
+                  className="flex items-center gap-3.5 bg-gradient-to-br from-white/[0.07] to-transparent backdrop-blur-xl border border-white/[0.08] px-4 py-3 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-sky-500/20 transition-all duration-300"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400 border border-sky-500/10 flex-shrink-0">
+                    <TrendingUp className="w-4.5 h-4.5" />
+                  </div>
+                  <div className="text-left">
+                    <h3 className="text-white font-bold text-[11px] tracking-tight">SaaS Platforms</h3>
+                    <p className="text-[9px] text-slate-400 mt-0.5 leading-none">Real-time Analytics</p>
+                  </div>
+                </motion.div>
+
+                {/* Feature 2 */}
+                <motion.div
+                  style={{ y: y2 }}
+                  className="flex items-center gap-3.5 bg-gradient-to-br from-white/[0.07] to-transparent backdrop-blur-xl border border-white/[0.08] px-4 py-3 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-sky-500/20 transition-all duration-300"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400 border border-sky-500/10 flex-shrink-0">
+                    <Shield className="w-4.5 h-4.5" />
+                  </div>
+                  <div className="text-left">
+                    <h3 className="text-white font-bold text-[11px] tracking-tight">Enterprise Scale</h3>
+                    <p className="text-[9px] text-slate-400 mt-0.5 leading-none">99.99% Uptime Guarantee</p>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Consult Card at the Bottom Right */}
+              <div className="bg-gradient-to-br from-white/[0.06] to-transparent backdrop-blur-xl border border-white/[0.06] p-5 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)] flex items-center gap-4 w-full max-w-[280px] ml-auto text-left relative overflow-hidden group">
+                <div className="absolute inset-0 bg-sky-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10 relative flex-shrink-0">
+                  <Image
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120&h=120"
+                    alt="Consultant"
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div>
-                  <h3 className="text-white font-semibold text-sm">
-                    SaaS Platform
-                  </h3>
-                  <p className="text-slate-400 text-xs mt-0.5">
-                    Real-time Analytics
+                <div className="flex-1">
+                  <h4 className="text-white font-bold text-[11px] tracking-tight">Get a Free Consultation</h4>
+                  <p className="text-[9px] text-slate-400 mt-1 leading-relaxed">
+                    Fill the form & our specialists will contact you.
                   </p>
-                </div>
-              </div>
-            </BorderGlow>
-          </motion.div>
-
-          {/* Enterprise Scale Card */}
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2,
-            }}
-            className="absolute top-[15%] right-[0%] w-64 z-10 pointer-events-auto"
-          >
-            <BorderGlow
-              glowColor="200 80 40"
-              colors={["#0284c7", "#0ea5e9", "#38bdf8"]}
-              backgroundColor="#0a1220"
-              className="p-5 rounded-2xl border border-white/5 shadow-xl"
-              animated={true}
-              glowIntensity={0.3}
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-sky-500/20 flex items-center justify-center text-sky-400">
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                  <button
+                    onClick={() => scrollToSection("contact")}
+                    className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-sky-400 hover:text-sky-300 transition-colors uppercase tracking-wider cursor-pointer"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-white font-semibold text-sm">
-                    Enterprise Scale
-                  </h3>
-                  <p className="text-slate-400 text-xs mt-0.5">99.99% Uptime</p>
+                    Request a Call <span className="translate-y-[-0.5px]">→</span>
+                  </button>
                 </div>
               </div>
-            </BorderGlow>
-          </motion.div>
 
-          {/* Seamless API Card */}
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{
-              duration: 5.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5,
-            }}
-            className="absolute bottom-[20%] right-[10%] w-64 z-30 pointer-events-auto"
-          >
-            <BorderGlow
-              glowColor="200 80 40"
-              colors={["#0284c7", "#0ea5e9", "#38bdf8"]}
-              backgroundColor="#0a1220"
-              className="p-5 rounded-2xl border border-white/5 shadow-xl"
-              animated={true}
-              glowIntensity={0.3}
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-sky-500/20 flex items-center justify-center text-sky-400">
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-white font-semibold text-sm">
-                    Seamless API
-                  </h3>
-                  <p className="text-slate-400 text-xs mt-0.5">
-                    Robust Architecture
-                  </p>
-                </div>
-              </div>
-            </BorderGlow>
-          </motion.div>
+            </div>
 
-          {/* Small Decorative Elements */}
-          <motion.div
-            animate={{ y: [0, -5, 0] }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1.5,
-            }}
-            className="absolute bottom-[30%] left-[20%] w-16 h-16 rounded-2xl bg-slate-800/40 backdrop-blur-md border border-white/5 flex items-center justify-center shadow-lg z-0"
-          >
-            <svg
-              className="w-6 h-6 text-slate-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-              />
-            </svg>
-          </motion.div>
+          </div>
         </div>
+
+        {/* Footer Row / Bottom Indicators inside frame */}
+        <footer className="relative w-full z-30 px-6 md:px-12 py-6 flex items-center justify-between border-t border-white/5 bg-[#050C18]">
+          {/* Social Icons */}
+          <div className="flex items-center gap-3.5">
+            <a
+              href="https://www.linkedin.com/company/quantum-blaze-software-solution-pvt-ltd"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-500 hover:text-sky-400 transition-colors"
+            >
+              <FaLinkedin size={16} />
+            </a>
+            <a
+              href="https://www.facebook.com/share/18mwK8iVng"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-500 hover:text-sky-400 transition-colors"
+            >
+              <FaFacebook size={16} />
+            </a>
+          </div>
+
+          {/* Centered Scroll Indicator Notch */}
+          <div className="absolute left-1/2 -translate-x-1/2 bottom-0 bg-white w-14 h-8 rounded-t-[1rem] shadow-sm flex items-center justify-center cursor-pointer border-b-0 hover:bg-slate-50 transition-colors" onClick={() => scrollToSection("about")}>
+            <ArrowDown className="w-4 h-4 text-slate-900 animate-bounce" />
+          </div>
+
+          {/* Brief stats/year indicator */}
+          <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+            © {new Date().getFullYear()} Quantum Blaze
+          </div>
+        </footer>
+
       </div>
     </section>
   );
