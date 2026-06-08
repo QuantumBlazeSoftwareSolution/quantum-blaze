@@ -67,11 +67,12 @@ export function Hero() {
         {
           y: -120,
           opacity: 0,
-          duration: 0.8,
+          duration: 0.95,
           ease: "none",
         },
         0
       );
+      tl.set(notchTopRef.current, { visibility: "hidden" }, 0.95);
     }
 
     // Slide out and fade the bottom scroll indicator notch
@@ -81,11 +82,12 @@ export function Hero() {
         {
           y: 120,
           opacity: 0,
-          duration: 0.8,
+          duration: 0.95,
           ease: "none",
         },
         0
       );
+      tl.set(notchBottomRef.current, { visibility: "hidden" }, 0.95);
     }
 
     // Fade out Left & Right header elements
@@ -94,11 +96,12 @@ export function Hero() {
         headerLinksRef.current,
         {
           opacity: 0,
-          duration: 0.7,
+          duration: 0.95,
           ease: "none",
         },
         0
       );
+      tl.set(headerLinksRef.current, { visibility: "hidden" }, 0.95);
     }
 
     // Fade out footer elements
@@ -107,11 +110,12 @@ export function Hero() {
         footerIconsRef.current,
         {
           opacity: 0,
-          duration: 0.7,
+          duration: 0.95,
           ease: "none",
         },
         0
       );
+      tl.set(footerIconsRef.current, { visibility: "hidden" }, 0.95);
     }
 
     if (copyrightRef.current) {
@@ -119,11 +123,12 @@ export function Hero() {
         copyrightRef.current,
         {
           opacity: 0,
-          duration: 0.7,
+          duration: 0.95,
           ease: "none",
         },
         0
       );
+      tl.set(copyrightRef.current, { visibility: "hidden" }, 0.95);
     }
 
     // Synchronized parallax movements for floating cards & center image
