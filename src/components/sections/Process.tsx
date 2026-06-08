@@ -35,6 +35,19 @@ export function Process() {
           onEnterBack: () => setActiveStep(idx),
         });
       });
+
+      // Pin the left details column on desktop viewports (min-width: 1024px)
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 1024px)", () => {
+        ScrollTrigger.create({
+          trigger: ".process-sticky-card-wrapper",
+          start: "top 140px",
+          endTrigger: ".process-grid-container",
+          end: "bottom bottom",
+          pin: true,
+          pinSpacing: false,
+        });
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -124,7 +137,7 @@ export function Process() {
         <div className="process-grid-container hidden lg:grid lg:grid-cols-12 lg:gap-16 relative">
           {/* Left Column: Sticky Detail Card */}
           <div className="process-sticky-col lg:col-span-6 pr-8 relative">
-            <div className="sticky top-[140px] h-fit">
+            <div className="process-sticky-card-wrapper w-full">
               <AnimatePresence mode="wait">
               <motion.div
                 key={activeStep}
@@ -198,7 +211,7 @@ export function Process() {
               return (
                 <div
                   key={step.number}
-                  className="process-trigger min-h-[45vh] flex flex-col justify-center py-16 first:pt-8 last:pb-32"
+                  className="process-trigger min-h-[45vh] flex flex-col justify-center py-16 first:pt-8 last:pb-[60vh]"
                 >
                   <div
                     className={`transition-all duration-500 pl-8 relative ${
