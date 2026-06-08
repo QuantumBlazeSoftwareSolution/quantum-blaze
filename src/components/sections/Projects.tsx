@@ -148,14 +148,16 @@ function ProjectCard({
 
               {/* Image Container */}
               <div
-                className="relative rounded-[2rem] overflow-hidden glass group"
+                className="relative rounded-[2rem] overflow-hidden glass group transition-all duration-500 hover:border-[var(--glow-border-color)] hover:shadow-[0_0_80px_var(--glow-shadow-color)]"
                 style={{
                   border: `1px solid ${project.themeColor}30`,
-                  boxShadow: `0 0 60px ${project.themeColor}20, 0 30px 80px rgba(0,0,0,0.5)`,
+                  boxShadow: `0 0 60px ${project.themeColor}15, 0 30px 80px rgba(0,0,0,0.5)`,
                   aspectRatio:
                     project.mockupType === "mobile" ? "9/19" : "16/10",
                   width: project.mockupType === "mobile" ? "60%" : "100%",
                   margin: "0 auto",
+                  ["--glow-border-color" as any]: `${project.themeColor}80`,
+                  ["--glow-shadow-color" as any]: `${project.themeColor}25`,
                 }}
               >
                 {/* The actual Image */}
@@ -253,9 +255,9 @@ export function Projects({ projects }: { projects: Project[] }) {
             <GlowButton
               variant="outline"
               size="lg"
-              className="px-10 py-4 text-xs font-bold uppercase tracking-wider rounded-full shadow-lg shadow-sky-500/5 cursor-pointer"
+              className="px-10 py-4 text-xs font-bold uppercase tracking-wider rounded-full shadow-lg shadow-sky-500/5 cursor-pointer group"
             >
-              View All Projects <span className="ml-2">→</span>
+              View All Projects <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5 ml-2">→</span>
             </GlowButton>
           </Link>
         </motion.div>

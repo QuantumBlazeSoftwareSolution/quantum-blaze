@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Mail, MapPin, Clock, Phone } from "lucide-react";
+import { Mail, MapPin, Clock, Phone, CheckCircle2, ChevronDown } from "lucide-react";
 
 const projectTypes = [
   "Enterprise SaaS Platform",
@@ -57,13 +57,33 @@ export function Contact() {
     }
   };
 
+  const labelClass = (isFilled: boolean) => `
+    absolute left-4 transition-all duration-300 pointer-events-none font-bold tracking-wider uppercase
+    ${isFilled ? "top-1.5 text-[9px] text-sky-400" : "top-3.5 text-xs text-slate-500"}
+    peer-focus:top-1.5 peer-focus:text-[9px] peer-focus:text-sky-400
+  `;
+
   const inputClass = `
-    w-full rounded-xl px-4 py-3.5 text-sm text-white
+    peer w-full rounded-xl px-4 pt-5 pb-2 text-sm text-white
     bg-white/5 border border-sky-500/15
-    outline-none placeholder-slate-600
-    focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/10
-    transition-all duration-300
-    hover:border-sky-500/30
+    outline-none focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/10
+    transition-all duration-300 hover:border-sky-500/30
+  `;
+
+  const selectClass = `
+    peer w-full rounded-xl px-4 pt-5 pb-2 text-sm
+    bg-white/5 border border-sky-500/15
+    outline-none focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/10
+    transition-all duration-300 hover:border-sky-500/30
+    appearance-none cursor-pointer
+  `;
+
+  const textareaClass = `
+    peer w-full rounded-xl px-4 pt-5 pb-2 text-sm text-white
+    bg-white/5 border border-sky-500/15
+    outline-none focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/10
+    transition-all duration-300 hover:border-sky-500/30
+    resize-none
   `;
 
   return (
@@ -181,7 +201,16 @@ export function Contact() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="glass rounded-3xl p-12 text-center"
               >
-                <div className="text-5xl mb-4">🚀</div>
+                <div className="flex justify-center mb-6">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                    className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400"
+                  >
+                    <CheckCircle2 className="w-8 h-8" />
+                  </motion.div>
+                </div>
                 <h3
                   className="text-2xl font-bold text-white mb-3"
                   style={{ fontFamily: "var(--font-grotesk)" }}
@@ -200,68 +229,57 @@ export function Contact() {
               >
                 {/* Name + Email row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label
-                      className="block text-xs font-semibold tracking-wider uppercase mb-2"
-                      style={{ color: "var(--text-muted)" }}
-                      htmlFor="name"
-                    >
-                      Full Name
-                    </label>
+                  <div className="relative">
                     <input
                       id="name"
                       name="name"
                       type="text"
                       required
-                      placeholder="John Doe"
+                      placeholder=" "
                       value={formState.name}
                       onChange={handleChange}
                       className={inputClass}
                     />
-                  </div>
-                  <div>
                     <label
-                      className="block text-xs font-semibold tracking-wider uppercase mb-2"
-                      style={{ color: "var(--text-muted)" }}
-                      htmlFor="email"
+                      htmlFor="name"
+                      className={labelClass(formState.name !== "")}
                     >
-                      Email Address
+                      Full Name
                     </label>
+                  </div>
+                  <div className="relative">
                     <input
                       id="email"
                       name="email"
                       type="email"
                       required
-                      placeholder="john@company.com"
+                      placeholder=" "
                       value={formState.email}
                       onChange={handleChange}
                       className={inputClass}
                     />
+                    <label
+                      htmlFor="email"
+                      className={labelClass(formState.email !== "")}
+                    >
+                      Email Address
+                    </label>
                   </div>
                 </div>
 
                 {/* Project type */}
-                <div>
-                  <label
-                    className="block text-xs font-semibold tracking-wider uppercase mb-2"
-                    style={{ color: "var(--text-muted)" }}
-                    htmlFor="projectType"
-                  >
-                    Project Type
-                  </label>
+                <div className="relative">
                   <select
                     id="projectType"
                     name="projectType"
                     value={formState.projectType}
                     onChange={handleChange}
-                    className={`${inputClass} appearance-none cursor-pointer`}
+                    className={selectClass}
                     style={{
-                      color: formState.projectType ? "white" : "#64748b",
+                      color: formState.projectType ? "white" : "transparent",
                     }}
                   >
-                    <option value="" disabled style={{ background: "#0a1628" }}>
-                      Select a project type...
-                    </option>
+                    <option value="" disabled style={{ background: "#0a1628" }}></option>
                     {projectTypes.map((type) => (
                       <option
                         key={type}
@@ -272,28 +290,28 @@ export function Contact() {
                       </option>
                     ))}
                   </select>
+                  <label
+                    htmlFor="projectType"
+                    className={labelClass(formState.projectType !== "")}
+                  >
+                    Project Type
+                  </label>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
                 </div>
 
                 {/* Budget */}
-                <div>
-                  <label
-                    className="block text-xs font-semibold tracking-wider uppercase mb-2"
-                    style={{ color: "var(--text-muted)" }}
-                    htmlFor="budget"
-                  >
-                    Estimated Budget
-                  </label>
+                <div className="relative">
                   <select
                     id="budget"
                     name="budget"
                     value={formState.budget}
                     onChange={handleChange}
-                    className={`${inputClass} appearance-none cursor-pointer`}
-                    style={{ color: formState.budget ? "white" : "#64748b" }}
+                    className={selectClass}
+                    style={{ color: formState.budget ? "white" : "transparent" }}
                   >
-                    <option value="" disabled style={{ background: "#0a1628" }}>
-                      Select budget range...
-                    </option>
+                    <option value="" disabled style={{ background: "#0a1628" }}></option>
                     {[
                       "< 100,000 LKR",
                       "100,000 – 500,000 LKR",
@@ -310,27 +328,35 @@ export function Contact() {
                       </option>
                     ))}
                   </select>
+                  <label
+                    htmlFor="budget"
+                    className={labelClass(formState.budget !== "")}
+                  >
+                    Estimated Budget
+                  </label>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
                 </div>
 
                 {/* Message */}
-                <div>
-                  <label
-                    className="block text-xs font-semibold tracking-wider uppercase mb-2"
-                    style={{ color: "var(--text-muted)" }}
-                    htmlFor="message"
-                  >
-                    Tell Us About Your Project
-                  </label>
+                <div className="relative">
                   <textarea
                     id="message"
                     name="message"
                     required
                     rows={4}
-                    placeholder="Describe your vision, goals, timeline, and any technical requirements..."
+                    placeholder=" "
                     value={formState.message}
                     onChange={handleChange}
-                    className={`${inputClass} resize-none`}
+                    className={textareaClass}
                   />
+                  <label
+                    htmlFor="message"
+                    className={labelClass(formState.message !== "")}
+                  >
+                    Tell Us About Your Project
+                  </label>
                 </div>
 
                 {/* Error Message */}

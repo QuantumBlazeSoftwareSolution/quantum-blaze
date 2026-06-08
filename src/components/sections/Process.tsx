@@ -41,15 +41,15 @@ export function Process() {
         );
       }
 
-      // Animate step items
+      // Animate step items entry first
       gsap.fromTo(
         ".process-step",
-        { opacity: 0, x: -40 },
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
-          x: 0,
-          duration: 0.7,
-          stagger: 0.2,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
           ease: "power2.out",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -57,6 +57,35 @@ export function Process() {
           },
         }
       );
+
+      // Active step highlight controlled by scroll positioning
+      const steps = gsap.utils.toArray(".process-step");
+      steps.forEach((step: any) => {
+        const card = step.querySelector(".process-card");
+        const dot = step.querySelector(".process-dot");
+        
+        if (card && dot) {
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: step,
+              start: "top 65%",
+              end: "bottom 35%",
+              toggleActions: "play reverse play reverse",
+            }
+          })
+          .to(card, {
+            borderColor: "rgba(56, 189, 248, 0.35)",
+            backgroundColor: "rgba(10, 22, 40, 0.6)",
+            opacity: 1,
+            duration: 0.4
+          }, 0)
+          .to(dot, {
+            scale: 1.18,
+            boxShadow: "0 0 25px rgba(56, 189, 248, 0.6), 0 0 45px rgba(56, 189, 248, 0.3)",
+            duration: 0.4
+          }, 0);
+        }
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -145,7 +174,7 @@ export function Process() {
                       isEven ? "md:pr-12" : "md:pl-12"
                     }`}
                   >
-                    <div className="glass rounded-2xl p-6 group hover:border-sky-400/30 transition-all duration-300">
+                    <div className="process-card glass rounded-2xl p-6 group border border-white/5 opacity-40 transition-all duration-500 hover:border-sky-400/30 hover:opacity-100 h-full">
                       {/* Duration */}
                       <div
                         className="text-xs font-semibold tracking-widest uppercase mb-3"
@@ -155,7 +184,7 @@ export function Process() {
                       </div>
 
                       <div className="flex items-start gap-3 mb-3">
-                        <div className="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center flex-shrink-0">
+                        <div className="process-icon w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center flex-shrink-0 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
                           {IconMap[step.icon] || step.icon}
                         </div>
                         <div>
@@ -195,7 +224,7 @@ export function Process() {
                   {/* Center dot */}
                   <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-6 w-[60px] items-center justify-center flex-shrink-0">
                     <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold z-10"
+                      className="process-dot w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold z-10 transition-all duration-500"
                       style={{
                         background: "linear-gradient(135deg, #0ea5e9, #0369a1)",
                         boxShadow:
