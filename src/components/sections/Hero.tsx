@@ -206,13 +206,13 @@ export function Hero() {
         {/* Animated App Shell Frame */}
         <div
           ref={cardRef}
-          className="relative w-full h-full bg-[#050C18] border-solid border-0 lg:border-[16px] border-[#e0f2fe] rounded-none lg:rounded-[40px] scale-100 lg:scale-[0.93] flex flex-col justify-between overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.85)]"
+          className="relative w-full h-full bg-[#050C18] border-solid border-0 lg:border-[16px] border-[#0b192e] rounded-none lg:rounded-[40px] scale-100 lg:scale-[0.93] flex flex-col justify-between overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.85)]"
         >
           
           {/* Center Logo Notch (Slides Up on Scroll) */}
           <div 
             ref={notchTopRef}
-            className="hidden lg:flex absolute left-1/2 -translate-x-1/2 -top-4 bg-[#e0f2fe] px-8 pb-4 pt-5 rounded-b-[2rem] shadow-[0_12px_24px_-10px_rgba(0,0,0,0.3)] flex items-center justify-center gap-3 border-t-0 z-40"
+            className="hidden lg:flex absolute left-1/2 -translate-x-1/2 -top-4 bg-[#0b192e] px-8 pb-4 pt-5 rounded-b-[2rem] shadow-[0_12px_24px_-10px_rgba(0,0,0,0.3)] flex items-center justify-center gap-3 border-t-0 z-40"
           >
             <Image
               src="/original-logo.png"
@@ -221,8 +221,8 @@ export function Hero() {
               height={32}
               className="w-8 h-8 object-contain"
             />
-            <span className="text-sm font-bold tracking-widest font-quantum text-slate-900 uppercase">
-              Quantum <span className="text-sky-600">Blaze</span>
+            <span className="text-sm font-bold tracking-widest font-quantum text-white uppercase">
+              Quantum <span className="text-sky-400">Blaze</span>
             </span>
           </div>
 
@@ -438,10 +438,10 @@ export function Hero() {
           {/* Centered Scroll Indicator Notch (Slides Down on Scroll) */}
           <div 
             ref={notchBottomRef}
-            className="hidden lg:flex absolute left-1/2 -translate-x-1/2 -bottom-4 bg-[#e0f2fe] w-14 pt-2 pb-5 rounded-t-[1rem] shadow-sm flex items-center justify-center cursor-pointer border-b-0 hover:bg-sky-200/50 transition-colors z-40"
+            className="hidden lg:flex absolute left-1/2 -translate-x-1/2 -bottom-4 bg-[#0b192e] w-14 pt-2 pb-5 rounded-t-[1rem] shadow-sm flex items-center justify-center cursor-pointer border-b-0 hover:bg-[#132742] transition-colors z-40"
             onClick={() => scrollToSection("about")}
           >
-            <ArrowDown className="w-4 h-4 text-slate-900 animate-bounce" />
+            <ArrowDown className="w-4 h-4 text-sky-400 animate-bounce" />
           </div>
 
         </div>
