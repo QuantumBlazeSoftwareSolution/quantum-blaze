@@ -1,6 +1,7 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -19,83 +20,33 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Process() {
   const sectionRef = useRef<HTMLElement>(null);
-  const lineRef = useRef<HTMLDivElement>(null);
+  const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate the vertical connecting line
-      if (lineRef.current) {
-        gsap.fromTo(
-          lineRef.current,
-          { scaleY: 0 },
-          {
-            scaleY: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 60%",
-              end: "bottom 40%",
-              scrub: 1,
-            },
-          }
-        );
-      }
-
-      // Animate step items entry first
-      gsap.fromTo(
-        ".process-step",
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%",
-          },
-        }
-      );
-
-      // Active step highlight controlled by scroll positioning
-      const steps = gsap.utils.toArray(".process-step");
-      steps.forEach((step: any) => {
-        const card = step.querySelector(".process-card");
-        const dot = step.querySelector(".process-dot");
-        
-        if (card && dot) {
-          gsap.timeline({
-            scrollTrigger: {
-              trigger: step,
-              start: "top 65%",
-              end: "bottom 35%",
-              toggleActions: "play reverse play reverse",
-            }
-          })
-          .to(card, {
-            borderColor: "rgba(56, 189, 248, 0.35)",
-            backgroundColor: "rgba(10, 22, 40, 0.6)",
-            opacity: 1,
-            duration: 0.4
-          }, 0)
-          .to(dot, {
-            scale: 1.18,
-            boxShadow: "0 0 25px rgba(56, 189, 248, 0.6), 0 0 45px rgba(56, 189, 248, 0.3)",
-            duration: 0.4
-          }, 0);
-        }
+      // Setup ScrollTrigger for each step block in the right column
+      const triggers = gsap.utils.toArray(".process-trigger");
+      triggers.forEach((trigger: any, idx: number) => {
+        ScrollTrigger.create({
+          trigger: trigger,
+          start: "top 50%",
+          end: "bottom 50%",
+          onEnter: () => setActiveStep(idx),
+          onEnterBack: () => setActiveStep(idx),
+        });
       });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
+  const activeData = processSteps[activeStep] || processSteps[0];
+
   return (
     <section
       id="process"
       ref={sectionRef}
-      className="relative section-padding overflow-hidden"
+      className="relative section-padding"
       style={{ background: "var(--bg-primary)" }}
     >
       {/* Background gradient */}
@@ -106,7 +57,7 @@ export function Process() {
 
       <div className="container-wide">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -141,100 +92,137 @@ export function Process() {
           </motion.p>
         </div>
 
-        {/* Timeline */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical connecting line */}
-          <div
-            ref={lineRef}
-            className="hidden md:block absolute left-1/2 -translate-x-px top-6 bottom-6"
-            style={{
-              width: "2px",
-              background:
-                "linear-gradient(to bottom, #38bdf8cc, #0ea5e9aa, #38bdf833)",
-              transformOrigin: "top",
-              transform: "scaleY(0)",
-            }}
-          />
+        {/* Mobile Layout (Vertical Stack of Cards - hidden on desktop) */}
+        <div className="lg:hidden space-y-6">
+          {processSteps.map((step) => (
+            <div
+              key={step.number}
+              className="glass rounded-2xl p-6 border border-white/5 bg-[#0a1628]/40"
+            >
+              <div className="flex justify-between items-start mb-4">
+                <div className="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400">
+                  {IconMap[step.icon] || step.icon}
+                </div>
+                <span className="text-xs font-bold text-sky-400 uppercase tracking-widest">
+                  {step.duration}
+                </span>
+              </div>
+              <h3 className="text-white font-bold text-lg font-grotesk mb-1">
+                {step.number}. {step.title}
+              </h3>
+              <p className="text-sky-300/60 text-[10px] font-semibold uppercase tracking-wider mb-4">
+                {step.subtitle}
+              </p>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          ))}
+        </div>
 
-          {/* Steps */}
-          <div className="space-y-12">
-            {processSteps.map((step, i) => {
-              const isEven = i % 2 === 0;
+        {/* Desktop Layout (Sticky Split Screen - hidden on mobile) */}
+        <div className="process-grid-container hidden lg:grid lg:grid-cols-12 lg:gap-16 relative">
+          {/* Left Column: Sticky Detail Card */}
+          <div className="process-sticky-col lg:col-span-6 pr-8 relative">
+            <div className="sticky top-[140px] h-fit">
+              <AnimatePresence mode="wait">
+              <motion.div
+                key={activeStep}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="glass rounded-3xl p-10 border border-sky-500/10 relative overflow-hidden"
+                style={{
+                  background: "rgba(8, 18, 36, 0.5)",
+                  boxShadow:
+                    "0 20px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)",
+                }}
+              >
+                {/* Glow accent */}
+                <div className="absolute top-0 right-0 w-[200px] h-[200px] rounded-full bg-sky-500/[0.03] blur-[60px] pointer-events-none" />
 
+                <div className="flex justify-between items-start mb-8">
+                  <div className="w-14 h-14 rounded-2xl bg-sky-500/10 flex items-center justify-center border border-sky-500/20 text-sky-400">
+                    {IconMap[activeData.icon] || activeData.icon}
+                  </div>
+                  <span className="text-7xl font-bold font-quantum text-sky-500/15 leading-none select-none">
+                    {activeData.number}
+                  </span>
+                </div>
+
+                <span className="text-xs font-bold text-sky-400 tracking-[0.2em] uppercase block mb-2">
+                  {activeData.duration}
+                </span>
+
+                <h3 className="text-white font-bold text-3xl font-grotesk mb-2">
+                  {activeData.title}
+                </h3>
+
+                <p className="text-sky-300/60 text-xs font-semibold uppercase tracking-wider mb-6">
+                  {activeData.subtitle}
+                </p>
+
+                <p className="text-slate-400 text-base leading-relaxed">
+                  {activeData.description}
+                </p>
+
+                {/* Micro detail decoration */}
+                <div className="mt-8 pt-6 border-t border-white/5 flex items-center gap-6">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">
+                      Active Phase
+                    </span>
+                  </div>
+                  <div className="h-4 w-px bg-white/10" />
+                  <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">
+                    Quantum Methodology
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Right Column: Scroll Triggers */}
+          <div className="lg:col-span-6 relative pl-8 border-l border-white/5">
+            {/* Scroll indicator line */}
+            <div
+              className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-sky-400 via-sky-600 to-transparent origin-top"
+              style={{ transform: "scaleY(1)" }}
+            />
+
+            {processSteps.map((step, idx) => {
+              const isActive = activeStep === idx;
               return (
                 <div
                   key={step.number}
-                  className={`process-step relative flex items-start gap-6 md:gap-0 ${
-                    isEven ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
+                  className="process-trigger min-h-[45vh] flex flex-col justify-center py-16 first:pt-8 last:pb-32"
                 >
-                  {/* Step content */}
                   <div
-                    className={`w-full md:w-[calc(50%-40px)] ${
-                      isEven ? "md:pr-12" : "md:pl-12"
+                    className={`transition-all duration-500 pl-8 relative ${
+                      isActive ? "opacity-100" : "opacity-25"
                     }`}
                   >
-                    <div className="process-card glass rounded-2xl p-6 group border border-white/5 opacity-40 transition-all duration-500 hover:border-sky-400/30 hover:opacity-100 h-full">
-                      {/* Duration */}
-                      <div
-                        className="text-xs font-semibold tracking-widest uppercase mb-3"
-                        style={{ color: "var(--accent-blue)" }}
-                      >
-                        {step.duration}
-                      </div>
-
-                      <div className="flex items-start gap-3 mb-3">
-                        <div className="process-icon w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center flex-shrink-0 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
-                          {IconMap[step.icon] || step.icon}
-                        </div>
-                        <div>
-                          <h3
-                            className="text-white font-bold text-lg"
-                            style={{ fontFamily: "var(--font-grotesk)" }}
-                          >
-                            {step.title}
-                          </h3>
-                          <p
-                            className="text-xs font-medium"
-                            style={{ color: "var(--accent-blue)" }}
-                          >
-                            {step.subtitle}
-                          </p>
-                        </div>
-                      </div>
-
-                      <p
-                        className="text-sm leading-relaxed"
-                        style={{ color: "var(--text-muted)" }}
-                      >
-                        {step.description}
-                      </p>
-
-                      {/* Bottom glow line */}
-                      <div
-                        className="h-0.5 w-0 group-hover:w-full mt-4 transition-all duration-500 rounded-full"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, var(--accent-blue), transparent)",
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Center dot */}
-                  <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-6 w-[60px] items-center justify-center flex-shrink-0">
+                    {/* Active dot indicator on the line */}
                     <div
-                      className="process-dot w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold z-10 transition-all duration-500"
-                      style={{
-                        background: "linear-gradient(135deg, #0ea5e9, #0369a1)",
-                        boxShadow:
-                          "0 0 20px rgba(14,165,233,0.5), 0 0 40px rgba(14,165,233,0.2)",
-                        color: "white",
-                        fontFamily: "var(--font-grotesk)",
-                      }}
-                    >
-                      {step.number}
-                    </div>
+                      className={`absolute left-0 -translate-x-[5px] top-1.5 w-2.5 h-2.5 rounded-full transition-all duration-500 ${
+                        isActive
+                          ? "bg-sky-400 scale-125 shadow-[0_0_12px_rgba(56,189,248,0.8)]"
+                          : "bg-slate-700 scale-100"
+                      }`}
+                    />
+
+                    <span className="text-xs font-bold text-sky-400 tracking-wider uppercase block mb-2">
+                      {step.duration}
+                    </span>
+                    <h3 className="text-white font-bold text-2xl font-grotesk mb-4">
+                      {step.number}. {step.title}
+                    </h3>
+                    <p className="text-slate-400 text-sm leading-relaxed max-w-md">
+                      {step.description}
+                    </p>
                   </div>
                 </div>
               );
