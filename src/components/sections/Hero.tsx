@@ -5,6 +5,7 @@ import { GlowButton } from "@/components/ui/GlowButton";
 import Image from "next/image";
 import { Rocket, Shield, Users, TrendingUp, Code, ArrowDown, PhoneCall } from "lucide-react";
 import { FaLinkedin, FaFacebook } from "react-icons/fa6";
+import { Logo3D } from "@/components/ui/Logo3D";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -171,7 +172,7 @@ export function Hero() {
       tl.to(
         ".hero-center-image",
         {
-          scale: 1.35,
+          scale: 1.08,
           duration: 1,
           ease: "none",
         },
@@ -316,7 +317,7 @@ export function Hero() {
               </div>
 
               {/* Center: Interactive 3D Cubes */}
-              <div className="lg:col-span-4 xl:col-span-4 h-[320px] md:h-[400px] w-full flex items-center justify-center relative my-4 lg:my-0">
+              <div className="lg:col-span-4 xl:col-span-4 h-[340px] md:h-[460px] w-full flex items-center justify-center relative my-4 lg:my-0">
                 
                 {/* Concentric radar circles */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -329,17 +330,10 @@ export function Hero() {
                 <motion.div
                   animate={{ y: [0, -12, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] z-10 flex items-center justify-center"
+                  className="relative w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] md:w-[440px] md:h-[440px] lg:w-[460px] lg:h-[460px] z-10 flex items-center justify-center"
                 >
                   <div className="hero-center-image w-full h-full flex items-center justify-center">
-                    <Image
-                      src="/hero-image.png"
-                      alt="Quantum Blaze 3D Glass Cubes"
-                      width={400}
-                      height={400}
-                      priority
-                      className="w-full h-full object-contain drop-shadow-[0_0_60px_rgba(14,165,233,0.18)]"
-                    />
+                    <Logo3D color="#0ea5e9" height="100%" interactive={true} />
                   </div>
                 </motion.div>
               </div>
