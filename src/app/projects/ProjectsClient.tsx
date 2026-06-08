@@ -57,7 +57,6 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
             {projects.map((project, index) => {
               const isEven = index % 2 === 0;
               const techStack = Array.isArray(project.techStack) ? project.techStack : [];
-              const metrics = Array.isArray(project.metrics) ? project.metrics : [];
 
               return (
                 <motion.div
@@ -140,25 +139,6 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
                         {project.description}
                       </p>
 
-                      <div className="grid grid-cols-2 gap-4 mb-8">
-                        {metrics.slice(0, 2).map((metric: any, i: number) => (
-                          <div
-                            key={i}
-                            className="glass rounded-xl p-4 border border-white/5"
-                          >
-                            <div
-                              className="text-2xl font-bold text-white mb-1"
-                              style={{ color: project.themeColor }}
-                            >
-                              {String(metric).split(" ")[0]}
-                            </div>
-                            <div className="text-xs text-slate-400 uppercase tracking-wider font-medium">
-                              {String(metric).split(" ").slice(1).join(" ")}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
                       <div className="flex flex-wrap gap-2 mb-8">
                         {techStack.map((tech: any) => (
                           <span
@@ -176,7 +156,7 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
                           size="sm"
                           onClick={() => (window.location.href = "/#contact")}
                         >
-                          Discuss Similar Project
+                          Read More
                           <ArrowRight className="w-4 h-4 ml-2 inline-block" />
                         </GlowButton>
                       </div>
