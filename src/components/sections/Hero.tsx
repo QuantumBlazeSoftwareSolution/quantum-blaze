@@ -126,7 +126,7 @@ export function Hero() {
       );
     }
 
-    // Synchronized parallax movements for floating cards
+    // Synchronized parallax movements for floating cards & center image
     tl.to(
       ".floating-card-1",
       {
@@ -151,6 +151,16 @@ export function Hero() {
       ".floating-card-3",
       {
         y: -85,
+        duration: 1,
+        ease: "none",
+      },
+      0
+    );
+
+    tl.to(
+      ".hero-center-image",
+      {
+        scale: 1.35,
         duration: 1,
         ease: "none",
       },
@@ -197,6 +207,23 @@ export function Hero() {
           className="relative w-full h-full bg-[#050C18] border-solid flex flex-col justify-between overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.85)]"
         >
           
+          {/* Center Logo Notch (Slides Up on Scroll) */}
+          <div 
+            ref={notchTopRef}
+            className="absolute left-1/2 -translate-x-1/2 -top-4 bg-white px-8 pb-4 pt-5 rounded-b-[2rem] shadow-[0_12px_24px_-10px_rgba(0,0,0,0.3)] flex items-center justify-center gap-3 border-t-0 z-40"
+          >
+            <Image
+              src="/original-logo.png"
+              alt="Quantum Blaze Logo"
+              width={32}
+              height={32}
+              className="w-8 h-8 object-contain"
+            />
+            <span className="text-sm font-bold tracking-widest font-quantum text-slate-900 uppercase">
+              Quantum <span className="text-sky-600">Blaze</span>
+            </span>
+          </div>
+
           {/* Top Header Row with Center Notch */}
           <header className="relative w-full z-30 px-6 md:px-12 py-6 flex items-center justify-between">
             {/* Left/Right Header Links (Fade on Scroll) */}
@@ -233,23 +260,6 @@ export function Hero() {
                   Quantum <span className="text-sky-400">Blaze</span>
                 </span>
               </div>
-            </div>
-
-            {/* Center Logo Notch (Slides Up on Scroll) */}
-            <div 
-              ref={notchTopRef}
-              className="absolute left-1/2 -translate-x-1/2 top-0 bg-white px-8 pb-4 pt-0 rounded-b-[2rem] shadow-md flex items-center justify-center gap-3 border-t-0 z-40"
-            >
-              <Image
-                src="/original-logo.png"
-                alt="Quantum Blaze Logo"
-                width={32}
-                height={32}
-                className="w-8 h-8 object-contain"
-              />
-              <span className="text-sm font-bold tracking-widest font-quantum text-slate-900 uppercase">
-                Quantum <span className="text-sky-600">Blaze</span>
-              </span>
             </div>
           </header>
 
@@ -320,14 +330,16 @@ export function Hero() {
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                   className="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] z-10 flex items-center justify-center"
                 >
-                  <Image
-                    src="/hero-section-image.png"
-                    alt="Quantum Blaze 3D Glass Cubes"
-                    width={400}
-                    height={400}
-                    priority
-                    className="w-full h-full object-contain drop-shadow-[0_0_60px_rgba(14,165,233,0.18)]"
-                  />
+                  <div className="hero-center-image w-full h-full flex items-center justify-center">
+                    <Image
+                      src="/hero-section-image.png"
+                      alt="Quantum Blaze 3D Glass Cubes"
+                      width={400}
+                      height={400}
+                      priority
+                      className="w-full h-full object-contain drop-shadow-[0_0_60px_rgba(14,165,233,0.18)]"
+                    />
+                  </div>
                 </motion.div>
               </div>
 
@@ -419,15 +431,6 @@ export function Hero() {
               </a>
             </div>
 
-            {/* Centered Scroll Indicator Notch (Slides Down on Scroll) */}
-            <div 
-              ref={notchBottomRef}
-              className="absolute left-1/2 -translate-x-1/2 bottom-0 bg-white w-14 h-8 rounded-t-[1rem] shadow-sm flex items-center justify-center cursor-pointer border-b-0 hover:bg-slate-50 transition-colors z-40"
-              onClick={() => scrollToSection("about")}
-            >
-              <ArrowDown className="w-4 h-4 text-slate-900 animate-bounce" />
-            </div>
-
             {/* Brief stats/year indicator */}
             <div 
               ref={copyrightRef}
@@ -436,6 +439,15 @@ export function Hero() {
               © {new Date().getFullYear()} Quantum Blaze
             </div>
           </footer>
+
+          {/* Centered Scroll Indicator Notch (Slides Down on Scroll) */}
+          <div 
+            ref={notchBottomRef}
+            className="absolute left-1/2 -translate-x-1/2 -bottom-4 bg-white w-14 pt-2 pb-5 rounded-t-[1rem] shadow-sm flex items-center justify-center cursor-pointer border-b-0 hover:bg-slate-50 transition-colors z-40"
+            onClick={() => scrollToSection("about")}
+          >
+            <ArrowDown className="w-4 h-4 text-slate-900 animate-bounce" />
+          </div>
 
         </div>
       </div>
