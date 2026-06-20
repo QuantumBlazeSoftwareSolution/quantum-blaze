@@ -13,17 +13,17 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
     <div className="min-h-screen bg-[#050b14] relative selection:bg-sky-500/30">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative pt-40 pb-20 overflow-hidden">
+      {/* Hero Section (Sleek & Compact Header) */}
+      <section className="relative pt-32 pb-12 overflow-hidden">
         {/* Background glow effects */}
         <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] rounded-full blur-[120px] pointer-events-none opacity-50"
-          style={{ background: "rgba(14, 165, 233, 0.08)" }}
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] rounded-full blur-[100px] pointer-events-none opacity-40"
+          style={{ background: "rgba(14, 165, 233, 0.05)" }}
         />
 
         {/* Grid pattern overlay */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-20"
+          className="absolute inset-0 pointer-events-none opacity-10"
           style={{
             backgroundImage:
               "radial-gradient(circle at 2px 2px, rgba(14, 165, 233, 0.4) 1px, transparent 0)",
@@ -33,26 +33,19 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
 
         <div className="container-wide relative z-10 text-center px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="flex flex-col items-center"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-sky-500/20 text-sky-400 text-sm font-medium tracking-wide uppercase mb-8">
-              <Search className="w-4 h-4" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-sky-500/10 text-sky-400 text-xs font-semibold tracking-widest uppercase mb-4">
+              <Search className="w-3.5 h-3.5" />
               Our Portfolio
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 mb-6 tracking-tight leading-tight">
-              Work That <br className="hidden md:block" />
-              <span className="text-sky-400">Speaks</span>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-200 tracking-tight leading-tight">
+              Selected Case <span className="text-sky-400">Studies</span>
             </h1>
-
-            <p className="text-slate-400 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed mb-12">
-              A curated selection of digital products we&apos;ve engineered for
-              ambitious businesses. Each project represents our commitment to
-              scale, performance, and elite design.
-            </p>
           </motion.div>
         </div>
       </section>
@@ -64,7 +57,6 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
             {projects.map((project, index) => {
               const isEven = index % 2 === 0;
               const techStack = Array.isArray(project.techStack) ? project.techStack : [];
-              const metrics = Array.isArray(project.metrics) ? project.metrics : [];
 
               return (
                 <motion.div
@@ -147,25 +139,6 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
                         {project.description}
                       </p>
 
-                      <div className="grid grid-cols-2 gap-4 mb-8">
-                        {metrics.slice(0, 2).map((metric: any, i: number) => (
-                          <div
-                            key={i}
-                            className="glass rounded-xl p-4 border border-white/5"
-                          >
-                            <div
-                              className="text-2xl font-bold text-white mb-1"
-                              style={{ color: project.themeColor }}
-                            >
-                              {String(metric).split(" ")[0]}
-                            </div>
-                            <div className="text-xs text-slate-400 uppercase tracking-wider font-medium">
-                              {String(metric).split(" ").slice(1).join(" ")}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
                       <div className="flex flex-wrap gap-2 mb-8">
                         {techStack.map((tech: any) => (
                           <span
@@ -183,7 +156,7 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
                           size="sm"
                           onClick={() => (window.location.href = "/#contact")}
                         >
-                          Discuss Similar Project
+                          Read More
                           <ArrowRight className="w-4 h-4 ml-2 inline-block" />
                         </GlowButton>
                       </div>

@@ -1,28 +1,27 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { Marquee } from "@/components/ui/Marquee";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { techStack } from "@/lib/data";
 
-// Tech icons as simple styled badges
+// Clean individual hover Tech Badge
 function TechBadge({ tech }: { tech: { name: string; category: string } }) {
   return (
     <div
-      className="flex items-center gap-3 px-6 py-3 rounded-xl mx-3 flex-shrink-0 group hover:border-sky-400/40 transition-all duration-300 cursor-default"
+      className="flex items-center gap-3 px-6 py-3 rounded-xl mx-3 flex-shrink-0 group border border-sky-500/10 hover:border-sky-400/50 hover:shadow-[0_0_20px_rgba(56,189,248,0.15)] transition-all duration-300 cursor-default"
       style={{
         background: "rgba(10, 22, 40, 0.6)",
-        border: "1px solid rgba(56,189,248,0.1)",
       }}
     >
       <span
-        className="text-xs font-semibold tracking-wide group-hover:text-sky-300 transition-colors duration-200"
-        style={{ color: "rgba(186,230,253,0.7)" }}
+        className="text-xs font-semibold tracking-wide text-sky-100/70 group-hover:text-sky-300 transition-colors duration-200"
       >
         {tech.name}
       </span>
       <span
-        className="text-xs px-1.5 py-0.5 rounded text-sky-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-        style={{ background: "rgba(56,189,248,0.08)" }}
+        className="text-[10px] px-1.5 py-0.5 rounded text-sky-400 font-bold tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{ background: "rgba(56, 189, 248, 0.08)" }}
       >
         {tech.category}
       </span>
@@ -40,6 +39,34 @@ export function TechStack() {
       className="relative section-padding overflow-hidden"
       style={{ background: "var(--bg-primary)" }}
     >
+      {/* Drifting ambient glows */}
+      <motion.div
+        animate={{
+          x: [0, 40, -20, 0],
+          y: [0, -30, 20, 0],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[300px] rounded-full blur-[150px] pointer-events-none opacity-40"
+        style={{ background: "rgba(14, 165, 233, 0.04)" }}
+      />
+      <motion.div
+        animate={{
+          x: [0, -30, 30, 0],
+          y: [0, 25, -25, 0],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-1/3 right-1/4 -translate-y-1/2 w-[400px] h-[250px] rounded-full blur-[130px] pointer-events-none opacity-30"
+        style={{ background: "rgba(56, 189, 248, 0.03)" }}
+      />
+
       {/* Fade edges */}
       <div
         className="absolute inset-y-0 left-0 w-32 z-10 pointer-events-none"
@@ -92,7 +119,7 @@ export function TechStack() {
       </div>
 
       {/* Marquee rows */}
-      <div className="space-y-4">
+      <div className="space-y-4 relative z-20">
         <Marquee direction="left" speed="slow">
           {firstRow.map((tech) => (
             <TechBadge key={tech.name} tech={tech} />
@@ -112,7 +139,7 @@ export function TechStack() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="container-wide mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+        className="container-wide mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 relative z-20"
       >
         {[
           { label: "Technologies", value: "20+" },

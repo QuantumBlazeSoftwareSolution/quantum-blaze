@@ -70,7 +70,7 @@ export function Sidebar({ userRole }: { userRole?: string }) {
           <div className="relative">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 p-[1px]">
               <div className="w-full h-full rounded-2xl bg-[#0a192f] flex items-center justify-center overflow-hidden border-2 border-[#141b2d]">
-                <img src="/qb-logo-final.png" alt="User" className="w-8 h-8 object-contain" />
+                <img src="/original-logo.png" alt="User" className="w-8 h-8 object-contain" />
               </div>
             </div>
             <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-[#141b2d] rounded-full" />

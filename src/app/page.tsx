@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
@@ -10,19 +9,20 @@ import { TechStack } from "@/components/sections/TechStack";
 import { Team } from "@/components/sections/Team";
 import { Contact } from "@/components/sections/Contact";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-import { getAllProjects } from "@/lib/db/crud/projects/read";
+import { getPublishedProjects } from "@/lib/db/crud/projects/read";
 import { getAllTeamMembers } from "@/lib/db/crud/team/read";
+
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const [projects, members] = await Promise.all([
-    getAllProjects(),
+    getPublishedProjects(),
     getAllTeamMembers()
   ]);
 
   return (
     <SmoothScrollProvider>
       <main className="relative">
-        <Navbar />
 
         <Hero />
         <About />

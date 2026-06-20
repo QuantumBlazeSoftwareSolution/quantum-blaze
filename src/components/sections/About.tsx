@@ -1,11 +1,71 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { stats } from "@/lib/data";
 import { Zap, ShieldCheck, Eye, Target } from "lucide-react";
+
+// 3D Tilt Card wrapper with cursor glow updates
+function TiltCard({ 
+  children, 
+  className 
+}: { 
+  children: React.ReactNode; 
+  className: string; 
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+    
+    // Position of cursor relative to card
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+    
+    // Tilt calculations (max 5 degrees)
+    const width = rect.width;
+    const height = rect.height;
+    const centerX = rect.left + width / 2;
+    const centerY = rect.top + height / 2;
+    
+    const deltaX = e.clientX - centerX;
+    const deltaY = e.clientY - centerY;
+    
+    const rotateX = -(deltaY / (height / 2)) * 5;
+    const rotateY = (deltaX / (width / 2)) * 5;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  };
+  
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return;
+    const card = cardRef.current;
+    card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+    card.style.setProperty("--mouse-x", `-999px`);
+    card.style.setProperty("--mouse-y", `-999px`);
+  };
+  
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`${className} transition-all duration-300 ease-out`}
+      style={{
+        transformStyle: "preserve-3d",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -139,22 +199,38 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="md:col-span-2 relative p-8 md:p-10 rounded-3xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden"
+                className="md:col-span-2"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-sky-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div
-                  className="stat-counter text-6xl md:text-7xl font-bold mb-3 tracking-tighter"
-                  data-target={stats[0].value}
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  {stats[0].value}
-                </div>
-                <div className="text-sm font-semibold tracking-widest uppercase text-sky-400">
-                  {stats[0].label}
-                </div>
+                <TiltCard className="relative p-8 md:p-10 rounded-3xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden h-full">
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    style={{
+                      background: `radial-gradient(300px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
+                    }}
+                  />
+                  <div 
+                    className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"
+                    style={{
+                      background: `radial-gradient(150px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
+                      zIndex: 0,
+                    }}
+                  />
+                  <div className="relative z-10">
+                    <div
+                      className="stat-counter text-6xl md:text-7xl font-bold mb-3 tracking-tighter"
+                      data-target={stats[0].value}
+                      style={{ color: "var(--text-primary)" }}
+                    >
+                      {stats[0].value}
+                    </div>
+                    <div className="text-sm font-semibold tracking-widest uppercase text-sky-400">
+                      {stats[0].label}
+                    </div>
+                  </div>
 
-                {/* Micro-detail line */}
-                <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent opacity-50" />
+                  {/* Micro-detail line */}
+                  <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent opacity-50 z-10" />
+                </TiltCard>
               </motion.div>
 
               {/* Smaller Stats */}
@@ -165,18 +241,35 @@ export function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 * (i + 1) }}
-                  className="relative p-8 rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-sm group hover:bg-slate-900/40 transition-colors duration-500"
+                  className={`${i === 2 ? "md:col-span-2" : ""}`}
                 >
-                  <div
-                    className="stat-counter text-4xl md:text-5xl font-bold mb-2 tracking-tight"
-                    data-target={stat.value}
-                    style={{ color: "var(--text-primary)" }}
-                  >
-                    {stat.value}
-                  </div>
-                  <div className="text-xs font-semibold tracking-widest uppercase text-slate-500 group-hover:text-sky-400/80 transition-colors">
-                    {stat.label}
-                  </div>
+                  <TiltCard className="relative p-8 rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-sm group hover:bg-slate-900/30 transition-colors duration-500 h-full overflow-hidden">
+                    <div 
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      style={{
+                        background: `radial-gradient(250px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
+                      }}
+                    />
+                    <div 
+                      className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"
+                      style={{
+                        background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
+                        zIndex: 0,
+                      }}
+                    />
+                    <div className="relative z-10">
+                      <div
+                        className="stat-counter text-4xl md:text-5xl font-bold mb-2 tracking-tight"
+                        data-target={stat.value}
+                        style={{ color: "var(--text-primary)" }}
+                      >
+                        {stat.value}
+                      </div>
+                      <div className="text-xs font-semibold tracking-widest uppercase text-slate-500 group-hover:text-sky-400/80 transition-colors">
+                        {stat.label}
+                      </div>
+                    </div>
+                  </TiltCard>
                 </motion.div>
               ))}
             </div>

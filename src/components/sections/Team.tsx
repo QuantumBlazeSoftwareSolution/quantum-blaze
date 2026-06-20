@@ -19,174 +19,80 @@ export function TeamCard({
   
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group"
-      style={{ perspective: "1000px" }}
+      transition={{
+        duration: 0.8,
+        delay: index * 0.1,
+        ease: [0.21, 0.45, 0.32, 0.9],
+      }}
+      className="group relative"
     >
-      {/* Card wrapper — actual rotating element on desktop */}
-      <div className="relative w-full lg:h-[300px] transition-transform duration-700 cursor-default lg:[transform-style:preserve-3d] lg:group-hover:[transform:rotateY(180deg)]">
-        {/* ── FRONT ── */}
-        <div
-          className="relative lg:absolute inset-0 glass rounded-2xl flex flex-col items-center justify-center p-8 text-center"
-          style={{ backfaceVisibility: "hidden" }}
-        >
-          {/* Subtle hover gradient */}
-          <div
-            className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse at top, rgba(14,165,233,0.05) 0%, transparent 70%)",
-            }}
+      {/* Outer Card Frame */}
+      <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden glass border border-white/5 bg-[#0a1628]/20 transition-all duration-500 hover:border-sky-500/30 hover:shadow-[0_20px_50px_rgba(56,189,248,0.12)]">
+        {/* Member Portrait Image */}
+        {member.image ? (
+          <Image
+            src={member.image}
+            alt={member.name}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+            className="object-cover grayscale brightness-[0.85] contrast-[1.05] group-hover:grayscale-0 group-hover:brightness-100 group-hover:contrast-100 group-hover:scale-105 transition-all duration-700 ease-out"
           />
+        ) : (
+          /* Fallback gradient if no image */
+          <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass} opacity-60`} />
+        )}
 
-          {/* Avatar */}
-          <div className="relative mb-5 w-24 h-24">
-            <div
-              className="absolute inset-0 rounded-full"
-              style={{
-                background: "linear-gradient(135deg, #0ea5e9, #7dd3fc)",
-                filter: "blur(10px)",
-                opacity: 0.5,
-              }}
-            />
-            <div
-              className={`relative w-24 h-24 rounded-full overflow-hidden border-2 border-sky-400/30 z-10 bg-gradient-to-br ${gradientClass}`}
-            >
-              {member.image && (
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  className="object-cover"
-                />
-              )}
-            </div>
+        {/* Ambient radial glow behind card on hover */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.08)_0%,transparent_70%)]" />
+
+        {/* Bottom Permanent Info & Hover Content Overlay */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#050b14] via-[#050b14]/85 to-transparent pt-24 pb-6 px-6 flex flex-col justify-end min-h-[55%]">
+          {/* Header Info */}
+          <div className="transform group-hover:-translate-y-1 transition-transform duration-500 ease-out">
+            <h3 className="text-white font-bold text-xl tracking-tight mb-1 font-grotesk">
+              {member.name}
+            </h3>
+            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-sky-400">
+              {member.role}
+            </p>
           </div>
 
-          <h3 className="text-white font-bold text-lg mb-1">{member.name}</h3>
-          <p
-            className="text-xs font-semibold tracking-widest uppercase mb-2 lg:mb-0"
-            style={{ color: "var(--text-muted)" }}
-          >
-            {member.role}
-          </p>
-
-          {/* Mobile-only Bio & Links (Hidden on Desktop) */}
-          <div className="lg:hidden flex flex-col items-center mt-4">
-            <div className="w-8 h-px bg-sky-500/20 mb-4" />
-            <p
-              className="text-sm leading-relaxed mb-6"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              {member.bio}
-            </p>
-            <div className="flex items-center gap-3">
-              <a
-                href={member.linkedin || "#"}
-                aria-label="LinkedIn"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full flex items-center justify-center text-sky-400 hover:text-white bg-sky-500/10 border border-sky-500/20 hover:border-sky-400/50 transition-all"
-              >
-                <FaLinkedin size={16} />
-              </a>
-              <a
-                href={`mailto:${member.email}`}
-                aria-label="Email"
-                className="w-10 h-10 rounded-full flex items-center justify-center text-sky-400 hover:text-white bg-sky-500/10 border border-sky-500/20 hover:border-sky-400/50 transition-all"
-              >
-                <FaEnvelope size={16} />
-              </a>
+          {/* Collapsible Info Drawer (slides up on hover) */}
+          <div className="grid grid-rows-[0fr] opacity-0 group-hover:grid-rows-[1fr] group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
+            <div className="overflow-hidden">
+              <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
+                <p className="text-xs text-slate-400 leading-relaxed mb-4 mt-3">
+                  {member.bio}
+                </p>
+                <div className="flex items-center gap-3 pb-1">
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 rounded-lg flex items-center justify-center text-sky-400 hover:text-white bg-sky-500/10 border border-sky-500/20 hover:border-sky-400/50 transition-colors"
+                      title="LinkedIn"
+                    >
+                      <FaLinkedin size={14} />
+                    </a>
+                  )}
+                  {member.email && (
+                    <a
+                      href={`mailto:${member.email}`}
+                      className="w-8 h-8 rounded-lg flex items-center justify-center text-sky-400 hover:text-white bg-sky-500/10 border border-sky-500/20 hover:border-sky-400/50 transition-colors"
+                      title="Email"
+                    >
+                      <FaEnvelope size={14} />
+                    </a>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        {/* ── BACK (Desktop Only) ── */}
-        <div
-          className="hidden lg:block absolute inset-0"
-          style={{
-            backfaceVisibility: "hidden",
-            transform: "rotateY(180deg)",
-          }}
-        >
-          <BorderGlow
-            className="w-full h-full"
-            borderRadius={24}
-            edgeSensitivity={0}
-            glowRadius={80}
-            backgroundColor="rgba(5, 11, 20, 0.98)"
-            glowColor="200 80 40"
-            colors={["#0284c7", "#0ea5e9", "#38bdf8"]}
-            glowIntensity={0.5}
-          >
-            <div className="p-6 flex flex-col justify-between h-full">
-              {/* Top row: small circular avatar + name/role */}
-              <div className="flex items-center gap-3">
-                <div
-                  className={`relative w-11 h-11 rounded-full overflow-hidden border-2 border-sky-400/40 flex-shrink-0 bg-gradient-to-br ${gradientClass}`}
-                >
-                  {member.image && (
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover"
-                    />
-                  )}
-                </div>
-                <div>
-                  <p className="text-white font-bold text-sm leading-tight">
-                    {member.name}
-                  </p>
-                  <p
-                    className="text-xs font-semibold tracking-wider uppercase"
-                    style={{ color: "var(--accent-blue)" }}
-                  >
-                    {member.role}
-                  </p>
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div
-                className="w-full h-px my-4"
-                style={{ background: "rgba(56,189,248,0.15)" }}
-              />
-
-              {/* Bio */}
-              <p
-                className="text-sm leading-relaxed flex-1"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                {member.bio}
-              </p>
-
-              {/* Social icons */}
-              <div className="flex items-center gap-3 mt-5">
-                <a
-                  href={member.linkedin || "#"}
-                  aria-label="LinkedIn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl flex items-center justify-center text-sky-400 hover:text-white hover:bg-sky-500/20 transition-all duration-200 border border-sky-500/20 hover:border-sky-400/50"
-                  title="LinkedIn"
-                >
-                  <FaLinkedin size={15} />
-                </a>
-                <a
-                  href={`mailto:${member.email}`}
-                  aria-label="Email"
-                  className="w-9 h-9 rounded-xl flex items-center justify-center text-sky-400 hover:text-white hover:bg-sky-500/20 transition-all duration-200 border border-sky-500/20 hover:border-sky-400/50"
-                  title="Email"
-                >
-                  <FaEnvelope size={15} />
-                </a>
-              </div>
-            </div>
-          </BorderGlow>
-        </div>{" "}
       </div>
     </motion.div>
   );

@@ -22,6 +22,13 @@
       "when": 1778335583367,
       "tag": "0002_flashy_bucky",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1778993201064,
+      "tag": "0003_magenta_cardiac",
+      "breakpoints": true
     }
   ]
 }

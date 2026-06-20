@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { FaLinkedin, FaGithub, FaXTwitter, FaDribbble } from "react-icons/fa6";
+import { FaLinkedin, FaFacebook } from "react-icons/fa6";
 import Image from "next/image";
 
 const footerLinks = {
@@ -22,17 +22,23 @@ const footerLinks = {
       label: "contact@quantumblaze.lk",
       href: "mailto:contact@quantumblaze.lk",
     },
-    { label: "+94 71 989 2932", href: "tel:+94719892932" },
     { label: "+94 78 805 6838", href: "tel:+94788056838" },
+    { label: "+94 71 968 1816", href: "tel:+94719681816" },
     { label: "Urapola, Sri Lanka", href: "/#contact" },
   ],
 };
 
 const socialLinks = [
-  { label: "LinkedIn", href: "#", icon: FaLinkedin },
-  { label: "GitHub", href: "#", icon: FaGithub },
-  { label: "X", href: "#", icon: FaXTwitter },
-  { label: "Dribbble", href: "#", icon: FaDribbble },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/quantum-blaze-software-solution-pvt-ltd",
+    icon: FaLinkedin,
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/share/18mwK8iVng",
+    icon: FaFacebook,
+  },
 ];
 
 export function Footer() {
@@ -55,9 +61,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
+            <div className="flex items-center gap-2.5 mb-2">
               <Image
-                src="/qb-logo-final.png"
+                src="/original-logo.png"
                 alt="Quantum Blaze Logo"
                 width={40}
                 height={40}
@@ -71,8 +77,7 @@ export function Footer() {
               className="text-sm leading-relaxed mb-6"
               style={{ color: "var(--text-muted)" }}
             >
-              Engineering scalable, high-end digital solutions that define the
-              future.
+              Think beyond limitation
             </p>
             {/* Social links */}
             <div className="flex gap-3">
@@ -80,6 +85,8 @@ export function Footer() {
                 <a
                   key={s.label}
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={s.label}
                   className="w-8 h-8 rounded-lg glass flex items-center justify-center text-xs text-sky-400 hover:border-sky-400/40 transition-all duration-200 hover:text-white"
                   title={s.label}
@@ -119,7 +126,7 @@ export function Footer() {
           style={{ borderColor: "rgba(56,189,248,0.08)" }}
         >
           <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-            © 2025 Quantum Blaze. All rights reserved.
+            © 2024 - {new Date().getFullYear()} Quantum Blaze. All rights reserved.
           </p>
           <div className="flex gap-6">
             {[

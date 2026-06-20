@@ -25,7 +25,7 @@ export function LoginForm() {
         <div className="text-center mb-10">
           <div className="inline-block p-4 bg-sky-500/10 rounded-2xl mb-6">
             <div className="flex flex-col items-center gap-4">
-              <img src="/qb-logo-final.png" alt="Quantum Blaze Logo" className="w-16 h-16 object-contain" />
+              <img src="/original-logo.png" alt="Quantum Blaze Logo" className="w-16 h-16 object-contain" />
               <h1 className="text-3xl font-bold text-white tracking-tighter font-quantum uppercase">
                 Quantum <span className="text-sky-400">Admin</span>
               </h1>
