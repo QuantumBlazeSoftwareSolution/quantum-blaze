@@ -27,18 +27,18 @@ export function TeamCard({
         delay: index * 0.1,
         ease: [0.21, 0.45, 0.32, 0.9],
       }}
-      className="group relative flex-shrink-0 w-[78%] sm:w-[48%] md:w-[31%] lg:w-auto snap-start"
+      className="group relative flex-shrink-0 w-[80%] sm:w-[48%] md:w-[31%] lg:w-auto snap-start flex flex-col"
     >
       {/* Outer Card Frame */}
-      <div className="relative aspect-[4/4.2] rounded-2xl overflow-hidden glass border border-white/5 bg-[#0a1628]/20 transition-all duration-500 hover:border-sky-500/30 hover:shadow-[0_20px_50px_rgba(56,189,248,0.12)]">
+      <div className="relative aspect-[4/4] lg:aspect-[4/4.2] rounded-2xl overflow-hidden glass border border-white/5 bg-[#0a1628]/20 transition-all duration-500 hover:border-sky-500/30 hover:shadow-[0_20px_50px_rgba(56,189,248,0.12)]">
         {/* Member Portrait Image */}
         {member.image ? (
           <Image
             src={member.image}
             alt={member.name}
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 20vw"
-            className="object-cover group-hover:scale-105 transition-all duration-700 ease-out"
+            sizes="(max-width: 768px) 80vw, (max-width: 1200px) 33vw, 20vw"
+            className="object-cover lg:group-hover:scale-105 transition-all duration-700 ease-out"
           />
         ) : (
           /* Fallback gradient if no image */
@@ -46,10 +46,10 @@ export function TeamCard({
         )}
 
         {/* Ambient radial glow behind card on hover */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.08)_0%,transparent_70%)]" />
+        <div className="hidden lg:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.08)_0%,transparent_70%)]" />
 
-        {/* Bottom Permanent Info & Hover Content Overlay */}
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#050b14] via-[#050b14]/85 to-transparent pt-16 pb-4 px-4 flex flex-col justify-end min-h-[55%]">
+        {/* Bottom Permanent Info & Hover Content Overlay (Desktop only) */}
+        <div className="hidden lg:flex absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#050b14] via-[#050b14]/85 to-transparent pt-16 pb-4 px-4 flex flex-col justify-end min-h-[55%]">
           {/* Header Info */}
           <div className="transform group-hover:-translate-y-1 transition-transform duration-500 ease-out">
             <h3 className="text-white font-bold text-base tracking-tight mb-0.5 font-grotesk">
@@ -60,8 +60,59 @@ export function TeamCard({
             </p>
           </div>
 
-            </div>
+          {/* Social Icons (Desktop only) */}
+          <div className="flex gap-2.5 mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-y-0 translate-y-1">
+            {member.linkedin && (
+              <a
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-7 h-7 rounded-full border border-slate-800 bg-[#070f1a]/80 flex items-center justify-center text-slate-400 hover:text-sky-400 hover:border-sky-500/30 transition-all cursor-pointer"
+                title="LinkedIn"
+              >
+                <FaLinkedin className="w-3.5 h-3.5" />
+              </a>
+            )}
+            {member.email && (
+              <a
+                href={`mailto:${member.email}`}
+                className="w-7 h-7 rounded-full border border-slate-800 bg-[#070f1a]/80 flex items-center justify-center text-slate-400 hover:text-sky-400 hover:border-sky-500/30 transition-all cursor-pointer"
+                title="Email"
+              >
+                <FaEnvelope className="w-3.5 h-3.5" />
+              </a>
+            )}
           </div>
+        </div>
+      </div>
+
+      {/* Mobile static details block below the image */}
+      <div className="lg:hidden mt-3 px-1 flex flex-col items-start">
+        <h3 className="text-white font-bold text-sm tracking-tight font-grotesk">
+          {member.name}
+        </h3>
+        <p className="text-[9px] font-bold tracking-[0.2em] uppercase text-sky-400 mt-0.5">
+          {member.role}
+        </p>
+        <div className="flex gap-2 mt-2">
+          {member.linkedin && (
+            <a
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-7 h-7 rounded-full border border-slate-800 bg-[#070f1a]/80 flex items-center justify-center text-slate-400"
+            >
+              <FaLinkedin className="w-3.5 h-3.5" />
+            </a>
+          )}
+          {member.email && (
+            <a
+              href={`mailto:${member.email}`}
+              className="w-7 h-7 rounded-full border border-slate-800 bg-[#070f1a]/80 flex items-center justify-center text-slate-400"
+            >
+              <FaEnvelope className="w-3.5 h-3.5" />
+            </a>
+          )}
         </div>
       </div>
     </motion.div>
@@ -214,8 +265,8 @@ export function Team({ members }: { members: TeamMember[] }) {
 
         {/* Leadership & Engineering Grid */}
         {otherMembers.length > 0 && (
-          <div className="mb-8 w-full">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="mb-8 w-full overflow-hidden">
+            <div className="flex lg:grid lg:grid-cols-5 overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory lg:snap-none scrollbar-none pb-4 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0 gap-6">
               {otherMembers.map((member, i) => (
                 <TeamCard key={member.id} member={member} index={i + 1} />
               ))}
