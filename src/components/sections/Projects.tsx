@@ -202,14 +202,7 @@ export function Projects({ projects }: { projects: Project[] }) {
     >
       {/* Section header */}
       <div className="container-wide pt-20 pb-10 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex justify-center mb-4"
-        >
-          <SectionLabel>Case Studies</SectionLabel>
-        </motion.div>
+
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -217,11 +210,11 @@ export function Projects({ projects }: { projects: Project[] }) {
           transition={{ delay: 0.1 }}
           className="text-white font-bold"
           style={{
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            fontSize: "clamp(2rem, 4vw, 2.75rem)",
             fontFamily: "var(--font-grotesk)",
           }}
         >
-          Work That <span className="gradient-text">Speaks</span>
+          Work That <span className="text-sky-400">Speaks</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}

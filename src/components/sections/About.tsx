@@ -119,7 +119,7 @@ export function About() {
     return () => ctx.revert();
   }, []);
 
-  const lines = ["Engineering", "Beyond Code."];
+  const lines = ["About", "Us"];
 
   return (
     <section
@@ -142,25 +142,12 @@ export function About() {
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
           {/* Left: Narrative Side */}
           <div className="w-full lg:w-[45%]" ref={textRef}>
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-10"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-8 h-[2px] bg-sky-500 rounded-full" />
-                <span className="text-xs font-bold uppercase tracking-[0.3em] text-sky-400">
-                  Our Vision
-                </span>
-              </div>
-            </motion.div>
+
 
             <div
               className="space-y-2 mb-10"
               style={{
-                fontSize: "clamp(2.5rem, 5vw, 4rem)",
+                fontSize: "clamp(2rem, 4vw, 2.75rem)",
                 fontWeight: 700,
                 lineHeight: 1.1,
                 fontFamily: "var(--font-grotesk)",
@@ -170,7 +157,7 @@ export function About() {
                 <div key={i} className="overflow-hidden pb-2">
                   <span
                     className={`reveal-line block ${
-                      i === 1 ? "gradient-text" : "text-white"
+                      i === 1 ? "text-sky-400" : "text-white"
                     }`}
                   >
                     {line}

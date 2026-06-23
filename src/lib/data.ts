@@ -175,21 +175,10 @@ export const team = [
     role: "Founder & CEO",
     email: "vihanga@quantumblaze.lk",
     bio: "Visionary leader with a passion for building scalable digital products and architecting the future of tech.",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=256&h=256",
-    linkedin: "#",
+    image: "/team/vihanga-heshan-CEO.png",
+    linkedin: "https://www.linkedin.com/in/vihanga-heshan",
     gradient: "from-sky-500 to-blue-700",
-  },
-  {
-    id: "co-founder",
-    name: "Akil Abimanash",
-    role: "Co Founder",
-    email: "akil@quantumblaze.lk",
-    bio: "Driving growth and strategic partnerships to establish Quantum Blaze as a market leader in digital innovation.",
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=256&h=256",
-    linkedin: "#",
-    gradient: "from-blue-500 to-indigo-700",
+    priority: 1,
   },
   {
     id: "lead-dev",
@@ -201,6 +190,7 @@ export const team = [
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
     gradient: "from-sky-400 to-cyan-700",
+    priority: 2,
   },
   {
     id: "design",
@@ -212,11 +202,8 @@ export const team = [
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
     gradient: "from-cyan-500 to-sky-700",
+    priority: 3,
   },
-];
-
-export const fullTeam = [
-  ...team,
   {
     id: "developer",
     name: "Supun Sulakshana",
@@ -227,6 +214,19 @@ export const fullTeam = [
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
     gradient: "from-sky-500 to-blue-600",
+    priority: 4,
+  },
+  {
+    id: "co-founder",
+    name: "Akil Abimanash",
+    role: "Co Founder",
+    email: "akil@quantumblaze.lk",
+    bio: "Driving growth and strategic partnerships to establish Quantum Blaze as a market leader in digital innovation.",
+    image:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=256&h=256",
+    linkedin: "#",
+    gradient: "from-blue-500 to-indigo-700",
+    priority: 5,
   },
   {
     id: "creator",
@@ -238,8 +238,11 @@ export const fullTeam = [
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=256&h=256",
     linkedin: "#",
     gradient: "from-blue-600 to-indigo-800",
+    priority: 6,
   },
 ];
+
+export const fullTeam = team;
 
 // ─── Stats ───────────────────────────────────────────────────────────────────
 export const stats = [

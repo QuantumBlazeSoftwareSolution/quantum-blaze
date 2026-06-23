@@ -46,14 +46,7 @@ export function Industries() {
 
       <div className="container-wide relative z-10">
         <div className="text-center mb-16 lg:mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex justify-center mb-4"
-          >
-            <SectionLabel>Our Expertise</SectionLabel>
-          </motion.div>
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -61,11 +54,11 @@ export function Industries() {
             transition={{ delay: 0.1 }}
             className="text-white font-bold"
             style={{
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontSize: "clamp(2rem, 4vw, 2.75rem)",
               fontFamily: "var(--font-grotesk)",
             }}
           >
-            Industries We <span className="gradient-text">Transform</span>
+            Industries We <span className="text-sky-400">Transform</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}

@@ -371,30 +371,29 @@ export function Hero() {
                 </div>
 
                 {/* Consult Card at the Bottom Right */}
-                <div className="floating-card-3 bg-gradient-to-br from-white/[0.06] to-transparent backdrop-blur-xl border border-white/[0.06] p-5 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)] flex items-center gap-4 w-full max-w-[280px] ml-auto text-left relative overflow-hidden group">
+                <a
+                  href="tel:+94788056838"
+                  className="floating-card-3 bg-gradient-to-br from-white/[0.06] to-transparent backdrop-blur-xl border border-white/[0.06] p-5 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)] flex items-center gap-4 w-full max-w-[280px] ml-auto text-left relative overflow-hidden group hover:border-sky-500/30 transition-all duration-300 cursor-pointer block"
+                >
                   <div className="absolute inset-0 bg-sky-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10 relative flex-shrink-0">
-                    <Image
-                      src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120&h=120"
-                      alt="Consultant"
-                      width={48}
-                      height={48}
-                      className="w-full h-full object-cover"
-                    />
+                  
+                  {/* Call Icon Container */}
+                  <div className="w-12 h-12 rounded-full bg-sky-500/10 flex items-center justify-center border border-sky-500/20 text-sky-400 flex-shrink-0">
+                    <PhoneCall className="w-5 h-5" />
                   </div>
+                  
                   <div className="flex-1">
                     <h4 className="text-white font-bold text-[11px] tracking-tight">Get a Free Consultation</h4>
                     <p className="text-[9px] text-slate-400 mt-1 leading-relaxed font-light">
-                      Fill the form & our specialists will contact you.
+                      Call us directly to speak with our specialists.
                     </p>
-                    <button
-                      onClick={() => scrollToSection("contact")}
-                      className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-sky-400 hover:text-sky-300 transition-colors uppercase tracking-wider cursor-pointer"
+                    <div
+                      className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-sky-400 group-hover:text-sky-300 transition-colors uppercase tracking-wider"
                     >
-                      Request a Call <span className="translate-y-[-0.5px]">→</span>
-                    </button>
+                      Call Now <span className="translate-y-[-0.5px]">→</span>
+                    </div>
                   </div>
-                </div>
+                </a>
 
               </div>
 

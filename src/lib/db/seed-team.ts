@@ -6,6 +6,10 @@ async function seed() {
   console.log("🌱 Seeding team members...");
 
   try {
+    // Clear existing team members to avoid duplicates
+    await db.delete(teamTable);
+    console.log("🧹 Cleared existing team members.");
+
     for (let i = 0; i < fullTeam.length; i++) {
       const member = fullTeam[i];
       
@@ -29,7 +33,7 @@ async function seed() {
         image: member.image,
         linkedin: member.linkedin,
         gradient: gradientKey,
-        orderNumber: i + 1,
+        orderNumber: (member as any).priority || (i + 1),
       });
       
       console.log(`✅ Inserted team member: ${member.name}`);
