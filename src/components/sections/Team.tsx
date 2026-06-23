@@ -27,7 +27,7 @@ export function TeamCard({
         delay: index * 0.1,
         ease: [0.21, 0.45, 0.32, 0.9],
       }}
-      className="group relative"
+      className="group relative flex-shrink-0 w-[78%] sm:w-[48%] md:w-[31%] lg:w-auto snap-start"
     >
       {/* Outer Card Frame */}
       <div className="relative aspect-[4/4.2] rounded-2xl overflow-hidden glass border border-white/5 bg-[#0a1628]/20 transition-all duration-500 hover:border-sky-500/30 hover:shadow-[0_20px_50px_rgba(56,189,248,0.12)]">
@@ -60,36 +60,6 @@ export function TeamCard({
             </p>
           </div>
 
-          {/* Collapsible Info Drawer (slides up on hover) */}
-          <div className="grid grid-rows-[0fr] opacity-0 group-hover:grid-rows-[1fr] group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
-            <div className="overflow-hidden">
-              <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
-                <p className="text-[11px] text-slate-400 leading-relaxed mb-3 mt-2">
-                  {member.bio}
-                </p>
-                <div className="flex items-center gap-3 pb-1">
-                  {member.linkedin && (
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-7 h-7 rounded-md flex items-center justify-center text-sky-400 hover:text-white bg-sky-500/10 border border-sky-500/20 hover:border-sky-400/50 transition-colors"
-                      title="LinkedIn"
-                    >
-                      <FaLinkedin size={12} />
-                    </a>
-                  )}
-                  {member.email && (
-                    <a
-                      href={`mailto:${member.email}`}
-                      className="w-7 h-7 rounded-md flex items-center justify-center text-sky-400 hover:text-white bg-sky-500/10 border border-sky-500/20 hover:border-sky-400/50 transition-colors"
-                      title="Email"
-                    >
-                      <FaEnvelope size={12} />
-                    </a>
-                  )}
-                </div>
-              </div>
             </div>
           </div>
         </div>

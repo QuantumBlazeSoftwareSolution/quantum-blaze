@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["framer-motion", "gsap"],
   },
+  allowedDevOrigins: ["10.45.165.31"],
 };
 
 export default nextConfig;
