@@ -310,7 +310,7 @@ export function Hero() {
                   variant="solid"
                   size="lg"
                   onClick={() => scrollToSection("services")}
-                  className="px-8 py-4 text-xs font-bold shadow-lg shadow-sky-500/10 cursor-pointer rounded-full"
+                  className="px-8 py-4 text-xs font-bold cursor-pointer rounded-full"
                 >
                   Explore Services <span className="ml-1.5">→</span>
                 </GlowButton>

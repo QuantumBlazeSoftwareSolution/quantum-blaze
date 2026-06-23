@@ -265,8 +265,8 @@ export function Team({ members }: { members: TeamMember[] }) {
 
         {/* Leadership & Engineering Grid */}
         {otherMembers.length > 0 && (
-          <div className="mb-8 w-full overflow-hidden">
-            <div className="flex lg:grid lg:grid-cols-5 overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory lg:snap-none scrollbar-none pb-4 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0 gap-6">
+          <div className="mb-8 w-full">
+            <div className="flex lg:grid lg:grid-cols-5 overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory lg:snap-none scrollbar-none pb-4 lg:pb-0 gap-6">
               {otherMembers.map((member, i) => (
                 <TeamCard key={member.id} member={member} index={i + 1} />
               ))}

@@ -248,7 +248,7 @@ export function Projects({ projects }: { projects: Project[] }) {
             <GlowButton
               variant="outline"
               size="lg"
-              className="px-10 py-4 text-xs font-bold uppercase tracking-wider rounded-full shadow-lg shadow-sky-500/5 cursor-pointer group"
+              className="px-10 py-4 text-xs font-bold uppercase tracking-wider rounded-full cursor-pointer group"
             >
               View All Projects <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5 ml-2">→</span>
             </GlowButton>

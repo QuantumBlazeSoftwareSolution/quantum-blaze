@@ -114,18 +114,79 @@ export function About() {
           },
         });
       });
+
+      // Desktop Pinning Sequence for Stats -> Vision/Mission
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 1024px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=150%",
+            pin: true,
+            scrub: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // 1. Stats fade out
+        tl.to(".about-stats-layer", {
+          opacity: 0,
+          scale: 0.95,
+          duration: 0.6,
+          ease: "power2.inOut",
+          onStart: () => {
+            gsap.set(".about-stats-layer", { pointerEvents: "none" });
+          },
+          onReverseComplete: () => {
+            gsap.set(".about-stats-layer", { pointerEvents: "auto" });
+          }
+        });
+
+        // 2. Vision & Mission layer becomes visible
+        tl.to(".about-vision-mission-layer", {
+          opacity: 1,
+          duration: 0.1,
+          onStart: () => {
+            gsap.set(".about-vision-mission-layer", { pointerEvents: "auto" });
+          },
+          onReverseComplete: () => {
+            gsap.set(".about-vision-mission-layer", { pointerEvents: "none" });
+          }
+        });
+
+        // 3. Vision & Mission cards slide in sequentially with a small stagger delay
+        tl.fromTo(".about-vision-mission-layer > div",
+          {
+            x: "150px",
+            opacity: 0,
+          },
+          {
+            x: "0px",
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.35,
+            ease: "power2.out",
+          },
+          "-=0.1"
+        );
+      });
     }, sectionRef);
+
+    // Call ScrollTrigger refresh after a short delay to ensure layout sizes are fully loaded
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
 
     return () => ctx.revert();
   }, []);
-
-  const lines = ["About", "Us"];
 
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="relative section-padding overflow-hidden"
+      className="relative lg:h-screen lg:flex lg:items-center overflow-hidden section-padding lg:py-0"
       style={{ background: "var(--bg-primary)" }}
     >
       {/* Precision background glows */}
@@ -142,10 +203,8 @@ export function About() {
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
           {/* Left: Narrative Side */}
           <div className="w-full lg:w-[45%]" ref={textRef}>
-
-
             <div
-              className="space-y-2 mb-10"
+              className="mb-10"
               style={{
                 fontSize: "clamp(2rem, 4vw, 2.75rem)",
                 fontWeight: 700,
@@ -153,17 +212,11 @@ export function About() {
                 fontFamily: "var(--font-grotesk)",
               }}
             >
-              {lines.map((line, i) => (
-                <div key={i} className="overflow-hidden pb-2">
-                  <span
-                    className={`reveal-line block ${
-                      i === 1 ? "text-sky-400" : "text-white"
-                    }`}
-                  >
-                    {line}
-                  </span>
-                </div>
-              ))}
+              <div className="overflow-hidden pb-2">
+                <span className="reveal-line block text-white">
+                  About <span className="text-sky-400">Us</span>
+                </span>
+              </div>
             </div>
 
             <div className="overflow-hidden border-l border-slate-800/60 pl-6 ml-2">
@@ -177,9 +230,11 @@ export function About() {
             </div>
           </div>
 
-          {/* Right: Premium Bento Stats */}
-          <div className="w-full lg:w-[55%]">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Right: Interactive layers (Stats Bento / Vision & Mission) */}
+          <div className="w-full lg:w-[55%] relative lg:min-h-[440px] flex flex-col lg:items-center lg:justify-center gap-6 lg:gap-0">
+            
+            {/* Layer 1: Bento Stats */}
+            <div className="about-stats-layer w-full grid grid-cols-1 md:grid-cols-2 gap-4 lg:absolute lg:inset-0 z-10 transition-all duration-300">
               {/* Large Feature Stat */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -188,7 +243,7 @@ export function About() {
                 transition={{ duration: 0.6 }}
                 className="md:col-span-2"
               >
-                <TiltCard className="relative p-8 md:p-10 rounded-3xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden h-full">
+                <TiltCard className="relative p-5 md:p-6 rounded-3xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden h-full">
                   <div 
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
@@ -204,13 +259,13 @@ export function About() {
                   />
                   <div className="relative z-10">
                     <div
-                      className="stat-counter text-6xl md:text-7xl font-bold mb-3 tracking-tighter"
+                      className="stat-counter text-4xl md:text-5xl font-bold mb-1.5 tracking-tighter"
                       data-target={stats[0].value}
                       style={{ color: "var(--text-primary)" }}
                     >
                       {stats[0].value}
                     </div>
-                    <div className="text-sm font-semibold tracking-widest uppercase text-sky-400">
+                    <div className="text-[10px] font-bold tracking-[0.2em] uppercase text-sky-400">
                       {stats[0].label}
                     </div>
                   </div>
@@ -230,7 +285,7 @@ export function About() {
                   transition={{ duration: 0.6, delay: 0.1 * (i + 1) }}
                   className={`${i === 2 ? "md:col-span-2" : ""}`}
                 >
-                  <TiltCard className="relative p-8 rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-sm group hover:bg-slate-900/30 transition-colors duration-500 h-full overflow-hidden">
+                  <TiltCard className="relative p-5 rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-sm group hover:bg-slate-900/30 transition-colors duration-500 h-full overflow-hidden">
                     <div 
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                       style={{
@@ -246,13 +301,13 @@ export function About() {
                     />
                     <div className="relative z-10">
                       <div
-                        className="stat-counter text-4xl md:text-5xl font-bold mb-2 tracking-tight"
+                        className="stat-counter text-3xl md:text-4xl font-bold mb-1 tracking-tight"
                         data-target={stat.value}
                         style={{ color: "var(--text-primary)" }}
                       >
                         {stat.value}
                       </div>
-                      <div className="text-xs font-semibold tracking-widest uppercase text-slate-500 group-hover:text-sky-400/80 transition-colors">
+                      <div className="text-[9px] font-bold tracking-[0.2em] uppercase text-slate-500 group-hover:text-sky-400/80 transition-colors">
                         {stat.label}
                       </div>
                     </div>
@@ -260,6 +315,60 @@ export function About() {
                 </motion.div>
               ))}
             </div>
+
+            {/* Layer 2: Vision & Mission */}
+            <div className="about-vision-mission-layer w-full flex flex-col gap-4 justify-center lg:absolute lg:inset-0 lg:opacity-0 lg:pointer-events-none z-20">
+              {/* Vision Card */}
+              <TiltCard className="relative p-8 md:p-9 min-h-[210px] rounded-3xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center">
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  style={{
+                    background: `radial-gradient(300px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
+                  }}
+                />
+                <div 
+                  className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"
+                  style={{
+                    background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
+                    zIndex: 0,
+                  }}
+                />
+                <div className="relative z-10">
+                  <div className="mb-3">
+                    <h4 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-sky-400">Our Vision</h4>
+                  </div>
+                  <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-light">
+                    To be the premier architect of digital innovation, creating software ecosystems that empower businesses to scale globally and lead their industries.
+                  </p>
+                </div>
+              </TiltCard>
+
+              {/* Mission Card */}
+              <TiltCard className="relative p-8 md:p-9 min-h-[210px] rounded-3xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center">
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  style={{
+                    background: `radial-gradient(300px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
+                  }}
+                />
+                <div 
+                  className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"
+                  style={{
+                    background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
+                    zIndex: 0,
+                  }}
+                />
+                <div className="relative z-10">
+                  <div className="mb-3">
+                    <h4 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-sky-400">Our Mission</h4>
+                  </div>
+                  <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-light">
+                    To engineer high-performance, robust, and beautifully designed digital solutions through rigorous technical excellence, transparent collaboration, and a results-focused execution.
+                  </p>
+                </div>
+              </TiltCard>
+            </div>
+
           </div>
         </div>
 
