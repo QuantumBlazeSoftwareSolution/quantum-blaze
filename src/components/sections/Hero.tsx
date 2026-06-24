@@ -196,17 +196,17 @@ export function Hero() {
     <section
       id="hero"
       ref={containerRef}
-      className="relative w-full h-screen bg-[#020813] overflow-hidden"
+      className="relative w-full min-h-screen lg:h-screen bg-[#020813] overflow-y-auto lg:overflow-hidden"
     >
       {/* Container wrapper for padding animation */}
       <div 
-        className="w-full h-full flex items-center justify-center overflow-hidden z-20 p-0 lg:p-8"
+        className="w-full min-h-screen lg:h-full flex items-center justify-center overflow-hidden z-20 p-0 lg:p-8"
       >
         
         {/* Animated App Shell Frame */}
         <div
           ref={cardRef}
-          className="relative w-full h-full bg-[#050C18] border-solid border-0 lg:border-[16px] border-[#0b192e] rounded-none lg:rounded-[40px] scale-100 lg:scale-[0.93] flex flex-col justify-between overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.85)]"
+          className="relative w-full min-h-screen lg:h-full bg-[#050C18] border-solid border-0 lg:border-[16px] border-[#0b192e] rounded-none lg:rounded-[40px] scale-100 lg:scale-[0.93] flex flex-col justify-between overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.85)]"
         >
           
           {/* Center Logo Notch (Slides Up on Scroll) */}
@@ -266,7 +266,7 @@ export function Hero() {
           </header>
 
           {/* Hero Body Content Container */}
-          <div className="relative flex-1 w-full px-6 md:px-12 py-2 flex flex-col justify-center">
+          <div className="relative flex-1 w-full px-6 md:px-12 py-8 lg:py-2 flex flex-col justify-center">
             
             {/* Giant Background Logo Text Layer */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
@@ -287,7 +287,7 @@ export function Hero() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center z-10 relative">
               
               {/* Left Side: Tagline, Description & Action */}
-              <div className="flex flex-col items-start text-left lg:col-span-4 xl:col-span-4 max-w-md">
+              <div className="flex flex-col items-start text-left lg:col-span-4 xl:col-span-4 max-w-md order-2 lg:order-1 mt-4 lg:mt-0">
                 
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-500/10 bg-sky-950/10 backdrop-blur-sm text-[12px] md:text-xs font-bold tracking-[0.2em] text-slate-400 uppercase mb-6">
@@ -317,20 +317,20 @@ export function Hero() {
               </div>
 
               {/* Center: Interactive 3D Cubes */}
-              <div className="lg:col-span-4 xl:col-span-4 h-[340px] md:h-[460px] w-full flex items-center justify-center relative my-4 lg:my-0">
+              <div className="lg:col-span-4 xl:col-span-4 h-[260px] sm:h-[340px] md:h-[460px] w-full flex items-center justify-center relative my-4 lg:my-0 order-1 lg:order-2">
                 
                 {/* Concentric radar circles */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="absolute w-[240px] h-[240px] rounded-full border border-sky-500/[0.04]" />
-                  <div className="absolute w-[360px] h-[360px] rounded-full border border-sky-500/[0.03]" />
-                  <div className="absolute w-[480px] h-[480px] rounded-full border border-sky-500/[0.015]" />
+                  <div className="absolute w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] rounded-full border border-sky-500/[0.04]" />
+                  <div className="absolute w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] rounded-full border border-sky-500/[0.03]" />
+                  <div className="absolute w-[380px] h-[380px] sm:w-[480px] sm:h-[480px] rounded-full border border-sky-500/[0.015]" />
                 </div>
 
                 {/* The Massive 3D Cube */}
                 <motion.div
                   animate={{ y: [0, -12, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] md:w-[440px] md:h-[440px] lg:w-[460px] lg:h-[460px] z-10 flex items-center justify-center"
+                  className="relative w-[220px] h-[220px] sm:w-[320px] sm:h-[320px] md:w-[440px] md:h-[440px] lg:w-[460px] lg:h-[460px] z-10 flex items-center justify-center"
                 >
                   <div className="hero-center-image w-full h-full flex items-center justify-center">
                     <Logo3D color="#0ea5e9" height="100%" interactive={true} />
