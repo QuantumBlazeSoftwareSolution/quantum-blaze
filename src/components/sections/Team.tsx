@@ -6,7 +6,7 @@ import { FaLinkedin, FaEnvelope } from "react-icons/fa6";
 import BorderGlow from "@/components/BorderGlow";
 import Image from "next/image";
 import { getTeamGradient } from "@/lib/utils/team";
-import type { TeamMember } from "@/lib/db/schemas/team";
+import { type TeamMember } from "@/lib/data";
 
 export function TeamCard({
   member,

@@ -1,5 +1,6 @@
 
 import { TeamContent } from "@/components/pages/TeamContent";
+import { team as members } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 
@@ -9,6 +10,5 @@ export const metadata = {
 };
 
 export default async function TeamPage() {
-
   return <TeamContent members={members} />;
 }

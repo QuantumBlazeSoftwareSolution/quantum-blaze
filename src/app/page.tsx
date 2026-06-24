@@ -10,6 +10,7 @@ import { Team } from "@/components/sections/Team";
 import { Contact } from "@/components/sections/Contact";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { getPublishedProjects } from "@/lib/db/crud/projects/read";
+import { team as members } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 

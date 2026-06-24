@@ -7,7 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { useLenis } from "@/hooks/useLenis";
 import { FaLinkedin, FaEnvelope } from "react-icons/fa6";
-import type { TeamMember } from "@/lib/db/schemas/team";
+import { type TeamMember } from "@/lib/data";
 
 function MinimalTeamCard({ member, index }: { member: TeamMember; index: number }) {
   return (

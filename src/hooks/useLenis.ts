@@ -22,20 +22,20 @@ export function useLenis() {
 
     lenisRef.current = lenis;
 
+    const updateRaf = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+
     // Sync with GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
+    gsap.ticker.add(updateRaf);
 
     gsap.ticker.lagSmoothing(0);
 
     return () => {
       lenis.destroy();
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
+      gsap.ticker.remove(updateRaf);
     };
   }, []);
 
