@@ -187,7 +187,7 @@ export const team = [
     email: "ravishka@quantumblaze.lk",
     bio: "Expert in complex system architecture and full-stack engineering, ensuring robust and high-performance solutions.",
     image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=256&h=256",
+      "/team/Ravishka-Lead-SE.png",
     linkedin: "#",
     gradient: "from-sky-400 to-cyan-700",
     priority: 2,

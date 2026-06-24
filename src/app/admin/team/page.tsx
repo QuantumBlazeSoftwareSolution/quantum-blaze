@@ -1,4 +1,3 @@
-import { getAllTeamMembers } from "@/lib/db/crud/team/read";
 import { TeamManager } from "@/components/admin/TeamManager";
 
 export const dynamic = "force-dynamic";
@@ -8,7 +7,6 @@ export const metadata = {
 };
 
 export default async function AdminTeamPage() {
-  const members = await getAllTeamMembers();
 
   return (
     <div className="w-full space-y-6">
