@@ -69,7 +69,7 @@ export function Footer() {
                 height={40}
                 className="w-10 h-10 object-contain"
               />
-              <span className="text-lg font-bold tracking-wider font-quantum text-white uppercase">
+              <span className="text-lg font-bold tracking-tight font-grotesk text-white uppercase">
                 Quantum <span className="text-sky-400">Blaze</span>
               </span>
             </div>

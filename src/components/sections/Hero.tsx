@@ -221,7 +221,7 @@ export function Hero() {
               height={32}
               className="w-8 h-8 object-contain"
             />
-            <span className="text-sm font-bold tracking-widest font-quantum text-white uppercase">
+            <span className="text-sm font-bold tracking-tight font-grotesk text-white uppercase">
               Quantum <span className="text-sky-400">Blaze</span>
             </span>
           </div>
@@ -243,10 +243,10 @@ export function Hero() {
               <div className="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest text-slate-400 ml-auto">
                 <button onClick={() => scrollToSection("projects")} className="hover:text-sky-400 transition-colors cursor-pointer">Projects</button>
                 <button onClick={() => scrollToSection("contact")} className="hover:text-sky-400 transition-colors cursor-pointer">Contact</button>
-                <div className="flex items-center gap-2 text-slate-300 bg-sky-950/40 border border-sky-500/20 px-3.5 py-1.5 rounded-full text-[10px] tracking-wider font-bold">
+                <a href="tel:+94788056838" className="flex items-center gap-2 text-slate-300 bg-sky-950/40 hover:bg-sky-950/60 border border-sky-500/20 hover:border-sky-500/40 px-3.5 py-1.5 rounded-full text-[10px] tracking-wider font-bold transition-all hover:text-white cursor-pointer">
                   <PhoneCall className="w-3.5 h-3.5 text-sky-400" />
                   +94 78 805 6838
-                </div>
+                </a>
               </div>
               
               {/* Mobile Brand Name Fallback */}
@@ -258,7 +258,7 @@ export function Hero() {
                   height={28}
                   className="w-7 h-7 object-contain"
                 />
-                <span className="text-xs font-bold tracking-widest font-quantum text-white uppercase">
+                <span className="text-xs font-bold tracking-tight font-grotesk text-white uppercase">
                   Quantum <span className="text-sky-400">Blaze</span>
                 </span>
               </div>
