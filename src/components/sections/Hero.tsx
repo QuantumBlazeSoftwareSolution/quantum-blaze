@@ -221,7 +221,7 @@ export function Hero() {
               height={32}
               className="w-8 h-8 object-contain"
             />
-            <span className="text-sm font-bold tracking-tight font-grotesk text-white uppercase">
+            <span className="text-sm font-black tracking-tight font-inter text-white uppercase">
               Quantum <span className="text-sky-400">Blaze</span>
             </span>
           </div>
@@ -258,7 +258,7 @@ export function Hero() {
                   height={28}
                   className="w-7 h-7 object-contain"
                 />
-                <span className="text-xs font-bold tracking-tight font-grotesk text-white uppercase">
+                <span className="text-xs font-black tracking-tight font-inter text-white uppercase">
                   Quantum <span className="text-sky-400">Blaze</span>
                 </span>
               </div>
