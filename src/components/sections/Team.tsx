@@ -187,14 +187,14 @@ export function Team({ members }: { members: TeamMember[] }) {
             >
               <div className="flex flex-col md:flex-row items-stretch">
                 {/* CEO Image - Left Side */}
-                <div className="relative w-full md:w-[280px] shrink-0 aspect-[4/3.5] md:aspect-auto overflow-hidden">
+                <div className="relative w-full md:w-[280px] shrink-0 aspect-[4/4.5] md:aspect-auto overflow-hidden">
                   {ceoMember.image ? (
                     <Image
                       src={ceoMember.image}
                       alt={ceoMember.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 280px"
-                      className="object-cover object-center group-hover:scale-105 transition-all duration-700 ease-out"
+                      className="object-cover object-top md:object-center group-hover:scale-105 transition-all duration-700 ease-out"
                     />
                   ) : (
                     <div className={`absolute inset-0 bg-gradient-to-br ${getTeamGradient(ceoMember.gradient)} opacity-60`} />
