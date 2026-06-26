@@ -231,10 +231,10 @@ export function About() {
           </div>
 
           {/* Right: Interactive layers (Stats Bento / Vision & Mission) */}
-          <div className="w-full lg:w-[55%] relative lg:min-h-[440px] flex flex-col lg:items-center lg:justify-center gap-6 lg:gap-0">
+          <div className="w-full lg:w-[45%] lg:max-w-[480px] lg:ml-auto relative lg:min-h-[360px] flex flex-col lg:items-center lg:justify-center gap-4 lg:gap-0">
             
             {/* Layer 1: Bento Stats */}
-            <div className="about-stats-layer w-full grid grid-cols-1 md:grid-cols-2 gap-4 lg:absolute lg:inset-0 z-10 transition-all duration-300">
+            <div className="about-stats-layer w-full grid grid-cols-1 md:grid-cols-2 gap-3.5 lg:absolute lg:inset-0 z-10 transition-all duration-300">
               {/* Large Feature Stat */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -243,7 +243,7 @@ export function About() {
                 transition={{ duration: 0.6 }}
                 className="md:col-span-2"
               >
-                <TiltCard className="relative p-5 md:p-6 rounded-3xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden h-full">
+                <TiltCard className="relative p-4 md:p-5 rounded-2xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden h-full">
                   <div 
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
@@ -251,7 +251,7 @@ export function About() {
                     }}
                   />
                   <div 
-                    className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"
+                    className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
                     style={{
                       background: `radial-gradient(150px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
                       zIndex: 0,
@@ -259,7 +259,7 @@ export function About() {
                   />
                   <div className="relative z-10">
                     <div
-                      className="stat-counter text-4xl md:text-5xl font-bold mb-1.5 tracking-tighter"
+                      className="stat-counter text-3xl md:text-4xl font-bold mb-1 tracking-tighter"
                       data-target={stats[0].value}
                       style={{ color: "var(--text-primary)" }}
                     >
@@ -285,7 +285,7 @@ export function About() {
                   transition={{ duration: 0.6, delay: 0.1 * (i + 1) }}
                   className={`${i === 2 ? "md:col-span-2" : ""}`}
                 >
-                  <TiltCard className="relative p-5 rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-sm group hover:bg-slate-900/30 transition-colors duration-500 h-full overflow-hidden">
+                  <TiltCard className="relative p-4 rounded-2xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-sm group hover:bg-slate-900/30 transition-colors duration-500 h-full overflow-hidden">
                     <div 
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                       style={{
@@ -293,7 +293,7 @@ export function About() {
                       }}
                     />
                     <div 
-                      className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"
+                      className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
                       style={{
                         background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
                         zIndex: 0,
@@ -301,7 +301,7 @@ export function About() {
                     />
                     <div className="relative z-10">
                       <div
-                        className="stat-counter text-3xl md:text-4xl font-bold mb-1 tracking-tight"
+                        className="stat-counter text-2xl md:text-3xl font-bold mb-0.5 tracking-tight"
                         data-target={stat.value}
                         style={{ color: "var(--text-primary)" }}
                       >

@@ -289,9 +289,8 @@ export function Hero() {
               {/* Left Side: Tagline, Description & Action */}
               <div className="flex flex-col items-start text-left lg:col-span-4 xl:col-span-4 max-w-md order-2 lg:order-1 mt-4 lg:mt-0">
                 
-                {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-500/10 bg-sky-950/10 backdrop-blur-sm text-[12px] md:text-xs font-bold tracking-[0.2em] text-slate-400 uppercase mb-6">
-                  <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+                {/* Tagline Text */}
+                <div className="text-[12px] md:text-xs font-bold tracking-[0.2em] text-slate-400 uppercase mb-6">
                   Think Beyond <span className="text-sky-400">Limitation</span>
                 </div>
 
