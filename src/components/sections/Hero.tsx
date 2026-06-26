@@ -339,7 +339,7 @@ export function Hero() {
               </div>
 
               {/* Right Side: Features & Free Consultation Box */}
-              <div className="hidden lg:flex flex-col items-start lg:items-end text-left lg:text-right lg:col-span-4 xl:col-span-4 gap-8">
+              <div className="hidden lg:flex flex-col items-start lg:items-end text-left lg:text-right lg:col-span-4 xl:col-span-4 gap-8 lg:order-3">
                 
                 {/* Feature Tags List */}
                 <div className="space-y-4 w-full max-w-[240px] ml-auto">
