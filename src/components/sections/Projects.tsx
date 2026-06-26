@@ -61,7 +61,7 @@ function ProjectCard({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className={isEven ? "lg:order-1" : "lg:order-2"}
+            className={`order-2 ${isEven ? "lg:order-1" : "lg:order-2"}`}
           >
             {/* Number + label */}
             <div className="flex items-center gap-4 mb-6">
@@ -137,7 +137,7 @@ function ProjectCard({
           {/* Mockup side — real images */}
           <motion.div
             style={{ y }}
-            className={`relative flex items-center justify-center ${isEven ? "lg:order-2" : "lg:order-1"}`}
+            className={`relative flex items-center justify-center order-1 ${isEven ? "lg:order-2" : "lg:order-1"}`}
           >
             <div className="relative w-full max-w-lg mx-auto">
               {/* Glow backdrop */}
