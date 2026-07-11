@@ -143,9 +143,10 @@ function Tesseract({
 }
 
 // Main 3D Logo Scene that manages rotation and orbits
-function LogoScene({ color }: { color: string }) {
+function LogoScene({ color, onReady }: { color: string; onReady?: () => void }) {
   const groupRef = useRef<THREE.Group>(null);
   const orbRef = useRef<THREE.Mesh>(null);
+  const hasTriggeredReady = useRef(false);
 
   // Constants for geometry
   const outerCubeSize = 2.4;
@@ -157,6 +158,13 @@ function LogoScene({ color }: { color: string }) {
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
+
+    // Signal that the 3D scene has rendered its first frame (WebGL is ready and drawing)
+    if (!hasTriggeredReady.current && onReady) {
+      hasTriggeredReady.current = true;
+      // Small timeout to ensure context is fully drawn
+      setTimeout(onReady, 100);
+    }
 
     // Slowly rotate the entire tesseract system in all axes
     if (groupRef.current) {
@@ -199,8 +207,6 @@ function LogoScene({ color }: { color: string }) {
       </group>
 
       {/* Orbiting Ring (Torus) - Tilted around the tesseract */}
-      {/* We keep it in a separate group so it doesn't spin on all axes like the tesseract, */}
-      {/* maintaining its planetary ring look while the central tesseract rotates dynamically */}
       <group rotation={[Math.PI / 5, Math.PI / 4, 0]}>
         {/* The Torus Ring */}
         <mesh>
@@ -239,26 +245,48 @@ export function Logo3D({
   height?: string;
   interactive?: boolean;
 }) {
-  return (
-    <div style={{ width: "100%", height, position: "relative" }}>
-      <Canvas
-        camera={{ position: [0, 0, 7.8], fov: 45 }}
-        gl={{ antialias: true, alpha: true }}
-      >
-        <ambientLight intensity={0.6} />
-        
-        {/* Soft studio lights */}
-        <pointLight position={[10, 10, 10]} intensity={1.5} />
-        <directionalLight position={[-5, 5, -5]} intensity={0.8} />
-        <spotLight position={[0, 5, 0]} intensity={1.2} angle={Math.PI / 4} penumbra={1} />
-        
-        <LogoScene color={color} />
+  const [isReady, setIsReady] = React.useState(false);
 
-        {interactive && <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />}
-        
-        {/* Environment map for realistic reflections */}
-        <Environment preset="city" />
-      </Canvas>
+  return (
+    <div className="w-full h-full relative" style={{ height }}>
+      {/* Static placeholder image loaded instantly */}
+      <div 
+        className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 transition-opacity duration-700 ease-out"
+        style={{ opacity: isReady ? 0 : 1 }}
+      >
+        <img 
+          src="/original-logo.png" 
+          alt="Quantum Blaze Logo Placeholder"
+          className="w-[75%] h-[75%] object-contain max-w-[340px] max-h-[340px] select-none"
+          // @ts-ignore
+          fetchpriority="high"
+        />
+      </div>
+
+      {/* The 3D Canvas which will fade in smoothly once first frame is ready */}
+      <div 
+        className="w-full h-full transition-opacity duration-700 ease-in-out"
+        style={{ opacity: isReady ? 1 : 0 }}
+      >
+        <Canvas
+          camera={{ position: [0, 0, 7.8], fov: 45 }}
+          gl={{ antialias: true, alpha: true }}
+        >
+          <ambientLight intensity={0.6} />
+          
+          {/* Soft studio lights */}
+          <pointLight position={[10, 10, 10]} intensity={1.5} />
+          <directionalLight position={[-5, 5, -5]} intensity={0.8} />
+          <spotLight position={[0, 5, 0]} intensity={1.2} angle={Math.PI / 4} penumbra={1} />
+          
+          <LogoScene color={color} onReady={() => setIsReady(true)} />
+
+          {interactive && <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />}
+          
+          {/* Environment map for realistic reflections */}
+          <Environment preset="city" />
+        </Canvas>
+      </div>
     </div>
   );
 }
