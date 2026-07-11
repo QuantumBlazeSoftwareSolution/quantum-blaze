@@ -1,6 +1,6 @@
 "use client";
-import { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { GlowButton } from "@/components/ui/GlowButton";
 import Image from "next/image";
 import { Rocket, Shield, Users, TrendingUp, Code, ArrowDown, PhoneCall } from "lucide-react";
@@ -10,6 +10,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function Hero() {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const notchTopRef = useRef<HTMLDivElement>(null);
@@ -262,7 +263,74 @@ export function Hero() {
                   Quantum <span className="text-sky-400">Blaze</span>
                 </span>
               </div>
+
+              {/* Mobile Hamburger Menu Button */}
+              <button
+                onClick={() => setMobileOpen(!mobileOpen)}
+                className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50 ml-auto"
+                aria-label="Toggle menu"
+              >
+                <span
+                  className={`block w-6 h-0.5 bg-sky-400 transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`}
+                />
+                <span
+                  className={`block w-6 h-0.5 bg-sky-400 transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`}
+                />
+                <span
+                  className={`block w-6 h-0.5 bg-sky-400 transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`}
+                />
+              </button>
             </div>
+
+            {/* Mobile Menu Drawer */}
+            <AnimatePresence>
+              {mobileOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-x-0 top-[70px] mx-6 z-40 bg-[#050C18]/95 backdrop-blur-xl border border-sky-500/10 p-6 flex flex-col gap-4 shadow-2xl rounded-2xl lg:hidden"
+                >
+                  <button
+                    onClick={() => { scrollToSection("about"); setMobileOpen(false); }}
+                    className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
+                  >
+                    About
+                  </button>
+                  <button
+                    onClick={() => { scrollToSection("services"); setMobileOpen(false); }}
+                    className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
+                  >
+                    Services
+                  </button>
+                  <button
+                    onClick={() => { scrollToSection("projects"); setMobileOpen(false); }}
+                    className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
+                  >
+                    Projects
+                  </button>
+                  {process.env.NEXT_PUBLIC_TEAM_SECTION === "true" && (
+                    <button
+                      onClick={() => { scrollToSection("team"); setMobileOpen(false); }}
+                      className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
+                    >
+                      Team
+                    </button>
+                  )}
+                  <button
+                    onClick={() => { scrollToSection("contact"); setMobileOpen(false); }}
+                    className="text-left py-2 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
+                  >
+                    Contact
+                  </button>
+                  <a href="tel:+94788056838" className="flex items-center justify-center gap-2 text-slate-300 bg-sky-950/40 border border-sky-500/20 py-2.5 rounded-xl text-xs font-bold transition-all hover:text-white mt-2">
+                    <PhoneCall className="w-3.5 h-3.5 text-sky-400" />
+                    +94 78 805 6838
+                  </a>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </header>
 
           {/* Hero Body Content Container */}

@@ -61,7 +61,7 @@ function ProjectCard({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className={`order-2 ${isEven ? "lg:order-1" : "lg:order-2"}`}
+            className={`w-full ${isEven ? "lg:order-1" : "lg:order-2"}`}
           >
             {/* Number + label */}
             <div className="flex items-center gap-4 mb-6">
@@ -72,7 +72,7 @@ function ProjectCard({
                   fontFamily: "var(--font-grotesk)",
                 }}
               >
-                {project.orderNumber}
+                {String(index + 1).padStart(2, "0")}
               </span>
               <div
                 className="h-px flex-grow"
@@ -81,6 +81,37 @@ function ProjectCard({
                 }}
               />
             </div>
+
+            {/* Mobile-only Mockup Image (below number, above content) */}
+            {project.imageUrl && (
+              <div className="block lg:hidden w-full mx-auto mb-8 relative">
+                <div className="relative w-full max-w-sm mx-auto">
+                  <div
+                    className="absolute inset-0 blur-3xl rounded-3xl scale-75 opacity-30 pointer-events-none"
+                    style={{ background: project.themeColor }}
+                  />
+                  <div
+                    className="relative rounded-2xl overflow-hidden glass"
+                    style={{
+                      border: `1px solid ${project.themeColor}30`,
+                      boxShadow: `0 0 40px ${project.themeColor}15, 0 20px 50px rgba(0,0,0,0.5)`,
+                      aspectRatio: project.mockupType === "mobile" ? "9/19" : "16/10",
+                      width: project.mockupType === "mobile" ? "55%" : "100%",
+                      margin: "0 auto",
+                    }}
+                  >
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
+                  </div>
+                </div>
+              </div>
+            )}
 
             <div className="mb-3">
               <SectionLabel>{project.subtitle}</SectionLabel>
@@ -137,7 +168,7 @@ function ProjectCard({
           {/* Mockup side — real images */}
           <motion.div
             style={{ y }}
-            className={`relative flex items-center justify-center order-1 ${isEven ? "lg:order-2" : "lg:order-1"}`}
+            className={`hidden lg:flex relative items-center justify-center ${isEven ? "lg:order-2" : "lg:order-1"}`}
           >
             <div className="relative w-full max-w-lg mx-auto">
               {/* Glow backdrop */}
