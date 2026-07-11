@@ -6,7 +6,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { ArrowRight, Rocket, Search } from "lucide-react";
-import type { Project } from "@/lib/db/schemas/projects";
+import { type Project } from "@/lib/data";
 
 export function ProjectsClient({ projects }: { projects: Project[] }) {
   return (

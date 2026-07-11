@@ -9,15 +9,9 @@ import { TechStack } from "@/components/sections/TechStack";
 import { Team } from "@/components/sections/Team";
 import { Contact } from "@/components/sections/Contact";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-import { getPublishedProjects } from "@/lib/db/crud/projects/read";
-import { team as members } from "@/lib/data";
+import { team as members, projects } from "@/lib/data";
 
-export const dynamic = "force-dynamic";
-
-export default async function Home() {
-  const [projects] = await Promise.all([
-    getPublishedProjects(),
-  ]);
+export default function Home() {
 
   return (
     <SmoothScrollProvider>

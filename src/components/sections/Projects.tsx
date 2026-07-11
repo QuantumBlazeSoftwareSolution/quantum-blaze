@@ -5,7 +5,7 @@ import Image from "next/image";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { GlowButton } from "@/components/ui/GlowButton";
 import Link from "next/link";
-import type { Project } from "@/lib/db/schemas/projects";
+import { type Project } from "@/lib/data";
 
 function ProjectCard({
   project,
