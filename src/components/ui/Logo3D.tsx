@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Environment } from "@react-three/drei";
 import * as THREE from "three";
 
-// Outer Cube Frame component made of 12 cylinders representing the cube edges
+// Outer Cube Frame component made of 12 box segments representing the cube edges
 function CubeFrame({ size, thickness, color }: { size: number; thickness: number; color: string }) {
   const half = size / 2;
 
@@ -41,7 +41,7 @@ function CubeFrame({ size, thickness, color }: { size: number; thickness: number
           position={edge.position as [number, number, number]} 
           rotation={edge.rotation as [number, number, number]}
         >
-          <cylinderGeometry args={[thickness, thickness, size, 8]} />
+          <boxGeometry args={[thickness * 1.5, size, thickness * 1.5]} />
           <meshPhysicalMaterial
             color={color}
             metalness={0.9}
@@ -55,8 +55,8 @@ function CubeFrame({ size, thickness, color }: { size: number; thickness: number
   );
 }
 
-// Helper component to render a cylinder between two 3D points
-function CylinderBetweenPoints({ 
+// Helper component to render a box strut between two 3D points
+function BoxStrutBetweenPoints({ 
   start, 
   end, 
   thickness, 
@@ -80,7 +80,7 @@ function CylinderBetweenPoints({
   
   return (
     <mesh position={position} quaternion={quaternion}>
-      <cylinderGeometry args={[thickness, thickness, length, 8]} />
+      <boxGeometry args={[thickness * 1.5, length, thickness * 1.5]} />
       <meshPhysicalMaterial
         color={color}
         metalness={0.9}
@@ -130,7 +130,7 @@ function Tesseract({
       
       {/* 8 Diagonal Corner Connectors */}
       {connectors.map((conn, idx) => (
-        <CylinderBetweenPoints 
+        <BoxStrutBetweenPoints 
           key={idx} 
           start={conn.start} 
           end={conn.end} 
