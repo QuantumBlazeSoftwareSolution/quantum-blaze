@@ -114,64 +114,6 @@ export function About() {
           },
         });
       });
-
-      // Desktop Pinning Sequence for Stats -> Vision/Mission
-      const mm = gsap.matchMedia();
-      mm.add("(min-width: 1024px)", () => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "+=150%",
-            pin: true,
-            scrub: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-
-        // 1. Stats fade out
-        tl.to(".about-stats-layer", {
-          opacity: 0,
-          scale: 0.95,
-          duration: 0.6,
-          ease: "power2.inOut",
-          onStart: () => {
-            gsap.set(".about-stats-layer", { pointerEvents: "none" });
-          },
-          onReverseComplete: () => {
-            gsap.set(".about-stats-layer", { pointerEvents: "auto" });
-          }
-        });
-
-        // 2. Vision & Mission layer becomes visible
-        tl.to(".about-vision-mission-layer", {
-          opacity: 1,
-          duration: 0.1,
-          onStart: () => {
-            gsap.set(".about-vision-mission-layer", { pointerEvents: "auto" });
-          },
-          onReverseComplete: () => {
-            gsap.set(".about-vision-mission-layer", { pointerEvents: "none" });
-          }
-        });
-
-        // 3. Vision & Mission cards slide in sequentially with a small stagger delay
-        tl.fromTo(".about-vision-mission-layer > div",
-          {
-            x: "150px",
-            opacity: 0,
-          },
-          {
-            x: "0px",
-            opacity: 1,
-            duration: 0.8,
-            stagger: 0.35,
-            ease: "power2.out",
-          },
-          "-=0.1"
-        );
-      });
     }, sectionRef);
 
     // Call ScrollTrigger refresh after a short delay to ensure layout sizes are fully loaded
@@ -186,7 +128,7 @@ export function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative lg:h-screen lg:flex lg:items-center overflow-hidden section-padding lg:py-0"
+      className="relative w-full py-20 lg:py-28 overflow-hidden"
       style={{ background: "var(--bg-primary)" }}
     >
       {/* Precision background glows */}
@@ -200,41 +142,110 @@ export function About() {
       />
 
       <div className="container-wide relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
-          {/* Left: Narrative Side */}
-          <div className="w-full lg:w-[45%]" ref={textRef}>
-            <div
-              className="mb-10"
-              style={{
-                fontSize: "clamp(2rem, 4vw, 2.75rem)",
-                fontWeight: 700,
-                lineHeight: 1.1,
-                fontFamily: "var(--font-grotesk)",
-              }}
-            >
-              <div className="overflow-hidden pb-2">
-                <span className="reveal-line block text-white">
-                  About <span className="text-sky-400">Us</span>
-                </span>
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-12 items-start">
+          {/* Left: Narrative Side & Vision/Mission */}
+          <div className="w-full lg:w-[50%] flex flex-col gap-8" ref={textRef}>
+            <div>
+              <div
+                className="mb-8"
+                style={{
+                  fontSize: "clamp(2rem, 4vw, 2.75rem)",
+                  fontWeight: 700,
+                  lineHeight: 1.1,
+                  fontFamily: "var(--font-grotesk)",
+                }}
+              >
+                <div className="overflow-hidden pb-2">
+                  <span className="reveal-line block text-white">
+                    About <span className="text-sky-400">Us</span>
+                  </span>
+                </div>
+              </div>
+
+              <div className="overflow-hidden border-l border-slate-800/60 pl-6 ml-2 mb-8">
+                <p className="reveal-line text-lg leading-relaxed max-w-xl text-slate-400 font-light">
+                  We believe that exceptional software isn&apos;t just about lines of
+                  code; it&apos;s about the architecture of innovation. Our team
+                  deep-dives into every technical detail, from system scalability
+                  to micro-interactions, ensuring your digital ecosystem is
+                  robust, performant, and future-proof.
+                </p>
               </div>
             </div>
 
-            <div className="overflow-hidden border-l border-slate-800/60 pl-6 ml-2">
-              <p className="reveal-line text-lg leading-relaxed max-w-xl text-slate-400 font-light">
-                We believe that exceptional software isn&apos;t just about lines of
-                code; it&apos;s about the architecture of innovation. Our team
-                deep-dives into every technical detail, from system scalability
-                to micro-interactions, ensuring your digital ecosystem is
-                robust, performant, and future-proof.
-              </p>
+            {/* Vision & Mission Cards */}
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-5 w-full">
+              {/* Vision Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex-1"
+              >
+                <TiltCard className="relative p-6 md:p-8 min-h-[160px] rounded-2xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center">
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    style={{
+                      background: `radial-gradient(300px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
+                    }}
+                  />
+                  <div 
+                    className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
+                    style={{
+                      background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
+                      zIndex: 0,
+                    }}
+                  />
+                  <div className="relative z-10">
+                    <div className="mb-2">
+                      <h4 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-sky-400">Our Vision</h4>
+                    </div>
+                    <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-light">
+                      To be the premier architect of digital innovation, creating software ecosystems that empower businesses to scale globally and lead their industries.
+                    </p>
+                  </div>
+                </TiltCard>
+              </motion.div>
+
+              {/* Mission Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="flex-1"
+              >
+                <TiltCard className="relative p-6 md:p-8 min-h-[160px] rounded-2xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center">
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    style={{
+                      background: `radial-gradient(300px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
+                    }}
+                  />
+                  <div 
+                    className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
+                    style={{
+                      background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
+                      zIndex: 0,
+                    }}
+                  />
+                  <div className="relative z-10">
+                    <div className="mb-2">
+                      <h4 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-sky-400">Our Mission</h4>
+                    </div>
+                    <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-light">
+                      To engineer high-performance, robust, and beautifully designed digital solutions through rigorous technical excellence, transparent collaboration, and a results-focused execution.
+                    </p>
+                  </div>
+                </TiltCard>
+              </motion.div>
             </div>
           </div>
 
-          {/* Right: Interactive layers (Stats Bento / Vision & Mission) */}
-          <div className="w-full lg:w-[45%] lg:max-w-[480px] lg:ml-auto relative lg:min-h-[360px] flex flex-col lg:items-center lg:justify-center gap-4 lg:gap-0">
-            
-            {/* Layer 1: Bento Stats */}
-            <div className="about-stats-layer w-full grid grid-cols-1 md:grid-cols-2 gap-3.5 lg:absolute lg:inset-0 z-10 transition-all duration-300">
+          {/* Right: Bento Stats (Always Visible, static column) */}
+          <div className="w-full lg:w-[42%] lg:ml-auto flex flex-col justify-center">
+            <div className="about-stats-layer w-full grid grid-cols-1 md:grid-cols-2 gap-3.5">
               {/* Large Feature Stat */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -315,60 +326,6 @@ export function About() {
                 </motion.div>
               ))}
             </div>
-
-            {/* Layer 2: Vision & Mission */}
-            <div className="about-vision-mission-layer w-full flex flex-col gap-4 justify-center lg:absolute lg:inset-0 lg:opacity-0 lg:pointer-events-none z-20">
-              {/* Vision Card */}
-              <TiltCard className="relative p-8 md:p-9 min-h-[210px] rounded-3xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center">
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  style={{
-                    background: `radial-gradient(300px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
-                  }}
-                />
-                <div 
-                  className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"
-                  style={{
-                    background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
-                    zIndex: 0,
-                  }}
-                />
-                <div className="relative z-10">
-                  <div className="mb-3">
-                    <h4 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-sky-400">Our Vision</h4>
-                  </div>
-                  <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-light">
-                    To be the premier architect of digital innovation, creating software ecosystems that empower businesses to scale globally and lead their industries.
-                  </p>
-                </div>
-              </TiltCard>
-
-              {/* Mission Card */}
-              <TiltCard className="relative p-8 md:p-9 min-h-[210px] rounded-3xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center">
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  style={{
-                    background: `radial-gradient(300px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
-                  }}
-                />
-                <div 
-                  className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"
-                  style={{
-                    background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
-                    zIndex: 0,
-                  }}
-                />
-                <div className="relative z-10">
-                  <div className="mb-3">
-                    <h4 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-sky-400">Our Mission</h4>
-                  </div>
-                  <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-light">
-                    To engineer high-performance, robust, and beautifully designed digital solutions through rigorous technical excellence, transparent collaboration, and a results-focused execution.
-                  </p>
-                </div>
-              </TiltCard>
-            </div>
-
           </div>
         </div>
 
