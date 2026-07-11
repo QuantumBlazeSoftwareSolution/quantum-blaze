@@ -144,7 +144,7 @@ export function About() {
       <div className="container-wide relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-12 items-start">
           {/* Left: Narrative Side & Vision/Mission */}
-          <div className="w-full lg:w-[50%] flex flex-col gap-8" ref={textRef}>
+          <div className="w-full lg:w-[55%] flex flex-col gap-8" ref={textRef}>
             <div>
               <div
                 className="mb-8"
@@ -173,8 +173,8 @@ export function About() {
               </div>
             </div>
 
-            {/* Vision & Mission Cards */}
-            <div className="flex flex-col sm:flex-row lg:flex-col gap-5 w-full">
+            {/* Vision & Mission Cards (Side-by-side on desktop) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
               {/* Vision Card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -183,7 +183,7 @@ export function About() {
                 transition={{ duration: 0.6 }}
                 className="flex-1"
               >
-                <TiltCard className="relative p-6 md:p-8 min-h-[160px] rounded-2xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center">
+                <TiltCard className="relative p-6 md:p-8 min-h-[160px] rounded-2xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center h-full">
                   <div 
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
@@ -216,7 +216,7 @@ export function About() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="flex-1"
               >
-                <TiltCard className="relative p-6 md:p-8 min-h-[160px] rounded-2xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center">
+                <TiltCard className="relative p-6 md:p-8 min-h-[160px] rounded-2xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center h-full">
                   <div 
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
@@ -244,7 +244,7 @@ export function About() {
           </div>
 
           {/* Right: Bento Stats (Always Visible, static column) */}
-          <div className="w-full lg:w-[42%] lg:ml-auto flex flex-col justify-center">
+          <div className="w-full lg:w-[38%] lg:ml-auto flex flex-col justify-center">
             <div className="about-stats-layer w-full grid grid-cols-1 md:grid-cols-2 gap-3.5">
               {/* Large Feature Stat */}
               <motion.div
