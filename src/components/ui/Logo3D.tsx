@@ -104,20 +104,26 @@ function Tesseract({
   thickness: number; 
   color: string; 
 }) {
-  // Calculate the 8 corner connectors
-  const connectors = useMemo(() => {
-    const arr = [];
+  // Calculate the 8 corner connectors and the 8 vertex positions for joint caps
+  const { connectors, verticesOuter, verticesInner } = useMemo(() => {
+    const conns = [];
+    const outerVerts: [number, number, number][] = [];
+    const innerVerts: [number, number, number][] = [];
     const signs = [-1, 1];
+    
     for (const x of signs) {
       for (const y of signs) {
         for (const z of signs) {
           const start = new THREE.Vector3((x * innerSize) / 2, (y * innerSize) / 2, (z * innerSize) / 2);
           const end = new THREE.Vector3((x * outerSize) / 2, (y * outerSize) / 2, (z * outerSize) / 2);
-          arr.push({ start, end });
+          conns.push({ start, end });
+          
+          outerVerts.push([(x * outerSize) / 2, (y * outerSize) / 2, (z * outerSize) / 2]);
+          innerVerts.push([(x * innerSize) / 2, (y * innerSize) / 2, (z * innerSize) / 2]);
         }
       }
     }
-    return arr;
+    return { connectors: conns, verticesOuter: outerVerts, verticesInner: innerVerts };
   }, [outerSize, innerSize]);
 
   return (
@@ -137,6 +143,34 @@ function Tesseract({
           thickness={thickness * 0.6} 
           color={color} 
         />
+      ))}
+
+      {/* Corner Joint Caps - Outer Frame (Fills the corner gaps) */}
+      {verticesOuter.map((pos, idx) => (
+        <mesh key={`outer-cap-${idx}`} position={pos}>
+          <boxGeometry args={[thickness * 1.52, thickness * 1.52, thickness * 1.52]} />
+          <meshPhysicalMaterial
+            color={color}
+            metalness={0.9}
+            roughness={0.15}
+            clearcoat={1.0}
+            clearcoatRoughness={0.1}
+          />
+        </mesh>
+      ))}
+
+      {/* Corner Joint Caps - Inner Frame (Fills the corner gaps) */}
+      {verticesInner.map((pos, idx) => (
+        <mesh key={`inner-cap-${idx}`} position={pos}>
+          <boxGeometry args={[thickness * 0.75 * 1.52, thickness * 0.75 * 1.52, thickness * 0.75 * 1.52]} />
+          <meshPhysicalMaterial
+            color={color}
+            metalness={0.9}
+            roughness={0.15}
+            clearcoat={1.0}
+            clearcoatRoughness={0.1}
+          />
+        </mesh>
       ))}
     </group>
   );
