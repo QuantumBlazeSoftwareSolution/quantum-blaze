@@ -76,6 +76,7 @@ export const metadata: Metadata = {
 };
 
 import { CommandPalette } from "@/components/ui/CommandPalette";
+import { ScrollToTop } from "@/components/providers/ScrollToTop";
 
 export default function RootLayout({
   children,
@@ -99,6 +100,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="antialiased">
+        <ScrollToTop />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
