@@ -129,6 +129,7 @@ export interface TeamMember {
   linkedin: string;
   gradient: string;
   orderNumber: number;
+  visibility: boolean;
 }
 
 // ─── Team ────────────────────────────────────────────────────────────────────
@@ -143,6 +144,7 @@ export const team: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/vihanga-heshan",
     gradient: "from-sky-500 to-blue-700",
     orderNumber: 1,
+    visibility: true,
   },
   {
     id: "co-founder",
@@ -155,6 +157,7 @@ export const team: TeamMember[] = [
     linkedin: "#",
     gradient: "from-blue-500 to-indigo-700",
     orderNumber: 5,
+    visibility: true,
   },
   {
     id: "lead-dev",
@@ -166,6 +169,7 @@ export const team: TeamMember[] = [
     linkedin: "#",
     gradient: "from-sky-400 to-cyan-700",
     orderNumber: 2,
+    visibility: true,
   },
   {
     id: "developer",
@@ -173,11 +177,11 @@ export const team: TeamMember[] = [
     role: "Software Developer",
     email: "supun@quantumblaze.lk",
     bio: "Dedicated software engineer focused on building efficient, scalable backend systems and seamless integrations.",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=256&h=256",
+    image: "/team/Supun-senior-developer.jpeg",
     linkedin: "#",
     gradient: "from-sky-500 to-blue-600",
     orderNumber: 4,
+    visibility: true,
   },
   {
     id: "creator",
@@ -190,6 +194,7 @@ export const team: TeamMember[] = [
     linkedin: "#",
     gradient: "from-blue-600 to-indigo-800",
     orderNumber: 6,
+    visibility: true,
   },
 ];
 
