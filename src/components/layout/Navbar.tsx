@@ -51,10 +51,10 @@ export function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: hidden ? -100 : 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-500 ${
           scrolled
-            ? "bg-[#050b14]/80 backdrop-blur-xl border-b border-white/5 py-3 shadow-2xl shadow-black/50"
-            : "bg-gradient-to-b from-[#050B14] via-[#050B14]/90 to-transparent py-5"
+            ? "bg-[#050b14]/80 backdrop-blur-xl border-white/5 py-3 shadow-2xl shadow-black/50"
+            : "bg-gradient-to-b from-[#050B14] via-[#050B14]/90 to-transparent border-transparent py-5"
         }`}
       >
         <div className="container-wide flex items-center justify-between">
