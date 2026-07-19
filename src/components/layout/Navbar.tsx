@@ -53,7 +53,7 @@ export function Navbar() {
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "glass !border-none border-b border-sky-500/10 py-3 shadow-2xl shadow-black/50"
+            ? "bg-[#050b14]/80 backdrop-blur-xl border-b border-white/5 py-3 shadow-2xl shadow-black/50"
             : "bg-gradient-to-b from-[#050B14] via-[#050B14]/90 to-transparent py-5"
         }`}
       >

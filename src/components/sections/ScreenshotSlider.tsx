@@ -96,7 +96,7 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
                 src={activeScreenshot.url}
                 alt={activeScreenshot.title}
                 fill
-                className="object-cover"
+                className="object-contain p-4 md:p-6"
                 priority
               />
             </motion.div>
@@ -173,7 +173,7 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
           {/* Cards Queue Section */}
           <div className="mt-8">
             {/* Shifting Row Previews Container */}
-            <div className="flex items-center gap-3 overflow-hidden h-16 mb-4 relative w-full">
+            <div className="flex items-center gap-3 overflow-hidden h-16 mb-4 relative w-full px-2">
               <AnimatePresence mode="popLayout">
                 {orderedPreviews.map((card, i) => {
                   const isActive = card.originalIndex === activeIndex;
