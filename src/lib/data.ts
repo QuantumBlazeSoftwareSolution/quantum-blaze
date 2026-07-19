@@ -168,18 +168,6 @@ export const team: TeamMember[] = [
     orderNumber: 2,
   },
   {
-    id: "design",
-    name: "Lakshan Maduranga",
-    role: "Head of Design",
-    email: "lakshan@quantumblaze.lk",
-    bio: "UI/UX specialist focused on creating immersive, premium digital experiences that define our brand aesthetic.",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=256&h=256",
-    linkedin: "#",
-    gradient: "from-cyan-500 to-sky-700",
-    orderNumber: 3,
-  },
-  {
     id: "developer",
     name: "Supun Sulakshana",
     role: "Software Developer",
