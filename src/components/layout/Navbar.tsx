@@ -13,6 +13,7 @@ const navLinks = [
   ...(process.env.NEXT_PUBLIC_TEAM_SECTION === "true"
     ? [{ label: "Team", href: "#team" }]
     : []),
+  { label: "Blog", href: "/blog" },
 ];
 
 export function Navbar() {
@@ -36,6 +37,11 @@ export function Navbar() {
   }, [lastY]);
 
   const scrollTo = (href: string) => {
+    if (href.startsWith("/")) {
+      router.push(href);
+      setMobileOpen(false);
+      return;
+    }
     if (pathname !== "/") {
       router.push("/" + href);
       return;
@@ -44,6 +50,7 @@ export function Navbar() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
     setMobileOpen(false);
   };
+
 
   return (
     <>
