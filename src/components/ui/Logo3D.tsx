@@ -293,7 +293,7 @@ export function Logo3D({
           alt="Quantum Blaze Logo Placeholder"
           className="w-[75%] h-[75%] object-contain max-w-[340px] max-h-[340px] select-none"
           // @ts-ignore
-          fetchpriority="high"
+          fetchPriority="high"
         />
       </div>
 

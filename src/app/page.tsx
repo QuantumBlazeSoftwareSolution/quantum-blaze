@@ -12,6 +12,9 @@ import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvide
 import { team as members, projects } from "@/lib/data";
 
 export default function Home() {
+  const latestProjects = [...projects]
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .slice(0, 3);
 
   return (
     <SmoothScrollProvider>
@@ -21,7 +24,7 @@ export default function Home() {
         <About />
         <Services />
         <Industries />
-        <Projects projects={projects} />
+        <Projects projects={latestProjects} />
         <Process />
         <TechStack />
         {process.env.NEXT_PUBLIC_TEAM_SECTION === "true" && (

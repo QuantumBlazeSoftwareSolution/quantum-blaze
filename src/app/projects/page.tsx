@@ -7,5 +7,8 @@ export const metadata = {
 };
 
 export default function ProjectsPage() {
-  return <ProjectsClient projects={projects} />;
+  const sortedProjects = [...projects].sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+  return <ProjectsClient projects={sortedProjects} />;
 }

@@ -44,72 +44,7 @@ export const services = [
   },
 ];
 
-export interface Project {
-  id: string;
-  slug: string;
-  orderNumber: number;
-  title: string;
-  subtitle: string;
-  description: string;
-  techStack: string[];
-  metrics: string[];
-  themeColor: string;
-  mockupType: "desktop" | "mobile";
-  imageUrl: string;
-}
-
-// ─── Projects ───────────────────────────────────────────────────────────────
-export const projects: Project[] = [
-  {
-    id: "lms",
-    slug: "lms",
-    orderNumber: 1,
-    title: "Multi-Tenant Learning Management System",
-    subtitle: "EdTech Platform",
-    description:
-      "A comprehensive LMS serving 50,000+ learners across 200+ institutions. Features include live video lectures, AI-powered assessments, multi-tenant white-labeling, and a real-time analytics dashboard for educators.",
-    techStack: ["Next.js", "PostgreSQL", "WebRTC", "Prisma", "AWS", "Redis"],
-    metrics: ["50K+ Active Users", "200+ Institutions", "99.9% Uptime"],
-    themeColor: "#38bdf8",
-    mockupType: "desktop",
-    imageUrl: "/images/projects/lms.png",
-  },
-  {
-    id: "roadservice",
-    slug: "roadservice",
-    orderNumber: 2,
-    title: "Mobile Road-Service Application",
-    subtitle: "Consumer Mobile App",
-    description:
-      "A comprehensive roadside assistance app connecting drivers to certified mechanics in real-time. Features GPS tracking, in-app payments, service history, and a mechanic marketplace — all in a blazingly fast Flutter app.",
-    techStack: [
-      "Flutter",
-      "Node.js",
-      "Google Maps API",
-      "Stripe",
-      "Firebase",
-      "PostgreSQL",
-    ],
-    metrics: ["10K+ Downloads", "4.8★ App Rating", "< 3min Response"],
-    themeColor: "#0ea5e9",
-    mockupType: "mobile",
-    imageUrl: "/images/projects/roadservice.png",
-  },
-  {
-    id: "pos",
-    slug: "pos",
-    orderNumber: 3,
-    title: "Retail Point-of-Sale System",
-    subtitle: "Enterprise Software",
-    description:
-      "A full-featured POS system for retail chains with inventory management, multi-store reporting, loyalty programs, and offline-capable transactions. Processes 10,000+ transactions per day with 100% reliability.",
-    techStack: ["Electron", "React", "SQLite", "Node.js", "PostgreSQL", "Prisma"],
-    metrics: ["10K+ Daily Txns", "Multi-Store", "Offline-ready"],
-    themeColor: "#7dd3fc",
-    mockupType: "desktop",
-    imageUrl: "/images/projects/pos.png",
-  },
-];
+export { type Project, projects } from "./projects";
 
 // ─── Process Steps ───────────────────────────────────────────────────────────
 export const processSteps = [
