@@ -14,13 +14,14 @@ interface ScreenshotSliderProps {
 export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(0); // -1 for prev, 1 for next
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
   const startAutoPlay = () => {
     stopAutoPlay();
     autoPlayRef.current = setInterval(() => {
       handleNext();
-    }, 3000);
+    }, 4500);
   };
 
   const stopAutoPlay = () => {
@@ -35,22 +36,41 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
   }, [activeIndex]);
 
   const handleNext = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setDirection(1);
     setActiveIndex((prev) => (prev + 1) % screenshots.length);
+    setTimeout(() => setIsTransitioning(false), 850);
   };
 
   const handlePrev = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setDirection(-1);
     setActiveIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
+    setTimeout(() => setIsTransitioning(false), 850);
   };
 
-  const selectSlide = (index: number) => {
-    if (index === activeIndex) return;
+  // 1st eka last ekata yanna, 2nd eka 1st ekata enna widihata scroll queue eka dynamic ordered previews list ekak karamu
+  const getOrderedPreviews = () => {
+    const list = [];
+    for (let offset = 0; offset < screenshots.length; offset++) {
+      const idx = (activeIndex + offset) % screenshots.length;
+      list.push({ ...screenshots[idx], originalIndex: idx });
+    }
+    return list;
+  };
+
+  const selectCard = (index: number) => {
+    if (isTransitioning || index === activeIndex) return;
+    setIsTransitioning(true);
     setDirection(index > activeIndex ? 1 : -1);
     setActiveIndex(index);
+    setTimeout(() => setIsTransitioning(false), 850);
   };
 
   const activeScreenshot = screenshots[activeIndex];
+  const orderedPreviews = getOrderedPreviews();
 
   return (
     <section className="border-t border-slate-800/80 pt-16 mb-16 relative overflow-hidden">
@@ -59,14 +79,13 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
       </h2>
 
       {/* Main Container */}
-      <div className="relative min-h-[500px] lg:min-h-[550px] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-950/40 border border-slate-900 rounded-3xl p-6 lg:p-10 overflow-hidden">
+      <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-950/40 border border-slate-900 rounded-3xl p-6 lg:p-10 overflow-hidden">
         
-        {/* Dynamic Circular Mask Reveal Container (Main View Background / Left Column) */}
+        {/* Left Side: Main View Image (Circle Mask reveal transition) */}
         <div className="lg:col-span-8 relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl z-10">
-          <AnimatePresence initial={false} mode="popLayout" custom={direction}>
+          <AnimatePresence initial={false} mode="popLayout">
             <motion.div
               key={activeIndex}
-              custom={direction}
               initial={{ clipPath: "circle(0% at 50% 50%)" }}
               animate={{ clipPath: "circle(150% at 50% 50%)" }}
               exit={{ opacity: 0, transition: { duration: 0.4 } }}
@@ -84,9 +103,9 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
           </AnimatePresence>
         </div>
 
-        {/* Content Pane & Staged Cards (Right Column) */}
-        <div className="lg:col-span-4 flex flex-col justify-between h-full min-h-[380px] z-20">
-          {/* Slide Content details */}
+        {/* Right Side: Content Details & Shifting Cards Queue */}
+        <div className="lg:col-span-4 flex flex-col justify-between h-full min-h-[400px] z-20">
+          {/* Details Section */}
           <div className="flex-grow flex flex-col justify-center pr-2">
             <AnimatePresence mode="wait">
               <motion.div
@@ -151,43 +170,59 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
             </AnimatePresence>
           </div>
 
-          {/* Staged Cards Row / Navigation Controls */}
+          {/* Cards Queue Section */}
           <div className="mt-8">
-            <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none mb-4">
-              {screenshots.map((ss, idx) => {
-                const isActive = idx === activeIndex;
-                return (
-                  <div
-                    key={idx}
-                    onClick={() => selectSlide(idx)}
-                    className={`relative w-20 h-12 rounded-lg overflow-hidden cursor-pointer flex-shrink-0 border-2 transition-all duration-300 ${
-                      isActive ? "border-emerald-400 scale-105 shadow-lg shadow-emerald-500/10" : "border-slate-800 hover:border-slate-700 opacity-60"
-                    }`}
-                  >
-                    <Image
-                      src={ss.url}
-                      alt={ss.title}
-                      fill
-                      className="object-cover"
-                      sizes="80px"
-                    />
-                  </div>
-                );
-              })}
+            {/* Shifting Row Previews Container */}
+            <div className="flex items-center gap-3 overflow-hidden h-16 mb-4 relative w-full">
+              <AnimatePresence mode="popLayout">
+                {orderedPreviews.map((card, i) => {
+                  const isActive = card.originalIndex === activeIndex;
+                  return (
+                    <motion.div
+                      key={card.originalIndex}
+                      layout
+                      initial={{ opacity: 0, x: 50, scale: 0.9 }}
+                      animate={{ 
+                        opacity: 1, 
+                        x: 0, 
+                        scale: 1,
+                        transition: { type: "spring", stiffness: 350, damping: 30 }
+                      }}
+                      exit={{ opacity: 0, x: -100, scale: 0.8, transition: { duration: 0.3 } }}
+                      onClick={() => selectCard(card.originalIndex)}
+                      className={`relative w-20 h-12 rounded-lg overflow-hidden cursor-pointer flex-shrink-0 border-2 transition-all duration-300 ${
+                        isActive 
+                          ? "border-emerald-400 scale-105 shadow-lg shadow-emerald-500/10 z-10" 
+                          : "border-slate-800 hover:border-slate-700 opacity-60 hover:opacity-85 z-0"
+                      }`}
+                    >
+                      <Image
+                        src={card.url}
+                        alt={card.title}
+                        fill
+                        className="object-cover"
+                        sizes="80px"
+                      />
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
             </div>
 
-            {/* Navigation Buttons */}
+            {/* Navigation Controls */}
             <div className="flex items-center justify-between border-t border-slate-900 pt-4 mt-2">
               <div className="flex items-center gap-2">
                 <button
                   onClick={handlePrev}
-                  className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 transition-all cursor-pointer"
+                  disabled={isTransitioning}
+                  className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 transition-all cursor-pointer disabled:opacity-50"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 transition-all cursor-pointer"
+                  disabled={isTransitioning}
+                  className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 transition-all cursor-pointer disabled:opacity-50"
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>
