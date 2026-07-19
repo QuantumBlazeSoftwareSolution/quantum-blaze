@@ -7,7 +7,8 @@ import Link from "next/link";
 import { ArrowLeft, ExternalLink, Download, FileText, MapPin, MessageSquare, CheckCircle2 } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { projects } from "@/lib/projects";
+import { motion, AnimatePresence } from "framer-motion";
+import { projects, type Screenshot } from "@/lib/projects";
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -18,7 +19,7 @@ export default function ProjectDetailPage() {
   const project = projects.find((p) => p.slug === slug);
   
   // State for lightbox modal
-  const [activeImage, setActiveImage] = useState<string | null>(null);
+  const [activeScreenshot, setActiveScreenshot] = useState<Screenshot | null>(null);
 
   if (!project) {
     return (
@@ -140,18 +141,18 @@ export default function ProjectDetailPage() {
               {project.screenshots.map((ss, idx) => (
                 <div 
                   key={idx}
-                  onClick={() => setActiveImage(ss)}
+                  onClick={() => setActiveScreenshot(ss)}
                   className="group relative aspect-[16/10] rounded-xl border border-slate-800/80 bg-slate-900/10 overflow-hidden cursor-pointer hover:border-emerald-500/40 transition-colors"
                 >
                   <Image 
-                    src={ss} 
+                    src={ss.url} 
                     alt={`${project.title} screenshot ${idx + 1}`}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-102"
                   />
                   <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/40 transition-colors flex items-center justify-center">
                     <span className="opacity-0 group-hover:opacity-100 text-xs font-semibold uppercase tracking-wider bg-slate-900/90 text-white px-3 py-1.5 rounded-lg border border-slate-700 transition-opacity">
-                      View Screenshot
+                      View Details
                     </span>
                   </div>
                 </div>
@@ -278,21 +279,115 @@ export default function ProjectDetailPage() {
       </main>
 
       {/* Lightbox image preview modal */}
-      {activeImage && (
-        <div 
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
-          onClick={() => setActiveImage(null)}
-        >
-          <div className="relative max-w-5xl w-full h-[80vh]">
-            <Image 
-              src={activeImage} 
-              alt="Preview" 
-              fill
-              className="object-contain"
-            />
+      <AnimatePresence>
+        {activeScreenshot && (
+          <div 
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
+            onClick={() => setActiveScreenshot(null)}
+          >
+            {/* Modal Box */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="relative max-w-6xl w-full bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 cursor-default"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Left Side: Screenshot Image */}
+              <div className="lg:col-span-8 relative aspect-[16/10] bg-slate-900 border-b lg:border-b-0 lg:border-r border-slate-800">
+                <Image 
+                  src={activeScreenshot.url} 
+                  alt={activeScreenshot.title} 
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              {/* Right Side: Text details */}
+              <motion.div 
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.1,
+                      delayChildren: 0.15,
+                    }
+                  }
+                }}
+                className="lg:col-span-4 p-8 flex flex-col justify-center bg-slate-950 text-slate-100"
+              >
+                {/* Subtitle */}
+                <motion.span 
+                  variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+                  }}
+                  className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2 block"
+                >
+                  {activeScreenshot.subtitle}
+                </motion.span>
+
+                {/* Title */}
+                <motion.h3 
+                  variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+                  }}
+                  className="text-xl md:text-2xl font-bold text-white mb-6 tracking-tight"
+                >
+                  {activeScreenshot.title}
+                </motion.h3>
+
+                {/* Divider */}
+                <motion.div 
+                  variants={{
+                    hidden: { scaleX: 0 },
+                    visible: { scaleX: 1, transition: { duration: 0.4, ease: "easeOut" } }
+                  }}
+                  className="h-px bg-slate-800 origin-left mb-6"
+                />
+
+                {/* Features list */}
+                <motion.div 
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
+                  }}
+                  className="space-y-3"
+                >
+                  <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest block mb-2">Key System Features</span>
+                  {activeScreenshot.features.map((feature, i) => (
+                    <motion.div 
+                      key={i}
+                      variants={{
+                        hidden: { opacity: 0, x: -10 },
+                        visible: { opacity: 1, x: 0, transition: { duration: 0.3 } }
+                      }}
+                      className="flex items-start gap-2 text-sm text-slate-300"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <span>{feature}</span>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </motion.div>
+
+              {/* Close Button overlay */}
+              <button 
+                onClick={() => setActiveScreenshot(null)}
+                className="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 hover:border-slate-700 w-8 h-8 rounded-full flex items-center justify-center cursor-pointer transition-colors z-20"
+              >
+                ✕
+              </button>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>

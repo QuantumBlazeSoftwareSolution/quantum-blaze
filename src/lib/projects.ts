@@ -12,6 +12,13 @@ export interface SystemUser {
   usage: string;
 }
 
+export interface Screenshot {
+  url: string;
+  title: string;
+  subtitle: string;
+  features: string[];
+}
+
 export interface Project {
   id: string;
   slug: string;
@@ -25,7 +32,7 @@ export interface Project {
   imageUrl: string;
   createdAt: string;
   updated_at: string;
-  screenshots?: string[];
+  screenshots?: Screenshot[];
   reports?: { name: string; url: string }[];
   users?: SystemUser[];
   testimonials?: Testimonial[];
@@ -149,10 +156,30 @@ export const projects: Project[] = [
     createdAt: "2026-07-19T09:30:00Z",
     updated_at: "2026-07-19T09:40:00Z",
     screenshots: [
-      "/Projects/Pharmacy POS/Pharmacy POS SS/login interface.png",
-      "/Projects/Pharmacy POS/Pharmacy POS SS/dashboard.png",
-      "/Projects/Pharmacy POS/Pharmacy POS SS/product management.png",
-      "/Projects/Pharmacy POS/Pharmacy POS SS/invoice.png",
+      {
+        url: "/Projects/Pharmacy POS/Pharmacy POS SS/login interface.png",
+        title: "Secure User Authentication",
+        subtitle: "Gatekeeping & Role Management",
+        features: ["Role-based access controls", "Secure session tokens", "Instant user login validation"],
+      },
+      {
+        url: "/Projects/Pharmacy POS/Pharmacy POS SS/dashboard.png",
+        title: "Real-time Performance Dashboard",
+        subtitle: "Analytics Overview",
+        features: ["Daily sales analytics graph", "Current day key performance metrics (KPIs)", "Inventory stock overview indicators"],
+      },
+      {
+        url: "/Projects/Pharmacy POS/Pharmacy POS SS/product management.png",
+        title: "Comprehensive Inventory Controls",
+        subtitle: "Stock & Expiry Management",
+        features: ["Detailed batch tracking metrics", "Real-time expiry warning loops", "Single stock inventory list search"],
+      },
+      {
+        url: "/Projects/Pharmacy POS/Pharmacy POS SS/invoice.png",
+        title: "Fast POS Billing Checkout",
+        subtitle: "Invoice Generation",
+        features: ["Real-time item selection & billing calculations", "Flexible tax & discount modifiers", "Direct transaction checkout validation"],
+      },
     ],
     reports: [
       { name: "Close Sale Report", url: "/Projects/Pharmacy POS/Pharmacy POS Report/close-sale.pdf" },
