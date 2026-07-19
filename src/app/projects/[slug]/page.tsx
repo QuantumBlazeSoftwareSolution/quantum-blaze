@@ -173,7 +173,8 @@ export default function ProjectDetailPage() {
                 <a 
                   key={idx}
                   href={report.url}
-                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-between p-5 rounded-xl border border-slate-800 bg-slate-900/10 hover:bg-slate-900/30 hover:border-emerald-500/20 transition-all group"
                 >
                   <div className="flex items-center gap-4">
@@ -184,10 +185,10 @@ export default function ProjectDetailPage() {
                       <h3 className="font-semibold text-sm text-slate-200 group-hover:text-emerald-400 transition-colors">
                         {report.name}
                       </h3>
-                      <p className="text-xs text-slate-400">Generated PDF Format</p>
+                      <p className="text-xs text-slate-400">View Document (PDF)</p>
                     </div>
                   </div>
-                  <Download className="w-4 h-4 text-slate-400 group-hover:text-emerald-400 group-hover:translate-y-0.5 transition-all" />
+                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-emerald-400 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
                 </a>
               ))}
             </div>

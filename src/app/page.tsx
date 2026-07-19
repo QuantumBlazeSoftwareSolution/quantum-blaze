@@ -13,7 +13,7 @@ import { team as members, projects } from "@/lib/data";
 
 export default function Home() {
   const latestProjects = [...projects]
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
     .slice(0, 3);
 
   return (

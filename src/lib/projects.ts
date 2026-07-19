@@ -1,13 +1,13 @@
 export interface Testimonial {
   message: string;
   clientName: string;
-  clientImage?: string; // Optional, can fall back to initials if missing
+  clientImage?: string;
   pharmacyName: string;
 }
 
 export interface SystemUser {
   name: string;
-  logo?: string; // Optional, falls back to initials
+  logo?: string;
   location: string;
   usage: string;
 }
@@ -15,7 +15,6 @@ export interface SystemUser {
 export interface Project {
   id: string;
   slug: string;
-  orderNumber: number;
   title: string;
   subtitle: string;
   description: string;
@@ -25,6 +24,7 @@ export interface Project {
   mockupType: "desktop" | "mobile";
   imageUrl: string;
   createdAt: string;
+  updated_at: string;
   screenshots?: string[];
   reports?: { name: string; url: string }[];
   users?: SystemUser[];
@@ -36,7 +36,6 @@ export const projects: Project[] = [
   {
     id: "lms",
     slug: "lms",
-    orderNumber: 1,
     title: "Learning Management System",
     subtitle: "EdTech Platform",
     description:
@@ -47,11 +46,11 @@ export const projects: Project[] = [
     mockupType: "desktop",
     imageUrl: "/images/projects/lms.jpg",
     createdAt: "2026-07-10T12:00:00Z",
+    updated_at: "2026-07-10T15:00:00Z",
   },
   {
     id: "roadservice",
     slug: "roadservice",
-    orderNumber: 2,
     title: "Mobile Road-Service Application",
     subtitle: "Consumer Mobile App",
     description:
@@ -69,11 +68,11 @@ export const projects: Project[] = [
     mockupType: "mobile",
     imageUrl: "/images/projects/roadservice.png",
     createdAt: "2026-06-15T08:30:00Z",
+    updated_at: "2026-06-15T09:00:00Z",
   },
   {
     id: "pos",
     slug: "pos",
-    orderNumber: 3,
     title: "Retail Point-of-Sale System",
     subtitle: "Enterprise Software",
     description:
@@ -84,11 +83,11 @@ export const projects: Project[] = [
     mockupType: "desktop",
     imageUrl: "/images/projects/pos.png",
     createdAt: "2026-05-20T14:45:00Z",
+    updated_at: "2026-05-20T15:00:00Z",
   },
   {
     id: "cinevista",
     slug: "cinevista",
-    orderNumber: 4,
     title: "CineVista",
     subtitle: "Cinema Booking Portal",
     description:
@@ -99,11 +98,11 @@ export const projects: Project[] = [
     mockupType: "desktop",
     imageUrl: "/images/projects/cinevista.jpg",
     createdAt: "2026-07-18T10:00:00Z",
+    updated_at: "2026-07-18T12:00:00Z",
   },
   {
     id: "artflix",
     slug: "artflix",
-    orderNumber: 5,
     title: "Artflics",
     subtitle: "Artisan E-Commerce Store",
     description:
@@ -114,11 +113,11 @@ export const projects: Project[] = [
     mockupType: "desktop",
     imageUrl: "/images/projects/artflix.jpg",
     createdAt: "2026-07-16T15:30:00Z",
+    updated_at: "2026-07-16T16:00:00Z",
   },
   {
     id: "stc-computer-shop",
     slug: "stc-computer-shop",
-    orderNumber: 6,
     title: "STC Computer Shop",
     subtitle: "Interactive PC Builder & Store",
     description:
@@ -129,11 +128,11 @@ export const projects: Project[] = [
     mockupType: "desktop",
     imageUrl: "/images/projects/stc-computer-shop.jpg",
     createdAt: "2026-07-14T08:45:00Z",
+    updated_at: "2026-07-14T09:00:00Z",
   },
   {
     id: "pharmacy-pos",
     slug: "pharmacy-pos",
-    orderNumber: 7,
     title: "Pharmacy POS System",
     subtitle: "Healthcare Retail & Inventory Management",
     description:
@@ -146,8 +145,9 @@ export const projects: Project[] = [
     ],
     themeColor: "#10b981",
     mockupType: "desktop",
-    imageUrl: "/Projects/Pharmacy POS/Pharmacy POS SS/dashboard.png",
+    imageUrl: "/images/projects/pharmacy-pos.jpg",
     createdAt: "2026-07-19T09:30:00Z",
+    updated_at: "2026-07-19T09:40:00Z",
     screenshots: [
       "/Projects/Pharmacy POS/Pharmacy POS SS/dashboard.png",
       "/Projects/Pharmacy POS/Pharmacy POS SS/invoice.png",

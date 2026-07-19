@@ -119,7 +119,7 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
                           className="text-6xl font-bold opacity-10 font-quantum"
                           style={{ color: project.themeColor }}
                         >
-                          {project.orderNumber}
+                          {String(index + 1).padStart(2, "0")}
                         </span>
                         <div
                           className="h-px flex-grow"
