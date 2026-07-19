@@ -57,11 +57,12 @@ export default function ProjectDetailPage() {
 
         {/* Project Header Header */}
         <header className="border-b border-slate-800/80 pb-10 mb-12">
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="text-xs font-semibold tracking-wider uppercase px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-400">
-              {project.subtitle}
-            </span>
-          </div>
+          <p 
+            className="text-xs font-semibold tracking-widest uppercase mb-3"
+            style={{ color: project.themeColor }}
+          >
+            {project.subtitle}
+          </p>
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
             {project.title}
           </h1>

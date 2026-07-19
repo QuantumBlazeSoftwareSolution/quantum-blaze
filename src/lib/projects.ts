@@ -149,10 +149,10 @@ export const projects: Project[] = [
     createdAt: "2026-07-19T09:30:00Z",
     updated_at: "2026-07-19T09:40:00Z",
     screenshots: [
-      "/Projects/Pharmacy POS/Pharmacy POS SS/dashboard.png",
-      "/Projects/Pharmacy POS/Pharmacy POS SS/invoice.png",
       "/Projects/Pharmacy POS/Pharmacy POS SS/login interface.png",
+      "/Projects/Pharmacy POS/Pharmacy POS SS/dashboard.png",
       "/Projects/Pharmacy POS/Pharmacy POS SS/product management.png",
+      "/Projects/Pharmacy POS/Pharmacy POS SS/invoice.png",
     ],
     reports: [
       { name: "Close Sale Report", url: "/Projects/Pharmacy POS/Pharmacy POS Report/close-sale.pdf" },
