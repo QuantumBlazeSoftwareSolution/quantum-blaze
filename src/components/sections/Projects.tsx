@@ -163,6 +163,17 @@ function ProjectCard({
                 </span>
               ))}
             </div>
+
+            {/* View Case Study Link */}
+            <div className="mt-8">
+              <Link
+                href={`/projects/${project.slug}`}
+                className="inline-flex items-center gap-2 text-sm font-semibold transition-all hover:underline"
+                style={{ color: project.themeColor }}
+              >
+                View Case Study <span className="inline-block transition-transform duration-300 hover:translate-x-1">→</span>
+              </Link>
+            </div>
           </motion.div>
 
           {/* Mockup side — real images */}

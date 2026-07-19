@@ -5,10 +5,12 @@ import Image from "next/image";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlowButton } from "@/components/ui/GlowButton";
+import { useRouter } from "next/navigation";
+import { type Project } from "@/lib/projects";
 import { ArrowRight, Rocket, Search } from "lucide-react";
-import { type Project } from "@/lib/data";
 
 export function ProjectsClient({ projects }: { projects: Project[] }) {
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-[#050b14] relative selection:bg-sky-500/30">
       <Navbar />
@@ -154,9 +156,9 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
                         <GlowButton
                           variant="outline"
                           size="sm"
-                          onClick={() => (window.location.href = "/#contact")}
+                          onClick={() => router.push(`/projects/${project.slug}`)}
                         >
-                          Read More
+                          Read Case Study
                           <ArrowRight className="w-4 h-4 ml-2 inline-block" />
                         </GlowButton>
                       </div>
