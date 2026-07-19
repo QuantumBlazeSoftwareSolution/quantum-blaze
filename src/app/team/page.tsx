@@ -10,5 +10,6 @@ export const metadata = {
 };
 
 export default async function TeamPage() {
-  return <TeamContent members={members} />;
+  const visibleMembers = members.filter((m) => m.visibility !== false);
+  return <TeamContent members={visibleMembers} />;
 }
