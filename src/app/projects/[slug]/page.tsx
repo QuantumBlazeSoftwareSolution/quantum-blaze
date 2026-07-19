@@ -207,8 +207,17 @@ export default function ProjectDetailPage() {
                   className="flex flex-col sm:flex-row sm:items-center justify-between p-6 rounded-2xl border border-slate-800/80 bg-slate-900/10 gap-4"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-11 h-11 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-sm font-bold">
-                      {getInitials(user.name)}
+                    <div className="w-11 h-11 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 text-sm font-bold overflow-hidden relative">
+                      {user.logo ? (
+                        <Image 
+                          src={user.logo} 
+                          alt={`${user.name} logo`} 
+                          fill
+                          className="object-cover"
+                        />
+                      ) : (
+                        getInitials(user.name)
+                      )}
                     </div>
                     <div>
                       <h3 className="font-bold text-slate-200">{user.name}</h3>

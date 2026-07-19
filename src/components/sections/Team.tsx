@@ -120,8 +120,9 @@ export function TeamCard({
 }
 
 export function Team({ members }: { members: TeamMember[] }) {
+  const visibleMembers = members.filter((m) => m.visibility !== false);
   // Sort members by orderNumber / priority asc
-  const sortedMembers = [...members].sort((a, b) => a.orderNumber - b.orderNumber);
+  const sortedMembers = [...visibleMembers].sort((a, b) => a.orderNumber - b.orderNumber);
 
   // Find the CEO member (Vihanga Heshan)
   const ceoMember = sortedMembers.find(

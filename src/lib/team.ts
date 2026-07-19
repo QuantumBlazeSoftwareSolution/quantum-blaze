@@ -36,7 +36,7 @@ export const team: TeamMember[] = [
     linkedin: "#",
     gradient: "from-blue-500 to-indigo-700",
     orderNumber: 5,
-    visibility: true,
+    visibility: false,
   },
   {
     id: "lead-dev",
@@ -73,7 +73,7 @@ export const team: TeamMember[] = [
     linkedin: "#",
     gradient: "from-blue-600 to-indigo-800",
     orderNumber: 6,
-    visibility: true,
+    visibility: false,
   },
 ];
 

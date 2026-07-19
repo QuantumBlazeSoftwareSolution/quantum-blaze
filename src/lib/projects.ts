@@ -161,21 +161,13 @@ export const projects: Project[] = [
       { name: "Stock Balance Report", url: "/Projects/Pharmacy POS/Pharmacy POS Report/stockBalance.pdf" },
     ],
     users: [
-      { name: "Medicare Pharmacy", location: "Colombo, Sri Lanka", usage: "Main branch operations and drug sales" },
-      { name: "Unity Health Pharmacy", location: "Kandy, Sri Lanka", usage: "Prescription billing and inventory management" },
-      { name: "Suwasevana Pharmacy", location: "Galle, Sri Lanka", usage: "Batch tracking and expiry alerts" },
-    ],
-    testimonials: [
       {
-        message: "The batch expiry alerts saved us from massive stock write-offs. This POS is incredibly reliable and works offline without internet issues.",
-        clientName: "Dr. Amara Perera",
-        pharmacyName: "Medicare Pharmacy",
-      },
-      {
-        message: "Billing is lightning fast now, and the automated daily sales reporting has made our auditing completely pain-free.",
-        clientName: "Nimal Fernando",
-        pharmacyName: "Unity Health Pharmacy",
+        name: "Ayusha Pharmacy & Grocery",
+        location: "Welikadamulla, Sri Lanka",
+        logo: "/Projects/Pharmacy POS/final logo.png",
+        usage: "Daily retail sales & inventory management",
       },
     ],
+    testimonials: [],
   },
 ];
