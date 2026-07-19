@@ -61,10 +61,6 @@ export default function ProjectDetailPage() {
             <span className="text-xs font-semibold tracking-wider uppercase px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-400">
               {project.subtitle}
             </span>
-            <span 
-              className="w-2.5 h-2.5 rounded-full" 
-              style={{ backgroundColor: project.themeColor }}
-            />
           </div>
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
             {project.title}
@@ -255,8 +251,17 @@ export default function ProjectDetailPage() {
                     </p>
                   </div>
                   <div className="flex items-center gap-3.5 border-t border-slate-800/60 pt-4 mt-auto">
-                    <div className="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xs font-bold">
-                      {getInitials(feedback.clientName)}
+                    <div className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 text-xs font-bold overflow-hidden relative">
+                      {feedback.clientImage ? (
+                        <Image 
+                          src={feedback.clientImage} 
+                          alt={`${feedback.clientName} avatar`} 
+                          fill
+                          className="object-cover"
+                        />
+                      ) : (
+                        getInitials(feedback.clientName)
+                      )}
                     </div>
                     <div>
                       <h4 className="font-bold text-sm text-slate-200">{feedback.clientName}</h4>

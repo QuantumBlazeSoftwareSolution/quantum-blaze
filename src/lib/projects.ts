@@ -168,6 +168,13 @@ export const projects: Project[] = [
         usage: "Daily retail sales & inventory management",
       },
     ],
-    testimonials: [],
+    testimonials: [
+      {
+        message: "We purchased the single-stock POS system to streamline our new pharmacy business. We've been using it for over a year without any issues. The team has been extremely supportive, delivering custom modifications and sorting out our queries in record time.",
+        clientName: "Milani Wijewardhana",
+        clientImage: "/Projects/Pharmacy POS/final logo.png",
+        pharmacyName: "Ayusha Pharmacy & Grocery",
+      },
+    ],
   },
 ];
