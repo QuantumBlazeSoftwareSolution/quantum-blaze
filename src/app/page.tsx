@@ -9,16 +9,12 @@ import { TechStack } from "@/components/sections/TechStack";
 import { Team } from "@/components/sections/Team";
 import { Contact } from "@/components/sections/Contact";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-import { getPublishedProjects } from "@/lib/db/crud/projects/read";
-import { getAllTeamMembers } from "@/lib/db/crud/team/read";
+import { team as members, projects } from "@/lib/data";
 
-export const dynamic = "force-dynamic";
-
-export default async function Home() {
-  const [projects, members] = await Promise.all([
-    getPublishedProjects(),
-    getAllTeamMembers()
-  ]);
+export default function Home() {
+  const latestProjects = [...projects]
+    .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
+    .slice(0, 3);
 
   return (
     <SmoothScrollProvider>
@@ -28,7 +24,7 @@ export default async function Home() {
         <About />
         <Services />
         <Industries />
-        <Projects projects={projects} />
+        <Projects projects={latestProjects} />
         <Process />
         <TechStack />
         {process.env.NEXT_PUBLIC_TEAM_SECTION === "true" && (

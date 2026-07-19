@@ -84,14 +84,7 @@ export function TechStack() {
       />
 
       <div className="container-wide text-center mb-14">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex justify-center mb-4"
-        >
-          <SectionLabel>Tech Stack</SectionLabel>
-        </motion.div>
+
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -99,11 +92,11 @@ export function TechStack() {
           transition={{ delay: 0.1 }}
           className="text-white font-bold"
           style={{
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            fontSize: "clamp(2rem, 4vw, 2.75rem)",
             fontFamily: "var(--font-grotesk)",
           }}
         >
-          The Power Under <span className="gradient-text">the Hood</span>
+          The Power Under <span className="text-sky-400">the Hood</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}

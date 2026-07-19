@@ -102,15 +102,6 @@ export function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* Left Side: Headline and Info */}
           <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex justify-center lg:justify-start mb-6"
-            >
-              <SectionLabel>Get In Touch</SectionLabel>
-            </motion.div>
-
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -118,13 +109,12 @@ export function Contact() {
               transition={{ delay: 0.1, duration: 0.8 }}
               className="font-bold leading-[1.1] mb-6"
               style={{
-                fontSize: "clamp(2.5rem, 8vw, 5rem)",
+                fontSize: "clamp(2rem, 5vw, 3rem)",
                 fontFamily: "var(--font-grotesk)",
                 color: "white",
               }}
             >
-              Let&apos;s Build Something{" "}
-              <span className="gradient-text block">Extraordinary</span>
+              Get in <span className="text-sky-400">touch</span>
             </motion.h2>
 
             <motion.p

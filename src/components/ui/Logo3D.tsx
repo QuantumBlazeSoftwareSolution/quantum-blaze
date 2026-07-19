@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Environment } from "@react-three/drei";
 import * as THREE from "three";
 
-// Outer Cube Frame component made of 12 cylinders representing the cube edges
+// Outer Cube Frame component made of 12 box segments representing the cube edges
 function CubeFrame({ size, thickness, color }: { size: number; thickness: number; color: string }) {
   const half = size / 2;
 
@@ -41,7 +41,7 @@ function CubeFrame({ size, thickness, color }: { size: number; thickness: number
           position={edge.position as [number, number, number]} 
           rotation={edge.rotation as [number, number, number]}
         >
-          <cylinderGeometry args={[thickness, thickness, size, 8]} />
+          <boxGeometry args={[thickness * 1.5, size, thickness * 1.5]} />
           <meshPhysicalMaterial
             color={color}
             metalness={0.9}
@@ -55,8 +55,8 @@ function CubeFrame({ size, thickness, color }: { size: number; thickness: number
   );
 }
 
-// Helper component to render a cylinder between two 3D points
-function CylinderBetweenPoints({ 
+// Helper component to render a box strut between two 3D points
+function BoxStrutBetweenPoints({ 
   start, 
   end, 
   thickness, 
@@ -80,7 +80,7 @@ function CylinderBetweenPoints({
   
   return (
     <mesh position={position} quaternion={quaternion}>
-      <cylinderGeometry args={[thickness, thickness, length, 8]} />
+      <boxGeometry args={[thickness * 1.5, length, thickness * 1.5]} />
       <meshPhysicalMaterial
         color={color}
         metalness={0.9}
@@ -104,20 +104,26 @@ function Tesseract({
   thickness: number; 
   color: string; 
 }) {
-  // Calculate the 8 corner connectors
-  const connectors = useMemo(() => {
-    const arr = [];
+  // Calculate the 8 corner connectors and the 8 vertex positions for joint caps
+  const { connectors, verticesOuter, verticesInner } = useMemo(() => {
+    const conns = [];
+    const outerVerts: [number, number, number][] = [];
+    const innerVerts: [number, number, number][] = [];
     const signs = [-1, 1];
+    
     for (const x of signs) {
       for (const y of signs) {
         for (const z of signs) {
           const start = new THREE.Vector3((x * innerSize) / 2, (y * innerSize) / 2, (z * innerSize) / 2);
           const end = new THREE.Vector3((x * outerSize) / 2, (y * outerSize) / 2, (z * outerSize) / 2);
-          arr.push({ start, end });
+          conns.push({ start, end });
+          
+          outerVerts.push([(x * outerSize) / 2, (y * outerSize) / 2, (z * outerSize) / 2]);
+          innerVerts.push([(x * innerSize) / 2, (y * innerSize) / 2, (z * innerSize) / 2]);
         }
       }
     }
-    return arr;
+    return { connectors: conns, verticesOuter: outerVerts, verticesInner: innerVerts };
   }, [outerSize, innerSize]);
 
   return (
@@ -130,7 +136,7 @@ function Tesseract({
       
       {/* 8 Diagonal Corner Connectors */}
       {connectors.map((conn, idx) => (
-        <CylinderBetweenPoints 
+        <BoxStrutBetweenPoints 
           key={idx} 
           start={conn.start} 
           end={conn.end} 
@@ -138,14 +144,43 @@ function Tesseract({
           color={color} 
         />
       ))}
+
+      {/* Corner Joint Caps - Outer Frame (Fills the corner gaps) */}
+      {verticesOuter.map((pos, idx) => (
+        <mesh key={`outer-cap-${idx}`} position={pos}>
+          <boxGeometry args={[thickness * 1.52, thickness * 1.52, thickness * 1.52]} />
+          <meshPhysicalMaterial
+            color={color}
+            metalness={0.9}
+            roughness={0.15}
+            clearcoat={1.0}
+            clearcoatRoughness={0.1}
+          />
+        </mesh>
+      ))}
+
+      {/* Corner Joint Caps - Inner Frame (Fills the corner gaps) */}
+      {verticesInner.map((pos, idx) => (
+        <mesh key={`inner-cap-${idx}`} position={pos}>
+          <boxGeometry args={[thickness * 0.75 * 1.52, thickness * 0.75 * 1.52, thickness * 0.75 * 1.52]} />
+          <meshPhysicalMaterial
+            color={color}
+            metalness={0.9}
+            roughness={0.15}
+            clearcoat={1.0}
+            clearcoatRoughness={0.1}
+          />
+        </mesh>
+      ))}
     </group>
   );
 }
 
 // Main 3D Logo Scene that manages rotation and orbits
-function LogoScene({ color }: { color: string }) {
+function LogoScene({ color, onReady }: { color: string; onReady?: () => void }) {
   const groupRef = useRef<THREE.Group>(null);
   const orbRef = useRef<THREE.Mesh>(null);
+  const hasTriggeredReady = useRef(false);
 
   // Constants for geometry
   const outerCubeSize = 2.4;
@@ -157,6 +192,13 @@ function LogoScene({ color }: { color: string }) {
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
+
+    // Signal that the 3D scene has rendered its first frame (WebGL is ready and drawing)
+    if (!hasTriggeredReady.current && onReady) {
+      hasTriggeredReady.current = true;
+      // Small timeout to ensure context is fully drawn
+      setTimeout(onReady, 100);
+    }
 
     // Slowly rotate the entire tesseract system in all axes
     if (groupRef.current) {
@@ -199,8 +241,6 @@ function LogoScene({ color }: { color: string }) {
       </group>
 
       {/* Orbiting Ring (Torus) - Tilted around the tesseract */}
-      {/* We keep it in a separate group so it doesn't spin on all axes like the tesseract, */}
-      {/* maintaining its planetary ring look while the central tesseract rotates dynamically */}
       <group rotation={[Math.PI / 5, Math.PI / 4, 0]}>
         {/* The Torus Ring */}
         <mesh>
@@ -239,26 +279,48 @@ export function Logo3D({
   height?: string;
   interactive?: boolean;
 }) {
-  return (
-    <div style={{ width: "100%", height, position: "relative" }}>
-      <Canvas
-        camera={{ position: [0, 0, 7.8], fov: 45 }}
-        gl={{ antialias: true, alpha: true }}
-      >
-        <ambientLight intensity={0.6} />
-        
-        {/* Soft studio lights */}
-        <pointLight position={[10, 10, 10]} intensity={1.5} />
-        <directionalLight position={[-5, 5, -5]} intensity={0.8} />
-        <spotLight position={[0, 5, 0]} intensity={1.2} angle={Math.PI / 4} penumbra={1} />
-        
-        <LogoScene color={color} />
+  const [isReady, setIsReady] = React.useState(false);
 
-        {interactive && <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />}
-        
-        {/* Environment map for realistic reflections */}
-        <Environment preset="city" />
-      </Canvas>
+  return (
+    <div className="w-full h-full relative" style={{ height }}>
+      {/* Static placeholder image loaded instantly */}
+      <div 
+        className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 transition-opacity duration-700 ease-out"
+        style={{ opacity: isReady ? 0 : 1 }}
+      >
+        <img 
+          src="/original-logo.png" 
+          alt="Quantum Blaze Logo Placeholder"
+          className="w-[75%] h-[75%] object-contain max-w-[340px] max-h-[340px] select-none"
+          // @ts-ignore
+          fetchPriority="high"
+        />
+      </div>
+
+      {/* The 3D Canvas which will fade in smoothly once first frame is ready */}
+      <div 
+        className="w-full h-full transition-opacity duration-700 ease-in-out"
+        style={{ opacity: isReady ? 1 : 0 }}
+      >
+        <Canvas
+          camera={{ position: [0, 0, 7.8], fov: 45 }}
+          gl={{ antialias: true, alpha: true }}
+        >
+          <ambientLight intensity={0.6} />
+          
+          {/* Soft studio lights */}
+          <pointLight position={[10, 10, 10]} intensity={1.5} />
+          <directionalLight position={[-5, 5, -5]} intensity={0.8} />
+          <spotLight position={[0, 5, 0]} intensity={1.2} angle={Math.PI / 4} penumbra={1} />
+          
+          <LogoScene color={color} onReady={() => setIsReady(true)} />
+
+          {interactive && <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />}
+          
+          {/* Environment map for realistic reflections */}
+          <Environment preset="city" />
+        </Canvas>
+      </div>
     </div>
   );
 }

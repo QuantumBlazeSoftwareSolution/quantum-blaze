@@ -29,6 +29,13 @@
       "when": 1778993201064,
       "tag": "0003_magenta_cardiac",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1782326723792,
+      "tag": "0004_broken_sway",
+      "breakpoints": true
     }
   ]
 }

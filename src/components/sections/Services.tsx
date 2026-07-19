@@ -50,14 +50,7 @@ export function Services() {
       <div className="container-wide">
         {/* Header */}
         <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-4 flex justify-center"
-          >
-            <SectionLabel>What We Do</SectionLabel>
-          </motion.div>
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -65,11 +58,11 @@ export function Services() {
             transition={{ delay: 0.1 }}
             className="text-white font-bold mb-4"
             style={{
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontSize: "clamp(2rem, 4vw, 2.75rem)",
               fontFamily: "var(--font-grotesk)",
             }}
           >
-            Our <span className="gradient-text">Core Services</span>
+            Our <span className="text-sky-400">Core Services</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

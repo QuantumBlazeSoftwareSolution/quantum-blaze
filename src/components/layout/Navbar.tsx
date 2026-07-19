@@ -74,7 +74,7 @@ export function Navbar() {
               className="w-9 h-9 object-contain"
             />
             <span
-              className="text-lg font-bold tracking-wider font-quantum uppercase"
+              className="text-lg font-black tracking-tight font-inter uppercase"
               style={{ color: "var(--text-primary)" }}
             >
               Quantum <span style={{ color: "var(--accent-blue)" }}>Blaze</span>

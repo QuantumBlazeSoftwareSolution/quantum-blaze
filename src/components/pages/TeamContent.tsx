@@ -7,7 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { useLenis } from "@/hooks/useLenis";
 import { FaLinkedin, FaEnvelope } from "react-icons/fa6";
-import type { TeamMember } from "@/lib/db/schemas/team";
+import { type TeamMember } from "@/lib/data";
 
 function MinimalTeamCard({ member, index }: { member: TeamMember; index: number }) {
   return (
@@ -28,7 +28,7 @@ function MinimalTeamCard({ member, index }: { member: TeamMember; index: number 
           <motion.img
             src={member.image}
             alt={member.name}
-            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out group-hover:scale-110"
+            className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110"
           />
         )}
 
@@ -80,7 +80,7 @@ export function TeamContent({ members }: { members: TeamMember[] }) {
     <main className="relative min-h-screen" style={{ background: "#050B14" }}>
       <Navbar />
 
-      <section className="relative pt-40 pb-32 overflow-hidden">
+      <section className="relative pt-32 pb-24 overflow-hidden">
         {/* Subtle background element */}
         <div
           className="absolute top-0 left-0 w-full h-[800px] pointer-events-none opacity-20"
@@ -92,35 +92,28 @@ export function TeamContent({ members }: { members: TeamMember[] }) {
         />
 
         <div className="container-wide relative z-10">
-          <div className="mb-24">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="mb-6"
-            >
-              <SectionLabel>Our Architecture</SectionLabel>
-            </motion.div>
+          <div className="mb-14">
 
-            <div className="max-w-4xl space-y-6">
+
+            <div className="max-w-4xl space-y-4">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.8 }}
-                className="text-white font-bold leading-[1.1]"
+                className="text-white font-bold leading-[1.2]"
                 style={{
-                  fontSize: "clamp(3rem, 7vw, 5.5rem)",
+                  fontSize: "clamp(2rem, 4vw, 2.75rem)",
                   fontFamily: "var(--font-grotesk)",
                 }}
               >
-                The Architects <br />
-                Of <span className="gradient-text">Innovation.</span>
+                The Architects of <span className="text-sky-400">Innovation.</span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="text-xl max-w-2xl"
+                className="text-sm md:text-base max-w-xl"
                 style={{ color: "var(--text-muted)", lineHeight: 1.6 }}
               >
                 A collective of specialized engineers and designers united by a

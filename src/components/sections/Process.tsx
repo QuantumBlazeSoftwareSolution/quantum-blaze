@@ -71,14 +71,7 @@ export function Process() {
       <div className="container-wide">
         {/* Header */}
         <div className="text-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex justify-center mb-4"
-          >
-            <SectionLabel>How We Work</SectionLabel>
-          </motion.div>
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -86,11 +79,11 @@ export function Process() {
             transition={{ delay: 0.1 }}
             className="text-white font-bold"
             style={{
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontSize: "clamp(2rem, 4vw, 2.75rem)",
               fontFamily: "var(--font-grotesk)",
             }}
           >
-            Our <span className="gradient-text">Process</span>
+            Our <span className="text-sky-400">Process</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}

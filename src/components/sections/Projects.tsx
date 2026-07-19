@@ -5,7 +5,7 @@ import Image from "next/image";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { GlowButton } from "@/components/ui/GlowButton";
 import Link from "next/link";
-import type { Project } from "@/lib/db/schemas/projects";
+import { type Project } from "@/lib/data";
 
 function ProjectCard({
   project,
@@ -61,7 +61,7 @@ function ProjectCard({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className={isEven ? "lg:order-1" : "lg:order-2"}
+            className={`w-full ${isEven ? "lg:order-1" : "lg:order-2"}`}
           >
             {/* Number + label */}
             <div className="flex items-center gap-4 mb-6">
@@ -72,7 +72,7 @@ function ProjectCard({
                   fontFamily: "var(--font-grotesk)",
                 }}
               >
-                {project.orderNumber}
+                {String(index + 1).padStart(2, "0")}
               </span>
               <div
                 className="h-px flex-grow"
@@ -81,6 +81,37 @@ function ProjectCard({
                 }}
               />
             </div>
+
+            {/* Mobile-only Mockup Image (below number, above content) */}
+            {project.imageUrl && (
+              <div className="block lg:hidden w-full mx-auto mb-8 relative">
+                <div className="relative w-full max-w-sm mx-auto">
+                  <div
+                    className="absolute inset-0 blur-3xl rounded-3xl scale-75 opacity-30 pointer-events-none"
+                    style={{ background: project.themeColor }}
+                  />
+                  <div
+                    className="relative rounded-2xl overflow-hidden glass"
+                    style={{
+                      border: `1px solid ${project.themeColor}30`,
+                      boxShadow: `0 0 40px ${project.themeColor}15, 0 20px 50px rgba(0,0,0,0.5)`,
+                      aspectRatio: project.mockupType === "mobile" ? "9/19" : "16/10",
+                      width: project.mockupType === "mobile" ? "55%" : "100%",
+                      margin: "0 auto",
+                    }}
+                  >
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
+                  </div>
+                </div>
+              </div>
+            )}
 
             <div className="mb-3">
               <SectionLabel>{project.subtitle}</SectionLabel>
@@ -132,12 +163,23 @@ function ProjectCard({
                 </span>
               ))}
             </div>
+
+            {/* View Case Study Link */}
+            <div className="mt-8">
+              <Link
+                href={`/projects/${project.slug}`}
+                className="inline-flex items-center gap-2 text-sm font-semibold transition-all hover:underline"
+                style={{ color: project.themeColor }}
+              >
+                View Case Study <span className="inline-block transition-transform duration-300 hover:translate-x-1">→</span>
+              </Link>
+            </div>
           </motion.div>
 
           {/* Mockup side — real images */}
           <motion.div
             style={{ y }}
-            className={`relative flex items-center justify-center ${isEven ? "lg:order-2" : "lg:order-1"}`}
+            className={`hidden lg:flex relative items-center justify-center ${isEven ? "lg:order-2" : "lg:order-1"}`}
           >
             <div className="relative w-full max-w-lg mx-auto">
               {/* Glow backdrop */}
@@ -202,14 +244,7 @@ export function Projects({ projects }: { projects: Project[] }) {
     >
       {/* Section header */}
       <div className="container-wide pt-20 pb-10 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex justify-center mb-4"
-        >
-          <SectionLabel>Case Studies</SectionLabel>
-        </motion.div>
+
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -217,11 +252,11 @@ export function Projects({ projects }: { projects: Project[] }) {
           transition={{ delay: 0.1 }}
           className="text-white font-bold"
           style={{
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            fontSize: "clamp(2rem, 4vw, 2.75rem)",
             fontFamily: "var(--font-grotesk)",
           }}
         >
-          Work That <span className="gradient-text">Speaks</span>
+          Work That <span className="text-sky-400">Speaks</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
@@ -255,7 +290,7 @@ export function Projects({ projects }: { projects: Project[] }) {
             <GlowButton
               variant="outline"
               size="lg"
-              className="px-10 py-4 text-xs font-bold uppercase tracking-wider rounded-full shadow-lg shadow-sky-500/5 cursor-pointer group"
+              className="px-10 py-4 text-xs font-bold uppercase tracking-wider rounded-full cursor-pointer group"
             >
               View All Projects <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5 ml-2">→</span>
             </GlowButton>

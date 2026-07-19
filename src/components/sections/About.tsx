@@ -116,16 +116,19 @@ export function About() {
       });
     }, sectionRef);
 
+    // Call ScrollTrigger refresh after a short delay to ensure layout sizes are fully loaded
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+
     return () => ctx.revert();
   }, []);
-
-  const lines = ["Engineering", "Beyond Code."];
 
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="relative section-padding overflow-hidden"
+      className="relative w-full py-20 lg:py-28 overflow-hidden"
       style={{ background: "var(--bg-primary)" }}
     >
       {/* Precision background glows */}
@@ -139,60 +142,110 @@ export function About() {
       />
 
       <div className="container-wide relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
-          {/* Left: Narrative Side */}
-          <div className="w-full lg:w-[45%]" ref={textRef}>
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-10"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-8 h-[2px] bg-sky-500 rounded-full" />
-                <span className="text-xs font-bold uppercase tracking-[0.3em] text-sky-400">
-                  Our Vision
-                </span>
-              </div>
-            </motion.div>
-
-            <div
-              className="space-y-2 mb-10"
-              style={{
-                fontSize: "clamp(2.5rem, 5vw, 4rem)",
-                fontWeight: 700,
-                lineHeight: 1.1,
-                fontFamily: "var(--font-grotesk)",
-              }}
-            >
-              {lines.map((line, i) => (
-                <div key={i} className="overflow-hidden pb-2">
-                  <span
-                    className={`reveal-line block ${
-                      i === 1 ? "gradient-text" : "text-white"
-                    }`}
-                  >
-                    {line}
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-12 items-start">
+          {/* Left: Narrative Side & Vision/Mission */}
+          <div className="w-full lg:w-[55%] flex flex-col gap-8" ref={textRef}>
+            <div>
+              <div
+                className="mb-8"
+                style={{
+                  fontSize: "clamp(2rem, 4vw, 2.75rem)",
+                  fontWeight: 700,
+                  lineHeight: 1.1,
+                  fontFamily: "var(--font-grotesk)",
+                }}
+              >
+                <div className="overflow-hidden pb-2">
+                  <span className="reveal-line block text-white">
+                    About <span className="text-sky-400">Us</span>
                   </span>
                 </div>
-              ))}
+              </div>
+
+              <div className="overflow-hidden border-l border-slate-800/60 pl-6 ml-2 mb-8">
+                <p className="reveal-line text-lg leading-relaxed max-w-xl text-slate-400 font-light">
+                  We believe that exceptional software isn&apos;t just about lines of
+                  code; it&apos;s about the architecture of innovation. Our team
+                  deep-dives into every technical detail, from system scalability
+                  to micro-interactions, ensuring your digital ecosystem is
+                  robust, performant, and future-proof.
+                </p>
+              </div>
             </div>
 
-            <div className="overflow-hidden border-l border-slate-800/60 pl-6 ml-2">
-              <p className="reveal-line text-lg leading-relaxed max-w-xl text-slate-400 font-light">
-                We believe that exceptional software isn&apos;t just about lines of
-                code; it&apos;s about the architecture of innovation. Our team
-                deep-dives into every technical detail, from system scalability
-                to micro-interactions, ensuring your digital ecosystem is
-                robust, performant, and future-proof.
-              </p>
+            {/* Vision & Mission Cards (Side-by-side on desktop) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
+              {/* Vision Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex-1"
+              >
+                <TiltCard className="relative p-6 md:p-8 min-h-[160px] rounded-2xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center h-full">
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    style={{
+                      background: `radial-gradient(300px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
+                    }}
+                  />
+                  <div 
+                    className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
+                    style={{
+                      background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
+                      zIndex: 0,
+                    }}
+                  />
+                  <div className="relative z-10">
+                    <div className="mb-2">
+                      <h4 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-sky-400">Our Vision</h4>
+                    </div>
+                    <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-light">
+                      To be the premier architect of digital innovation, creating software ecosystems that empower businesses to scale globally and lead their industries.
+                    </p>
+                  </div>
+                </TiltCard>
+              </motion.div>
+
+              {/* Mission Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="flex-1"
+              >
+                <TiltCard className="relative p-6 md:p-8 min-h-[160px] rounded-2xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center h-full">
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    style={{
+                      background: `radial-gradient(300px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
+                    }}
+                  />
+                  <div 
+                    className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
+                    style={{
+                      background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
+                      zIndex: 0,
+                    }}
+                  />
+                  <div className="relative z-10">
+                    <div className="mb-2">
+                      <h4 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-sky-400">Our Mission</h4>
+                    </div>
+                    <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-light">
+                      To engineer high-performance, robust, and beautifully designed digital solutions through rigorous technical excellence, transparent collaboration, and a results-focused execution.
+                    </p>
+                  </div>
+                </TiltCard>
+              </motion.div>
             </div>
           </div>
 
-          {/* Right: Premium Bento Stats */}
-          <div className="w-full lg:w-[55%]">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Right: Bento Stats (Always Visible, static column) */}
+          <div className="w-full lg:w-[38%] lg:ml-auto flex flex-col justify-center">
+            <div className="about-stats-layer w-full grid grid-cols-1 md:grid-cols-2 gap-3.5">
               {/* Large Feature Stat */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -201,7 +254,7 @@ export function About() {
                 transition={{ duration: 0.6 }}
                 className="md:col-span-2"
               >
-                <TiltCard className="relative p-8 md:p-10 rounded-3xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden h-full">
+                <TiltCard className="relative p-4 md:p-5 rounded-2xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden h-full">
                   <div 
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
@@ -209,7 +262,7 @@ export function About() {
                     }}
                   />
                   <div 
-                    className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"
+                    className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
                     style={{
                       background: `radial-gradient(150px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
                       zIndex: 0,
@@ -217,13 +270,13 @@ export function About() {
                   />
                   <div className="relative z-10">
                     <div
-                      className="stat-counter text-6xl md:text-7xl font-bold mb-3 tracking-tighter"
+                      className="stat-counter text-3xl md:text-4xl font-bold mb-1 tracking-tighter"
                       data-target={stats[0].value}
                       style={{ color: "var(--text-primary)" }}
                     >
                       {stats[0].value}
                     </div>
-                    <div className="text-sm font-semibold tracking-widest uppercase text-sky-400">
+                    <div className="text-[10px] font-bold tracking-[0.2em] uppercase text-sky-400">
                       {stats[0].label}
                     </div>
                   </div>
@@ -243,7 +296,7 @@ export function About() {
                   transition={{ duration: 0.6, delay: 0.1 * (i + 1) }}
                   className={`${i === 2 ? "md:col-span-2" : ""}`}
                 >
-                  <TiltCard className="relative p-8 rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-sm group hover:bg-slate-900/30 transition-colors duration-500 h-full overflow-hidden">
+                  <TiltCard className="relative p-4 rounded-2xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-sm group hover:bg-slate-900/30 transition-colors duration-500 h-full overflow-hidden">
                     <div 
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                       style={{
@@ -251,7 +304,7 @@ export function About() {
                       }}
                     />
                     <div 
-                      className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"
+                      className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
                       style={{
                         background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
                         zIndex: 0,
@@ -259,13 +312,13 @@ export function About() {
                     />
                     <div className="relative z-10">
                       <div
-                        className="stat-counter text-4xl md:text-5xl font-bold mb-2 tracking-tight"
+                        className="stat-counter text-2xl md:text-3xl font-bold mb-0.5 tracking-tight"
                         data-target={stat.value}
                         style={{ color: "var(--text-primary)" }}
                       >
                         {stat.value}
                       </div>
-                      <div className="text-xs font-semibold tracking-widest uppercase text-slate-500 group-hover:text-sky-400/80 transition-colors">
+                      <div className="text-[9px] font-bold tracking-[0.2em] uppercase text-slate-500 group-hover:text-sky-400/80 transition-colors">
                         {stat.label}
                       </div>
                     </div>

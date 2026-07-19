@@ -44,55 +44,7 @@ export const services = [
   },
 ];
 
-// ─── Projects ───────────────────────────────────────────────────────────────
-export const projects = [
-  {
-    id: "lms",
-    number: "01",
-    title: "Multi-Tenant Learning Management System",
-    subtitle: "EdTech Platform",
-    description:
-      "A comprehensive LMS serving 50,000+ learners across 200+ institutions. Features include live video lectures, AI-powered assessments, multi-tenant white-labeling, and a real-time analytics dashboard for educators.",
-    tech: ["Next.js", "PostgreSQL", "WebRTC", "Prisma", "AWS", "Redis"],
-    metrics: ["50K+ Active Users", "200+ Institutions", "99.9% Uptime"],
-    color: "#38bdf8",
-    mockupType: "desktop",
-    image: "/images/projects/lms.png",
-  },
-  {
-    id: "roadservice",
-    number: "02",
-    title: "Mobile Road-Service Application",
-    subtitle: "Consumer Mobile App",
-    description:
-      "A comprehensive roadside assistance app connecting drivers to certified mechanics in real-time. Features GPS tracking, in-app payments, service history, and a mechanic marketplace — all in a blazingly fast Flutter app.",
-    tech: [
-      "Flutter",
-      "Node.js",
-      "Google Maps API",
-      "Stripe",
-      "Firebase",
-      "PostgreSQL",
-    ],
-    metrics: ["10K+ Downloads", "4.8★ App Rating", "< 3min Response"],
-    color: "#0ea5e9",
-    mockupType: "mobile",
-    image: "/images/projects/roadservice.png",
-  },
-  {
-    id: "pos",
-    number: "03",
-    title: "Retail Point-of-Sale System",
-    subtitle: "Enterprise Software",
-    description:
-      "A full-featured POS system for retail chains with inventory management, multi-store reporting, loyalty programs, and offline-capable transactions. Processes 10,000+ transactions per day with 100% reliability.",
-    tech: ["Electron", "React", "SQLite", "Node.js", "PostgreSQL", "Prisma"],
-    metrics: ["10K+ Daily Txns", "Multi-Store", "Offline-ready"],
-    color: "#7dd3fc",
-    mockupType: "desktop",
-    image: "/images/projects/pos.png",
-  },
-];
+export { type Project, projects } from "./projects";
 
 // ─── Process Steps ───────────────────────────────────────────────────────────
 export const processSteps = [
@@ -167,79 +119,7 @@ export const techStack = [
   { name: "Vercel", category: "Hosting" },
 ];
 
-// ─── Team ────────────────────────────────────────────────────────────────────
-export const team = [
-  {
-    id: "founder",
-    name: "Vihanga Heshan",
-    role: "Founder & CEO",
-    email: "vihanga@quantumblaze.lk",
-    bio: "Visionary leader with a passion for building scalable digital products and architecting the future of tech.",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=256&h=256",
-    linkedin: "#",
-    gradient: "from-sky-500 to-blue-700",
-  },
-  {
-    id: "co-founder",
-    name: "Akil Abimanash",
-    role: "Co Founder",
-    email: "akil@quantumblaze.lk",
-    bio: "Driving growth and strategic partnerships to establish Quantum Blaze as a market leader in digital innovation.",
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=256&h=256",
-    linkedin: "#",
-    gradient: "from-blue-500 to-indigo-700",
-  },
-  {
-    id: "lead-dev",
-    name: "Ravishka Indraji",
-    role: "Lead Software Developer",
-    email: "ravishka@quantumblaze.lk",
-    bio: "Expert in complex system architecture and full-stack engineering, ensuring robust and high-performance solutions.",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=256&h=256",
-    linkedin: "#",
-    gradient: "from-sky-400 to-cyan-700",
-  },
-  {
-    id: "design",
-    name: "Lakshan Maduranga",
-    role: "Head of Design",
-    email: "lakshan@quantumblaze.lk",
-    bio: "UI/UX specialist focused on creating immersive, premium digital experiences that define our brand aesthetic.",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=256&h=256",
-    linkedin: "#",
-    gradient: "from-cyan-500 to-sky-700",
-  },
-];
-
-export const fullTeam = [
-  ...team,
-  {
-    id: "developer",
-    name: "Supun Sulakshana",
-    role: "Software Developer",
-    email: "supun@quantumblaze.lk",
-    bio: "Dedicated software engineer focused on building efficient, scalable backend systems and seamless integrations.",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=256&h=256",
-    linkedin: "#",
-    gradient: "from-sky-500 to-blue-600",
-  },
-  {
-    id: "creator",
-    name: "Thenuranga Dhananjaya",
-    role: "Digital Creator",
-    email: "thenuranga@quantumblaze.lk",
-    bio: "Creative mind behind our digital storytelling and brand content, bridging the gap between tech and creativity.",
-    image:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=256&h=256",
-    linkedin: "#",
-    gradient: "from-blue-600 to-indigo-800",
-  },
-];
+export { type TeamMember, team, fullTeam } from "./team";
 
 // ─── Stats ───────────────────────────────────────────────────────────────────
 export const stats = [

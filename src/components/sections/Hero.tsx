@@ -1,6 +1,6 @@
 "use client";
-import { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { GlowButton } from "@/components/ui/GlowButton";
 import Image from "next/image";
 import { Rocket, Shield, Users, TrendingUp, Code, ArrowDown, PhoneCall } from "lucide-react";
@@ -10,6 +10,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function Hero() {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const notchTopRef = useRef<HTMLDivElement>(null);
@@ -196,17 +197,17 @@ export function Hero() {
     <section
       id="hero"
       ref={containerRef}
-      className="relative w-full h-screen bg-[#020813] overflow-hidden"
+      className="relative w-full min-h-screen lg:h-screen bg-[#020813] overflow-y-auto lg:overflow-hidden"
     >
       {/* Container wrapper for padding animation */}
       <div 
-        className="w-full h-full flex items-center justify-center overflow-hidden z-20 p-0 lg:p-8"
+        className="w-full min-h-screen lg:h-full flex items-center justify-center overflow-hidden z-20 p-0 lg:p-8"
       >
         
         {/* Animated App Shell Frame */}
         <div
           ref={cardRef}
-          className="relative w-full h-full bg-[#050C18] border-solid border-0 lg:border-[16px] border-[#0b192e] rounded-none lg:rounded-[40px] scale-100 lg:scale-[0.93] flex flex-col justify-between overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.85)]"
+          className="relative w-full min-h-screen lg:h-full bg-[#050C18] border-solid border-0 lg:border-[16px] border-[#0b192e] rounded-none lg:rounded-[40px] scale-100 lg:scale-[0.93] flex flex-col justify-between overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.85)]"
         >
           
           {/* Center Logo Notch (Slides Up on Scroll) */}
@@ -221,7 +222,7 @@ export function Hero() {
               height={32}
               className="w-8 h-8 object-contain"
             />
-            <span className="text-sm font-bold tracking-widest font-quantum text-white uppercase">
+            <span className="text-sm font-black tracking-tight font-inter text-white uppercase">
               Quantum <span className="text-sky-400">Blaze</span>
             </span>
           </div>
@@ -243,10 +244,10 @@ export function Hero() {
               <div className="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest text-slate-400 ml-auto">
                 <button onClick={() => scrollToSection("projects")} className="hover:text-sky-400 transition-colors cursor-pointer">Projects</button>
                 <button onClick={() => scrollToSection("contact")} className="hover:text-sky-400 transition-colors cursor-pointer">Contact</button>
-                <div className="flex items-center gap-2 text-slate-300 bg-sky-950/40 border border-sky-500/20 px-3.5 py-1.5 rounded-full text-[10px] tracking-wider font-bold">
+                <a href="tel:+94788056838" className="flex items-center gap-2 text-slate-300 bg-sky-950/40 hover:bg-sky-950/60 border border-sky-500/20 hover:border-sky-500/40 px-3.5 py-1.5 rounded-full text-[10px] tracking-wider font-bold transition-all hover:text-white cursor-pointer">
                   <PhoneCall className="w-3.5 h-3.5 text-sky-400" />
                   +94 78 805 6838
-                </div>
+                </a>
               </div>
               
               {/* Mobile Brand Name Fallback */}
@@ -258,15 +259,82 @@ export function Hero() {
                   height={28}
                   className="w-7 h-7 object-contain"
                 />
-                <span className="text-xs font-bold tracking-widest font-quantum text-white uppercase">
+                <span className="text-xs font-black tracking-tight font-inter text-white uppercase">
                   Quantum <span className="text-sky-400">Blaze</span>
                 </span>
               </div>
+
+              {/* Mobile Hamburger Menu Button */}
+              <button
+                onClick={() => setMobileOpen(!mobileOpen)}
+                className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50 ml-auto"
+                aria-label="Toggle menu"
+              >
+                <span
+                  className={`block w-6 h-0.5 bg-sky-400 transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`}
+                />
+                <span
+                  className={`block w-6 h-0.5 bg-sky-400 transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`}
+                />
+                <span
+                  className={`block w-6 h-0.5 bg-sky-400 transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`}
+                />
+              </button>
             </div>
+
+            {/* Mobile Menu Drawer */}
+            <AnimatePresence>
+              {mobileOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-x-0 top-[70px] mx-6 z-40 bg-[#050C18]/95 backdrop-blur-xl border border-sky-500/10 p-6 flex flex-col gap-4 shadow-2xl rounded-2xl lg:hidden"
+                >
+                  <button
+                    onClick={() => { scrollToSection("about"); setMobileOpen(false); }}
+                    className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
+                  >
+                    About
+                  </button>
+                  <button
+                    onClick={() => { scrollToSection("services"); setMobileOpen(false); }}
+                    className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
+                  >
+                    Services
+                  </button>
+                  <button
+                    onClick={() => { scrollToSection("projects"); setMobileOpen(false); }}
+                    className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
+                  >
+                    Projects
+                  </button>
+                  {process.env.NEXT_PUBLIC_TEAM_SECTION === "true" && (
+                    <button
+                      onClick={() => { scrollToSection("team"); setMobileOpen(false); }}
+                      className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
+                    >
+                      Team
+                    </button>
+                  )}
+                  <button
+                    onClick={() => { scrollToSection("contact"); setMobileOpen(false); }}
+                    className="text-left py-2 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
+                  >
+                    Contact
+                  </button>
+                  <a href="tel:+94788056838" className="flex items-center justify-center gap-2 text-slate-300 bg-sky-950/40 border border-sky-500/20 py-2.5 rounded-xl text-xs font-bold transition-all hover:text-white mt-2">
+                    <PhoneCall className="w-3.5 h-3.5 text-sky-400" />
+                    +94 78 805 6838
+                  </a>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </header>
 
           {/* Hero Body Content Container */}
-          <div className="relative flex-1 w-full px-6 md:px-12 py-2 flex flex-col justify-center">
+          <div className="relative flex-1 w-full px-6 md:px-12 py-8 lg:py-2 flex flex-col justify-center">
             
             {/* Giant Background Logo Text Layer */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
@@ -287,11 +355,10 @@ export function Hero() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center z-10 relative">
               
               {/* Left Side: Tagline, Description & Action */}
-              <div className="flex flex-col items-start text-left lg:col-span-4 xl:col-span-4 max-w-md">
+              <div className="flex flex-col items-start text-left lg:col-span-4 xl:col-span-4 max-w-md order-2 lg:order-1 mt-4 lg:mt-0">
                 
-                {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-500/10 bg-sky-950/10 backdrop-blur-sm text-[12px] md:text-xs font-bold tracking-[0.2em] text-slate-400 uppercase mb-6">
-                  <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+                {/* Tagline Text */}
+                <div className="text-[12px] md:text-xs font-bold tracking-[0.2em] text-slate-400 uppercase mb-6">
                   Think Beyond <span className="text-sky-400">Limitation</span>
                 </div>
 
@@ -310,27 +377,27 @@ export function Hero() {
                   variant="solid"
                   size="lg"
                   onClick={() => scrollToSection("services")}
-                  className="px-8 py-4 text-xs font-bold shadow-lg shadow-sky-500/10 cursor-pointer rounded-full"
+                  className="px-8 py-4 text-xs font-bold cursor-pointer rounded-full"
                 >
                   Explore Services <span className="ml-1.5">→</span>
                 </GlowButton>
               </div>
 
               {/* Center: Interactive 3D Cubes */}
-              <div className="lg:col-span-4 xl:col-span-4 h-[340px] md:h-[460px] w-full flex items-center justify-center relative my-4 lg:my-0">
+              <div className="lg:col-span-4 xl:col-span-4 h-[260px] sm:h-[340px] md:h-[460px] w-full flex items-center justify-center relative my-4 lg:my-0 order-1 lg:order-2">
                 
                 {/* Concentric radar circles */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="absolute w-[240px] h-[240px] rounded-full border border-sky-500/[0.04]" />
-                  <div className="absolute w-[360px] h-[360px] rounded-full border border-sky-500/[0.03]" />
-                  <div className="absolute w-[480px] h-[480px] rounded-full border border-sky-500/[0.015]" />
+                  <div className="absolute w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] rounded-full border border-sky-500/[0.04]" />
+                  <div className="absolute w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] rounded-full border border-sky-500/[0.03]" />
+                  <div className="absolute w-[380px] h-[380px] sm:w-[480px] sm:h-[480px] rounded-full border border-sky-500/[0.015]" />
                 </div>
 
                 {/* The Massive 3D Cube */}
                 <motion.div
                   animate={{ y: [0, -12, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] md:w-[440px] md:h-[440px] lg:w-[460px] lg:h-[460px] z-10 flex items-center justify-center"
+                  className="relative w-[220px] h-[220px] sm:w-[320px] sm:h-[320px] md:w-[440px] md:h-[440px] lg:w-[460px] lg:h-[460px] z-10 flex items-center justify-center"
                 >
                   <div className="hero-center-image w-full h-full flex items-center justify-center">
                     <Logo3D color="#0ea5e9" height="100%" interactive={true} />
@@ -339,7 +406,7 @@ export function Hero() {
               </div>
 
               {/* Right Side: Features & Free Consultation Box */}
-              <div className="hidden lg:flex flex-col items-start lg:items-end text-left lg:text-right lg:col-span-4 xl:col-span-4 gap-8">
+              <div className="hidden lg:flex flex-col items-start lg:items-end text-left lg:text-right lg:col-span-4 xl:col-span-4 gap-8 lg:order-3">
                 
                 {/* Feature Tags List */}
                 <div className="space-y-4 w-full max-w-[240px] ml-auto">
@@ -371,30 +438,29 @@ export function Hero() {
                 </div>
 
                 {/* Consult Card at the Bottom Right */}
-                <div className="floating-card-3 bg-gradient-to-br from-white/[0.06] to-transparent backdrop-blur-xl border border-white/[0.06] p-5 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)] flex items-center gap-4 w-full max-w-[280px] ml-auto text-left relative overflow-hidden group">
+                <a
+                  href="tel:+94788056838"
+                  className="floating-card-3 bg-gradient-to-br from-white/[0.06] to-transparent backdrop-blur-xl border border-white/[0.06] p-5 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)] flex items-center gap-4 w-full max-w-[280px] ml-auto text-left relative overflow-hidden group hover:border-sky-500/30 transition-all duration-300 cursor-pointer block"
+                >
                   <div className="absolute inset-0 bg-sky-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10 relative flex-shrink-0">
-                    <Image
-                      src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120&h=120"
-                      alt="Consultant"
-                      width={48}
-                      height={48}
-                      className="w-full h-full object-cover"
-                    />
+                  
+                  {/* Call Icon Container */}
+                  <div className="w-12 h-12 rounded-full bg-sky-500/10 flex items-center justify-center border border-sky-500/20 text-sky-400 flex-shrink-0">
+                    <PhoneCall className="w-5 h-5" />
                   </div>
+                  
                   <div className="flex-1">
                     <h4 className="text-white font-bold text-[11px] tracking-tight">Get a Free Consultation</h4>
                     <p className="text-[9px] text-slate-400 mt-1 leading-relaxed font-light">
-                      Fill the form & our specialists will contact you.
+                      Call us directly to speak with our specialists.
                     </p>
-                    <button
-                      onClick={() => scrollToSection("contact")}
-                      className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-sky-400 hover:text-sky-300 transition-colors uppercase tracking-wider cursor-pointer"
+                    <div
+                      className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-sky-400 group-hover:text-sky-300 transition-colors uppercase tracking-wider"
                     >
-                      Request a Call <span className="translate-y-[-0.5px]">→</span>
-                    </button>
+                      Call Now <span className="translate-y-[-0.5px]">→</span>
+                    </div>
                   </div>
-                </div>
+                </a>
 
               </div>
 
