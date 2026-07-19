@@ -137,7 +137,7 @@ export const projects: Project[] = [
     subtitle: "Healthcare Retail & Inventory Management",
     description:
       "A customized, offline-capable Point of Sale and inventory control system built specifically for pharmacies. It handles drug batch tracking, expiry notification loops, prescription billing, and automated sales reporting.",
-    techStack: ["Electron", "React", "Node.js", "SQLite", "PostgreSQL", "Prisma"],
+    techStack: ["Java", "JavaFX", "MySQL", "Hibernate ORM", "Jasper Reports"],
     metrics: [
       "Zero Dispensing Errors",
       "Batch Expiry Tracking",
