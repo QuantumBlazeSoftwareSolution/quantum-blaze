@@ -55,114 +55,84 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
       {/* Projects Gallery */}
       <section className="py-10 pb-32 relative z-10">
         <div className="container-wide px-4">
-          <div className="space-y-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {projects.map((project, index) => {
-              const isEven = index % 2 === 0;
               const techStack = Array.isArray(project.techStack) ? project.techStack : [];
 
               return (
                 <motion.div
                   key={project.id}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="group relative"
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="group relative flex flex-col bg-slate-900/10 border border-slate-800/60 rounded-3xl p-5 hover:border-sky-500/20 hover:shadow-2xl hover:shadow-sky-500/5 transition-all duration-300"
                 >
-                  {/* Subtle connecting line between projects */}
-                  {index !== projects.length - 1 && (
-                    <div className="hidden lg:block absolute left-[50%] top-full h-32 w-px bg-gradient-to-b from-sky-500/20 to-transparent -translate-x-1/2 z-0" />
-                  )}
-
-                  <div
-                    className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center relative z-10`}
-                  >
-                    {/* Image Column */}
+                  {/* Image Container */}
+                  <div className="relative rounded-2xl overflow-hidden bg-[#0a192f] mb-6 aspect-[16/10] border border-white/5">
+                    {/* Image Glow Backdrop */}
                     <div
-                      className={`lg:col-span-7 ${!isEven ? "lg:order-2" : ""}`}
+                      className="absolute inset-0 blur-2xl rounded-2xl scale-90 opacity-10 transition-opacity duration-500 group-hover:opacity-25"
+                      style={{ background: project.themeColor }}
+                    />
+
+                    {project.imageUrl && (
+                      <Image
+                        src={project.imageUrl}
+                        alt={project.title}
+                        fill
+                        className={`object-cover transition-transform duration-700 ease-out group-hover:scale-103 ${project.mockupType === "mobile" ? "object-contain p-6" : ""}`}
+                        sizes="(max-width: 1024px) 100vw, 40vw"
+                      />
+                    )}
+                  </div>
+
+                  {/* Header / Meta */}
+                  <div className="flex items-center justify-between mb-4 mt-2">
+                    <h3 className="text-sky-400 text-xs font-semibold tracking-widest uppercase">
+                      {project.subtitle}
+                    </h3>
+                    <span
+                      className="text-3xl font-bold opacity-15 font-quantum"
+                      style={{ color: project.themeColor }}
                     >
-                      <div className="relative rounded-[2rem] overflow-hidden glass border border-white/5 p-2 transition-all duration-500 hover:border-sky-500/30 hover:shadow-2xl hover:shadow-sky-500/10">
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent z-10 pointer-events-none" />
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
 
-                        <div
-                          className="relative rounded-3xl overflow-hidden w-full bg-[#0a192f]"
-                          style={{
-                            aspectRatio:
-                              project.mockupType === "mobile" ? "4/3" : "16/10",
-                          }}
-                        >
-                          {/* Image Glow Backdrop */}
-                          <div
-                            className="absolute inset-0 blur-3xl rounded-3xl scale-90 opacity-20 transition-opacity duration-500 group-hover:opacity-40"
-                            style={{ background: project.themeColor }}
-                          />
+                  {/* Title */}
+                  <h2 className="text-2xl font-bold text-white mb-4 group-hover:text-sky-400 transition-colors">
+                    {project.title}
+                  </h2>
 
-                          {project.imageUrl && (
-                            <Image
-                              src={project.imageUrl}
-                              alt={project.title}
-                              fill
-                              className={`object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${project.mockupType === "mobile" ? "object-contain p-8" : ""}`}
-                              sizes="(max-width: 1024px) 100vw, 60vw"
-                            />
-                          )}
-                        </div>
-                      </div>
-                    </div>
+                  {/* Description */}
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                    {project.description}
+                  </p>
 
-                    {/* Content Column */}
-                    <div
-                      className={`lg:col-span-5 flex flex-col justify-center ${!isEven ? "lg:order-1" : ""}`}
+                  {/* Tech stack */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {techStack.map((tech: any) => (
+                      <span
+                        key={String(tech)}
+                        className="px-2.5 py-1 rounded-md text-[11px] font-medium border border-white/5 bg-white/5 text-slate-400"
+                      >
+                        {String(tech)}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* CTA Button */}
+                  <div>
+                    <GlowButton
+                      variant="outline"
+                      size="sm"
+                      className="w-full justify-center"
+                      onClick={() => router.push(`/projects/${project.slug}`)}
                     >
-                      <div className="flex items-center gap-4 mb-6">
-                        <span
-                          className="text-6xl font-bold opacity-10 font-quantum"
-                          style={{ color: project.themeColor }}
-                        >
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <div
-                          className="h-px flex-grow"
-                          style={{
-                            background: `linear-gradient(90deg, ${project.themeColor}40, transparent)`,
-                          }}
-                        />
-                      </div>
-
-                      <h3 className="text-sky-400 text-sm font-semibold tracking-widest uppercase mb-3">
-                        {project.subtitle}
-                      </h3>
-
-                      <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">
-                        {project.title}
-                      </h2>
-
-                      <p className="text-slate-400 text-base leading-relaxed mb-8">
-                        {project.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2 mb-8">
-                        {techStack.map((tech: any) => (
-                          <span
-                            key={String(tech)}
-                            className="px-3 py-1.5 rounded-md text-xs font-medium border border-white/10 bg-white/5 text-slate-300"
-                          >
-                            {String(tech)}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div>
-                        <GlowButton
-                          variant="outline"
-                          size="sm"
-                          onClick={() => router.push(`/projects/${project.slug}`)}
-                        >
-                          Read Case Study
-                          <ArrowRight className="w-4 h-4 ml-2 inline-block" />
-                        </GlowButton>
-                      </div>
-                    </div>
+                      Read Case Study
+                      <ArrowRight className="w-4 h-4 ml-2 inline-block" />
+                    </GlowButton>
                   </div>
                 </motion.div>
               );
