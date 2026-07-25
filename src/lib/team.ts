@@ -69,11 +69,11 @@ export const team: TeamMember[] = [
     email: "thenuranga@quantumblaze.lk",
     bio: "Creative mind behind our digital storytelling and brand content, bridging the gap between tech and creativity.",
     image:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=256&h=256",
+      "/team/thenuranga-digital-creator.jpeg",
     linkedin: "#",
     gradient: "from-blue-600 to-indigo-800",
     orderNumber: 6,
-    visibility: false,
+    visibility: true,
   },
 ];
 

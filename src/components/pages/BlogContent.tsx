@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlassCard } from "@/components/ui/GlassCard";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { useLenis } from "@/hooks/useLenis";
 import { Search, Calendar, Clock, ArrowRight, Mail, Sparkles, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
@@ -45,12 +44,10 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
     { key: "Product Strategy", label: "Product Strategy" }
   ];
 
-  // Static English UI text
+  // Static English UI text (clean, minimal copywriting to avoid "AI default" style)
   const t = {
-    sectionLabel: "OUR KNOWLEDGE BASE",
-    titlePrefix: "Stories, Insights & ",
-    titleSuffix: "Engineering.",
-    subtitle: "Deep dives into modern frameworks, frontend design principles, clean architecture, and the strategies behind launching scalable, trust-inducing digital products.",
+    title: "The Journal",
+    subtitle: "Technical writing, engineering deep-dives, and product design logs from our builders.",
     featuredBadge: "Featured Post",
     readArticle: "Read Article",
     searchPlaceholder: "Search articles...",
@@ -109,64 +106,33 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
         }}
       />
 
-      <section className="relative pt-32 pb-20">
+      <section className="relative pt-36 pb-20">
         <div className="container-wide relative z-10">
           
-          {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-            <div className="max-w-2xl space-y-4">
-              <SectionLabel>{t.sectionLabel}</SectionLabel>
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-white font-bold leading-tight font-grotesk tracking-tight text-4xl sm:text-5xl md:text-6xl"
-              >
-                {t.titlePrefix}<span className="text-sky-400">{t.titleSuffix}</span>
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.8 }}
-                className="text-slate-400 text-sm sm:text-base leading-relaxed"
-              >
-                {t.subtitle}
-              </motion.p>
-            </div>
-
-            {/* Language Switcher Switch */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="flex items-center border border-sky-400/10 rounded-xl p-1 bg-slate-950/40 w-fit self-start md:self-end"
+          {/* Header Section - Clean & Spacious */}
+          <div className="max-w-2xl space-y-3 mb-16">
+            <motion.h1
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-white font-bold leading-tight font-grotesk tracking-tight text-4xl sm:text-5xl md:text-6xl"
             >
-              <button
-                onClick={() => handleLanguageChange("en")}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all duration-300 cursor-pointer ${
-                  language === "en"
-                    ? "bg-sky-400 text-slate-950 shadow-[0_0_10px_rgba(56,189,248,0.2)]"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                EN
-              </button>
-              <button
-                onClick={() => handleLanguageChange("si")}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all duration-300 cursor-pointer ${
-                  language === "si"
-                    ? "bg-sky-400 text-slate-950 shadow-[0_0_10px_rgba(56,189,248,0.2)]"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                සිං
-              </button>
-            </motion.div>
+              {t.title}<span className="text-sky-400">.</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.8 }}
+              className="text-slate-400 text-sm sm:text-base md:text-lg max-w-xl leading-relaxed"
+            >
+              {t.subtitle}
+            </motion.p>
           </div>
 
           {/* Featured Post */}
           {searchQuery === "" && selectedCategory === "All" && featuredPost && (
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
               className="mb-16"
@@ -174,7 +140,7 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
               <Link href={`/blog/${featuredPost.slug}`}>
                 <GlassCard className="relative overflow-hidden group">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 md:p-8 items-center">
-                    {/* Featured Image - Optimized width and aspect ratio */}
+                    {/* Featured Image */}
                     <div className="lg:col-span-5 aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] xl:aspect-[16/10] overflow-hidden rounded-xl bg-slate-900/50 relative w-full h-full">
                       <img
                         src={featuredPost.coverImage}
@@ -186,7 +152,7 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
                       </div>
                     </div>
 
-                    {/* Featured Details - Gained space from smaller image side */}
+                    {/* Featured Details */}
                     <div className="lg:col-span-7 flex flex-col justify-between h-full py-2 space-y-6">
                       <div className="space-y-4">
                         <div className="flex items-center gap-4 text-xs text-slate-400 font-medium">
@@ -240,10 +206,10 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
             </motion.div>
           )}
 
-          {/* Search and Filters Bar */}
-          <div className="flex flex-col md:flex-row gap-6 md:items-center justify-between mb-12 pb-8 border-b border-sky-400/10">
+          {/* Controls Bar - Categories, Search & Language Switcher aligned cleanly */}
+          <div className="flex flex-col xl:flex-row gap-6 xl:items-center justify-between mb-12 pb-8 border-b border-sky-400/10">
             {/* Categories */}
-            <div className="flex flex-wrap gap-2.5">
+            <div className="flex flex-wrap gap-2">
               {categories.map((cat) => (
                 <button
                   key={cat.key}
@@ -259,16 +225,43 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
               ))}
             </div>
 
-            {/* Search Input */}
-            <div className="relative w-full md:max-w-xs">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
-              <input
-                type="text"
-                placeholder={t.searchPlaceholder}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-sky-400/10 bg-slate-950/40 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-400/30 transition-all font-sans"
-              />
+            {/* Unified Search & Language Switcher Panel */}
+            <div className="flex items-center gap-3.5 w-full xl:w-auto justify-between xl:justify-end">
+              {/* Search */}
+              <div className="relative flex-grow xl:flex-grow-0 xl:w-64">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
+                <input
+                  type="text"
+                  placeholder={t.searchPlaceholder}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-sky-400/10 bg-slate-950/40 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-400/30 transition-all font-sans"
+                />
+              </div>
+
+              {/* Language Switcher Switch */}
+              <div className="flex items-center border border-sky-400/10 rounded-xl p-1 bg-slate-950/40 shrink-0">
+                <button
+                  onClick={() => handleLanguageChange("en")}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all duration-300 cursor-pointer ${
+                    language === "en"
+                      ? "bg-sky-400 text-slate-950 shadow-[0_0_10px_rgba(56,189,248,0.2)]"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => handleLanguageChange("si")}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all duration-300 cursor-pointer ${
+                    language === "si"
+                      ? "bg-sky-400 text-slate-950 shadow-[0_0_10px_rgba(56,189,248,0.2)]"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  සිං
+                </button>
+              </div>
             </div>
           </div>
 

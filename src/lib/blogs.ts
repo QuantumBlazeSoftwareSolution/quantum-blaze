@@ -68,7 +68,7 @@ Selecting the right framework is a crucial business decision. Partnering with a 
 ප්‍රමුඛ පෙළේ මෘදුකාංග ආයතන Next.js තෝරා ගැනීමට ප්‍රධාන හේතු කිහිපයක් මෙන්න:
 
 ### Hybrid Rendering ක්‍රමවේද
-Next.js මගින් SSR, SSG සහ ISR යන Rendering ක්‍රමවේද සියල්ලම එකවර ලබා දෙයි. මේ නිසා වෙබ් අඩවියේ අඩංගු දත්ත ඉතා ඉක්මනින් ලෝඩ් කරවන අතරම පරිශීලකයාට අවශ්‍ය dynamic දත්ත ද සර්වර් එක හරහා ක්ෂණිකව ලබා දීමට හැකියාව ලැබේ.
+Next.js මගින් SSR, SSG සහ ISR යන Rendering ක්‍රමවේද සියල්ලම එකවර ලබා දෙයි. මේ නිසා වෙබ් අඩවියේ අඩංගු දත්ත ඉතා ඉක්මනින් ලෝඩ් කරවන අතරම පරිශීලකයාට අවශ්‍ය dynamic දත්ත ද සර්වර් එක හරහා ක්ෂණිකව ලබා දීමට chimneys ලැබෙනවා.
 
 ### Core Web Vitals ප්‍රශස්තකරණය
 Images, Scripts සහ Fonts සඳහා Next.js සතු විශේෂිත components මගින් වෙබ් අඩවියේ වේගය ඉහළ මට්ටමක තබා ගනී. මෙය වෙබ් අඩවියට පැමිණෙන පාරිභෝගිකයින් රඳවා ගැනීමට (bounce rates අවම කිරීමට) සෘජුවම දායක වේ.
@@ -227,13 +227,249 @@ A premium UI/UX design sets a standard of excellence. When your product feels pr
 ### ඒකාකාරී සන්නාම අනන්‍යතාව (Consistent Brand)
 වෙබ් අඩවියේ හෝ මෘදුකාංගයේ සෑම තැනකම එකම ආකාරයේ වර්ණ, අකුරු වර්ග සහ පරතරයන් භාවිතය මඟින් ව්‍යාපාරයේ වෘත්තීය මට්ටම විදහා දක්වයි.
 
-### ප්‍රතිචාරාත්මක මයික්‍රෝ-ඇනිමේෂන් (Micro-interactions)
+### +ප්‍රතිචාරාත්මක මයික්‍රෝ-ඇනිමේෂන් (Micro-interactions)
 පරිශීලකයා යම් button එකක් මතට mouse cursor එක ගෙන යන විට හෝ ක්ලික් කරන විට සිදුවන සුමට වෙනස්කම් මගින් පද්ධතිය සක්‍රීයව ක්‍රියාත්මක වන බවට පරිශීලකයාට සංඥා කරයි.
 
 ### ප්‍රවේශවීමේ පහසුව (Accessibility)
  readability එක ඉහළ මට්ටමක තබා ගැනීම සහ ඕනෑම අයෙකුට (විශේෂ අවශ්‍යතා සහිත අයෙකුට වුවද) වෙබ් අඩවිය පරිහරණය කිරීමට ඇති පහසුව ව්‍යාපාරයක වගකීම සහ ගුණාත්මක බව පසක් කරයි.
 
 පාරිභෝගිකයාට වටිනාකමක් දෙන ව්‍යාපාරයකට ඉහළ මට්ටමේ UI/UX සැලසුම්කරණයක් අතිශය වැදගත් වේ. පද්ධතිය වෘත්තීය මට්ටමින් තිබෙන විට, පාරිභෝගිකයා ඔබේ සේවාවන් ගැන වැඩි විශ්වාසයක් තබයි.
+      `
+    }
+  },
+  {
+    id: "5",
+    slug: "ultimate-guide-to-nextjs-image-optimization",
+    title: {
+      en: "The Ultimate Guide to Next.js Image Optimization",
+      si: "Next.js රූප රාමු ප්‍රශස්තකරණය (Image Optimization) පිළිබඳ මඟ පෙන්වීම"
+    },
+    description: {
+      en: "Learn how to use Next.js next/image to automatically optimize formats, compress sizes, and prevent layout shifts.",
+      si: "Next.js Image component එක භාවිතයෙන් ස්වයංක්‍රීයව පින්තූරවල ප්‍රමාණයන් සහ ගුණාත්මකභාවය ප්‍රශස්ත කරගන්නා ආකාරය ඉගෙන ගන්න."
+    },
+    category: "Engineering",
+    date: "May 24, 2026",
+    readTime: "5 min read",
+    coverImage: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=600&q=80",
+    author: {
+      name: "Vihanga Heshan",
+      role: "Founder & CEO",
+      image: "/team/vihanga-heshan-CEO.png"
+    },
+    content: {
+      en: `
+Images are often the heaviest assets on web pages. Without proper optimization, heavy images degrade user experience and drag down Core Web Vitals scores. Next.js offers a powerful, built-in solution: the Image component.
+
+Here is how to optimize images effectively:
+
+### Automated Format Selection
+Next.js dynamically detects if the user's browser supports modern, lightweight formats like WebP or AVIF and automatically converts images to them, significantly saving bandwidth.
+
+### Layout Shift Prevention
+Visual stability builds user trust. By requiring explicit width and height proportions, Next.js calculates layout boxes in advance, ensuring no Cumulative Layout Shift (CLS) occurs while loading.
+
+Implementing next/image is one of the easiest ways to improve your website's performance and conversion rates.
+      `,
+      si: `
+වෙබ් අඩවි බර වීමට (slow වීමට) බලපාන ප්‍රධානතම හේතුවක් වන්නේ ප්‍රශස්තකරණය නොකළ විශාල පින්තූර (images) ය. Next.js මඟින් මේ සඳහා ඉතා සාර්ථක ස්වයංක්‍රීය විසඳුමක් ලබා දෙයි.
+
+පින්තූර සාර්ථකව ප්‍රශස්ත කරන ප්‍රධාන ක්‍රම:
+
+### ස්වයංක්‍රීය Format පරිවර්තනය
+පරිශීලකයාගේ Browser එකට අනුව පින්තූර WebP හෝ AVIF වැනි ඉතා සැහැල්ලු නවීන formats වලට Next.js මඟින් ස්වයංක්‍රීයව පරිවර්තනය කරයි.
+
+### Layout Shift වැළැක්වීම
+පින්තූරය load වන විට layout එක එහා මෙහා වීම වැළැක්වීම සඳහා Next.js මඟින් image proportions කලින්ම ගණනය කර ඉඩ වෙන් කර තබයි. මෙය පරිශීලකයාගේ පහසුවට අතිශය උපකාරී වේ.
+      `
+    }
+  },
+  {
+    id: "6",
+    slug: "why-tailwindcss-accelerates-rapid-ui-development",
+    title: {
+      en: "Why We Chose TailwindCSS for Rapid UI Development",
+      si: "වේගවත් UI සංවර්ධනයක් සඳහා අප TailwindCSS තෝරා ගත්තේ ඇයි?"
+    },
+    description: {
+      en: "An analysis of utility-first CSS frameworks and why TailwindCSS is the industry standard for modern agencies in 2026.",
+      si: "Utility-first CSS ක්‍රමවේද සහ 2026 වසරේදී ප්‍රමුඛතම මෘදුකාංග ආයතන TailwindCSS තෝරා ගැනීමට හේතු පිළිබඳ විශ්ලේෂණයක්."
+    },
+    category: "Design",
+    date: "April 18, 2026",
+    readTime: "6 min read",
+    coverImage: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80",
+    author: {
+      name: "Lakshan Bandara",
+      role: "Lead UI/UX Designer",
+      image: "/team/lakshan-bandara.png"
+    },
+    content: {
+      en: `
+Traditional stylesheet management gets messy as products grow. TailwindCSS solves this by providing low-level utility classes directly within HTML elements.
+
+Why TailwindCSS works for digital products:
+
+### Absolute Design Consistency
+Tailwind relies on a central configuration file. Spacing scales, color palettes, and typography constraints are defined once, ensuring designers and developers remain visually aligned.
+
+### Extremely Small CSS Bundles
+Since Tailwind scans your codebase and extracts only the classes you actually use, the production CSS stylesheet remains microscopic, leading to faster initial load times.
+      `,
+      si: `
+සාම්ප්‍රදායික CSS ලිවීමේ ක්‍රමවේද ව්‍යාපෘතියක් විශාල වන විට කළමනාකරණය කිරීමට අපහසු වේ. TailwindCSS මඟින් මේ සඳහා නවීන utility-first විසඳුමක් ලබා දෙයි.
+
+TailwindCSS වල ඇති වාසි:
+
+### ඒකාකාරී සැලසුම් ප්‍රමිතිය
+වර්ණ, අකුරු ප්‍රමාණයන් සහ පරතරයන් (spacing) එකම configuration එකක් මත ක්‍රියාත්මක වන නිසා සමස්ත වෙබ් අඩවියම ඒකාකාරී අලංකාර නිමාවකින් යුක්ත වේ.
+
+### කුඩා CSS ගොනු ප්‍රමාණය (Small bundle size)
+භාවිතා නොකරන CSS විනාශ කර දමමින් භාවිතා කරන පේළි පමණක් compile කරන නිසා පද්ධතියේ වේගය සැලකිය යුතු ලෙස ඉහළ යයි.
+      `
+    }
+  },
+  {
+    id: "7",
+    slug: "state-management-in-2026-redux-to-zustand",
+    title: {
+      en: "State Management in 2026: From Redux to Zustand",
+      si: "2026 වසරේ රාජ්‍ය කළමනාකරණය (State Management): Redux සිට Zustand දක්වා"
+    },
+    description: {
+      en: "How lightweight, store-based state managers like Zustand simplify codebases and eliminate boilerplate code.",
+      si: "Zustand වැනි සරල සහ සැහැල්ලු state managers මඟින් මෘදුකාංග පද්ධතියක අනවශ්‍ය කේතකරණයන් අවම කරන්නේ කෙසේද?"
+    },
+    category: "Engineering",
+    date: "March 29, 2026",
+    readTime: "7 min read",
+    coverImage: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=600&q=80",
+    author: {
+      name: "Vihanga Heshan",
+      role: "Founder & CEO",
+      image: "/team/vihanga-heshan-CEO.png"
+    },
+    content: {
+      en: `
+React state management has evolved. While Redux was the undisputed king for years, modern developer experience values minimalism and ease of use. Zustand has emerged as the developer's choice in 2026.
+
+### Why Zustand is replacing Redux:
+* **Zero Boilerplate:** No reducers, no action creators, no complex context provider wrappers. You define a store in minutes.
+* **Performance Optimizations:** Zustand prevents unnecessary re-renders out of the box using clean state selection structures.
+      `,
+      si: `
+React රාජ්‍ය කළමනාකරණය (State Management) වර්තමානයේ බොහෝ සරල වී ඇත. වසර ගණනාවක් පැවති Redux ක්‍රමවේදයට වඩා සරල Zustand භාවිතයට බොහෝ සංවර්ධකයින් යොමුවී ඇත.
+
+### Zustand වල ඇති විශේෂතා:
+* **සරල බව:** අනවශ්‍ය action creators හෝ සංකීර්ණ wrappers භාවිතයෙන් තොරව විනාඩි කිහිපයකින් store එකක් නිර්මාණය කළ හැක.
+* **ඉහළ වේගය:** පද්ධතියේ අනවශ්‍ය re-rendering කටයුතු සීමා කරමින් පරිශීලකයාට වේගවත් අත්දැකීමක් ලබා දෙයි.
+      `
+    }
+  },
+  {
+    id: "8",
+    slug: "importance-of-api-first-design-in-microservices",
+    title: {
+      en: "The Importance of API-First Design in Modern Microservices",
+      si: "නවීන Microservices සඳහා API-First සැලසුම්කරණයේ ඇති වැදගත්කම"
+    },
+    description: {
+      en: "Why defining your API contract before writing code leads to better collaboration, parallel workflows, and extensible systems.",
+      si: "කේතය ලිවීමට පෙර API සැලැස්ම (API contract) නිර්මාණය කිරීම මඟින් කණ්ඩායමේ සන්නිවේදනය සහ සංවර්ධන වේගය වැඩි කර ගන්නේ කෙසේද?"
+    },
+    category: "Architecture",
+    date: "February 12, 2026",
+    readTime: "8 min read",
+    coverImage: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80",
+    author: {
+      name: "Nethmina Sandeepa",
+      role: "Lead Systems Architect",
+      image: "/team/nethmina-sandeepa.png"
+    },
+    content: {
+      en: `
+In microservice environments, multiple services must communicate seamlessly. Defining API endpoints in an ad-hoc manner during development leads to bottlenecks. API-First design treats the API interface as a first-class product.
+
+By defining the OpenAPI specification first, frontend and backend teams can build and test in parallel using mock servers, decreasing time-to-market and visual integration issues.
+      `,
+      si: `
+Microservices සැලසුම් කිරීමේදී විවිධ සේවාවන් අතර සන්නිවේදනය සාර්ථකව පවත්වා ගැනීම වැදගත් වේ. සංවර්ධනය අතරතුර ad-hoc ක්‍රමයට API සෑදීම වෙනුවට, ආරම්භයේදීම API සැලැස්ම ලිවීම මෙයින් සිදුවේ.
+
+OpenAPI specifications කලින්ම සැලසුම් කිරීමෙන්, frontend සහ backend කණ්ඩායම් දෙකටම එකවර සමාන්තරව (parallel) සංවර්ධන කටයුතු සිදු කිරීමට හැකිවේ.
+      `
+    }
+  },
+  {
+    id: "9",
+    slug: "how-to-optimize-largest-contentful-paint-lcp",
+    title: {
+      en: "How to Optimize Largest Contentful Paint (LCP) for Next.js Sites",
+      si: "Next.js වෙබ් අඩවිවල Largest Contentful Paint (LCP) වේගය වැඩි කරගන්නේ කෙසේද?"
+    },
+    description: {
+      en: "Step-by-step techniques to optimize your site's LCP score and satisfy Google's SEO ranking signals.",
+      si: "වෙබ් අඩවියේ ප්‍රධානතම රූප හෝ අකුරු පෙනීමට ගතවන කාලය (LCP) අඩු කරගනිමින් Google සර්ච් ශ්‍රේණිගත කිරීම් වැඩි කරගන්නා අයුරු."
+    },
+    category: "Engineering",
+    date: "January 20, 2026",
+    readTime: "6 min read",
+    coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+    author: {
+      name: "Vihanga Heshan",
+      role: "Founder & CEO",
+      image: "/team/vihanga-heshan-CEO.png"
+    },
+    content: {
+      en: `
+Largest Contentful Paint (LCP) measures how long the main content block takes to load. A slow LCP indicates to users that the website is unresponsive.
+
+### Key Optimization Steps:
+* **Fetch Priority:** Mark critical hero images with 'priority' to instruct the browser to load them first.
+* **Server Response Times:** Optimize slow queries and implement static pre-rendering where possible to server layouts instantly.
+      `,
+      si: `
+LCP මඟින් වෙබ් අඩවියේ ඇති විශාලතම පින්තූරය හෝ අකුරු පේළිය ලෝඩ් වීමට ගතවන කාලය මනිනු ලැබේ. මෙය වෙබ් අඩවියක වේගය මැනීමට Google විසින් භාවිතා කරයි.
+
+### ප්‍රශස්ත කරන ආකාරය:
+* **Fetch Priority:** ප්‍රධාන banner image එක 'priority' ලෙස ලකුණු කිරීමෙන් browser එක මඟින් එය අනෙක් දේට පෙර load කරවයි.
+* **Server Response:** දත්ත සෙවීම් වේගවත් කිරීම සහ static rendering ක්‍රමවේද යොදා ගනිමින් layout එක ක්ෂණිකව පරිශීලකයාට පෙන්වීම.
+      `
+    }
+  },
+  {
+    id: "10",
+    slug: "mastering-framer-motion-for-web-experiences",
+    title: {
+      en: "Mastering Framer Motion for Immersive Web Experiences",
+      si: "ආකර්ෂණීය වෙබ් අත්දැකීම් නිර්මාණය කිරීමට Framer Motion ප්‍රගුණ කිරීම"
+    },
+    description: {
+      en: "How to use spring physics, scroll-driven layouts, and page transitions to make your React app feel alive.",
+      si: "React මෘදුකාංග පණ ගැන්වීමට (animate කිරීමට) spring physics, scroll animations සහ සුමට පිටු සංක්‍රමණ (page transitions) භාවිතා කරන ආකාරය."
+    },
+    category: "Design",
+    date: "December 14, 2025",
+    readTime: "7 min read",
+    coverImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80",
+    author: {
+      name: "Lakshan Bandara",
+      role: "Lead UI/UX Designer",
+      image: "/team/lakshan-bandara.png"
+    },
+    content: {
+      en: `
+Static interfaces are boring. Immersive motion is what separates average websites from premium ones. Framer Motion simplifies building complex React animations.
+
+### Tips for Premium Motion:
+* **Spring Physics over Durations:** Use realistic spring values for transitions to make elements feel physical and weighted.
+* **Scroll-driven Reveals:** Animate elements into view as the user scrolls, creating a narrative flow that captures attention.
+      `,
+      si: `
+සරල පණ නැති වෙබ් අඩවි වලට වඩා ඇසට හසුවන සුමට චලනයන් (animations) පාරිභෝගිකයා රඳවා ගැනීමට උපකාරී වේ. Framer Motion මඟින් React සජීවීකරණය පහසු කරයි.
+
+### සාර්ථකව ඇනිමේෂන් භාවිතා කරන අයුරු:
+* **Spring Physics:** ඇනිමේෂන් සඳහා සාමාන්‍ය linear වේගයන් වෙනුවට භෞතික විද්‍යාත්මක spring values භාවිතා කිරීමෙන් ස්වභාවික නිමාවක් ලැබේ.
+* **Scroll Reveals:** පරිශීලකයා scroll කරන විට දත්ත සෙමෙන් මතුවීමට සැලැස්වීමෙන් වෙබ් අඩවියේ ආකර්ෂණය වැඩිවේ.
       `
     }
   }
