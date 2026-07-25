@@ -66,7 +66,7 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="group relative flex flex-col bg-slate-900/10 border border-slate-800/60 rounded-3xl p-5 hover:border-sky-500/20 hover:shadow-2xl hover:shadow-sky-500/5 transition-all duration-300"
+                  className="group relative flex flex-col transition-all duration-300"
                 >
                   {/* Image Container */}
                   <div className="relative rounded-2xl overflow-hidden bg-[#0a192f] mb-6 aspect-[16/10] border border-white/5">
@@ -122,17 +122,15 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
                     ))}
                   </div>
 
-                  {/* CTA Button */}
-                  <div>
-                    <GlowButton
-                      variant="outline"
-                      size="sm"
-                      className="w-full justify-center"
+                  {/* CTA Text Link */}
+                  <div className="mt-2">
+                    <button
                       onClick={() => router.push(`/projects/${project.slug}`)}
+                      className="inline-flex items-center gap-2 text-sm font-semibold tracking-wider text-emerald-400 group-hover:text-emerald-300 transition-colors uppercase cursor-pointer"
                     >
                       Read Case Study
-                      <ArrowRight className="w-4 h-4 ml-2 inline-block" />
-                    </GlowButton>
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </button>
                   </div>
                 </motion.div>
               );

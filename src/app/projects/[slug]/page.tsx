@@ -9,6 +9,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, type Screenshot } from "@/lib/projects";
+import { ScreenshotSlider } from "@/components/sections/ScreenshotSlider";
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -133,32 +134,10 @@ export default function ProjectDetailPage() {
 
         {/* ─── Pharmacy POS Specific Modules ─── */}
         {project.screenshots && project.screenshots.length > 0 && (
-          <section className="border-t border-slate-800/80 pt-16 mb-16">
-            <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white mb-6">
-              Application Interface Screenshots
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {project.screenshots.map((ss, idx) => (
-                <div 
-                  key={idx}
-                  onClick={() => setActiveScreenshot(ss)}
-                  className="group relative aspect-[16/10] rounded-xl border border-slate-800/80 bg-slate-900/10 overflow-hidden cursor-pointer hover:border-emerald-500/40 transition-colors"
-                >
-                  <Image 
-                    src={ss.url} 
-                    alt={`${project.title} screenshot ${idx + 1}`}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-102"
-                  />
-                  <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/40 transition-colors flex items-center justify-center">
-                    <span className="opacity-0 group-hover:opacity-100 text-xs font-semibold uppercase tracking-wider bg-slate-900/90 text-white px-3 py-1.5 rounded-lg border border-slate-700 transition-opacity">
-                      View Details
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+          <ScreenshotSlider 
+            screenshots={project.screenshots} 
+            themeColor={project.themeColor} 
+          />
         )}
 
         {project.reports && project.reports.length > 0 && (

@@ -13,6 +13,7 @@ const navLinks = [
   ...(process.env.NEXT_PUBLIC_TEAM_SECTION === "true"
     ? [{ label: "Team", href: "#team" }]
     : []),
+  { label: "Blog", href: "/blog" },
 ];
 
 export function Navbar() {
@@ -36,6 +37,11 @@ export function Navbar() {
   }, [lastY]);
 
   const scrollTo = (href: string) => {
+    if (href.startsWith("/")) {
+      router.push(href);
+      setMobileOpen(false);
+      return;
+    }
     if (pathname !== "/") {
       router.push("/" + href);
       return;
@@ -45,16 +51,17 @@ export function Navbar() {
     setMobileOpen(false);
   };
 
+
   return (
     <>
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: hidden ? -100 : 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-500 ${
           scrolled
-            ? "glass !border-none border-b border-sky-500/10 py-3 shadow-2xl shadow-black/50"
-            : "bg-gradient-to-b from-[#050B14] via-[#050B14]/90 to-transparent py-5"
+            ? "bg-[#050b14]/80 backdrop-blur-xl border-white/5 py-3 shadow-2xl shadow-black/50"
+            : "bg-gradient-to-b from-[#050B14] via-[#050B14]/90 to-transparent border-transparent py-5"
         }`}
       >
         <div className="container-wide flex items-center justify-between">
