@@ -20,7 +20,7 @@ export default function NotFound() {
           className="flex flex-col items-center"
         >
           {/* Subtle logo or graphic */}
-          <div className="w-16 h-16 mb-8 opacity-50">
+          <div className="w-16 h-16 mb-8 opacity-40">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -36,7 +36,7 @@ export default function NotFound() {
             </svg>
           </div>
 
-          <h1 className="text-8xl md:text-9xl font-bold font-quantum text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20 mb-4 tracking-tighter">
+          <h1 className="text-8xl md:text-[9rem] font-bold font-quantum text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20 mb-4 tracking-tighter">
             404
           </h1>
 
