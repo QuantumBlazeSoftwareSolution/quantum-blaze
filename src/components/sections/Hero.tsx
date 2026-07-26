@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GlowButton } from "@/components/ui/GlowButton";
 import Image from "next/image";
-import { Rocket, Shield, Users, TrendingUp, Code, ArrowDown, PhoneCall } from "lucide-react";
+import { Rocket, Shield, Users, TrendingUp, Code, ArrowDown, PhoneCall, ChevronDown } from "lucide-react";
 import { FaLinkedin, FaFacebook } from "react-icons/fa6";
 import { Logo3D } from "@/components/ui/Logo3D";
 import gsap from "gsap";
@@ -238,6 +238,21 @@ export function Hero() {
               <div className="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest text-slate-400">
                 <button onClick={() => scrollToSection("about")} className="hover:text-sky-400 transition-colors cursor-pointer">About</button>
                 <button onClick={() => scrollToSection("services")} className="hover:text-sky-400 transition-colors cursor-pointer">Services</button>
+                
+                {/* Resources Hover Dropdown */}
+                <div className="relative group flex items-center h-full py-2">
+                  <button className="hover:text-sky-400 transition-colors cursor-pointer flex items-center gap-1">
+                    Resources <ChevronDown className="w-3.5 h-3.5" />
+                  </button>
+                  <div className="absolute top-[80%] left-0 mt-1 w-32 bg-slate-950/95 border border-slate-900 rounded-xl py-2 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <a href="/blog" className="block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[11px] font-semibold">
+                      Blog
+                    </a>
+                    <button onClick={() => scrollToSection("faq")} className="w-full text-left block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[11px] font-semibold cursor-pointer">
+                      FAQ
+                    </button>
+                  </div>
+                </div>
               </div>
 
               {/* Right Nav Links & Actions */}
@@ -303,6 +318,19 @@ export function Hero() {
                     className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
                   >
                     Services
+                  </button>
+                  <a
+                    href="/blog"
+                    onClick={() => setMobileOpen(false)}
+                    className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors block"
+                  >
+                    Blog
+                  </a>
+                  <button
+                    onClick={() => { scrollToSection("faq"); setMobileOpen(false); }}
+                    className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
+                  >
+                    FAQ
                   </button>
                   <button
                     onClick={() => { scrollToSection("projects"); setMobileOpen(false); }}
@@ -373,14 +401,22 @@ export function Hero() {
                 </p>
 
                 {/* Primary Call to Action */}
-                <GlowButton
-                  variant="solid"
-                  size="lg"
-                  onClick={() => scrollToSection("services")}
-                  className="px-8 py-4 text-xs font-bold cursor-pointer rounded-full"
-                >
-                  Explore Services <span className="ml-1.5">→</span>
-                </GlowButton>
+                <div className="flex flex-wrap items-center gap-5">
+                  <GlowButton
+                    variant="solid"
+                    size="lg"
+                    onClick={() => scrollToSection("services")}
+                    className="px-8 py-4 text-xs font-bold cursor-pointer rounded-full"
+                  >
+                    Explore Services <span className="ml-1.5">→</span>
+                  </GlowButton>
+                  <a
+                    href="/blog"
+                    className="text-xs font-bold tracking-wider text-slate-400 hover:text-white uppercase transition-colors px-2 py-1.5 cursor-pointer"
+                  >
+                    Read Our Blog
+                  </a>
+                </div>
               </div>
 
               {/* Center: Interactive 3D Cubes */}
