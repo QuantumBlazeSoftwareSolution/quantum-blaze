@@ -20,12 +20,12 @@ export default async function BlogListingPage() {
 
       <main className="max-w-6xl mx-auto px-6 pt-32 pb-24 flex-grow w-full">
         {/* Page Header */}
-        <header className="border-b border-slate-900 pb-10 mb-16">
+        <header className="border-b border-slate-900 pb-10 mb-16 text-center flex flex-col items-center">
           <p className="text-xs font-semibold tracking-widest uppercase text-sky-400 mb-3">Insights & Architecture</p>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white uppercase font-grotesk">
             Quantum Blogs
           </h1>
-          <p className="text-lg text-slate-400 font-light max-w-2xl leading-relaxed mt-4">
+          <p className="text-lg text-slate-400 font-light max-w-2xl leading-relaxed mt-4 mx-auto">
             Technical writing, guides, and engineering logs from our development team.
           </p>
         </header>
