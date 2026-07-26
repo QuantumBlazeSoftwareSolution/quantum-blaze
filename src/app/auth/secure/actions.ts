@@ -2,8 +2,8 @@
 
 import { cookies } from "next/headers";
 
-const SECURE_USERNAME = process.env.SECURE_USERNAME || "admin";
-const SECURE_PASSWORD = process.env.SECURE_PASSWORD || "Qb2024@#"; // fallback default password matching key parameter
+const SECURE_USERNAME = process.env.SECURE_USERNAME;
+const SECURE_PASSWORD = process.env.SECURE_PASSWORD;
 
 export async function loginAction(formData: FormData) {
   const username = formData.get("username") as string;

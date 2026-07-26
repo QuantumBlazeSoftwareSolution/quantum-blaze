@@ -13,8 +13,9 @@ export default function SecureLoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const predefinedKey = "Qb2024@";
 
-  const redirectUrl = searchParams.get("redirect") || "/cms/blogs?key=Qb2024@#";
+  const redirectUrl = searchParams.get("redirect") || "/cms/blogs?key=" + predefinedKey;
 
   // If session is already active, redirect immediately
   useEffect(() => {
