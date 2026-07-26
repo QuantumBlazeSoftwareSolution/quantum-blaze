@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import { getBlogPosts } from "@/lib/blog";
@@ -68,13 +67,11 @@ export default async function BlogPostDetailPage({ params }: { params: Promise<{
         {/* Cover Image */}
         {directImageUrl && (
           <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden mb-12 border border-white/5 bg-[#0a192f]">
-            <Image
+            <img
               src={directImageUrl}
               alt={post.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1200px) 100vw, 800px"
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="eager"
             />
           </div>
         )}

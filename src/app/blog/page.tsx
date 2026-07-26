@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { getBlogPosts } from "@/lib/blog";
 import { getDirectDriveImage } from "@/lib/utils/drive";
 import { Navbar } from "@/components/layout/Navbar";
@@ -41,12 +40,11 @@ export default async function BlogListingPage() {
                 {/* Image Container */}
                 {imageUrl && (
                   <Link href={`/blog/${post.slug}`} className="relative rounded-2xl overflow-hidden bg-[#0a192f] mb-6 aspect-[16/10] border border-white/5 block">
-                    <Image
+                    <img
                       src={imageUrl}
                       alt={post.title}
-                      fill
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-103"
-                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
+                      loading="lazy"
                     />
                   </Link>
                 )}
