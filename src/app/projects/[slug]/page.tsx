@@ -246,7 +246,7 @@ export default function ProjectDetailPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-sm text-slate-200">{feedback.clientName}</h4>
-                      <p className="text-xs text-slate-400 mt-0.5">{feedback.pharmacyName}</p>
+                      <p className="text-xs text-slate-400 mt-0.5">{feedback.companyName}</p>
                     </div>
                   </div>
                 </div>
