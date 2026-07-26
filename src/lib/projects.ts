@@ -54,6 +54,46 @@ export const projects: Project[] = [
     imageUrl: "/images/projects/lms.jpg",
     createdAt: "2026-07-10T12:00:00Z",
     updated_at: "2026-07-10T15:00:00Z",
+    screenshots: [
+      {
+        url: "/Projects/LMS/Screenshots/student-dashboard.png",
+        title: "Student Learning Dashboard",
+        subtitle: "Personalized Learning Hub",
+        features: ["Course progress tracking", "Upcoming assignments & deadlines", "Performance analytics overview"],
+      },
+      {
+        url: "/Projects/LMS/Screenshots/course-viewer.png",
+        title: "Interactive Course Viewer",
+        subtitle: "Live & Recorded Lectures",
+        features: ["HD video streaming with WebRTC", "Real-time Q&A chat panel", "Downloadable course materials"],
+      },
+      {
+        url: "/Projects/LMS/Screenshots/teacher-panel.png",
+        title: "Educator Management Panel",
+        subtitle: "Course & Student Management",
+        features: ["Batch student enrollment controls", "Assignment creation & grading tools", "Class performance heatmaps"],
+      },
+      {
+        url: "/Projects/LMS/Screenshots/assessments.png",
+        title: "AI-Powered Assessment Engine",
+        subtitle: "Smart Evaluations",
+        features: ["Auto-generated question banks", "Instant result computation", "Plagiarism detection integration"],
+      },
+    ],
+    users: [
+      {
+        name: "Quality E-Con Academy",
+        location: "Colombo, Sri Lanka",
+        usage: "Online A/L Economics tuition platform",
+      },
+    ],
+    testimonials: [
+      {
+        message: "The LMS platform has transformed how we deliver online education. Our students can access live lectures, recorded content, and assessments all in one place. The system handles thousands of concurrent users without any performance issues.",
+        clientName: "Academy Director",
+        pharmacyName: "Quality E-Con Academy",
+      },
+    ],
   },
   {
     id: "roadservice",
