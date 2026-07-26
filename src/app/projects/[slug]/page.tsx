@@ -177,36 +177,31 @@ export default function ProjectDetailPage() {
             <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white mb-6">
               Active Client Deployments
             </h2>
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {project.users.map((user, idx) => (
                 <div 
                   key={idx}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between p-6 rounded-2xl border border-slate-800/80 bg-slate-900/10 gap-4"
+                  className="p-5 rounded-2xl border border-slate-800/80 bg-slate-900/10 flex items-center gap-4"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="w-11 h-11 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 text-sm font-bold overflow-hidden relative">
-                      {user.logo ? (
-                        <Image 
-                          src={user.logo} 
-                          alt={`${user.name} logo`} 
-                          fill
-                          className="object-cover"
-                        />
-                      ) : (
-                        getInitials(user.name)
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-slate-200">{user.name}</h3>
-                      <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-1">
-                        <MapPin className="w-3.5 h-3.5 text-slate-500" />
-                        {user.location}
-                      </div>
-                    </div>
+                  <div className="w-12 h-12 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-sky-400 text-sm font-bold overflow-hidden relative shrink-0">
+                    {user.logo ? (
+                      <Image 
+                        src={user.logo} 
+                        alt={`${user.name} logo`} 
+                        fill
+                        className="object-contain p-0.5"
+                      />
+                    ) : (
+                      getInitials(user.name)
+                    )}
                   </div>
-                  <div className="text-sm font-medium text-slate-300 bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl sm:text-right">
-                    <span className="text-xs text-slate-500 block mb-0.5">Deployment Focus</span>
-                    {user.usage}
+                  <div className="min-w-0">
+                    <h3 className="font-bold text-slate-200 text-sm">{user.name}</h3>
+                    <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-0.5">
+                      <MapPin className="w-3 h-3 text-slate-500 shrink-0" />
+                      {user.location}
+                    </div>
+                    <p className="text-xs text-slate-500 mt-1">{user.usage}</p>
                   </div>
                 </div>
               ))}
@@ -232,13 +227,13 @@ export default function ProjectDetailPage() {
                     </p>
                   </div>
                   <div className="flex items-center gap-3.5 border-t border-slate-800/60 pt-4 mt-auto">
-                    <div className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 text-xs font-bold overflow-hidden relative">
+                    <div className="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-sky-400 text-xs font-bold overflow-hidden relative shrink-0">
                       {feedback.clientImage ? (
                         <Image 
                           src={feedback.clientImage} 
                           alt={`${feedback.clientName} avatar`} 
                           fill
-                          className="object-cover"
+                          className="object-contain p-0.5"
                         />
                       ) : (
                         getInitials(feedback.clientName)
