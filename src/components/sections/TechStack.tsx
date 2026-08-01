@@ -172,6 +172,81 @@ const techItems: TechItem[] = [
       </svg>
     ),
   },
+  {
+    name: "Java",
+    category: "Backend",
+    description: "Object-oriented, class-based language built for secure enterprise systems.",
+    logo: (
+      <svg className="w-8 h-8 text-orange-500 fill-current" viewBox="0 0 100 100">
+        <path d="M50 90c10 0 15-5 18-10H32c3 5 8 10 18 10z" className="opacity-80" />
+        <path d="M42 20c0 0-5 10 5 15s15-5 15 5-10 15 5 20 15 0 15 0" fill="none" className="stroke-current stroke-[3.5]" />
+        <path d="M30 65c0 0-5 5 10 5s25-5 30 0-5 5-20 5-20-10-20-10z" />
+      </svg>
+    ),
+  },
+  {
+    name: "Spring Boot",
+    category: "Backend",
+    description: "Open-source Java-based framework used to build stand-alone, production-ready microservices.",
+    logo: (
+      <svg className="w-8 h-8 text-green-500 fill-current" viewBox="0 0 100 100">
+        <path d="M50 10C28 10 10 28 10 50s18 40 40 40 40-18 40-40S72 10 50 10zm-5 55L30 50l5-5 10 10 25-25 5 5-30 30z" />
+      </svg>
+    ),
+  },
+  {
+    name: "NestJS",
+    category: "Backend",
+    description: "A progressive Node.js framework for building efficient, reliable, and scalable server-side applications.",
+    logo: (
+      <svg className="w-8 h-8 text-red-500 fill-current" viewBox="0 0 100 100">
+        <path d="M50 12L85 47v18L50 88 15 65V47l35-35zm0 14L27 49v10L50 79l23-20V49L50 26z" />
+      </svg>
+    ),
+  },
+  {
+    name: "MongoDB",
+    category: "Database & Cache",
+    description: "Document-based distributed database designed for modern web applications.",
+    logo: (
+      <svg className="w-8 h-8 text-green-600 fill-current" viewBox="0 0 100 100">
+        <path d="M50 10c0 0-25 20-25 40s10 30 25 40c0 0 25-20 25-40s-10-40-25-40zm0 15c5 10 10 20 10 25s-5 15-10 20V25z" />
+      </svg>
+    ),
+  },
+  {
+    name: "NeonDB",
+    category: "Database & Cache",
+    description: "Serverless Postgres database built for performance, scalability, and branching workflows.",
+    logo: (
+      <svg className="w-8 h-8 text-green-400 fill-current" viewBox="0 0 100 100">
+        <path d="M20 70l30-50 30 50H20zm12-8h36L50 32 32 62z" />
+      </svg>
+    ),
+  },
+  {
+    name: "Drizzle ORM",
+    category: "Database & Cache",
+    description: "Next-gen TypeScript ORM designed for speed, type safety, and developer efficiency.",
+    logo: (
+      <svg className="w-8 h-8 text-yellow-400 fill-current" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="35" fill="none" className="stroke-current stroke-[4]" />
+        <circle cx="40" cy="40" r="5" />
+        <circle cx="60" cy="40" r="5" />
+        <path d="M35 60c5 5 15 10 25 0" fill="none" className="stroke-current stroke-[4]" />
+      </svg>
+    ),
+  },
+  {
+    name: "MySQL",
+    category: "Database & Cache",
+    description: "Fast, reliable, and secure open-source relational database management system.",
+    logo: (
+      <svg className="w-8 h-8 text-sky-500 fill-current" viewBox="0 0 100 100">
+        <path d="M50 12c-20 0-30 10-30 22 0 15 15 25 30 25s30-10 30-25c0-12-10-22-30-22zm-5 35l-10-10 3-3 7 7 15-15 3 3-18 18z" />
+      </svg>
+    ),
+  },
 ];
 
 function TiltCard({ item }: { item: TechItem }) {

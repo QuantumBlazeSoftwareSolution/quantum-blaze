@@ -240,27 +240,17 @@ export function Hero() {
               ref={headerLinksRef}
               className="w-full flex items-center justify-between"
             >
-              {/* Left Nav Links */}
-              <div className="hidden lg:flex items-center gap-8 text-[13px] font-semibold uppercase tracking-widest text-slate-400">
-                <button
-                  onClick={() => scrollToSection("about")}
-                  className="hover:text-sky-400 transition-colors cursor-pointer"
-                >
-                  About
-                </button>
-                <button
-                  onClick={() => scrollToSection("services")}
-                  className="hover:text-sky-400 transition-colors cursor-pointer"
-                >
-                  Services
-                </button>
+              {/* Left Side: Empty to keep space for Notch Logo */}
+              <div className="hidden lg:block w-1/3"></div>
 
+              {/* Right Side Nav Items (Resources & Contact Info) */}
+              <div className="hidden lg:flex items-center gap-8 text-[13px] font-semibold uppercase tracking-widest text-slate-400 ml-auto">
                 {/* Resources Hover Dropdown */}
                 <div className="relative group flex items-center h-full py-2">
                   <button className="hover:text-sky-400 transition-colors cursor-pointer flex items-center gap-1">
                     Resources <ChevronDown className="w-3.5 h-3.5" />
                   </button>
-                  <div className="absolute top-[80%] left-0 mt-1 w-32 bg-slate-950/95 border border-slate-900 rounded-xl py-2 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="absolute top-[80%] right-0 mt-1 w-32 bg-slate-950/95 border border-slate-900 rounded-xl py-2 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <a
                       href="/blog"
                       className="block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[11px] font-semibold"
@@ -275,22 +265,7 @@ export function Hero() {
                     </a>
                   </div>
                 </div>
-              </div>
 
-              {/* Right Nav Links & Actions */}
-              <div className="hidden lg:flex items-center gap-8 text-[13px] font-semibold uppercase tracking-widest text-slate-400 ml-auto">
-                <button
-                  onClick={() => scrollToSection("projects")}
-                  className="hover:text-sky-400 transition-colors cursor-pointer"
-                >
-                  Projects
-                </button>
-                <button
-                  onClick={() => scrollToSection("contact")}
-                  className="hover:text-sky-400 transition-colors cursor-pointer"
-                >
-                  Contact
-                </button>
                 <a
                   href="tel:+94788056838"
                   className="flex items-center gap-2 text-slate-300 bg-sky-950/40 hover:bg-sky-950/60 border border-sky-500/20 hover:border-sky-500/40 px-3.5 py-1.5 rounded-full text-[10px] tracking-wider font-bold transition-all hover:text-white cursor-pointer"
