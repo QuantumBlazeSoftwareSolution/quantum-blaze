@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
+import BorderGlow from "@/components/BorderGlow";
 
 interface TechItem {
   name: string;
@@ -211,27 +212,44 @@ function TiltCard({ item }: { item: TechItem }) {
         rotateY,
         transformStyle: "preserve-3d",
       }}
-      className="relative p-6 rounded-2xl border border-slate-800/80 bg-[#081225]/40 hover:border-sky-500/20 transition-all duration-300 group cursor-default h-52 overflow-hidden flex flex-col justify-between"
+      className="h-52 w-full group"
     >
-
-      <div className="relative z-10" style={{ transform: "translateZ(30px)" }}>
-        <div className="w-12 h-12 p-2 bg-slate-950/80 rounded-xl border border-slate-900 flex items-center justify-center shrink-0 mb-4 group-hover:scale-105 group-hover:border-sky-500/30 group-hover:shadow-[0_0_15px_rgba(56,189,248,0.1)] transition-all duration-300">
-          {item.logo}
-        </div>
-        <h3 className="font-bold text-slate-100 text-sm md:text-base group-hover:text-sky-300 transition-colors duration-200">
-          {item.name}
-        </h3>
-        <span className="text-[10px] uppercase font-bold tracking-widest text-sky-400/80 mt-0.5 block">
-          {item.category}
-        </span>
-      </div>
-
-      <p 
-        className="text-xs text-slate-400 mt-3 leading-relaxed relative z-10"
-        style={{ transform: "translateZ(15px)" }}
+      <BorderGlow
+        edgeSensitivity={30}
+        glowColor="200 80 80"
+        backgroundColor="#070f1d"
+        borderRadius={16}
+        glowRadius={30}
+        glowIntensity={1}
+        coneSpread={25}
+        animated={false}
+        colors={['#0ea5e9', '#38bdf8', '#7dd3fc']}
+        className="w-full h-full border-none"
       >
-        {item.description}
-      </p>
+        <div 
+          className="p-6 h-full flex flex-col justify-between"
+          style={{ transform: "translateZ(30px)", transformStyle: "preserve-3d" }}
+        >
+          <div>
+            <div className="w-12 h-12 p-2 bg-slate-950/80 rounded-xl border border-slate-900 flex items-center justify-center shrink-0 mb-4 group-hover:scale-105 group-hover:border-sky-500/30 group-hover:shadow-[0_0_15px_rgba(56,189,248,0.1)] transition-all duration-300">
+              {item.logo}
+            </div>
+            <h3 className="font-bold text-slate-100 text-sm md:text-base group-hover:text-sky-300 transition-colors duration-200">
+              {item.name}
+            </h3>
+            <span className="text-[10px] uppercase font-bold tracking-widest text-sky-400/80 mt-0.5 block">
+              {item.category}
+            </span>
+          </div>
+
+          <p 
+            className="text-xs text-slate-400 mt-3 leading-relaxed relative z-10"
+            style={{ transform: "translateZ(15px)" }}
+          >
+            {item.description}
+          </p>
+        </div>
+      </BorderGlow>
     </motion.div>
   );
 }
