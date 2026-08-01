@@ -19,7 +19,7 @@ export async function loginAction(formData: FormData) {
       path: "/",
       maxAge: 60 * 60 * 2, // 2 hours session window
       sameSite: "strict",
-      secure: process.env.NODE_ENV === "production"
+      secure: process.env.NODE_ENV === "production",
     });
 
     return { success: true };

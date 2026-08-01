@@ -51,7 +51,6 @@ export function Navbar() {
     setMobileOpen(false);
   };
 
-
   return (
     <>
       <motion.nav
@@ -111,17 +110,23 @@ export function Navbar() {
 
             {/* Resources Dropdown */}
             <div className="relative group flex items-center h-full py-1">
-              <button 
+              <button
                 className="text-sm font-medium transition-colors duration-200 hover:text-sky-400 cursor-pointer flex items-center gap-1"
                 style={{ color: "var(--text-muted)" }}
               >
                 Resources <ChevronDown className="w-3.5 h-3.5" />
               </button>
               <div className="absolute top-[80%] left-0 mt-1 w-32 bg-slate-950/95 border border-slate-900 rounded-xl py-2 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <a href="/blog" className="block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[13px] font-semibold">
+                <a
+                  href="/blog"
+                  className="block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[13px] font-semibold"
+                >
                   Blog
                 </a>
-                <a href="/faq" className="block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[13px] font-semibold">
+                <a
+                  href="/faq"
+                  className="block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[13px] font-semibold"
+                >
                   FAQ
                 </a>
               </div>

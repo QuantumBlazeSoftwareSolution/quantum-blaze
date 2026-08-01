@@ -45,7 +45,8 @@ export default function NotFound() {
           </h2>
 
           <p className="text-slate-400 max-w-md mx-auto mb-10 text-sm md:text-base leading-relaxed font-light">
-            The page you are looking for might have been moved, renamed, or is temporarily unavailable. Let's get you back to the main console.
+            The page you are looking for might have been moved, renamed, or is
+            temporarily unavailable. Let's get you back to the main console.
           </p>
 
           <GlowButton

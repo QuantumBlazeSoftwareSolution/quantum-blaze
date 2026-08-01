@@ -8,7 +8,8 @@ export const metadata = {
 
 export default function ProjectsPage() {
   const sortedProjects = [...projects].sort(
-    (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+    (a, b) =>
+      new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
   );
 
   const activeProjects = sortedProjects.filter((project) => project.active);

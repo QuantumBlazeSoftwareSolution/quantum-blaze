@@ -16,7 +16,7 @@ export function TeamCard({
   index: number;
 }) {
   const gradientClass = getTeamGradient(member.gradient);
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -42,7 +42,9 @@ export function TeamCard({
           />
         ) : (
           /* Fallback gradient if no image */
-          <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass} opacity-60`} />
+          <div
+            className={`absolute inset-0 bg-gradient-to-br ${gradientClass} opacity-60`}
+          />
         )}
 
         {/* Ambient radial glow behind card on hover */}
@@ -122,17 +124,20 @@ export function TeamCard({
 export function Team({ members }: { members: TeamMember[] }) {
   const visibleMembers = members.filter((m) => m.visibility !== false);
   // Sort members by orderNumber / priority asc
-  const sortedMembers = [...visibleMembers].sort((a, b) => a.orderNumber - b.orderNumber);
+  const sortedMembers = [...visibleMembers].sort(
+    (a, b) => a.orderNumber - b.orderNumber
+  );
 
   // Find the CEO member (Vihanga Heshan)
   const ceoMember = sortedMembers.find(
-    (m) => m.role.toLowerCase().includes("ceo") || m.name.toLowerCase().includes("vihanga")
+    (m) =>
+      m.role.toLowerCase().includes("ceo") ||
+      m.name.toLowerCase().includes("vihanga")
   );
-  
+
   // Show all 5 other members by priority order below the CEO
-  const otherMembers = sortedMembers
-    .filter((m) => m.id !== ceoMember?.id);
-  
+  const otherMembers = sortedMembers.filter((m) => m.id !== ceoMember?.id);
+
   if (!members.length) return null;
 
   return (
@@ -198,7 +203,9 @@ export function Team({ members }: { members: TeamMember[] }) {
                       className="object-cover object-top md:object-center group-hover:scale-105 transition-all duration-700 ease-out"
                     />
                   ) : (
-                    <div className={`absolute inset-0 bg-gradient-to-br ${getTeamGradient(ceoMember.gradient)} opacity-60`} />
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${getTeamGradient(ceoMember.gradient)} opacity-60`}
+                    />
                   )}
                   {/* Subtle overlays */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#050b14]/40 hidden md:block" />
@@ -209,7 +216,7 @@ export function Team({ members }: { members: TeamMember[] }) {
                 <div className="flex-1 p-8 md:p-10 flex flex-col justify-between relative">
                   {/* Background gradient blur */}
                   <div className="absolute -right-20 -top-20 w-60 h-60 rounded-full blur-[100px] bg-sky-500/5 pointer-events-none" />
-                  
+
                   <div className="space-y-4 relative z-10">
                     <div className="flex items-center gap-3">
                       <div className="w-6 h-[2px] bg-sky-500 rounded-full" />
@@ -217,10 +224,13 @@ export function Team({ members }: { members: TeamMember[] }) {
                         Our Vision
                       </span>
                     </div>
-                    
+
                     <blockquote className="relative pt-2 pl-4 border-l border-sky-500/30">
                       <p className="text-base md:text-lg font-light text-slate-100 leading-relaxed font-grotesk italic">
-                        &ldquo;We don&rsquo;t just write code; we architect the future of digital innovation. Our mission is to empower global brands by engineering high-performance, robust, and beautifully designed tech ecosystems.&rdquo;
+                        &ldquo;We don&rsquo;t just write code; we architect the
+                        future of digital innovation. Our mission is to empower
+                        global brands by engineering high-performance, robust,
+                        and beautifully designed tech ecosystems.&rdquo;
                       </p>
                     </blockquote>
                   </div>
@@ -234,7 +244,7 @@ export function Team({ members }: { members: TeamMember[] }) {
                         {ceoMember.role}
                       </p>
                     </div>
-                    
+
                     <div className="flex items-center gap-3 pb-1">
                       {ceoMember.linkedin && (
                         <a

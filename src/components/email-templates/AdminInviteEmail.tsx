@@ -200,7 +200,8 @@ export const AdminInviteEmailTemplate = ({
         }}
       >
         <p style={{ margin: "0", fontSize: "12px", color: "#94a3b8" }}>
-          © {new Date().getFullYear()} Quantum Blaze Software Solutions. All rights reserved.
+          © {new Date().getFullYear()} Quantum Blaze Software Solutions. All
+          rights reserved.
         </p>
       </div>
     </div>

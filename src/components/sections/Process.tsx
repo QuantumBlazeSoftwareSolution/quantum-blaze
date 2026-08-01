@@ -71,7 +71,6 @@ export function Process() {
       <div className="container-wide">
         {/* Header */}
         <div className="text-center mb-20">
-
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -132,62 +131,62 @@ export function Process() {
           <div className="process-sticky-col lg:col-span-6 pr-8 relative">
             <div className="process-sticky-card-wrapper w-full">
               <AnimatePresence mode="wait">
-              <motion.div
-                key={activeStep}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className="glass rounded-3xl p-10 border border-sky-500/10 relative overflow-hidden"
-                style={{
-                  background: "rgba(8, 18, 36, 0.5)",
-                  boxShadow:
-                    "0 20px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)",
-                }}
-              >
-                {/* Glow accent */}
-                <div className="absolute top-0 right-0 w-[200px] h-[200px] rounded-full bg-sky-500/[0.03] blur-[60px] pointer-events-none" />
+                <motion.div
+                  key={activeStep}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="glass rounded-3xl p-10 border border-sky-500/10 relative overflow-hidden"
+                  style={{
+                    background: "rgba(8, 18, 36, 0.5)",
+                    boxShadow:
+                      "0 20px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)",
+                  }}
+                >
+                  {/* Glow accent */}
+                  <div className="absolute top-0 right-0 w-[200px] h-[200px] rounded-full bg-sky-500/[0.03] blur-[60px] pointer-events-none" />
 
-                <div className="flex justify-between items-start mb-8">
-                  <div className="w-14 h-14 rounded-2xl bg-sky-500/10 flex items-center justify-center border border-sky-500/20 text-sky-400">
-                    {IconMap[activeData.icon] || activeData.icon}
-                  </div>
-                  <span className="text-7xl font-bold font-quantum text-sky-500/15 leading-none select-none">
-                    {activeData.number}
-                  </span>
-                </div>
-
-                <span className="text-xs font-bold text-sky-400 tracking-[0.2em] uppercase block mb-2">
-                  {activeData.duration}
-                </span>
-
-                <h3 className="text-white font-bold text-3xl font-grotesk mb-2">
-                  {activeData.title}
-                </h3>
-
-                <p className="text-sky-300/60 text-xs font-semibold uppercase tracking-wider mb-6">
-                  {activeData.subtitle}
-                </p>
-
-                <p className="text-slate-400 text-base leading-relaxed">
-                  {activeData.description}
-                </p>
-
-                {/* Micro detail decoration */}
-                <div className="mt-8 pt-6 border-t border-white/5 flex items-center gap-6">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">
-                      Active Phase
+                  <div className="flex justify-between items-start mb-8">
+                    <div className="w-14 h-14 rounded-2xl bg-sky-500/10 flex items-center justify-center border border-sky-500/20 text-sky-400">
+                      {IconMap[activeData.icon] || activeData.icon}
+                    </div>
+                    <span className="text-7xl font-bold font-quantum text-sky-500/15 leading-none select-none">
+                      {activeData.number}
                     </span>
                   </div>
-                  <div className="h-4 w-px bg-white/10" />
-                  <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">
-                    Quantum Methodology
+
+                  <span className="text-xs font-bold text-sky-400 tracking-[0.2em] uppercase block mb-2">
+                    {activeData.duration}
                   </span>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+
+                  <h3 className="text-white font-bold text-3xl font-grotesk mb-2">
+                    {activeData.title}
+                  </h3>
+
+                  <p className="text-sky-300/60 text-xs font-semibold uppercase tracking-wider mb-6">
+                    {activeData.subtitle}
+                  </p>
+
+                  <p className="text-slate-400 text-base leading-relaxed">
+                    {activeData.description}
+                  </p>
+
+                  {/* Micro detail decoration */}
+                  <div className="mt-8 pt-6 border-t border-white/5 flex items-center gap-6">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+                      <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">
+                        Active Phase
+                      </span>
+                    </div>
+                    <div className="h-4 w-px bg-white/10" />
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">
+                      Quantum Methodology
+                    </span>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
 

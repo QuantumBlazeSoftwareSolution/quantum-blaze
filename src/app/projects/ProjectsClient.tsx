@@ -57,7 +57,9 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
         <div className="container-wide px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {projects.map((project, index) => {
-              const techStack = Array.isArray(project.techStack) ? project.techStack : [];
+              const techStack = Array.isArray(project.techStack)
+                ? project.techStack
+                : [];
 
               return (
                 <motion.div

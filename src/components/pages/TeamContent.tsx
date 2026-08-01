@@ -9,7 +9,13 @@ import { useLenis } from "@/hooks/useLenis";
 import { FaLinkedin, FaEnvelope } from "react-icons/fa6";
 import { type TeamMember } from "@/lib/data";
 
-function MinimalTeamCard({ member, index }: { member: TeamMember; index: number }) {
+function MinimalTeamCard({
+  member,
+  index,
+}: {
+  member: TeamMember;
+  index: number;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -93,8 +99,6 @@ export function TeamContent({ members }: { members: TeamMember[] }) {
 
         <div className="container-wide relative z-10">
           <div className="mb-14">
-
-
             <div className="max-w-4xl space-y-4">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
@@ -106,7 +110,8 @@ export function TeamContent({ members }: { members: TeamMember[] }) {
                   fontFamily: "var(--font-grotesk)",
                 }}
               >
-                The Architects of <span className="text-sky-400">Innovation.</span>
+                The Architects of{" "}
+                <span className="text-sky-400">Innovation.</span>
               </motion.h1>
 
               <motion.p

@@ -127,7 +127,8 @@ export function Footer() {
           style={{ borderColor: "rgba(56,189,248,0.08)" }}
         >
           <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-            © 2024 - {new Date().getFullYear()} Quantum Blaze. All rights reserved.
+            © 2024 - {new Date().getFullYear()} Quantum Blaze. All rights
+            reserved.
           </p>
           <div className="flex gap-6">
             {[

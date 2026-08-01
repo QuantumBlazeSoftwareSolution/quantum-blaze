@@ -4,7 +4,20 @@ import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams, notFound } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
 import ReactMarkdown from "react-markdown";
-import { Copy, Bold, Italic, Heading, List, Link as LinkIcon, Check, LogOut, Code, Minus, Quote, SquareCode } from "lucide-react";
+import {
+  Copy,
+  Bold,
+  Italic,
+  Heading,
+  List,
+  Link as LinkIcon,
+  Check,
+  LogOut,
+  Code,
+  Minus,
+  Quote,
+  SquareCode,
+} from "lucide-react";
 
 function BlogCMSPageContent() {
   const router = useRouter();
@@ -38,10 +51,13 @@ function BlogCMSPageContent() {
     const replacement = tagOpen + selected + tagClose;
 
     setMarkdown(text.substring(0, start) + replacement + text.substring(end));
-    
+
     setTimeout(() => {
       textarea.focus();
-      textarea.setSelectionRange(start + tagOpen.length, start + tagOpen.length + selected.length);
+      textarea.setSelectionRange(
+        start + tagOpen.length,
+        start + tagOpen.length + selected.length
+      );
     }, 50);
   };
 
@@ -73,9 +89,12 @@ function BlogCMSPageContent() {
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-white uppercase font-grotesk">
               Blog Post Builder
             </h1>
-            <p className="text-sm text-slate-400 mt-1">Compose formatted rich text posts in Markdown for your Google Sheets CMS.</p>
+            <p className="text-sm text-slate-400 mt-1">
+              Compose formatted rich text posts in Markdown for your Google
+              Sheets CMS.
+            </p>
           </div>
-          <button 
+          <button
             onClick={handleLogout}
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-950 border border-slate-900 text-sm text-slate-400 hover:text-white hover:border-slate-800 transition-colors cursor-pointer"
           >
@@ -90,13 +109,13 @@ function BlogCMSPageContent() {
           <div className="flex flex-col gap-4 bg-slate-950/40 border border-slate-900 p-6 rounded-3xl backdrop-blur-xl">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold text-slate-200">Editor Panel</h2>
-              
+
               {/* Quick toolbar */}
               <div className="flex items-center gap-1.5 bg-slate-950 border border-slate-900 p-1.5 rounded-xl">
                 {/* Bold */}
                 <div className="relative group">
-                  <button 
-                    onClick={() => insertTag("**", "**")} 
+                  <button
+                    onClick={() => insertTag("**", "**")}
                     className="p-2 hover:bg-slate-900 rounded-lg text-slate-400 hover:text-white transition-colors cursor-pointer block"
                   >
                     <Bold className="w-4 h-4" />
@@ -108,8 +127,8 @@ function BlogCMSPageContent() {
 
                 {/* Italic */}
                 <div className="relative group">
-                  <button 
-                    onClick={() => insertTag("*", "*")} 
+                  <button
+                    onClick={() => insertTag("*", "*")}
                     className="p-2 hover:bg-slate-900 rounded-lg text-slate-400 hover:text-white transition-colors cursor-pointer block"
                   >
                     <Italic className="w-4 h-4" />
@@ -121,8 +140,8 @@ function BlogCMSPageContent() {
 
                 {/* Heading */}
                 <div className="relative group">
-                  <button 
-                    onClick={() => insertTag("### ")} 
+                  <button
+                    onClick={() => insertTag("### ")}
                     className="p-2 hover:bg-slate-900 rounded-lg text-slate-400 hover:text-white transition-colors cursor-pointer block"
                   >
                     <Heading className="w-4 h-4" />
@@ -134,8 +153,8 @@ function BlogCMSPageContent() {
 
                 {/* Bullet List */}
                 <div className="relative group">
-                  <button 
-                    onClick={() => insertTag("- ")} 
+                  <button
+                    onClick={() => insertTag("- ")}
                     className="p-2 hover:bg-slate-900 rounded-lg text-slate-400 hover:text-white transition-colors cursor-pointer block"
                   >
                     <List className="w-4 h-4" />
@@ -147,8 +166,8 @@ function BlogCMSPageContent() {
 
                 {/* Link */}
                 <div className="relative group">
-                  <button 
-                    onClick={() => insertTag("[", "](url)")} 
+                  <button
+                    onClick={() => insertTag("[", "](url)")}
                     className="p-2 hover:bg-slate-900 rounded-lg text-slate-400 hover:text-white transition-colors cursor-pointer block"
                   >
                     <LinkIcon className="w-4 h-4" />
@@ -160,8 +179,8 @@ function BlogCMSPageContent() {
 
                 {/* Code Block */}
                 <div className="relative group">
-                  <button 
-                    onClick={() => insertTag("\n```js\n", "\n```\n")} 
+                  <button
+                    onClick={() => insertTag("\n```js\n", "\n```\n")}
                     className="p-2 hover:bg-slate-900 rounded-lg text-slate-400 hover:text-white transition-colors cursor-pointer block"
                   >
                     <SquareCode className="w-4 h-4" />
@@ -173,8 +192,8 @@ function BlogCMSPageContent() {
 
                 {/* Highlight Text */}
                 <div className="relative group">
-                  <button 
-                    onClick={() => insertTag("`", "`")} 
+                  <button
+                    onClick={() => insertTag("`", "`")}
                     className="p-2 hover:bg-slate-900 rounded-lg text-slate-400 hover:text-white transition-colors cursor-pointer block"
                   >
                     <Code className="w-4 h-4" />
@@ -186,8 +205,8 @@ function BlogCMSPageContent() {
 
                 {/* Horizontal Line */}
                 <div className="relative group">
-                  <button 
-                    onClick={() => insertTag("\n---\n")} 
+                  <button
+                    onClick={() => insertTag("\n---\n")}
                     className="p-2 hover:bg-slate-900 rounded-lg text-slate-400 hover:text-white transition-colors cursor-pointer block"
                   >
                     <Minus className="w-4 h-4" />
@@ -199,8 +218,8 @@ function BlogCMSPageContent() {
 
                 {/* Quote */}
                 <div className="relative group">
-                  <button 
-                    onClick={() => insertTag("\n> ")} 
+                  <button
+                    onClick={() => insertTag("\n> ")}
                     className="p-2 hover:bg-slate-900 rounded-lg text-slate-400 hover:text-white transition-colors cursor-pointer block"
                   >
                     <Quote className="w-4 h-4" />
@@ -225,12 +244,16 @@ function BlogCMSPageContent() {
           <div className="flex flex-col gap-4 bg-slate-950/40 border border-slate-900 p-6 rounded-3xl backdrop-blur-xl">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold text-slate-200">Live Preview</h2>
-              
+
               <button
                 onClick={handleCopy}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm transition-colors cursor-pointer"
               >
-                {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                {copied ? (
+                  <Check className="w-4 h-4" />
+                ) : (
+                  <Copy className="w-4 h-4" />
+                )}
                 {copied ? "Copied!" : "Copy MD Output"}
               </button>
             </div>
@@ -241,17 +264,69 @@ function BlogCMSPageContent() {
                 <div className="w-full">
                   <ReactMarkdown
                     components={{
-                      h1: ({node, ...props}) => <h1 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white mt-6 mb-3 font-grotesk" {...props} />,
-                      h2: ({node, ...props}) => <h2 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-white mt-5 mb-2.5 font-grotesk" {...props} />,
-                      h3: ({node, ...props}) => <h3 className="text-lg md:text-xl font-bold uppercase tracking-tight text-white mt-4 mb-2 font-grotesk" {...props} />,
-                      p: ({node, ...props}) => <p className="text-slate-400 text-sm leading-relaxed mb-4 font-light" {...props} />,
-                      ul: ({node, ...props}) => <ul className="list-disc list-outside ml-5 mb-4 text-slate-400 text-sm space-y-1.5 font-light marker:text-sky-400" {...props} />,
-                      ol: ({node, ...props}) => <ol className="list-decimal list-outside ml-5 mb-4 text-slate-400 text-sm space-y-1.5 font-light marker:text-sky-400" {...props} />,
-                      li: ({node, ...props}) => <li className="text-slate-400 pl-1" {...props} />,
-                      a: ({node, ...props}) => <a className="text-sky-400 hover:text-sky-300 underline transition-colors" {...props} />,
-                      blockquote: ({node, ...props}) => <blockquote className="border-l-2 border-sky-500 pl-4 italic text-slate-400 my-4 bg-slate-950/20 py-2 pr-2 rounded-r-xl" {...props} />,
-                      code: ({node, ...props}) => <code className="bg-slate-900 px-1.5 py-0.5 rounded text-sky-400 font-mono text-xs" {...props} />,
-                      pre: ({node, ...props}) => <pre className="bg-slate-950 p-4 rounded-xl overflow-x-auto border border-slate-900 text-xs font-mono my-4" {...props} />,
+                      h1: ({ node, ...props }) => (
+                        <h1
+                          className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white mt-6 mb-3 font-grotesk"
+                          {...props}
+                        />
+                      ),
+                      h2: ({ node, ...props }) => (
+                        <h2
+                          className="text-xl md:text-2xl font-bold uppercase tracking-tight text-white mt-5 mb-2.5 font-grotesk"
+                          {...props}
+                        />
+                      ),
+                      h3: ({ node, ...props }) => (
+                        <h3
+                          className="text-lg md:text-xl font-bold uppercase tracking-tight text-white mt-4 mb-2 font-grotesk"
+                          {...props}
+                        />
+                      ),
+                      p: ({ node, ...props }) => (
+                        <p
+                          className="text-slate-400 text-sm leading-relaxed mb-4 font-light"
+                          {...props}
+                        />
+                      ),
+                      ul: ({ node, ...props }) => (
+                        <ul
+                          className="list-disc list-outside ml-5 mb-4 text-slate-400 text-sm space-y-1.5 font-light marker:text-sky-400"
+                          {...props}
+                        />
+                      ),
+                      ol: ({ node, ...props }) => (
+                        <ol
+                          className="list-decimal list-outside ml-5 mb-4 text-slate-400 text-sm space-y-1.5 font-light marker:text-sky-400"
+                          {...props}
+                        />
+                      ),
+                      li: ({ node, ...props }) => (
+                        <li className="text-slate-400 pl-1" {...props} />
+                      ),
+                      a: ({ node, ...props }) => (
+                        <a
+                          className="text-sky-400 hover:text-sky-300 underline transition-colors"
+                          {...props}
+                        />
+                      ),
+                      blockquote: ({ node, ...props }) => (
+                        <blockquote
+                          className="border-l-2 border-sky-500 pl-4 italic text-slate-400 my-4 bg-slate-950/20 py-2 pr-2 rounded-r-xl"
+                          {...props}
+                        />
+                      ),
+                      code: ({ node, ...props }) => (
+                        <code
+                          className="bg-slate-900 px-1.5 py-0.5 rounded text-sky-400 font-mono text-xs"
+                          {...props}
+                        />
+                      ),
+                      pre: ({ node, ...props }) => (
+                        <pre
+                          className="bg-slate-950 p-4 rounded-xl overflow-x-auto border border-slate-900 text-xs font-mono my-4"
+                          {...props}
+                        />
+                      ),
                     }}
                   >
                     {markdown}
@@ -272,7 +347,13 @@ function BlogCMSPageContent() {
 
 export default function BlogCMSPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#050b14] text-white flex items-center justify-center font-grotesk text-sm tracking-wider uppercase">Loading Dashboard...</div>}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#050b14] text-white flex items-center justify-center font-grotesk text-sm tracking-wider uppercase">
+          Loading Dashboard...
+        </div>
+      }
+    >
       <BlogCMSPageContent />
     </Suspense>
   );

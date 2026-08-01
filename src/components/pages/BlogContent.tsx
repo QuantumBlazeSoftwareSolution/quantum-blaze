@@ -6,7 +6,15 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { useLenis } from "@/hooks/useLenis";
-import { Search, Calendar, Clock, ArrowRight, Mail, Sparkles, CheckCircle2 } from "lucide-react";
+import {
+  Search,
+  Calendar,
+  Clock,
+  ArrowRight,
+  Mail,
+  Sparkles,
+  CheckCircle2,
+} from "lucide-react";
 import Link from "next/link";
 import { type BlogPost } from "@/lib/blogs";
 
@@ -20,7 +28,9 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [email, setEmail] = useState("");
-  const [subscribeStatus, setSubscribeStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [subscribeStatus, setSubscribeStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   // Load language from localStorage after mount to avoid hydration mismatch
   useEffect(() => {
@@ -41,26 +51,28 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
     { key: "Engineering", label: "Engineering" },
     { key: "Design", label: "Design" },
     { key: "Architecture", label: "Architecture" },
-    { key: "Product Strategy", label: "Product Strategy" }
+    { key: "Product Strategy", label: "Product Strategy" },
   ];
 
   // Static English UI text (clean, minimal copywriting to avoid "AI default" style)
   const t = {
     title: "The Journal",
-    subtitle: "Technical writing, engineering deep-dives, and product design logs from our builders.",
+    subtitle:
+      "Technical writing, engineering deep-dives, and product design logs from our builders.",
     featuredBadge: "Featured Post",
     readArticle: "Read Article",
     searchPlaceholder: "Search articles...",
     newsletterBadge: "Subscribe for Updates",
     newsletterTitle: "Stay ahead with premium engineering insights",
-    newsletterDesc: "Join our monthly newsletter database to receive detailed articles on software architecture, Next.js scaling, and modern product strategy.",
+    newsletterDesc:
+      "Join our monthly newsletter database to receive detailed articles on software architecture, Next.js scaling, and modern product strategy.",
     emailPlaceholder: "Enter your work email",
     btnSubscribe: "Subscribe",
     btnSubscribing: "Subscribing...",
     successTitle: "Thank You for Subscribing!",
     successSubtitle: "You will now receive our tech updates.",
     noArticles: "No articles found matching your query.",
-    clearFilters: "Clear all filters"
+    clearFilters: "Clear all filters",
   };
 
   // Filter posts
@@ -74,14 +86,20 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
       titleText.includes(query) ||
       descText.includes(query) ||
       contentText.includes(query);
-    
-    const matchesCategory = selectedCategory === "All" || blog.category === selectedCategory;
+
+    const matchesCategory =
+      selectedCategory === "All" || blog.category === selectedCategory;
 
     return matchesSearch && matchesCategory;
   });
 
   const featuredPost = initialBlogs.find((b) => b.featured) || initialBlogs[0];
-  const regularPosts = filteredBlogs.filter((b) => b.id !== featuredPost?.id || searchQuery !== "" || selectedCategory !== "All");
+  const regularPosts = filteredBlogs.filter(
+    (b) =>
+      b.id !== featuredPost?.id ||
+      searchQuery !== "" ||
+      selectedCategory !== "All"
+  );
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,14 +119,14 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
       <div
         className="absolute top-0 left-0 w-full h-[600px] pointer-events-none opacity-20"
         style={{
-          background: "radial-gradient(circle at 50% -20%, #38bdf8 0%, transparent 60%)",
+          background:
+            "radial-gradient(circle at 50% -20%, #38bdf8 0%, transparent 60%)",
           filter: "blur(120px)",
         }}
       />
 
       <section className="relative pt-36 pb-20">
         <div className="container-wide relative z-10">
-          
           {/* Header Section - Clean & Spacious */}
           <div className="max-w-2xl space-y-3 mb-16">
             <motion.h1
@@ -117,7 +135,8 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
               transition={{ duration: 0.8 }}
               className="text-white font-bold leading-tight font-grotesk tracking-tight text-4xl sm:text-5xl md:text-6xl"
             >
-              {t.title}<span className="text-sky-400">.</span>
+              {t.title}
+              <span className="text-sky-400">.</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 15 }}
@@ -183,7 +202,8 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
                               alt={featuredPost.author.name}
                               className="w-full h-full object-cover"
                               onError={(e) => {
-                                (e.target as HTMLImageElement).src = `https://api.dicebear.com/7.x/initials/svg?seed=${featuredPost.author.name}`;
+                                (e.target as HTMLImageElement).src =
+                                  `https://api.dicebear.com/7.x/initials/svg?seed=${featuredPost.author.name}`;
                               }}
                             />
                           </div>
@@ -191,7 +211,9 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
                             <p className="text-sm font-semibold text-white leading-none mb-1">
                               {featuredPost.author.name}
                             </p>
-                            <p className="text-xs text-slate-500">{featuredPost.author.role}</p>
+                            <p className="text-xs text-slate-500">
+                              {featuredPost.author.role}
+                            </p>
                           </div>
                         </div>
 
@@ -269,80 +291,86 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
           {filteredBlogs.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
               <AnimatePresence mode="popLayout">
-                {(regularPosts.length > 0 ? regularPosts : filteredBlogs).map((blog, idx) => (
-                  <motion.div
-                    key={blog.id}
-                    layout
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.5, delay: idx * 0.05 }}
-                  >
-                    <Link href={`/blog/${blog.slug}`} className="block h-full">
-                      <GlassCard className="flex flex-col h-full overflow-hidden group">
-                        {/* Image */}
-                        <div className="aspect-[16/10] overflow-hidden bg-slate-900/50 relative">
-                          <img
-                            src={blog.coverImage}
-                            alt={blog.title[language]}
-                            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                          />
-                          <div className="absolute bottom-3 left-3 bg-[#050B14]/80 backdrop-blur-md border border-sky-400/15 text-sky-400 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
-                            {blog.category}
+                {(regularPosts.length > 0 ? regularPosts : filteredBlogs).map(
+                  (blog, idx) => (
+                    <motion.div
+                      key={blog.id}
+                      layout
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.5, delay: idx * 0.05 }}
+                    >
+                      <Link
+                        href={`/blog/${blog.slug}`}
+                        className="block h-full"
+                      >
+                        <GlassCard className="flex flex-col h-full overflow-hidden group">
+                          {/* Image */}
+                          <div className="aspect-[16/10] overflow-hidden bg-slate-900/50 relative">
+                            <img
+                              src={blog.coverImage}
+                              alt={blog.title[language]}
+                              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                            />
+                            <div className="absolute bottom-3 left-3 bg-[#050B14]/80 backdrop-blur-md border border-sky-400/15 text-sky-400 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
+                              {blog.category}
+                            </div>
                           </div>
-                        </div>
 
-                        {/* Card Info */}
-                        <div className="p-6 flex flex-col justify-between flex-grow">
-                          <div className="space-y-3.5 mb-6">
-                            <div className="flex items-center gap-3 text-[11px] text-slate-500 font-medium">
-                              <span className="flex items-center gap-1">
-                                <Calendar size={12} /> {blog.date}
-                              </span>
-                              <span className="w-1 h-1 rounded-full bg-slate-700" />
-                              <span className="flex items-center gap-1">
-                                <Clock size={12} /> {blog.readTime}
-                              </span>
+                          {/* Card Info */}
+                          <div className="p-6 flex flex-col justify-between flex-grow">
+                            <div className="space-y-3.5 mb-6">
+                              <div className="flex items-center gap-3 text-[11px] text-slate-500 font-medium">
+                                <span className="flex items-center gap-1">
+                                  <Calendar size={12} /> {blog.date}
+                                </span>
+                                <span className="w-1 h-1 rounded-full bg-slate-700" />
+                                <span className="flex items-center gap-1">
+                                  <Clock size={12} /> {blog.readTime}
+                                </span>
+                              </div>
+
+                              <h3 className="text-white text-lg font-bold font-grotesk tracking-tight leading-snug group-hover:text-sky-400 transition-colors duration-300">
+                                {blog.title[language]}
+                              </h3>
+
+                              <p className="text-slate-400 text-xs leading-relaxed line-clamp-3">
+                                {blog.description[language]}
+                              </p>
                             </div>
 
-                            <h3 className="text-white text-lg font-bold font-grotesk tracking-tight leading-snug group-hover:text-sky-400 transition-colors duration-300">
-                              {blog.title[language]}
-                            </h3>
-
-                            <p className="text-slate-400 text-xs leading-relaxed line-clamp-3">
-                              {blog.description[language]}
-                            </p>
-                          </div>
-
-                          {/* Author Info */}
-                          <div className="flex items-center justify-between pt-4 border-t border-sky-400/10">
-                            <div className="flex items-center gap-2.5">
-                              <div className="w-8 h-8 rounded-full overflow-hidden border border-sky-400/15 bg-slate-900">
-                                <img
-                                  src={blog.author.image}
-                                  alt={blog.author.name}
-                                  className="w-full h-full object-cover"
-                                  onError={(e) => {
-                                    (e.target as HTMLImageElement).src = `https://api.dicebear.com/7.x/initials/svg?seed=${blog.author.name}`;
-                                  }}
-                                />
+                            {/* Author Info */}
+                            <div className="flex items-center justify-between pt-4 border-t border-sky-400/10">
+                              <div className="flex items-center gap-2.5">
+                                <div className="w-8 h-8 rounded-full overflow-hidden border border-sky-400/15 bg-slate-900">
+                                  <img
+                                    src={blog.author.image}
+                                    alt={blog.author.name}
+                                    className="w-full h-full object-cover"
+                                    onError={(e) => {
+                                      (e.target as HTMLImageElement).src =
+                                        `https://api.dicebear.com/7.x/initials/svg?seed=${blog.author.name}`;
+                                    }}
+                                  />
+                                </div>
+                                <div>
+                                  <p className="text-xs font-semibold text-white leading-tight">
+                                    {blog.author.name}
+                                  </p>
+                                </div>
                               </div>
-                              <div>
-                                <p className="text-xs font-semibold text-white leading-tight">
-                                  {blog.author.name}
-                                </p>
-                              </div>
+
+                              <span className="text-sky-400 group-hover:translate-x-1.5 transition-transform duration-300">
+                                <ArrowRight size={15} />
+                              </span>
                             </div>
-
-                            <span className="text-sky-400 group-hover:translate-x-1.5 transition-transform duration-300">
-                              <ArrowRight size={15} />
-                            </span>
                           </div>
-                        </div>
-                      </GlassCard>
-                    </Link>
-                  </motion.div>
-                ))}
+                        </GlassCard>
+                      </Link>
+                    </motion.div>
+                  )
+                )}
               </AnimatePresence>
             </div>
           ) : (
@@ -371,15 +399,20 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
             <div
               className="absolute inset-0 pointer-events-none opacity-20"
               style={{
-                background: "radial-gradient(circle at 80% 50%, #38bdf8 0%, transparent 60%)",
+                background:
+                  "radial-gradient(circle at 80% 50%, #38bdf8 0%, transparent 60%)",
                 filter: "blur(80px)",
               }}
             />
-            <GlassCard glowOnHover={false} className="relative overflow-hidden p-8 md:p-12 border border-sky-400/15 bg-gradient-to-br from-slate-950/60 to-slate-900/40">
+            <GlassCard
+              glowOnHover={false}
+              className="relative overflow-hidden p-8 md:p-12 border border-sky-400/15 bg-gradient-to-br from-slate-950/60 to-slate-900/40"
+            >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div className="lg:col-span-7 space-y-4">
                   <div className="inline-flex items-center gap-2 bg-sky-500/10 border border-sky-400/20 text-sky-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                    <Sparkles size={12} className="text-sky-400" /> {t.newsletterBadge}
+                    <Sparkles size={12} className="text-sky-400" />{" "}
+                    {t.newsletterBadge}
                   </div>
                   <h2 className="text-white text-2xl md:text-3xl font-bold font-grotesk tracking-tight leading-tight">
                     {t.newsletterTitle}
@@ -397,11 +430,18 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
                       className="flex flex-col items-center justify-center p-6 bg-sky-500/5 border border-sky-400/20 rounded-2xl text-center"
                     >
                       <CheckCircle2 size={36} className="text-sky-400 mb-3" />
-                      <p className="text-white font-bold font-grotesk text-lg">{t.successTitle}</p>
-                      <p className="text-slate-400 text-xs mt-1">{t.successSubtitle}</p>
+                      <p className="text-white font-bold font-grotesk text-lg">
+                        {t.successTitle}
+                      </p>
+                      <p className="text-slate-400 text-xs mt-1">
+                        {t.successSubtitle}
+                      </p>
                     </motion.div>
                   ) : (
-                    <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
+                    <form
+                      onSubmit={handleSubscribe}
+                      className="flex flex-col sm:flex-row gap-3"
+                    >
                       <div className="relative flex-grow">
                         <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 w-4.5 h-4.5" />
                         <input
@@ -418,7 +458,9 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
                         disabled={subscribeStatus === "loading"}
                         className="bg-sky-400 hover:bg-sky-500 text-slate-950 font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_rgba(56,189,248,0.15)] flex items-center justify-center gap-2 cursor-pointer hover:shadow-[0_0_25px_rgba(56,189,248,0.35)] select-none disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        {subscribeStatus === "loading" ? t.btnSubscribing : t.btnSubscribe}
+                        {subscribeStatus === "loading"
+                          ? t.btnSubscribing
+                          : t.btnSubscribe}
                       </button>
                     </form>
                   )}
@@ -426,7 +468,6 @@ export function BlogContent({ initialBlogs }: BlogContentProps) {
               </div>
             </GlassCard>
           </motion.div>
-
         </div>
       </section>
 

@@ -1,7 +1,13 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import BorderGlow from "@/components/BorderGlow";
 import {
   NextJSIcon,
@@ -43,7 +49,8 @@ const techItems: TechItem[] = [
   {
     name: "Next.js",
     category: "Frontend",
-    description: "Production-grade React framework for static & server rendering.",
+    description:
+      "Production-grade React framework for static & server rendering.",
     logo: <NextJSIcon />,
   },
   {
@@ -55,7 +62,8 @@ const techItems: TechItem[] = [
   {
     name: "TypeScript",
     category: "Frontend",
-    description: "Statically typed superset of JavaScript for bulletproof code.",
+    description:
+      "Statically typed superset of JavaScript for bulletproof code.",
     logo: <TypescriptIcon />,
   },
   {
@@ -67,19 +75,22 @@ const techItems: TechItem[] = [
   {
     name: "Node.js",
     category: "Backend",
-    description: "JavaScript runtime for building fast, scalable network applications.",
+    description:
+      "JavaScript runtime for building fast, scalable network applications.",
     logo: <NodeJSIcon />,
   },
   {
     name: "Python",
     category: "Backend",
-    description: "Versatile programming language for web backends and data systems.",
+    description:
+      "Versatile programming language for web backends and data systems.",
     logo: <PythonIcon />,
   },
   {
     name: "Flutter",
     category: "Mobile",
-    description: "Google's UI toolkit for natively compiled cross-platform apps.",
+    description:
+      "Google's UI toolkit for natively compiled cross-platform apps.",
     logo: <FlutterIcon />,
   },
   {
@@ -87,17 +98,27 @@ const techItems: TechItem[] = [
     category: "Mobile",
     description: "Open-source framework for building native apps using React.",
     logo: (
-      <svg className="w-8 h-8 text-sky-300 fill-none stroke-current stroke-[2]" viewBox="0 0 100 100">
+      <svg
+        className="w-8 h-8 text-sky-300 fill-none stroke-current stroke-[2]"
+        viewBox="0 0 100 100"
+      >
         <ellipse cx="50" cy="50" rx="10" ry="25" transform="rotate(30 50 50)" />
         <ellipse cx="50" cy="50" rx="10" ry="25" transform="rotate(90 50 50)" />
-        <ellipse cx="50" cy="50" rx="10" ry="25" transform="rotate(150 50 50)" />
+        <ellipse
+          cx="50"
+          cy="50"
+          rx="10"
+          ry="25"
+          transform="rotate(150 50 50)"
+        />
       </svg>
     ),
   },
   {
     name: "PostgreSQL",
     category: "Database & Cache",
-    description: "Robust open-source relational database supporting heavy transactions.",
+    description:
+      "Robust open-source relational database supporting heavy transactions.",
     logo: <PostgreSQLIcon />,
   },
   {
@@ -111,7 +132,10 @@ const techItems: TechItem[] = [
     category: "Database & Cache",
     description: "Next-generation ORM for Node.js & TypeScript.",
     logo: (
-      <svg className="w-8 h-8 text-indigo-400 fill-current" viewBox="0 0 100 100">
+      <svg
+        className="w-8 h-8 text-indigo-400 fill-current"
+        viewBox="0 0 100 100"
+      >
         <path d="M50 10L15 70h70L50 10zm0 18L70 62H30L50 28z" />
       </svg>
     ),
@@ -125,45 +149,55 @@ const techItems: TechItem[] = [
   {
     name: "Docker",
     category: "Cloud & DevOps",
-    description: "Platform for containerizing and shipping software application code.",
+    description:
+      "Platform for containerizing and shipping software application code.",
     logo: <DockerIcon />,
   },
   {
     name: "Kubernetes",
     category: "Cloud & DevOps",
-    description: "Open-source container orchestration engine for automated scaling.",
+    description:
+      "Open-source container orchestration engine for automated scaling.",
     logo: <KubernetesIcon />,
   },
   {
     name: "Java",
     category: "Backend",
-    description: "Object-oriented, class-based language built for secure enterprise systems.",
+    description:
+      "Object-oriented, class-based language built for secure enterprise systems.",
     logo: <JavaIcon />,
   },
   {
     name: "Spring Boot",
     category: "Backend",
-    description: "Open-source Java-based framework used to build stand-alone, production-ready microservices.",
+    description:
+      "Open-source Java-based framework used to build stand-alone, production-ready microservices.",
     logo: <SpringBootIcon />,
   },
   {
     name: "NestJS",
     category: "Backend",
-    description: "A progressive Node.js framework for building efficient, reliable, and scalable server-side applications.",
+    description:
+      "A progressive Node.js framework for building efficient, reliable, and scalable server-side applications.",
     logo: <NestJSIcon />,
   },
   {
     name: "MongoDB",
     category: "Database & Cache",
-    description: "Document-based distributed database designed for modern web applications.",
+    description:
+      "Document-based distributed database designed for modern web applications.",
     logo: <MongoDBIcon />,
   },
   {
     name: "NeonDB",
     category: "Database & Cache",
-    description: "Serverless Postgres database built for performance, scalability, and branching workflows.",
+    description:
+      "Serverless Postgres database built for performance, scalability, and branching workflows.",
     logo: (
-      <svg className="w-8 h-8 text-green-400 fill-current" viewBox="0 0 100 100">
+      <svg
+        className="w-8 h-8 text-green-400 fill-current"
+        viewBox="0 0 100 100"
+      >
         <path d="M20 70l30-50 30 50H20zm12-8h36L50 32 32 62z" />
       </svg>
     ),
@@ -171,34 +205,55 @@ const techItems: TechItem[] = [
   {
     name: "Drizzle ORM",
     category: "Database & Cache",
-    description: "Next-gen TypeScript ORM designed for speed, type safety, and developer efficiency.",
+    description:
+      "Next-gen TypeScript ORM designed for speed, type safety, and developer efficiency.",
     logo: (
-      <svg className="w-8 h-8 text-yellow-400 fill-current" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="35" fill="none" className="stroke-current stroke-[4]" />
+      <svg
+        className="w-8 h-8 text-yellow-400 fill-current"
+        viewBox="0 0 100 100"
+      >
+        <circle
+          cx="50"
+          cy="50"
+          r="35"
+          fill="none"
+          className="stroke-current stroke-[4]"
+        />
         <circle cx="40" cy="40" r="5" />
         <circle cx="60" cy="40" r="5" />
-        <path d="M35 60c5 5 15 10 25 0" fill="none" className="stroke-current stroke-[4]" />
+        <path
+          d="M35 60c5 5 15 10 25 0"
+          fill="none"
+          className="stroke-current stroke-[4]"
+        />
       </svg>
     ),
   },
   {
     name: "MySQL",
     category: "Database & Cache",
-    description: "Fast, reliable, and secure open-source relational database management system.",
+    description:
+      "Fast, reliable, and secure open-source relational database management system.",
     logo: <MySQLIcon />,
   },
 ];
 
 function TiltCard({ item }: { item: TechItem }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  
+
   // Motion values for tracking cursor offset
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
   // Springs to make animations buttery-smooth
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [12, -12]), { stiffness: 220, damping: 22 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-12, 12]), { stiffness: 220, damping: 22 });
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [12, -12]), {
+    stiffness: 220,
+    damping: 22,
+  });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-12, 12]), {
+    stiffness: 220,
+    damping: 22,
+  });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -238,12 +293,15 @@ function TiltCard({ item }: { item: TechItem }) {
         glowIntensity={1}
         coneSpread={25}
         animated={false}
-        colors={['#0ea5e9', '#38bdf8', '#7dd3fc']}
+        colors={["#0ea5e9", "#38bdf8", "#7dd3fc"]}
         className="w-full border-none"
       >
-        <div 
+        <div
           className="p-6 flex flex-col gap-3"
-          style={{ transform: "translateZ(30px)", transformStyle: "preserve-3d" }}
+          style={{
+            transform: "translateZ(30px)",
+            transformStyle: "preserve-3d",
+          }}
         >
           <div>
             <div className="flex items-center gap-4 mb-3">
@@ -261,7 +319,7 @@ function TiltCard({ item }: { item: TechItem }) {
             </div>
           </div>
 
-          <p 
+          <p
             className="text-xs text-slate-400 mt-2 leading-relaxed relative z-10"
             style={{ transform: "translateZ(15px)" }}
           >
@@ -282,7 +340,7 @@ export function TechStack() {
       : techItems.filter((t) => t.category === activeCategory);
 
   return (
-    <section 
+    <section
       id="techstack"
       className="relative py-24 bg-[#050b14]/60 overflow-hidden border-t border-slate-900"
     >
@@ -295,7 +353,8 @@ export function TechStack() {
             The Power Under <span className="text-sky-400">the Hood</span>
           </h2>
           <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto font-light leading-relaxed">
-            We master the tools that define modern software — from frontend frameworks to cloud infrastructure.
+            We master the tools that define modern software — from frontend
+            frameworks to cloud infrastructure.
           </p>
         </div>
 
@@ -309,7 +368,9 @@ export function TechStack() {
                 onClick={() => setActiveCategory(cat)}
                 className="relative px-4 py-2 text-xs md:text-sm font-semibold uppercase tracking-wider rounded-xl transition-all cursor-pointer overflow-hidden"
               >
-                <span className={`relative z-10 ${isActive ? "text-white" : "text-slate-400 hover:text-slate-200"}`}>
+                <span
+                  className={`relative z-10 ${isActive ? "text-white" : "text-slate-400 hover:text-slate-200"}`}
+                >
                   {cat}
                 </span>
                 {isActive && (
@@ -325,7 +386,7 @@ export function TechStack() {
         </div>
 
         {/* Dynamic Display Grid */}
-        <motion.div 
+        <motion.div
           layout
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
@@ -335,7 +396,11 @@ export function TechStack() {
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.15 } }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.9,
+                  transition: { duration: 0.15 },
+                }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 key={tech.name}
                 style={{ perspective: 1000 }}

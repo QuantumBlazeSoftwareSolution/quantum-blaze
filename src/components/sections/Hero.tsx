@@ -499,7 +499,14 @@ export function Hero() {
                   smoothing={80}
                   defaultActive={0}
                   onItemClick={(index) => {
-                    const sectionIds = ["hero", "about", "services", "projects", "techstack", "contact"];
+                    const sectionIds = [
+                      "hero",
+                      "about",
+                      "services",
+                      "projects",
+                      "techstack",
+                      "contact",
+                    ];
                     const targetId = sectionIds[index];
                     if (targetId) {
                       scrollToSection(targetId);

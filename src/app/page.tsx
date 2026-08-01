@@ -30,7 +30,7 @@ export default function Home() {
         <Industries />
         <Projects projects={latestProjects} />
         <Process />
-        
+
         <TechStack />
 
         {process.env.NEXT_PUBLIC_TEAM_SECTION === "true" && (

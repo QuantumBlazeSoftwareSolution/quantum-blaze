@@ -1,6 +1,6 @@
-import { useRef, useState, useCallback, useEffect, CSSProperties } from 'react';
+import { useRef, useState, useCallback, useEffect, CSSProperties } from "react";
 
-type Falloff = 'linear' | 'smooth' | 'sharp';
+type Falloff = "linear" | "smooth" | "sharp";
 
 export interface LineSidebarProps {
   items?: string[];
@@ -25,36 +25,36 @@ export interface LineSidebarProps {
 }
 
 const FALLOFF_CURVES: Record<Falloff, (p: number) => number> = {
-  linear: p => p,
-  smooth: p => p * p * (3 - 2 * p),
-  sharp: p => p * p * p
+  linear: (p) => p,
+  smooth: (p) => p * p * (3 - 2 * p),
+  sharp: (p) => p * p * p,
 };
 
 const DEFAULT_ITEMS = [
-  'Overview',
-  'Components',
-  'Animations',
-  'Backgrounds',
-  'Showcase',
-  'Playground',
-  'Templates',
-  'Changelog',
-  'Community',
-  'Resources',
-  'Documentation',
-  'Support'
+  "Overview",
+  "Components",
+  "Animations",
+  "Backgrounds",
+  "Showcase",
+  "Playground",
+  "Templates",
+  "Changelog",
+  "Community",
+  "Resources",
+  "Documentation",
+  "Support",
 ];
 
 const LineSidebar = ({
   items = DEFAULT_ITEMS,
-  accentColor = '#A855F7',
-  textColor = '#c4c4c4',
-  markerColor = '#6c6c6c',
+  accentColor = "#A855F7",
+  textColor = "#c4c4c4",
+  markerColor = "#6c6c6c",
   showIndex = true,
   showMarker = true,
   proximityRadius = 100,
   maxShift = 30,
-  falloff = 'smooth',
+  falloff = "smooth",
   markerLength = 60,
   markerGap = 0,
   tickScale = 0.5,
@@ -64,7 +64,7 @@ const LineSidebar = ({
   smoothing = 100,
   defaultActive = null,
   onItemClick,
-  className = ''
+  className = "",
 }: LineSidebarProps) => {
   const listRef = useRef<HTMLUListElement>(null);
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
@@ -93,13 +93,16 @@ const LineSidebar = ({
     for (let i = 0; i < items.length; i++) {
       const el = items[i];
       if (!el) continue;
-      const target = Math.max(targetsRef.current[i] || 0, activeRef.current === i ? 1 : 0);
+      const target = Math.max(
+        targetsRef.current[i] || 0,
+        activeRef.current === i ? 1 : 0
+      );
       const cur = currentRef.current[i] || 0;
       const next = cur + (target - cur) * k;
       const settled = Math.abs(target - next) < 0.0015;
       const value = settled ? target : next;
       currentRef.current[i] = value;
-      el.style.setProperty('--effect', value.toFixed(4));
+      el.style.setProperty("--effect", value.toFixed(4));
       if (!settled) moving = true;
     }
 
@@ -125,7 +128,9 @@ const LineSidebar = ({
         if (!el) continue;
         const center = el.offsetTop + el.offsetHeight / 2;
         const distance = Math.abs(pointerY - center);
-        targetsRef.current[i] = ease(Math.max(0, 1 - distance / proximityRadius));
+        targetsRef.current[i] = ease(
+          Math.max(0, 1 - distance / proximityRadius)
+        );
       }
       startLoop();
     },
@@ -160,25 +165,25 @@ const LineSidebar = ({
     ? `after:absolute after:left-[calc(-1*var(--marker-length)-var(--marker-gap))] after:top-[calc(100%+var(--item-gap)/2)] after:h-px after:opacity-50 after:content-[''] last:after:content-none after:[background-color:var(--marker-color)] after:[width:calc(var(--marker-length)*var(--tick-scale))] ${
         scaleTick
           ? "after:origin-left after:[transform:translateY(-50%)_scaleX(calc(0.7+var(--effect,0)*0.6))]"
-          : 'after:-translate-y-1/2'
+          : "after:-translate-y-1/2"
       }`
-    : '';
+    : "";
 
   return (
     <nav
-      className={`relative flex justify-start${showMarker ? ' [padding-left:calc(var(--marker-length)+var(--marker-gap))]' : ''}${className ? ` ${className}` : ''}`}
+      className={`relative flex justify-start${showMarker ? " [padding-left:calc(var(--marker-length)+var(--marker-gap))]" : ""}${className ? ` ${className}` : ""}`}
       style={
         {
-          '--accent-color': accentColor,
-          '--text-color': textColor,
-          '--marker-color': markerColor,
-          '--marker-length': `${markerLength}px`,
-          '--marker-gap': `${markerGap}px`,
-          '--tick-scale': tickScale,
-          '--max-shift': `${maxShift}px`,
-          '--item-gap': `${itemGap}px`,
-          '--font-size': `${fontSize}rem`,
-          '--smoothing': `${smoothing}ms`
+          "--accent-color": accentColor,
+          "--text-color": textColor,
+          "--marker-color": markerColor,
+          "--marker-length": `${markerLength}px`,
+          "--marker-gap": `${markerGap}px`,
+          "--tick-scale": tickScale,
+          "--max-shift": `${maxShift}px`,
+          "--item-gap": `${itemGap}px`,
+          "--font-size": `${fontSize}rem`,
+          "--smoothing": `${smoothing}ms`,
         } as CSSProperties
       }
     >
@@ -191,10 +196,10 @@ const LineSidebar = ({
         {items.map((label, index) => (
           <li
             key={`${label}-${index}`}
-            ref={el => {
+            ref={(el) => {
               itemRefs.current[index] = el;
             }}
-            aria-current={activeIndex === index ? 'true' : undefined}
+            aria-current={activeIndex === index ? "true" : undefined}
             onClick={() => handleClick(index, label)}
             className={`relative cursor-pointer before:absolute before:-inset-x-12 before:-inset-y-[6px] before:content-[''] ${tickClass}`}
           >
@@ -207,7 +212,7 @@ const LineSidebar = ({
             <span className="relative inline-flex items-baseline leading-[1.2] [color:color-mix(in_srgb,var(--accent-color)_calc(var(--effect,0)*100%),var(--text-color))] [font-size:var(--font-size)] [transform:translateX(calc(var(--effect,0)*var(--max-shift)))]">
               {showIndex && (
                 <span className="mr-[0.6rem] font-mono text-[0.85em] [opacity:calc(0.55+var(--effect,0)*0.45)]">
-                  {String(index + 1).padStart(2, '0')}
+                  {String(index + 1).padStart(2, "0")}
                 </span>
               )}
               <span>{label}</span>

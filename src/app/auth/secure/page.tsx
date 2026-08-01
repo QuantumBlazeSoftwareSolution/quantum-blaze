@@ -15,7 +15,8 @@ function SecureLoginPageContent() {
   const [loading, setLoading] = useState(false);
   const predefinedKey = "Qb2024@";
 
-  const redirectUrl = searchParams.get("redirect") || "/cms/blogs?key=" + predefinedKey;
+  const redirectUrl =
+    searchParams.get("redirect") || "/cms/blogs?key=" + predefinedKey;
 
   // If session is already active, redirect immediately
   useEffect(() => {
@@ -63,14 +64,17 @@ function SecureLoginPageContent() {
 
       {/* Login Card */}
       <div className="max-w-md w-full bg-slate-950/40 border border-slate-900 rounded-[2rem] p-8 md:p-10 backdrop-blur-xl relative z-10 shadow-2xl shadow-black/60">
-        
         {/* Header */}
         <div className="text-center mb-8">
           <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 flex items-center justify-center mx-auto mb-4">
             <Rocket className="w-7 h-7 text-emerald-400" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white uppercase font-grotesk">Secure Console</h1>
-          <p className="text-sm text-slate-400 mt-2">Enter credentials to unlock content creator portals.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-white uppercase font-grotesk">
+            Secure Console
+          </h1>
+          <p className="text-sm text-slate-400 mt-2">
+            Enter credentials to unlock content creator portals.
+          </p>
         </div>
 
         {/* Error notification */}
@@ -84,7 +88,9 @@ function SecureLoginPageContent() {
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Username</label>
+            <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              Username
+            </label>
             <input
               type="text"
               required
@@ -96,7 +102,9 @@ function SecureLoginPageContent() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Password</label>
+            <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              Password
+            </label>
             <input
               type="password"
               required
@@ -122,7 +130,13 @@ function SecureLoginPageContent() {
 
 export default function SecureLoginPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#050b14] text-white flex items-center justify-center font-grotesk text-sm tracking-wider uppercase">Loading Secure Login...</div>}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#050b14] text-white flex items-center justify-center font-grotesk text-sm tracking-wider uppercase">
+          Loading Secure Login...
+        </div>
+      }
+    >
       <SecureLoginPageContent />
     </Suspense>
   );

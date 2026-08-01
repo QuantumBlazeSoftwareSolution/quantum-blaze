@@ -6,7 +6,15 @@ import { OrbitControls, Environment } from "@react-three/drei";
 import * as THREE from "three";
 
 // Outer Cube Frame component made of 12 box segments representing the cube edges
-function CubeFrame({ size, thickness, color }: { size: number; thickness: number; color: string }) {
+function CubeFrame({
+  size,
+  thickness,
+  color,
+}: {
+  size: number;
+  thickness: number;
+  color: string;
+}) {
   const half = size / 2;
 
   // Define the 12 edges of the cube
@@ -36,9 +44,9 @@ function CubeFrame({ size, thickness, color }: { size: number; thickness: number
   return (
     <group>
       {edges.map((edge, idx) => (
-        <mesh 
-          key={idx} 
-          position={edge.position as [number, number, number]} 
+        <mesh
+          key={idx}
+          position={edge.position as [number, number, number]}
           rotation={edge.rotation as [number, number, number]}
         >
           <boxGeometry args={[thickness * 1.5, size, thickness * 1.5]} />
@@ -56,28 +64,34 @@ function CubeFrame({ size, thickness, color }: { size: number; thickness: number
 }
 
 // Helper component to render a box strut between two 3D points
-function BoxStrutBetweenPoints({ 
-  start, 
-  end, 
-  thickness, 
-  color 
-}: { 
-  start: THREE.Vector3; 
-  end: THREE.Vector3; 
-  thickness: number; 
-  color: string; 
+function BoxStrutBetweenPoints({
+  start,
+  end,
+  thickness,
+  color,
+}: {
+  start: THREE.Vector3;
+  end: THREE.Vector3;
+  thickness: number;
+  color: string;
 }) {
-  const direction = useMemo(() => new THREE.Vector3().subVectors(end, start), [start, end]);
+  const direction = useMemo(
+    () => new THREE.Vector3().subVectors(end, start),
+    [start, end]
+  );
   const length = useMemo(() => direction.length(), [direction]);
-  const position = useMemo(() => new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5), [start, end]);
-  
+  const position = useMemo(
+    () => new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5),
+    [start, end]
+  );
+
   const quaternion = useMemo(() => {
     const q = new THREE.Quaternion();
     const dirNorm = direction.clone().normalize();
     q.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dirNorm);
     return q;
   }, [direction]);
-  
+
   return (
     <mesh position={position} quaternion={quaternion}>
       <boxGeometry args={[thickness * 1.5, length, thickness * 1.5]} />
@@ -93,16 +107,16 @@ function BoxStrutBetweenPoints({
 }
 
 // Tesseract component: combines outer frame, inner frame, and 8 corner connector struts
-function Tesseract({ 
-  outerSize, 
-  innerSize, 
-  thickness, 
-  color 
-}: { 
-  outerSize: number; 
-  innerSize: number; 
-  thickness: number; 
-  color: string; 
+function Tesseract({
+  outerSize,
+  innerSize,
+  thickness,
+  color,
+}: {
+  outerSize: number;
+  innerSize: number;
+  thickness: number;
+  color: string;
 }) {
   // Calculate the 8 corner connectors and the 8 vertex positions for joint caps
   const { connectors, verticesOuter, verticesInner } = useMemo(() => {
@@ -110,45 +124,67 @@ function Tesseract({
     const outerVerts: [number, number, number][] = [];
     const innerVerts: [number, number, number][] = [];
     const signs = [-1, 1];
-    
+
     for (const x of signs) {
       for (const y of signs) {
         for (const z of signs) {
-          const start = new THREE.Vector3((x * innerSize) / 2, (y * innerSize) / 2, (z * innerSize) / 2);
-          const end = new THREE.Vector3((x * outerSize) / 2, (y * outerSize) / 2, (z * outerSize) / 2);
+          const start = new THREE.Vector3(
+            (x * innerSize) / 2,
+            (y * innerSize) / 2,
+            (z * innerSize) / 2
+          );
+          const end = new THREE.Vector3(
+            (x * outerSize) / 2,
+            (y * outerSize) / 2,
+            (z * outerSize) / 2
+          );
           conns.push({ start, end });
-          
-          outerVerts.push([(x * outerSize) / 2, (y * outerSize) / 2, (z * outerSize) / 2]);
-          innerVerts.push([(x * innerSize) / 2, (y * innerSize) / 2, (z * innerSize) / 2]);
+
+          outerVerts.push([
+            (x * outerSize) / 2,
+            (y * outerSize) / 2,
+            (z * outerSize) / 2,
+          ]);
+          innerVerts.push([
+            (x * innerSize) / 2,
+            (y * innerSize) / 2,
+            (z * innerSize) / 2,
+          ]);
         }
       }
     }
-    return { connectors: conns, verticesOuter: outerVerts, verticesInner: innerVerts };
+    return {
+      connectors: conns,
+      verticesOuter: outerVerts,
+      verticesInner: innerVerts,
+    };
   }, [outerSize, innerSize]);
 
   return (
     <group>
       {/* Outer Cube Frame */}
       <CubeFrame size={outerSize} thickness={thickness} color={color} />
-      
+
       {/* Inner Cube Frame */}
       <CubeFrame size={innerSize} thickness={thickness * 0.75} color={color} />
-      
+
       {/* 8 Diagonal Corner Connectors */}
       {connectors.map((conn, idx) => (
-        <BoxStrutBetweenPoints 
-          key={idx} 
-          start={conn.start} 
-          end={conn.end} 
-          thickness={thickness * 0.6} 
-          color={color} 
+        <BoxStrutBetweenPoints
+          key={idx}
+          start={conn.start}
+          end={conn.end}
+          thickness={thickness * 0.6}
+          color={color}
         />
       ))}
 
       {/* Corner Joint Caps - Outer Frame (Fills the corner gaps) */}
       {verticesOuter.map((pos, idx) => (
         <mesh key={`outer-cap-${idx}`} position={pos}>
-          <boxGeometry args={[thickness * 1.52, thickness * 1.52, thickness * 1.52]} />
+          <boxGeometry
+            args={[thickness * 1.52, thickness * 1.52, thickness * 1.52]}
+          />
           <meshPhysicalMaterial
             color={color}
             metalness={0.9}
@@ -162,7 +198,13 @@ function Tesseract({
       {/* Corner Joint Caps - Inner Frame (Fills the corner gaps) */}
       {verticesInner.map((pos, idx) => (
         <mesh key={`inner-cap-${idx}`} position={pos}>
-          <boxGeometry args={[thickness * 0.75 * 1.52, thickness * 0.75 * 1.52, thickness * 0.75 * 1.52]} />
+          <boxGeometry
+            args={[
+              thickness * 0.75 * 1.52,
+              thickness * 0.75 * 1.52,
+              thickness * 0.75 * 1.52,
+            ]}
+          />
           <meshPhysicalMaterial
             color={color}
             metalness={0.9}
@@ -177,7 +219,13 @@ function Tesseract({
 }
 
 // Main 3D Logo Scene that manages rotation and orbits
-function LogoScene({ color, onReady }: { color: string; onReady?: () => void }) {
+function LogoScene({
+  color,
+  onReady,
+}: {
+  color: string;
+  onReady?: () => void;
+}) {
   const groupRef = useRef<THREE.Group>(null);
   const orbRef = useRef<THREE.Mesh>(null);
   const hasTriggeredReady = useRef(false);
@@ -220,16 +268,22 @@ function LogoScene({ color, onReady }: { color: string; onReady?: () => void }) 
     <group>
       {/* Rotating Tesseract (Outer frame + Inner frame + Connecting bars + Inner solid cube) */}
       <group ref={groupRef}>
-        <Tesseract 
-          outerSize={outerCubeSize} 
-          innerSize={innerCubeSize} 
-          thickness={frameThickness} 
-          color={color} 
+        <Tesseract
+          outerSize={outerCubeSize}
+          innerSize={innerCubeSize}
+          thickness={frameThickness}
+          color={color}
         />
-        
+
         {/* Solid Inner Core Cube inside the inner wireframe */}
         <mesh>
-          <boxGeometry args={[innerCubeSize * 0.95, innerCubeSize * 0.95, innerCubeSize * 0.95]} />
+          <boxGeometry
+            args={[
+              innerCubeSize * 0.95,
+              innerCubeSize * 0.95,
+              innerCubeSize * 0.95,
+            ]}
+          />
           <meshPhysicalMaterial
             color={color}
             metalness={0.95}
@@ -270,12 +324,12 @@ function LogoScene({ color, onReady }: { color: string; onReady?: () => void }) 
   );
 }
 
-export function Logo3D({ 
-  color = "#38bdf8", 
+export function Logo3D({
+  color = "#38bdf8",
   height = "400px",
-  interactive = true 
-}: { 
-  color?: string; 
+  interactive = true,
+}: {
+  color?: string;
   height?: string;
   interactive?: boolean;
 }) {
@@ -284,12 +338,12 @@ export function Logo3D({
   return (
     <div className="w-full h-full relative" style={{ height }}>
       {/* Static placeholder image loaded instantly */}
-      <div 
+      <div
         className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 transition-opacity duration-700 ease-out"
         style={{ opacity: isReady ? 0 : 1 }}
       >
-        <img 
-          src="/original-logo.png" 
+        <img
+          src="/original-logo.png"
           alt="Quantum Blaze Logo Placeholder"
           className="w-[75%] h-[75%] object-contain max-w-[340px] max-h-[340px] select-none"
           // @ts-ignore
@@ -298,7 +352,7 @@ export function Logo3D({
       </div>
 
       {/* The 3D Canvas which will fade in smoothly once first frame is ready */}
-      <div 
+      <div
         className="w-full h-full transition-opacity duration-700 ease-in-out"
         style={{ opacity: isReady ? 1 : 0 }}
       >
@@ -307,16 +361,27 @@ export function Logo3D({
           gl={{ antialias: true, alpha: true }}
         >
           <ambientLight intensity={0.6} />
-          
+
           {/* Soft studio lights */}
           <pointLight position={[10, 10, 10]} intensity={1.5} />
           <directionalLight position={[-5, 5, -5]} intensity={0.8} />
-          <spotLight position={[0, 5, 0]} intensity={1.2} angle={Math.PI / 4} penumbra={1} />
-          
+          <spotLight
+            position={[0, 5, 0]}
+            intensity={1.2}
+            angle={Math.PI / 4}
+            penumbra={1}
+          />
+
           <LogoScene color={color} onReady={() => setIsReady(true)} />
 
-          {interactive && <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />}
-          
+          {interactive && (
+            <OrbitControls
+              enableZoom={false}
+              enablePan={false}
+              autoRotate={false}
+            />
+          )}
+
           {/* Environment map for realistic reflections */}
           <Environment preset="city" />
         </Canvas>

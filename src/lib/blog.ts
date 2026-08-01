@@ -21,16 +21,18 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
   }
 
   try {
-    const response = await fetch(SHEET_CSV_URL, { 
-      next: { revalidate: 300 } // Cache results for 5 minutes
+    const response = await fetch(SHEET_CSV_URL, {
+      next: { revalidate: 300 }, // Cache results for 5 minutes
     });
-    
+
     if (!response.ok) {
-      throw new Error(`Failed to fetch Google Sheet CSV: ${response.statusText}`);
+      throw new Error(
+        `Failed to fetch Google Sheet CSV: ${response.statusText}`
+      );
     }
 
     const csvText = await response.text();
-    
+
     return new Promise((resolve) => {
       Papa.parse(csvText, {
         header: true,
@@ -45,7 +47,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
         error: (error: any) => {
           console.error("Error parsing CSV data:", error);
           resolve([]);
-        }
+        },
       });
     });
   } catch (error) {

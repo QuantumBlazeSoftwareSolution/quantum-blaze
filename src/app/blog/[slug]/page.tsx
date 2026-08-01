@@ -8,7 +8,11 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ArrowLeft, Calendar, User } from "lucide-react";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const posts = await getBlogPosts();
   const post = posts.find((p) => p.slug === slug);
@@ -21,7 +25,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function BlogPostDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPostDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const posts = await getBlogPosts();
   const post = posts.find((p) => p.slug === slug);
@@ -80,17 +88,69 @@ export default async function BlogPostDetailPage({ params }: { params: Promise<{
         <div className="w-full">
           <ReactMarkdown
             components={{
-              h1: ({node, ...props}) => <h1 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mt-8 mb-4 font-grotesk" {...props} />,
-              h2: ({node, ...props}) => <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white mt-7 mb-3.5 font-grotesk" {...props} />,
-              h3: ({node, ...props}) => <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-white mt-6 mb-3 font-grotesk" {...props} />,
-              p: ({node, ...props}) => <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-5 font-light" {...props} />,
-              ul: ({node, ...props}) => <ul className="list-disc list-outside ml-6 mb-5 text-slate-400 text-sm md:text-base space-y-2 font-light marker:text-sky-400" {...props} />,
-              ol: ({node, ...props}) => <ol className="list-decimal list-outside ml-6 mb-5 text-slate-400 text-sm md:text-base space-y-2 font-light marker:text-sky-400" {...props} />,
-              li: ({node, ...props}) => <li className="text-slate-400 pl-1" {...props} />,
-              a: ({node, ...props}) => <a className="text-sky-400 hover:text-sky-300 underline transition-colors" {...props} />,
-              blockquote: ({node, ...props}) => <blockquote className="border-l-2 border-sky-500 pl-4 italic text-slate-400 my-5 bg-slate-950/20 py-2 pr-2 rounded-r-xl" {...props} />,
-              code: ({node, ...props}) => <code className="bg-slate-900 px-1.5 py-0.5 rounded text-sky-400 font-mono text-xs" {...props} />,
-              pre: ({node, ...props}) => <pre className="bg-slate-950 p-4 rounded-xl overflow-x-auto border border-slate-900 text-xs font-mono my-5" {...props} />,
+              h1: ({ node, ...props }) => (
+                <h1
+                  className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mt-8 mb-4 font-grotesk"
+                  {...props}
+                />
+              ),
+              h2: ({ node, ...props }) => (
+                <h2
+                  className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white mt-7 mb-3.5 font-grotesk"
+                  {...props}
+                />
+              ),
+              h3: ({ node, ...props }) => (
+                <h3
+                  className="text-xl md:text-2xl font-bold uppercase tracking-tight text-white mt-6 mb-3 font-grotesk"
+                  {...props}
+                />
+              ),
+              p: ({ node, ...props }) => (
+                <p
+                  className="text-slate-400 text-sm md:text-base leading-relaxed mb-5 font-light"
+                  {...props}
+                />
+              ),
+              ul: ({ node, ...props }) => (
+                <ul
+                  className="list-disc list-outside ml-6 mb-5 text-slate-400 text-sm md:text-base space-y-2 font-light marker:text-sky-400"
+                  {...props}
+                />
+              ),
+              ol: ({ node, ...props }) => (
+                <ol
+                  className="list-decimal list-outside ml-6 mb-5 text-slate-400 text-sm md:text-base space-y-2 font-light marker:text-sky-400"
+                  {...props}
+                />
+              ),
+              li: ({ node, ...props }) => (
+                <li className="text-slate-400 pl-1" {...props} />
+              ),
+              a: ({ node, ...props }) => (
+                <a
+                  className="text-sky-400 hover:text-sky-300 underline transition-colors"
+                  {...props}
+                />
+              ),
+              blockquote: ({ node, ...props }) => (
+                <blockquote
+                  className="border-l-2 border-sky-500 pl-4 italic text-slate-400 my-5 bg-slate-950/20 py-2 pr-2 rounded-r-xl"
+                  {...props}
+                />
+              ),
+              code: ({ node, ...props }) => (
+                <code
+                  className="bg-slate-900 px-1.5 py-0.5 rounded text-sky-400 font-mono text-xs"
+                  {...props}
+                />
+              ),
+              pre: ({ node, ...props }) => (
+                <pre
+                  className="bg-slate-950 p-4 rounded-xl overflow-x-auto border border-slate-900 text-xs font-mono my-5"
+                  {...props}
+                />
+              ),
             }}
           >
             {post.content}

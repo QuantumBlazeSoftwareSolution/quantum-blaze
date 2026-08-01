@@ -8,7 +8,10 @@ const getLocalIPs = () => {
     const iface = interfaces[name];
     if (iface) {
       for (const net of iface) {
-        if ((net.family === "IPv4" || (net.family as any) === 4) && !net.internal) {
+        if (
+          (net.family === "IPv4" || (net.family as any) === 4) &&
+          !net.internal
+        ) {
           ips.push(net.address);
         }
       }

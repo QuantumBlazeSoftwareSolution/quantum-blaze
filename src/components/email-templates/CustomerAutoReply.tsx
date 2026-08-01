@@ -106,8 +106,8 @@ export const CustomerEmailTemplate = ({ name }: CustomerEmailProps) => (
               textAlign: "center",
             }}
           >
-            &quot;We don&apos;t just build software; we architect solutions that define
-            the future.&quot;
+            &quot;We don&apos;t just build software; we architect solutions that
+            define the future.&quot;
           </p>
         </div>
 

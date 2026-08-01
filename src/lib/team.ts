@@ -68,8 +68,7 @@ export const team: TeamMember[] = [
     role: "Digital Creator",
     email: "thenuranga@quantumblaze.lk",
     bio: "Creative mind behind our digital storytelling and brand content, bridging the gap between tech and creativity.",
-    image:
-      "/team/thenuranga-digital-creator.jpeg",
+    image: "/team/thenuranga-digital-creator.jpeg",
     linkedin: "#",
     gradient: "from-blue-600 to-indigo-800",
     orderNumber: 6,

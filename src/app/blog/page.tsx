@@ -8,7 +8,8 @@ import { ArrowRight, Calendar, User } from "lucide-react";
 
 export const metadata = {
   title: "Blogs & Insights | Quantum Blaze",
-  description: "Deep dives into software architecture, native desktop application engineering, Next.js scaling, and modern product development paradigms.",
+  description:
+    "Deep dives into software architecture, native desktop application engineering, Next.js scaling, and modern product development paradigms.",
 };
 
 export default async function BlogListingPage() {
@@ -21,12 +22,15 @@ export default async function BlogListingPage() {
       <main className="max-w-6xl mx-auto px-6 pt-32 pb-24 flex-grow w-full">
         {/* Page Header */}
         <header className="border-b border-slate-900 pb-10 mb-16 text-center flex flex-col items-center">
-          <p className="text-xs font-semibold tracking-widest uppercase text-sky-400 mb-3">Insights & Architecture</p>
+          <p className="text-xs font-semibold tracking-widest uppercase text-sky-400 mb-3">
+            Insights & Architecture
+          </p>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white uppercase font-grotesk">
             Quantum Blogs
           </h1>
           <p className="text-lg text-slate-400 font-light max-w-2xl leading-relaxed mt-4 mx-auto">
-            Technical writing, guides, and engineering logs from our development team.
+            Technical writing, guides, and engineering logs from our development
+            team.
           </p>
         </header>
 
@@ -35,11 +39,16 @@ export default async function BlogListingPage() {
           {posts.map((post) => {
             const imageUrl = getDirectDriveImage(post.coverImage);
             return (
-              <div key={post.id} className="group relative flex flex-col transition-all duration-300">
-                
+              <div
+                key={post.id}
+                className="group relative flex flex-col transition-all duration-300"
+              >
                 {/* Image Container */}
                 {imageUrl && (
-                  <Link href={`/blog/${post.slug}`} className="relative rounded-2xl overflow-hidden bg-[#0a192f] mb-6 aspect-[16/10] border border-white/5 block">
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="relative rounded-2xl overflow-hidden bg-[#0a192f] mb-6 aspect-[16/10] border border-white/5 block"
+                  >
                     <img
                       src={imageUrl}
                       alt={post.title}
@@ -83,7 +92,6 @@ export default async function BlogListingPage() {
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
-
               </div>
             );
           })}

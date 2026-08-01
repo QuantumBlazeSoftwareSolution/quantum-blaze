@@ -6,7 +6,14 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { useLenis } from "@/hooks/useLenis";
-import { ArrowLeft, Calendar, Clock, Mail, CheckCircle2, Sparkles } from "lucide-react";
+import {
+  ArrowLeft,
+  Calendar,
+  Clock,
+  Mail,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
 import Link from "next/link";
 import { type BlogPost } from "@/lib/blogs";
 
@@ -20,7 +27,9 @@ export function BlogPostContent({ blog, relatedPosts }: BlogPostContentProps) {
   const [language, setLanguage] = useState<"en" | "si">("en");
   const [scrollProgress, setScrollProgress] = useState(0);
   const [email, setEmail] = useState("");
-  const [subscribeStatus, setSubscribeStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [subscribeStatus, setSubscribeStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   // Load language from localStorage after mount to avoid hydration mismatch
   useEffect(() => {
@@ -31,7 +40,8 @@ export function BlogPostContent({ blog, relatedPosts }: BlogPostContentProps) {
     }
 
     const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const totalScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
       if (totalScroll > 0) {
         setScrollProgress(window.scrollY / totalScroll);
       }
@@ -62,10 +72,11 @@ export function BlogPostContent({ blog, relatedPosts }: BlogPostContentProps) {
     recommendedTitle: "Recommended Articles",
     newsletterBadge: "Subscribe to Quantum Insights",
     newsletterTitle: "Get articles like this delivered to your inbox",
-    newsletterDesc: "Join our newsletter list. We send one highly curated post every month. Zero spam, only pure engineering value.",
+    newsletterDesc:
+      "Join our newsletter list. We send one highly curated post every month. Zero spam, only pure engineering value.",
     emailPlaceholder: "Enter your work email",
     btnSubscribe: "Subscribe",
-    successSubscribed: "Successfully subscribed!"
+    successSubscribed: "Successfully subscribed!",
   };
 
   // Helper to parse content with sections to styled JSX
@@ -77,14 +88,20 @@ export function BlogPostContent({ blog, relatedPosts }: BlogPostContentProps) {
       // Handle headings
       if (trimmed.startsWith("###")) {
         return (
-          <h3 key={index} className="text-xl sm:text-2xl font-bold text-white font-grotesk tracking-tight mt-8 mb-4">
+          <h3
+            key={index}
+            className="text-xl sm:text-2xl font-bold text-white font-grotesk tracking-tight mt-8 mb-4"
+          >
             {trimmed.replace("###", "").trim()}
           </h3>
         );
       }
       if (trimmed.startsWith("##")) {
         return (
-          <h2 key={index} className="text-2xl sm:text-3xl font-bold text-white font-grotesk tracking-tight mt-10 mb-4">
+          <h2
+            key={index}
+            className="text-2xl sm:text-3xl font-bold text-white font-grotesk tracking-tight mt-10 mb-4"
+          >
             {trimmed.replace("##", "").trim()}
           </h2>
         );
@@ -94,7 +111,10 @@ export function BlogPostContent({ blog, relatedPosts }: BlogPostContentProps) {
       if (trimmed.startsWith("* ") || trimmed.startsWith("- ")) {
         const items = trimmed.split(/\n[\*\-]\s/);
         return (
-          <ul key={index} className="list-disc list-inside space-y-2 text-slate-300 text-sm sm:text-base leading-relaxed my-4 pl-4 font-sans">
+          <ul
+            key={index}
+            className="list-disc list-inside space-y-2 text-slate-300 text-sm sm:text-base leading-relaxed my-4 pl-4 font-sans"
+          >
             {items.map((item, i) => (
               <li key={i}>{item.replace(/^[\*\-]\s/, "").trim()}</li>
             ))}
@@ -104,7 +124,10 @@ export function BlogPostContent({ blog, relatedPosts }: BlogPostContentProps) {
 
       // Regular paragraph
       return (
-        <p key={index} className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-sans">
+        <p
+          key={index}
+          className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-sans"
+        >
           {trimmed}
         </p>
       );
@@ -114,7 +137,7 @@ export function BlogPostContent({ blog, relatedPosts }: BlogPostContentProps) {
   return (
     <main className="relative min-h-screen bg-[#050B14] overflow-hidden">
       {/* Scroll Progress Bar */}
-      <div 
+      <div
         className="fixed top-0 left-0 right-0 h-1 bg-sky-400 z-50 origin-left transition-transform duration-100"
         style={{ transform: `scaleX(${scrollProgress})` }}
       />
@@ -125,18 +148,18 @@ export function BlogPostContent({ blog, relatedPosts }: BlogPostContentProps) {
       <div
         className="absolute top-0 left-0 w-full h-[500px] pointer-events-none opacity-15"
         style={{
-          background: "radial-gradient(circle at 50% -10%, #38bdf8 0%, transparent 60%)",
+          background:
+            "radial-gradient(circle at 50% -10%, #38bdf8 0%, transparent 60%)",
           filter: "blur(120px)",
         }}
       />
 
       <article className="relative pt-32 pb-20">
         <div className="container-narrow relative z-10">
-          
           {/* Back Navigation & Language Switcher */}
           <div className="flex items-center justify-between gap-6 mb-8">
-            <Link 
-              href="/blog" 
+            <Link
+              href="/blog"
               className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-sky-400 transition-colors uppercase tracking-wider animate-pulse-slow"
             >
               <ArrowLeft size={14} /> {t.backBtn}
@@ -186,7 +209,8 @@ export function BlogPostContent({ blog, relatedPosts }: BlogPostContentProps) {
                     alt={blog.author.name}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = `https://api.dicebear.com/7.x/initials/svg?seed=${blog.author.name}`;
+                      (e.target as HTMLImageElement).src =
+                        `https://api.dicebear.com/7.x/initials/svg?seed=${blog.author.name}`;
                     }}
                   />
                 </div>
@@ -231,7 +255,8 @@ export function BlogPostContent({ blog, relatedPosts }: BlogPostContentProps) {
             <div
               className="absolute inset-0 pointer-events-none opacity-10"
               style={{
-                background: "radial-gradient(circle at 50% 50%, #38bdf8 0%, transparent 60%)",
+                background:
+                  "radial-gradient(circle at 50% 50%, #38bdf8 0%, transparent 60%)",
                 filter: "blur(60px)",
               }}
             />
@@ -252,11 +277,19 @@ export function BlogPostContent({ blog, relatedPosts }: BlogPostContentProps) {
                   animate={{ opacity: 1, scale: 1 }}
                   className="p-6 bg-sky-500/5 border border-sky-400/20 rounded-xl"
                 >
-                  <CheckCircle2 size={28} className="text-sky-400 mx-auto mb-2" />
-                  <p className="text-white font-bold font-grotesk text-sm">{t.successSubscribed}</p>
+                  <CheckCircle2
+                    size={28}
+                    className="text-sky-400 mx-auto mb-2"
+                  />
+                  <p className="text-white font-bold font-grotesk text-sm">
+                    {t.successSubscribed}
+                  </p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+                <form
+                  onSubmit={handleSubscribe}
+                  className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto"
+                >
                   <div className="relative flex-grow">
                     <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
                     <input
@@ -288,7 +321,11 @@ export function BlogPostContent({ blog, relatedPosts }: BlogPostContentProps) {
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 {relatedPosts.map((post) => (
-                  <Link href={`/blog/${post.slug}`} key={post.id} className="block group">
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    key={post.id}
+                    className="block group"
+                  >
                     <GlassCard className="flex flex-col h-full overflow-hidden">
                       <div className="aspect-[16/10] overflow-hidden bg-slate-900/50">
                         <img
@@ -311,7 +348,6 @@ export function BlogPostContent({ blog, relatedPosts }: BlogPostContentProps) {
               </div>
             </div>
           )}
-
         </div>
       </article>
 
