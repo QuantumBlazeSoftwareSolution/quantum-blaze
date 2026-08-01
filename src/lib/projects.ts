@@ -37,6 +37,7 @@ export interface Project {
   reports?: { name: string; url: string }[];
   users?: SystemUser[];
   testimonials?: Testimonial[];
+  active: boolean;
 }
 
 // ─── Projects ───────────────────────────────────────────────────────────────
@@ -53,8 +54,6 @@ export const projects: Project[] = [
     themeColor: "#38bdf8",
     mockupType: "desktop",
     imageUrl: "/images/projects/lms.jpg",
-    createdAt: "2026-07-10T12:00:00Z",
-    updated_at: "2026-07-10T15:00:00Z",
     screenshots: [
       {
         url: "/Projects/LMS/Screenshots/student-dashboard.png",
@@ -124,6 +123,9 @@ export const projects: Project[] = [
         clientImage: "/Projects/LMS/lms-logo.jpg",
       },
     ],
+    active: true,
+    createdAt: "2026-07-10T12:00:00Z",
+    updated_at: "2026-07-10T15:00:00Z",
   },
   {
     id: "roadservice",
@@ -144,6 +146,7 @@ export const projects: Project[] = [
     themeColor: "#0ea5e9",
     mockupType: "mobile",
     imageUrl: "/images/projects/roadservice.png",
+    active: true,
     createdAt: "2026-06-15T08:30:00Z",
     updated_at: "2026-06-15T09:00:00Z",
   },
@@ -166,6 +169,7 @@ export const projects: Project[] = [
     themeColor: "#7dd3fc",
     mockupType: "desktop",
     imageUrl: "/images/projects/pos.png",
+    active: true,
     createdAt: "2026-05-20T14:45:00Z",
     updated_at: "2026-05-20T15:00:00Z",
   },
@@ -191,6 +195,7 @@ export const projects: Project[] = [
     themeColor: "#C9A84C",
     mockupType: "desktop",
     imageUrl: "/images/projects/cinevista.jpg",
+    active: true,
     createdAt: "2026-07-18T10:00:00Z",
     updated_at: "2026-07-18T12:00:00Z",
     liveUrl: "https://cinema.quantumblaze.lk",
@@ -260,6 +265,7 @@ export const projects: Project[] = [
     themeColor: "#b8966a",
     mockupType: "desktop",
     imageUrl: "/images/projects/artflix.jpg",
+    active: true,
     createdAt: "2026-07-16T15:30:00Z",
     updated_at: "2026-07-16T16:00:00Z",
   },
@@ -286,6 +292,7 @@ export const projects: Project[] = [
     themeColor: "#3b82f6",
     mockupType: "desktop",
     imageUrl: "/images/projects/stc-computer-shop.jpg",
+    active: true,
     createdAt: "2026-07-14T08:45:00Z",
     updated_at: "2026-07-14T09:00:00Z",
   },
@@ -305,6 +312,7 @@ export const projects: Project[] = [
     themeColor: "#10b981",
     mockupType: "desktop",
     imageUrl: "/images/projects/pharmacy-pos.jpg",
+    active: true,
     createdAt: "2026-07-19T09:30:00Z",
     updated_at: "2026-07-19T09:40:00Z",
     screenshots: [
@@ -384,5 +392,28 @@ export const projects: Project[] = [
         companyName: "Ayusha Pharmacy & Grocery",
       },
     ],
+  },
+  {
+    id: "salon-system",
+    slug: "salon-system",
+    title: "Smart Salon System",
+    subtitle: "Appointment & Queue Management",
+    description:
+      "A modern appointment and queue management system designed to simplify salon operations and improve customer experience. Features include online booking, real-time live queue display via Socket.IO, hybrid customer handling for appointments and walk-ins, and a centralized admin dashboard.",
+    techStack: [
+      "Next.js",
+      "Tailwind CSS",
+      "Node.js",
+      "MySQL",
+      "Prisma",
+      "Socket.IO",
+    ],
+    metrics: ["Real-time Queue Updates", "Hybrid Walk-in/Online Bookings"],
+    themeColor: "#d4af37",
+    mockupType: "desktop",
+    imageUrl: "/images/projects/salon-system.jpg",
+    active: false,
+    createdAt: "2026-07-25T10:00:00Z",
+    updated_at: "2026-07-25T10:00:00Z",
   },
 ];
