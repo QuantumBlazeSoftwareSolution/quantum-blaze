@@ -227,7 +227,7 @@ function TiltCard({ item }: { item: TechItem }) {
         rotateY,
         transformStyle: "preserve-3d",
       }}
-      className="h-52 w-full group"
+      className="w-full group"
     >
       <BorderGlow
         edgeSensitivity={30}
@@ -239,26 +239,30 @@ function TiltCard({ item }: { item: TechItem }) {
         coneSpread={25}
         animated={false}
         colors={['#0ea5e9', '#38bdf8', '#7dd3fc']}
-        className="w-full h-full border-none"
+        className="w-full border-none"
       >
         <div 
-          className="p-6 h-full flex flex-col justify-between"
+          className="p-6 flex flex-col gap-3"
           style={{ transform: "translateZ(30px)", transformStyle: "preserve-3d" }}
         >
           <div>
-            <div className="w-12 h-12 p-2 bg-slate-950/80 rounded-xl border border-slate-900 flex items-center justify-center shrink-0 mb-4 group-hover:scale-105 group-hover:border-sky-500/30 group-hover:shadow-[0_0_15px_rgba(56,189,248,0.1)] transition-all duration-300">
-              {item.logo}
+            <div className="flex items-center gap-4 mb-3">
+              <div className="w-12 h-12 p-2.5 bg-slate-950/80 rounded-xl border border-slate-900 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:border-sky-500/30 group-hover:shadow-[0_0_15px_rgba(56,189,248,0.1)] transition-all duration-300">
+                {item.logo}
+              </div>
+              <div className="flex flex-col">
+                <h3 className="font-bold text-slate-100 text-sm md:text-base group-hover:text-sky-300 transition-colors duration-200 leading-tight">
+                  {item.name}
+                </h3>
+                <span className="text-[10px] uppercase font-bold tracking-widest text-sky-400/80 mt-0.5 block">
+                  {item.category}
+                </span>
+              </div>
             </div>
-            <h3 className="font-bold text-slate-100 text-sm md:text-base group-hover:text-sky-300 transition-colors duration-200">
-              {item.name}
-            </h3>
-            <span className="text-[10px] uppercase font-bold tracking-widest text-sky-400/80 mt-0.5 block">
-              {item.category}
-            </span>
           </div>
 
           <p 
-            className="text-xs text-slate-400 mt-3 leading-relaxed relative z-10"
+            className="text-xs text-slate-400 mt-2 leading-relaxed relative z-10"
             style={{ transform: "translateZ(15px)" }}
           >
             {item.description}

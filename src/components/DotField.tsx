@@ -231,8 +231,14 @@ const DotField = memo(({
       rafRef.current = requestAnimationFrame(tick);
     }
 
-    doResize();
-    window.addEventListener('resize', resize);
+    const resizeObserver = new ResizeObserver(() => {
+      doResize();
+    });
+
+    if (canvas && canvas.parentElement) {
+      resizeObserver.observe(canvas.parentElement);
+    }
+
     window.addEventListener('mousemove', onMouseMove, { passive: true });
     rafRef.current = requestAnimationFrame(tick);
 
@@ -245,7 +251,7 @@ const DotField = memo(({
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       clearInterval(speedInterval);
       clearTimeout(resizeTimer);
-      window.removeEventListener('resize', resize);
+      resizeObserver.disconnect();
       window.removeEventListener('mousemove', onMouseMove);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps

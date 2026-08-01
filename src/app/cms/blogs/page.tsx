@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams, notFound } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
 import ReactMarkdown from "react-markdown";
 import { Copy, Bold, Italic, Heading, List, Link as LinkIcon, Check, LogOut, Code, Minus, Quote, SquareCode } from "lucide-react";
 
-export default function BlogCMSPage() {
+function BlogCMSPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const key = searchParams.get("key");
@@ -267,5 +267,13 @@ export default function BlogCMSPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function BlogCMSPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#050b14] text-white flex items-center justify-center font-grotesk text-sm tracking-wider uppercase">Loading Dashboard...</div>}>
+      <BlogCMSPageContent />
+    </Suspense>
   );
 }

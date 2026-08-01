@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { loginAction } from "./actions";
 import { Rocket, ShieldAlert } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 
-export default function SecureLoginPage() {
+function SecureLoginPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [username, setUsername] = useState("");
@@ -117,5 +117,13 @@ export default function SecureLoginPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+export default function SecureLoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#050b14] text-white flex items-center justify-center font-grotesk text-sm tracking-wider uppercase">Loading Secure Login...</div>}>
+      <SecureLoginPageContent />
+    </Suspense>
   );
 }

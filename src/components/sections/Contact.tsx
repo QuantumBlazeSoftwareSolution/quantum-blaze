@@ -100,29 +100,29 @@ export function Contact() {
       className="relative section-padding overflow-hidden"
       style={{ background: "var(--bg-primary)" }}
     >
-      <div className="relative w-full h-full">
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-100">
         <DotField
-        dotRadius={1.5}
-        dotSpacing={14}
-        bulgeStrength={67}
-        glowRadius={160}
-        sparkle={false}
-        waveAmplitude={0}
-        cursorRadius={500}
-        cursorForce={0.1}
-        bulgeOnly
-        gradientFrom="#A855F7"
-        gradientTo="#B497CF"
-        glowColor="#120F17"
-      />
+          dotRadius={1.0}
+          dotSpacing={16}
+          bulgeStrength={70}
+          glowRadius={100}
+          sparkle={false}
+          waveAmplitude={0}
+          cursorRadius={550}
+          cursorForce={0.12}
+          bulgeOnly
+          gradientFrom="#38bdf8"
+          gradientTo="#0ea5e9"
+          glowColor="#38bdf8"
+        />
       </div>
       {/* Glow orb behind form */}
       <div
-        className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[600px] rounded-full blur-[150px] pointer-events-none"
+        className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[600px] rounded-full blur-[150px] pointer-events-none z-0"
         style={{ background: "rgba(14,165,233,0.03)" }}
       />
 
-      <div className="container-wide">
+      <div className="container-wide relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* Left Side: Headline and Info */}
           <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
