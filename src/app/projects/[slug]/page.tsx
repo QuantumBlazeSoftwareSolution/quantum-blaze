@@ -68,9 +68,33 @@ export default function ProjectDetailPage() {
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
             {project.title}
           </h1>
-          <p className="text-lg text-slate-400 font-light max-w-3xl leading-relaxed">
+          <p className="text-lg text-slate-400 font-light max-w-3xl leading-relaxed mb-6">
             {project.description}
           </p>
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-xs tracking-wider uppercase border transition-all duration-300 cursor-pointer"
+              style={{
+                borderColor: `${project.themeColor}33`,
+                backgroundColor: `${project.themeColor}10`,
+                color: project.themeColor,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = `${project.themeColor}22`;
+                e.currentTarget.style.borderColor = project.themeColor;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = `${project.themeColor}10`;
+                e.currentTarget.style.borderColor = `${project.themeColor}33`;
+              }}
+            >
+              Visit Live Application
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          )}
         </header>
 
         {/* Grid layout for base project details */}

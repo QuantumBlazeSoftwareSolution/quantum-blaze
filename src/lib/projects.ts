@@ -32,6 +32,7 @@ export interface Project {
   imageUrl: string;
   createdAt: string;
   updated_at: string;
+  liveUrl?: string;
   screenshots?: Screenshot[];
   reports?: { name: string; url: string }[];
   users?: SystemUser[];
@@ -174,7 +175,7 @@ export const projects: Project[] = [
     title: "CineVista",
     subtitle: "Cinema Booking Portal",
     description:
-      "Sri Lanka's most immersive theatrical experience portal featuring Dolby Atmos, 4K Laser Projection, IMAX-grade comfort, and a multi-lingual, real-time ticket booking and seating layout system.",
+      "A premium digital portal built specifically for movie theaters. It enables theaters to showcase currently playing and upcoming movies, manage dynamic showtimes, sell tickets online, and provide customers with an interactive, real-time seat availability map.",
     techStack: [
       "Next.js",
       "TypeScript",
@@ -192,6 +193,49 @@ export const projects: Project[] = [
     imageUrl: "/images/projects/cinevista.jpg",
     createdAt: "2026-07-18T10:00:00Z",
     updated_at: "2026-07-18T12:00:00Z",
+    liveUrl: "https://cinema.quantumblaze.lk",
+    screenshots: [
+      {
+        url: "/Projects/CineVista/Screenshots/listings.jpg",
+        title: "Currently Playing & Upcoming Movies Showcase",
+        subtitle: "Dynamic Film Catalog",
+        features: [
+          "Curated sections for now-showing and upcoming movies",
+          "Rich detail pages with trailers and rating aggregators",
+          "Intuitive multilingual filtering interface",
+        ],
+      },
+      {
+        url: "/Projects/CineVista/Screenshots/seating.jpg",
+        title: "Interactive Live-Seat Reservation Map",
+        subtitle: "Seat Grid & Layout",
+        features: [
+          "Real-time visual seat booking grid layout",
+          "Dynamic ticket pricing calculations per seat tier",
+          "Prevention of double-bookings via socket-level locks",
+        ],
+      },
+      {
+        url: "/Projects/CineVista/Screenshots/checkout.jpg",
+        title: "Secure Ticketing Checkout Gateway",
+        subtitle: "Billing & Reservations",
+        features: [
+          "Seamless checkout workflow with card or mobile wallet",
+          "Instant receipt and barcode generation",
+          "Automated email and SMS booking alerts",
+        ],
+      },
+      {
+        url: "/Projects/CineVista/Screenshots/admin.jpg",
+        title: "Cinema Showtimes & Sales Dashboard",
+        subtitle: "Theater Admin Panel",
+        features: [
+          "Comprehensive calendar layout for scheduling movie times",
+          "Sales overview charts tracking daily ticketing revenue",
+          "Quick listing modifiers for theater staff",
+        ],
+      },
+    ],
   },
   {
     id: "artflix",
