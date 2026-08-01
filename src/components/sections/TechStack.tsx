@@ -304,10 +304,7 @@ function TiltCard({ item }: { item: TechItem }) {
           }}
         >
           <div>
-            <div className="flex items-center gap-4 mb-3">
-              <div className="w-12 h-12 p-2.5 bg-slate-950/80 rounded-xl border border-slate-900 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:border-sky-500/30 group-hover:shadow-[0_0_15px_rgba(56,189,248,0.1)] transition-all duration-300">
-                {item.logo}
-              </div>
+            <div className="flex items-center justify-between gap-4 mb-3">
               <div className="flex flex-col">
                 <h3 className="font-bold text-slate-100 text-sm md:text-base group-hover:text-sky-300 transition-colors duration-200 leading-tight">
                   {item.name}
@@ -315,6 +312,9 @@ function TiltCard({ item }: { item: TechItem }) {
                 <span className="text-[10px] uppercase font-bold tracking-widest text-sky-400/80 mt-0.5 block">
                   {item.category}
                 </span>
+              </div>
+              <div className="w-12 h-12 p-2.5 bg-slate-950/80 rounded-xl border border-slate-900 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:border-sky-500/30 group-hover:shadow-[0_0_15px_rgba(56,189,248,0.1)] transition-all duration-300">
+                {item.logo}
               </div>
             </div>
           </div>
