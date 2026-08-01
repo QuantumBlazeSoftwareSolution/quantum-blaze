@@ -235,7 +235,7 @@ export function Hero() {
               className="w-full flex items-center justify-between"
             >
               {/* Left Nav Links */}
-              <div className="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest text-slate-400">
+              <div className="hidden lg:flex items-center gap-8 text-[13px] font-semibold uppercase tracking-widest text-slate-400">
                 <button onClick={() => scrollToSection("about")} className="hover:text-sky-400 transition-colors cursor-pointer">About</button>
                 <button onClick={() => scrollToSection("services")} className="hover:text-sky-400 transition-colors cursor-pointer">Services</button>
                 
@@ -248,15 +248,15 @@ export function Hero() {
                     <a href="/blog" className="block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[11px] font-semibold">
                       Blog
                     </a>
-                    <button onClick={() => scrollToSection("faq")} className="w-full text-left block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[11px] font-semibold cursor-pointer">
+                    <a href="/faq" className="block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[11px] font-semibold">
                       FAQ
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
 
               {/* Right Nav Links & Actions */}
-              <div className="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest text-slate-400 ml-auto">
+              <div className="hidden lg:flex items-center gap-8 text-[13px] font-semibold uppercase tracking-widest text-slate-400 ml-auto">
                 <button onClick={() => scrollToSection("projects")} className="hover:text-sky-400 transition-colors cursor-pointer">Projects</button>
                 <button onClick={() => scrollToSection("contact")} className="hover:text-sky-400 transition-colors cursor-pointer">Contact</button>
                 <a href="tel:+94788056838" className="flex items-center gap-2 text-slate-300 bg-sky-950/40 hover:bg-sky-950/60 border border-sky-500/20 hover:border-sky-500/40 px-3.5 py-1.5 rounded-full text-[10px] tracking-wider font-bold transition-all hover:text-white cursor-pointer">
@@ -326,12 +326,13 @@ export function Hero() {
                   >
                     Blog
                   </a>
-                  <button
-                    onClick={() => { scrollToSection("faq"); setMobileOpen(false); }}
-                    className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
+                  <a
+                    href="/faq"
+                    onClick={() => setMobileOpen(false)}
+                    className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors block"
                   >
                     FAQ
-                  </button>
+                  </a>
                   <button
                     onClick={() => { scrollToSection("projects"); setMobileOpen(false); }}
                     className="text-left py-2 border-b border-sky-500/5 text-sm font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"

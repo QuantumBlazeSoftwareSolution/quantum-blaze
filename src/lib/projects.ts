@@ -47,7 +47,7 @@ export const projects: Project[] = [
     subtitle: "EdTech Platform",
     description:
       "A comprehensive LMS serving 50,000+ learners. Features include live video lectures, AI-powered assessments, custom course creation, and a real-time analytics dashboard for educators.",
-    techStack: ["Next.js", "PostgreSQL", "WebRTC", "Prisma", "AWS", "Redis"],
+    techStack: ["React", "Next.js", "MySQL", "Prisma ORM"],
     metrics: ["50K+ Active Users", "99.9% Uptime"],
     themeColor: "#38bdf8",
     mockupType: "desktop",
@@ -93,6 +93,16 @@ export const projects: Project[] = [
           "Auto-generated question banks",
           "Instant result computation",
           "Plagiarism detection integration",
+        ],
+      },
+      {
+        url: "/Projects/LMS/Screenshots/analytics-reports.png",
+        title: "Analytics & Reports Dashboard",
+        subtitle: "Data-Driven Insights",
+        features: [
+          "Enrollment trends & KPI tracking",
+          "Course category distribution charts",
+          "Top performing courses leaderboard",
         ],
       },
     ],

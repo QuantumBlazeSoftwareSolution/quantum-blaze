@@ -121,9 +121,9 @@ export function Navbar() {
                 <a href="/blog" className="block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[11px] font-semibold">
                   Blog
                 </a>
-                <button onClick={() => scrollTo("#faq")} className="w-full text-left block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[11px] font-semibold cursor-pointer">
+                <a href="/faq" className="block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[11px] font-semibold">
                   FAQ
-                </button>
+                </a>
               </div>
             </div>
           </motion.div>
@@ -190,12 +190,13 @@ export function Navbar() {
             >
               Blog
             </a>
-            <button
-              onClick={() => scrollTo("#faq")}
-              className="text-left py-2 border-b border-sky-500/10 text-base font-medium text-sky-100 hover:text-sky-400 transition-colors cursor-pointer"
+            <a
+              href="/faq"
+              onClick={() => setMobileOpen(false)}
+              className="text-left py-2 border-b border-sky-500/10 text-base font-medium text-sky-100 hover:text-sky-400 transition-colors block"
             >
               FAQ
-            </button>
+            </a>
             <GlowButton variant="outline" onClick={() => scrollTo("#contact")}>
               Get in Touch
             </GlowButton>
