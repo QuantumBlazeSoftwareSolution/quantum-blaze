@@ -333,11 +333,15 @@ function TiltCard({ item }: { item: TechItem }) {
 
 export function TechStack() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const filteredTech =
     activeCategory === "All"
       ? techItems
       : techItems.filter((t) => t.category === activeCategory);
+
+  const hasMore = filteredTech.length > 9;
+  const displayedTech = isExpanded ? filteredTech : filteredTech.slice(0, 9);
 
   return (
     <section
@@ -365,7 +369,10 @@ export function TechStack() {
             return (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  setIsExpanded(false);
+                }}
                 className="relative px-4 py-2 text-xs md:text-sm font-semibold uppercase tracking-wider rounded-xl transition-all cursor-pointer overflow-hidden"
               >
                 <span
@@ -391,17 +398,21 @@ export function TechStack() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="popLayout">
-            {filteredTech.map((tech) => (
+            {displayedTech.map((tech, index) => (
               <motion.div
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0.9, y: 15 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{
                   opacity: 0,
                   scale: 0.9,
                   transition: { duration: 0.15 },
                 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
+                transition={{ 
+                  duration: 0.3, 
+                  ease: "easeOut",
+                  delay: isExpanded ? Math.min((index - 9) * 0.04, 0.3) : 0
+                }}
                 key={tech.name}
                 style={{ perspective: 1000 }}
               >
@@ -410,6 +421,27 @@ export function TechStack() {
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {/* View More Trigger */}
+        {hasMore && (
+          <div className="flex justify-center mt-12">
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="group relative px-6 py-3 rounded-full bg-slate-950/60 border border-slate-900 text-sky-400 hover:text-white transition-colors duration-300 font-semibold tracking-wider uppercase text-xs overflow-hidden cursor-pointer"
+            >
+              <div className="absolute inset-0 bg-sky-500/0 group-hover:bg-sky-500/5 transition-colors duration-300 pointer-events-none" />
+              <span className="relative z-10 flex items-center gap-2">
+                {isExpanded ? "Collapse List" : "Explore More Technologies"}
+                <motion.span
+                  animate={{ y: isExpanded ? -2 : 2 }}
+                  transition={{ repeat: Infinity, repeatType: "reverse", duration: 0.6 }}
+                >
+                  {isExpanded ? "▲" : "▼"}
+                </motion.span>
+              </span>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
