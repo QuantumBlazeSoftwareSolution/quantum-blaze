@@ -3,7 +3,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Mail, MapPin, Clock, Phone, CheckCircle2, ChevronDown } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Clock,
+  Phone,
+  CheckCircle2,
+  ChevronDown,
+} from "lucide-react";
+import DotField from "../DotField";
 
 const projectTypes = [
   "Enterprise SaaS Platform",
@@ -92,6 +100,22 @@ export function Contact() {
       className="relative section-padding overflow-hidden"
       style={{ background: "var(--bg-primary)" }}
     >
+      <div className="relative w-full h-full">
+        <DotField
+        dotRadius={1.5}
+        dotSpacing={14}
+        bulgeStrength={67}
+        glowRadius={160}
+        sparkle={false}
+        waveAmplitude={0}
+        cursorRadius={500}
+        cursorForce={0.1}
+        bulgeOnly
+        gradientFrom="#A855F7"
+        gradientTo="#B497CF"
+        glowColor="#120F17"
+      />
+      </div>
       {/* Glow orb behind form */}
       <div
         className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[600px] rounded-full blur-[150px] pointer-events-none"
@@ -269,7 +293,11 @@ export function Contact() {
                       color: formState.projectType ? "white" : "transparent",
                     }}
                   >
-                    <option value="" disabled style={{ background: "#0a1628" }}></option>
+                    <option
+                      value=""
+                      disabled
+                      style={{ background: "#0a1628" }}
+                    ></option>
                     {projectTypes.map((type) => (
                       <option
                         key={type}
@@ -299,9 +327,15 @@ export function Contact() {
                     value={formState.budget}
                     onChange={handleChange}
                     className={selectClass}
-                    style={{ color: formState.budget ? "white" : "transparent" }}
+                    style={{
+                      color: formState.budget ? "white" : "transparent",
+                    }}
                   >
-                    <option value="" disabled style={{ background: "#0a1628" }}></option>
+                    <option
+                      value=""
+                      disabled
+                      style={{ background: "#0a1628" }}
+                    ></option>
                     {[
                       "< 100,000 LKR",
                       "100,000 – 500,000 LKR",

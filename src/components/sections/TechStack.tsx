@@ -3,6 +3,25 @@
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import BorderGlow from "@/components/BorderGlow";
+import {
+  NextJSIcon,
+  ReactJSIcon,
+  TypescriptIcon,
+  TailwindIcon,
+  NodeJSIcon,
+  PythonIcon,
+  FlutterIcon,
+  PostgreSQLIcon,
+  RedisIcon,
+  AWSIcon,
+  DockerIcon,
+  KubernetesIcon,
+  JavaIcon,
+  SpringBootIcon,
+  NestJSIcon,
+  MongoDBIcon,
+  MySQLIcon,
+} from "../TechIcons";
 
 interface TechItem {
   name: string;
@@ -25,77 +44,43 @@ const techItems: TechItem[] = [
     name: "Next.js",
     category: "Frontend",
     description: "Production-grade React framework for static & server rendering.",
-    logo: (
-      <svg className="w-8 h-8 text-white fill-current" viewBox="0 0 180 180">
-        <path d="M142.124 165.75L71.393 72.825V148.5H53.625V42.75H72.812L134.908 124.08V42.75H152.625V165.75H142.124ZM90 0C39.99 0 0 39.99 0 90C0 140.01 39.99 180 90 180C140.01 180 180 140.01 180 90C180 39.99 140.01 0 90 0Z" />
-      </svg>
-    ),
+    logo: <NextJSIcon />,
   },
   {
     name: "React",
     category: "Frontend",
     description: "Component-based UI library for modern web ecosystems.",
-    logo: (
-      <svg className="w-8 h-8 text-sky-400 fill-none stroke-current stroke-[1.5]" viewBox="0 0 100 100">
-        <ellipse cx="50" cy="50" rx="8" ry="20" transform="rotate(0 50 50)" />
-        <ellipse cx="50" cy="50" rx="8" ry="20" transform="rotate(60 50 50)" />
-        <ellipse cx="50" cy="50" rx="8" ry="20" transform="rotate(120 50 50)" />
-        <circle cx="50" cy="50" r="3" className="fill-sky-400" />
-      </svg>
-    ),
+    logo: <ReactJSIcon />,
   },
   {
     name: "TypeScript",
     category: "Frontend",
     description: "Statically typed superset of JavaScript for bulletproof code.",
-    logo: (
-      <svg className="w-8 h-8 text-blue-500 fill-current" viewBox="0 0 100 100">
-        <path d="M0 0h100v100H0z" className="fill-[#007acc]" />
-        <path d="M85 85H70V58H58v27H43V15h42zm-58 0H12V32h28v12H27v29h15v12z" className="fill-white" />
-      </svg>
-    ),
+    logo: <TypescriptIcon />,
   },
   {
     name: "Tailwind CSS",
     category: "Frontend",
     description: "Utility-first CSS framework for fast, custom layout styling.",
-    logo: (
-      <svg className="w-8 h-8 text-cyan-400 fill-current" viewBox="0 0 100 100">
-        <path d="M50 25c-8.3 0-14.6 4.2-18.8 12.5C37.5 25 43.8 20.8 50 20.8c12.5 0 18.8 6.3 18.8 18.8 0 8.3-4.2 14.6-12.5 18.8 12.5-6.3 16.7-12.5 12.5-18.8C64.6 31.3 58.3 25 50 25zm-25 25c-8.3 0-14.6 4.2-18.8 12.5C12.5 50 18.8 45.8 25 45.8c12.5 0 18.8 6.3 18.8 18.8 0 8.3-4.2 14.6-12.5 18.8 12.5-6.3 16.7-12.5 12.5-18.8-4.2-8.3-10.5-12.5-18.8-12.5z" />
-      </svg>
-    ),
+    logo: <TailwindIcon />,
   },
   {
     name: "Node.js",
     category: "Backend",
     description: "JavaScript runtime for building fast, scalable network applications.",
-    logo: (
-      <svg className="w-8 h-8 text-green-500 fill-current" viewBox="0 0 100 100">
-        <path d="M46.7 15.5l-26.6 15.3c-2.4 1.4-3.9 4-3.9 6.8v30.7c0 2.8 1.5 5.4 3.9 6.8l26.6 15.3c2.4 1.4 5.3 1.4 7.7 0l26.6-15.3c2.4-1.4 3.9-4 3.9-6.8V37.6c0-2.8-1.5-5.4-3.9-6.8L54.4 15.5c-2.4-1.4-5.3-1.4-7.7 0z" className="fill-none stroke-current stroke-[4]" />
-        <path d="M50 30v40m-15-20l30 0" className="stroke-current stroke-[4]" />
-      </svg>
-    ),
+    logo: <NodeJSIcon />,
   },
   {
     name: "Python",
     category: "Backend",
     description: "Versatile programming language for web backends and data systems.",
-    logo: (
-      <svg className="w-8 h-8 text-yellow-500 fill-current" viewBox="0 0 100 100">
-        <path d="M50 10c-16 0-15 7-15 11v8h30v-4c0-4.4-3.6-15-15-15zm-7 6a2 2 0 110-4 2 2 0 010 4zm22 55c16 0 15-7 15-11v-8H50v4c0 4.4 3.6 15 15 15zm-7-6a2 2 0 110-4 2 2 0 010 4z" />
-        <path d="M35 29c-10 0-15 5-15 15v16c0 10 5 15 15 15h30c10 0 15-5 15-15V44c0-10-5-15-15-15H35zm0 15v26H28V44h7zm37 0v26h-7V44h7z" className="opacity-80" />
-      </svg>
-    ),
+    logo: <PythonIcon />,
   },
   {
     name: "Flutter",
     category: "Mobile",
     description: "Google's UI toolkit for natively compiled cross-platform apps.",
-    logo: (
-      <svg className="w-8 h-8 text-sky-400 fill-current" viewBox="0 0 100 100">
-        <path d="M52 10L25 37l12 12L76 10H52zm-2 36L25 71l12 12L74 46H50z" />
-      </svg>
-    ),
+    logo: <FlutterIcon />,
   },
   {
     name: "React Native",
@@ -113,21 +98,13 @@ const techItems: TechItem[] = [
     name: "PostgreSQL",
     category: "Database & Cache",
     description: "Robust open-source relational database supporting heavy transactions.",
-    logo: (
-      <svg className="w-8 h-8 text-blue-400 fill-current" viewBox="0 0 100 100">
-        <path d="M50 12c-20 0-30 12-30 25c0 10 6 18 15 22l-3 15h10l2-10c2 0 4 .5 6 .5c15 0 25-10 25-24.5C75 25 68 12 50 12z" />
-      </svg>
-    ),
+    logo: <PostgreSQLIcon />,
   },
   {
     name: "Redis",
     category: "Database & Cache",
     description: "In-memory database used as a cache and message broker.",
-    logo: (
-      <svg className="w-8 h-8 text-red-500 fill-current" viewBox="0 0 100 100">
-        <path d="M12 25h76L76 50H24L12 25zm6 30h64L68 80H32L18 55z" />
-      </svg>
-    ),
+    logo: <RedisIcon />,
   },
   {
     name: "Prisma",
@@ -143,76 +120,43 @@ const techItems: TechItem[] = [
     name: "AWS",
     category: "Cloud & DevOps",
     description: "Secure, reliable, and scalable cloud computing services.",
-    logo: (
-      <svg className="w-8 h-8 text-orange-400 fill-current" viewBox="0 0 100 100">
-        <path d="M20 50c0-15 15-20 30-20s30 5 30 20S65 70 50 70 20 65 20 50z" className="opacity-20" />
-        <path d="M30 65s15 10 20 10 20-10 20-10m-35 5s12 15 15 15 15-15 15-15" fill="none" className="stroke-current stroke-[4]" />
-      </svg>
-    ),
+    logo: <AWSIcon />,
   },
   {
     name: "Docker",
     category: "Cloud & DevOps",
     description: "Platform for containerizing and shipping software application code.",
-    logo: (
-      <svg className="w-8 h-8 text-sky-400 fill-current" viewBox="0 0 100 100">
-        <path d="M10 50c0 15 10 25 25 25h40c10 0 15-8 15-15 0-10-8-12-8-12s3-2 3-8c0-8-8-10-8-10H10v20z" />
-        <rect x="20" y="25" width="8" height="8" className="fill-slate-900" />
-        <rect x="32" y="25" width="8" height="8" className="fill-slate-900" />
-      </svg>
-    ),
+    logo: <DockerIcon />,
   },
   {
     name: "Kubernetes",
     category: "Cloud & DevOps",
     description: "Open-source container orchestration engine for automated scaling.",
-    logo: (
-      <svg className="w-8 h-8 text-blue-500 fill-current" viewBox="0 0 100 100">
-        <path d="M50 10l35 15v40L50 90 15 65V25l35-15zm0 10L23 32v30L50 80l27-18V32L50 20z" />
-      </svg>
-    ),
+    logo: <KubernetesIcon />,
   },
   {
     name: "Java",
     category: "Backend",
     description: "Object-oriented, class-based language built for secure enterprise systems.",
-    logo: (
-      <svg className="w-8 h-8 text-orange-500 fill-current" viewBox="0 0 100 100">
-        <path d="M50 90c10 0 15-5 18-10H32c3 5 8 10 18 10z" className="opacity-80" />
-        <path d="M42 20c0 0-5 10 5 15s15-5 15 5-10 15 5 20 15 0 15 0" fill="none" className="stroke-current stroke-[3.5]" />
-        <path d="M30 65c0 0-5 5 10 5s25-5 30 0-5 5-20 5-20-10-20-10z" />
-      </svg>
-    ),
+    logo: <JavaIcon />,
   },
   {
     name: "Spring Boot",
     category: "Backend",
     description: "Open-source Java-based framework used to build stand-alone, production-ready microservices.",
-    logo: (
-      <svg className="w-8 h-8 text-green-500 fill-current" viewBox="0 0 100 100">
-        <path d="M50 10C28 10 10 28 10 50s18 40 40 40 40-18 40-40S72 10 50 10zm-5 55L30 50l5-5 10 10 25-25 5 5-30 30z" />
-      </svg>
-    ),
+    logo: <SpringBootIcon />,
   },
   {
     name: "NestJS",
     category: "Backend",
     description: "A progressive Node.js framework for building efficient, reliable, and scalable server-side applications.",
-    logo: (
-      <svg className="w-8 h-8 text-red-500 fill-current" viewBox="0 0 100 100">
-        <path d="M50 12L85 47v18L50 88 15 65V47l35-35zm0 14L27 49v10L50 79l23-20V49L50 26z" />
-      </svg>
-    ),
+    logo: <NestJSIcon />,
   },
   {
     name: "MongoDB",
     category: "Database & Cache",
     description: "Document-based distributed database designed for modern web applications.",
-    logo: (
-      <svg className="w-8 h-8 text-green-600 fill-current" viewBox="0 0 100 100">
-        <path d="M50 10c0 0-25 20-25 40s10 30 25 40c0 0 25-20 25-40s-10-40-25-40zm0 15c5 10 10 20 10 25s-5 15-10 20V25z" />
-      </svg>
-    ),
+    logo: <MongoDBIcon />,
   },
   {
     name: "NeonDB",
@@ -241,11 +185,7 @@ const techItems: TechItem[] = [
     name: "MySQL",
     category: "Database & Cache",
     description: "Fast, reliable, and secure open-source relational database management system.",
-    logo: (
-      <svg className="w-8 h-8 text-sky-500 fill-current" viewBox="0 0 100 100">
-        <path d="M50 12c-20 0-30 10-30 22 0 15 15 25 30 25s30-10 30-25c0-12-10-22-30-22zm-5 35l-10-10 3-3 7 7 15-15 3 3-18 18z" />
-      </svg>
-    ),
+    logo: <MySQLIcon />,
   },
 ];
 
