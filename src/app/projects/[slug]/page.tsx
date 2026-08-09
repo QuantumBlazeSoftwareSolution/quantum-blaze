@@ -56,8 +56,27 @@ export default function ProjectDetailPage() {
       .substring(0, 2);
   };
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": project.title,
+    "description": project.description,
+    "image": project.imageUrl || "https://quantumblaze.lk/original-logo.png",
+    "creator": {
+      "@type": "Organization",
+      "name": "Quantum Blaze",
+      "url": "https://quantumblaze.lk"
+    },
+    "genre": project.subtitle,
+    "keywords": project.techStack.join(", ")
+  };
+
   return (
     <div className="min-h-screen bg-[#050b14] text-slate-100 selection:bg-emerald-500/20 selection:text-emerald-400 relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
       <main className="max-w-6xl mx-auto px-6 pt-32 pb-24">

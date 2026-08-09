@@ -25,7 +25,7 @@ const footerLinks = {
     },
     { label: "+94 78 805 6838", href: "tel:+94788056838" },
     { label: "+94 71 968 1816", href: "tel:+94719681816" },
-    { label: "Urapola, Sri Lanka", href: "/#contact" },
+    { label: "Urapola, Sri Lanka", href: "/contact" },
   ],
 };
 

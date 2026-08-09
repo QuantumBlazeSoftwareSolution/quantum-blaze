@@ -15,8 +15,38 @@ export const metadata = {
 export default async function BlogListingPage() {
   const posts = await getBlogPosts();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Quantum Blaze Blog",
+    "description": "Technical writing, guides, and engineering logs from our development team.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Quantum Blaze",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://quantumblaze.lk/original-logo.png"
+      }
+    },
+    "blogPost": posts.map((post) => ({
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "description": post.excerpt,
+      "datePublished": post.publishDate,
+      "author": {
+        "@type": "Person",
+        "name": post.author
+      },
+      "url": `https://quantumblaze.lk/blog/${post.slug}`
+    }))
+  };
+
   return (
     <div className="min-h-screen bg-[#050b14] text-slate-100 flex flex-col selection:bg-sky-500/20 selection:text-sky-400">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
       <main className="max-w-6xl mx-auto px-6 pt-32 pb-24 flex-grow w-full">

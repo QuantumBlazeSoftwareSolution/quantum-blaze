@@ -143,7 +143,7 @@ export function Navbar() {
             <GlowButton
               size="sm"
               variant="outline"
-              onClick={() => scrollTo("#contact")}
+              onClick={() => scrollTo("/contact")}
             >
               Get in Touch
               <span className="text-sky-400">→</span>
@@ -202,7 +202,7 @@ export function Navbar() {
             >
               FAQ
             </a>
-            <GlowButton variant="outline" onClick={() => scrollTo("#contact")}>
+            <GlowButton variant="outline" onClick={() => scrollTo("/contact")}>
               Get in Touch
             </GlowButton>
           </motion.div>

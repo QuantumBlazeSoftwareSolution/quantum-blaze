@@ -413,7 +413,7 @@ export function Hero() {
               <div className="flex flex-col items-start text-left lg:col-span-4 xl:col-span-4 max-w-md order-2 lg:order-1 mt-4 lg:mt-0">
                 {/* Tagline Text */}
                 <div className="text-[12px] md:text-xs font-bold tracking-[0.2em] text-slate-400 uppercase mb-6">
-                  Think Beyond <span className="text-sky-400">Limitation</span>
+                  Think Beyond Limitation
                 </div>
 
                 {/* Tagline Heading */}

@@ -166,23 +166,29 @@ export function Contact() {
                   icon: <Mail className="w-5 h-5 text-sky-400" />,
                   label: "contact@quantumblaze.lk",
                   sub: "Email Us",
+                  href: "mailto:contact@quantumblaze.lk",
                 },
                 {
                   icon: <Phone className="w-5 h-5 text-sky-400" />,
                   label: "+94 78 805 6838 / +94 71 968 1816",
                   sub: "Call Us",
+                  href: "tel:+94788056838",
                 },
                 {
                   icon: <MapPin className="w-5 h-5 text-sky-400" />,
                   label: "Urapola, Sri Lanka",
                   sub: "Our Office",
+                  href: "https://maps.google.com/?q=Urapola,+Sri+Lanka",
                 },
               ].map((item) => (
-                <div
+                <a
                   key={item.label}
-                  className="flex items-center gap-4 glass px-5 py-3 rounded-xl w-full sm:w-auto border border-sky-500/10 hover:border-sky-500/30 transition-colors"
+                  href={item.href}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="flex items-center gap-4 glass px-5 py-3 rounded-xl w-full sm:w-auto border border-sky-500/10 hover:border-sky-500/30 hover:bg-white/5 transition-all duration-300 group/chip"
                 >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-sky-500/5 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-sky-500/5 flex items-center justify-center group-hover/chip:bg-sky-500/10 transition-colors">
                     {item.icon}
                   </div>
                   <div className="flex flex-col text-left overflow-hidden flex-1">
@@ -190,13 +196,13 @@ export function Contact() {
                       {item.sub}
                     </span>
                     <span
-                      className="text-sm font-medium break-all sm:break-normal"
+                      className="text-sm font-medium break-all sm:break-normal transition-colors duration-200 group-hover/chip:text-sky-400"
                       style={{ color: "var(--text-secondary)" }}
                     >
                       {item.label}
                     </span>
                   </div>
-                </div>
+                </a>
               ))}
             </motion.div>
           </div>

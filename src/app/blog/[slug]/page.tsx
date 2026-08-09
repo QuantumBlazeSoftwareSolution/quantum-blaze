@@ -40,8 +40,37 @@ export default async function BlogPostDetailPage({
 
   const directImageUrl = getDirectDriveImage(post.coverImage);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": directImageUrl || "https://quantumblaze.lk/original-logo.png",
+    "datePublished": post.publishDate,
+    "author": {
+      "@type": "Person",
+      "name": post.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Quantum Blaze",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://quantumblaze.lk/original-logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://quantumblaze.lk/blog/${post.slug}`
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#050b14] text-slate-100 flex flex-col selection:bg-sky-500/20 selection:text-sky-400">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
       <main className="max-w-4xl mx-auto px-6 pt-32 pb-24 flex-grow w-full">

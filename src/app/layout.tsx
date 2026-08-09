@@ -49,10 +49,10 @@ export const metadata: Metadata = {
     siteName: "Quantum Blaze",
     images: [
       {
-        url: "/api/og?title=Premium Software Development Agency",
+        url: "https://quantumblaze.lk/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Quantum Blaze",
+        alt: "Quantum Blaze - Premium Software Development Agency",
       },
     ],
   },
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     description:
       "We architect and engineer scalable, high-end digital products.",
     creator: "@quantumblaze",
-    images: ["/api/og?title=Premium Software Development Agency"],
+    images: ["https://quantumblaze.lk/og-image.png"],
   },
   icons: {
     icon: "/original-logo.png",
