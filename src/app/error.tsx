@@ -27,7 +27,8 @@ export default function Error({
           Something went wrong!
         </h2>
         <p className="text-slate-400 mb-8 max-w-md mx-auto">
-          We&apos;ve been notified and are looking into the issue. Please try again.
+          We&apos;ve been notified and are looking into the issue. Please try
+          again.
         </p>
         <div className="flex gap-4 justify-center">
           <GlowButton variant="solid" onClick={() => reset()}>

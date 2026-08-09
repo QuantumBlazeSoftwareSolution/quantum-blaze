@@ -50,7 +50,6 @@ export function Services() {
       <div className="container-wide">
         {/* Header */}
         <div className="text-center mb-16">
-
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -60,10 +60,10 @@ export async function GET(request: Request) {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://dev.quantumblaze.lk/rectangle-icon.png"
+              src="https://quantumblaze.lk/original-logo.png"
               alt="Quantum Blaze"
               style={{
-                width: "500px",
+                width: "400px",
                 height: "auto",
                 objectFit: "contain",
               }}

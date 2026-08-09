@@ -2,7 +2,7 @@ export interface Testimonial {
   message: string;
   clientName: string;
   clientImage?: string;
-  pharmacyName: string;
+  companyName: string;
 }
 
 export interface SystemUser {
@@ -32,10 +32,12 @@ export interface Project {
   imageUrl: string;
   createdAt: string;
   updated_at: string;
+  liveUrl?: string;
   screenshots?: Screenshot[];
   reports?: { name: string; url: string }[];
   users?: SystemUser[];
   testimonials?: Testimonial[];
+  active: boolean;
 }
 
 // ─── Projects ───────────────────────────────────────────────────────────────
@@ -47,11 +49,81 @@ export const projects: Project[] = [
     subtitle: "EdTech Platform",
     description:
       "A comprehensive LMS serving 50,000+ learners. Features include live video lectures, AI-powered assessments, custom course creation, and a real-time analytics dashboard for educators.",
-    techStack: ["Next.js", "PostgreSQL", "WebRTC", "Prisma", "AWS", "Redis"],
+    techStack: ["React", "Next.js", "MySQL", "Prisma ORM"],
     metrics: ["50K+ Active Users", "99.9% Uptime"],
     themeColor: "#38bdf8",
     mockupType: "desktop",
     imageUrl: "/images/projects/lms.jpg",
+    screenshots: [
+      {
+        url: "/Projects/LMS/Screenshots/student-dashboard.png",
+        title: "Student Learning Dashboard",
+        subtitle: "Personalized Learning Hub",
+        features: [
+          "Course progress tracking",
+          "Upcoming assignments & deadlines",
+          "Performance analytics overview",
+        ],
+      },
+      {
+        url: "/Projects/LMS/Screenshots/course-viewer.png",
+        title: "Interactive Course Viewer",
+        subtitle: "Live & Recorded Lectures",
+        features: [
+          "HD video streaming with WebRTC",
+          "Real-time Q&A chat panel",
+          "Downloadable course materials",
+        ],
+      },
+      {
+        url: "/Projects/LMS/Screenshots/teacher-panel.png",
+        title: "Educator Management Panel",
+        subtitle: "Course & Student Management",
+        features: [
+          "Batch student enrollment controls",
+          "Assignment creation & grading tools",
+          "Class performance heatmaps",
+        ],
+      },
+      {
+        url: "/Projects/LMS/Screenshots/assessments.png",
+        title: "AI-Powered Assessment Engine",
+        subtitle: "Smart Evaluations",
+        features: [
+          "Auto-generated question banks",
+          "Instant result computation",
+          "Plagiarism detection integration",
+        ],
+      },
+      {
+        url: "/Projects/LMS/Screenshots/analytics-reports.png",
+        title: "Analytics & Reports Dashboard",
+        subtitle: "Data-Driven Insights",
+        features: [
+          "Enrollment trends & KPI tracking",
+          "Course category distribution charts",
+          "Top performing courses leaderboard",
+        ],
+      },
+    ],
+    users: [
+      {
+        name: "Quality Econ",
+        location: "www.krishankasthuriarachchi.lk",
+        usage: "Online A/L Economics tuition platform",
+        logo: "/Projects/LMS/lms-logo.jpg",
+      },
+    ],
+    testimonials: [
+      {
+        message:
+          "The LMS platform has transformed how we deliver online education. Our students can access live lectures, recorded content, and assessments all in one place. The system handles thousands of concurrent users without any performance issues.",
+        clientName: "Krishan Kasthuriarachchi",
+        companyName: "Quality Econ",
+        clientImage: "/Projects/LMS/lms-logo.jpg",
+      },
+    ],
+    active: true,
     createdAt: "2026-07-10T12:00:00Z",
     updated_at: "2026-07-10T15:00:00Z",
   },
@@ -74,6 +146,7 @@ export const projects: Project[] = [
     themeColor: "#0ea5e9",
     mockupType: "mobile",
     imageUrl: "/images/projects/roadservice.png",
+    active: true,
     createdAt: "2026-06-15T08:30:00Z",
     updated_at: "2026-06-15T09:00:00Z",
   },
@@ -84,11 +157,19 @@ export const projects: Project[] = [
     subtitle: "Enterprise Software",
     description:
       "A full-featured POS system for retail chains with inventory management, multi-store reporting, loyalty programs, and offline-capable transactions. Processes 10,000+ transactions per day with 100% reliability.",
-    techStack: ["Electron", "React", "SQLite", "Node.js", "PostgreSQL", "Prisma"],
+    techStack: [
+      "Electron",
+      "React",
+      "SQLite",
+      "Node.js",
+      "PostgreSQL",
+      "Prisma",
+    ],
     metrics: ["10K+ Daily Txns", "Multi-Store", "Offline-ready"],
     themeColor: "#7dd3fc",
     mockupType: "desktop",
     imageUrl: "/images/projects/pos.png",
+    active: true,
     createdAt: "2026-05-20T14:45:00Z",
     updated_at: "2026-05-20T15:00:00Z",
   },
@@ -98,14 +179,68 @@ export const projects: Project[] = [
     title: "CineVista",
     subtitle: "Cinema Booking Portal",
     description:
-      "Sri Lanka's most immersive theatrical experience portal featuring Dolby Atmos, 4K Laser Projection, IMAX-grade comfort, and a multi-lingual, real-time ticket booking and seating layout system.",
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Context API"],
-    metrics: ["Multi-lingual Support", "4K Laser Projection", "Interactive Seating"],
+      "A premium digital portal built specifically for movie theaters. It enables theaters to showcase currently playing and upcoming movies, manage dynamic showtimes, sell tickets online, and provide customers with an interactive, real-time seat availability map.",
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Context API",
+    ],
+    metrics: [
+      "Multi-lingual Support",
+      "4K Laser Projection",
+      "Interactive Seating",
+    ],
     themeColor: "#C9A84C",
     mockupType: "desktop",
     imageUrl: "/images/projects/cinevista.jpg",
+    active: true,
     createdAt: "2026-07-18T10:00:00Z",
     updated_at: "2026-07-18T12:00:00Z",
+    liveUrl: "https://cinema.quantumblaze.lk",
+    screenshots: [
+      {
+        url: "/Projects/CineVista/Screenshots/listings.jpg",
+        title: "Currently Playing & Upcoming Movies Showcase",
+        subtitle: "Dynamic Film Catalog",
+        features: [
+          "Curated sections for now-showing and upcoming movies",
+          "Rich detail pages with trailers and rating aggregators",
+          "Intuitive multilingual filtering interface",
+        ],
+      },
+      {
+        url: "/Projects/CineVista/Screenshots/seating.jpg",
+        title: "Interactive Live-Seat Reservation Map",
+        subtitle: "Seat Grid & Layout",
+        features: [
+          "Real-time visual seat booking grid layout",
+          "Dynamic ticket pricing calculations per seat tier",
+          "Prevention of double-bookings via socket-level locks",
+        ],
+      },
+      {
+        url: "/Projects/CineVista/Screenshots/checkout.jpg",
+        title: "Secure Ticketing Checkout Gateway",
+        subtitle: "Billing & Reservations",
+        features: [
+          "Seamless checkout workflow with card or mobile wallet",
+          "Instant receipt and barcode generation",
+          "Automated email and SMS booking alerts",
+        ],
+      },
+      {
+        url: "/Projects/CineVista/Screenshots/admin.jpg",
+        title: "Cinema Showtimes & Sales Dashboard",
+        subtitle: "Theater Admin Panel",
+        features: [
+          "Comprehensive calendar layout for scheduling movie times",
+          "Sales overview charts tracking daily ticketing revenue",
+          "Quick listing modifiers for theater staff",
+        ],
+      },
+    ],
   },
   {
     id: "artflix",
@@ -114,11 +249,23 @@ export const projects: Project[] = [
     subtitle: "Artisan E-Commerce Store",
     description:
       "A luxury bespoke framing and art photography ecommerce platform for Artflics Digital Colour Lab. Features custom framing previews, magnetic interactions, interactive pricing, and fluid product display systems.",
-    techStack: ["Next.js", "TypeScript", "GSAP", "Tailwind CSS", "React", "Framer Motion"],
-    metrics: ["Bespoke Art Catalog", "Custom Frame Previews", "GSAP Scroll Parallax"],
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "GSAP",
+      "Tailwind CSS",
+      "React",
+      "Framer Motion",
+    ],
+    metrics: [
+      "Bespoke Art Catalog",
+      "Custom Frame Previews",
+      "GSAP Scroll Parallax",
+    ],
     themeColor: "#b8966a",
     mockupType: "desktop",
     imageUrl: "/images/projects/artflix.jpg",
+    active: true,
     createdAt: "2026-07-16T15:30:00Z",
     updated_at: "2026-07-16T16:00:00Z",
   },
@@ -129,11 +276,23 @@ export const projects: Project[] = [
     subtitle: "Interactive PC Builder & Store",
     description:
       "A robust customized PC builder and hardware e-commerce platform for STC Computer Shop. Features a dynamic compatibility-checking PC builder tool, responsive product catalog with multi-filters, shopping cart, and admin inventory management dashboard.",
-    techStack: ["React", "Vite", "Firebase Auth", "Firestore", "Tailwind CSS", "React Router"],
-    metrics: ["Custom PC Builder", "Compatibility Checking", "Inventory Dashboard"],
+    techStack: [
+      "React",
+      "Vite",
+      "Firebase Auth",
+      "Firestore",
+      "Tailwind CSS",
+      "React Router",
+    ],
+    metrics: [
+      "Custom PC Builder",
+      "Compatibility Checking",
+      "Inventory Dashboard",
+    ],
     themeColor: "#3b82f6",
     mockupType: "desktop",
     imageUrl: "/images/projects/stc-computer-shop.jpg",
+    active: true,
     createdAt: "2026-07-14T08:45:00Z",
     updated_at: "2026-07-14T09:00:00Z",
   },
@@ -153,6 +312,7 @@ export const projects: Project[] = [
     themeColor: "#10b981",
     mockupType: "desktop",
     imageUrl: "/images/projects/pharmacy-pos.jpg",
+    active: true,
     createdAt: "2026-07-19T09:30:00Z",
     updated_at: "2026-07-19T09:40:00Z",
     screenshots: [
@@ -160,32 +320,60 @@ export const projects: Project[] = [
         url: "/Projects/Pharmacy POS/Pharmacy POS SS/login interface.png",
         title: "Secure User Authentication",
         subtitle: "Gatekeeping & Role Management",
-        features: ["Role-based access controls", "Secure session tokens", "Instant user login validation"],
+        features: [
+          "Role-based access controls",
+          "Secure session tokens",
+          "Instant user login validation",
+        ],
       },
       {
         url: "/Projects/Pharmacy POS/Pharmacy POS SS/dashboard.png",
         title: "Real-time Performance Dashboard",
         subtitle: "Analytics Overview",
-        features: ["Daily sales analytics graph", "Current day key performance metrics (KPIs)", "Inventory stock overview indicators"],
+        features: [
+          "Daily sales analytics graph",
+          "Current day key performance metrics (KPIs)",
+          "Inventory stock overview indicators",
+        ],
       },
       {
         url: "/Projects/Pharmacy POS/Pharmacy POS SS/product management.png",
         title: "Comprehensive Inventory Controls",
         subtitle: "Stock & Expiry Management",
-        features: ["Detailed batch tracking metrics", "Real-time expiry warning loops", "Single stock inventory list search"],
+        features: [
+          "Detailed batch tracking metrics",
+          "Real-time expiry warning loops",
+          "Single stock inventory list search",
+        ],
       },
       {
         url: "/Projects/Pharmacy POS/Pharmacy POS SS/invoice.png",
         title: "Fast POS Billing Checkout",
         subtitle: "Invoice Generation",
-        features: ["Real-time item selection & billing calculations", "Flexible tax & discount modifiers", "Direct transaction checkout validation"],
+        features: [
+          "Real-time item selection & billing calculations",
+          "Flexible tax & discount modifiers",
+          "Direct transaction checkout validation",
+        ],
       },
     ],
     reports: [
-      { name: "Close Sale Report", url: "/Projects/Pharmacy POS/Pharmacy POS Report/close-sale.pdf" },
-      { name: "Invoice Bill 06-20", url: "/Projects/Pharmacy POS/Pharmacy POS Report/invoice_bill 06-20.pdf" },
-      { name: "Sale Report", url: "/Projects/Pharmacy POS/Pharmacy POS Report/sale_report.pdf" },
-      { name: "Stock Balance Report", url: "/Projects/Pharmacy POS/Pharmacy POS Report/stockBalance.pdf" },
+      {
+        name: "Close Sale Report",
+        url: "/Projects/Pharmacy POS/Pharmacy POS Report/close-sale.pdf",
+      },
+      {
+        name: "Invoice Bill 06-20",
+        url: "/Projects/Pharmacy POS/Pharmacy POS Report/invoice_bill 06-20.pdf",
+      },
+      {
+        name: "Sale Report",
+        url: "/Projects/Pharmacy POS/Pharmacy POS Report/sale_report.pdf",
+      },
+      {
+        name: "Stock Balance Report",
+        url: "/Projects/Pharmacy POS/Pharmacy POS Report/stockBalance.pdf",
+      },
     ],
     users: [
       {
@@ -197,11 +385,35 @@ export const projects: Project[] = [
     ],
     testimonials: [
       {
-        message: "We purchased the single-stock POS system to streamline our new pharmacy business. We've been using it for over a year without any issues. The team has been extremely supportive, delivering custom modifications and sorting out our queries in record time.",
+        message:
+          "We purchased the single-stock POS system to streamline our new pharmacy business. We've been using it for over a year without any issues. The team has been extremely supportive, delivering custom modifications and sorting out our queries in record time.",
         clientName: "Milani Wijewardhana",
         clientImage: "/Projects/Pharmacy POS/final logo.png",
-        pharmacyName: "Ayusha Pharmacy & Grocery",
+        companyName: "Ayusha Pharmacy & Grocery",
       },
     ],
+  },
+  {
+    id: "salon-system",
+    slug: "salon-system",
+    title: "Smart Salon System",
+    subtitle: "Appointment & Queue Management",
+    description:
+      "A modern appointment and queue management system designed to simplify salon operations and improve customer experience. Features include online booking, real-time live queue display via Socket.IO, hybrid customer handling for appointments and walk-ins, and a centralized admin dashboard.",
+    techStack: [
+      "Next.js",
+      "Tailwind CSS",
+      "Node.js",
+      "MySQL",
+      "Prisma",
+      "Socket.IO",
+    ],
+    metrics: ["Real-time Queue Updates", "Hybrid Walk-in/Online Bookings"],
+    themeColor: "#d4af37",
+    mockupType: "desktop",
+    imageUrl: "/images/projects/salon-system.jpg",
+    active: false,
+    createdAt: "2026-07-25T10:00:00Z",
+    updated_at: "2026-07-25T10:00:00Z",
   },
 ];

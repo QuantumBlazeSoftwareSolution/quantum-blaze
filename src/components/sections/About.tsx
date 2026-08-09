@@ -8,42 +8,42 @@ import { stats } from "@/lib/data";
 import { Zap, ShieldCheck, Eye, Target } from "lucide-react";
 
 // 3D Tilt Card wrapper with cursor glow updates
-function TiltCard({ 
-  children, 
-  className 
-}: { 
-  children: React.ReactNode; 
-  className: string; 
+function TiltCard({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className: string;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const card = cardRef.current;
     const rect = card.getBoundingClientRect();
-    
+
     // Position of cursor relative to card
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     card.style.setProperty("--mouse-x", `${x}px`);
     card.style.setProperty("--mouse-y", `${y}px`);
-    
+
     // Tilt calculations (max 5 degrees)
     const width = rect.width;
     const height = rect.height;
     const centerX = rect.left + width / 2;
     const centerY = rect.top + height / 2;
-    
+
     const deltaX = e.clientX - centerX;
     const deltaY = e.clientY - centerY;
-    
+
     const rotateX = -(deltaY / (height / 2)) * 5;
     const rotateY = (deltaX / (width / 2)) * 5;
-    
+
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   };
-  
+
   const handleMouseLeave = () => {
     if (!cardRef.current) return;
     const card = cardRef.current;
@@ -51,7 +51,7 @@ function TiltCard({
     card.style.setProperty("--mouse-x", `-999px`);
     card.style.setProperty("--mouse-y", `-999px`);
   };
-  
+
   return (
     <div
       ref={cardRef}
@@ -164,11 +164,11 @@ export function About() {
 
               <div className="overflow-hidden border-l border-slate-800/60 pl-6 ml-2 mb-8">
                 <p className="reveal-line text-lg leading-relaxed max-w-xl text-slate-400 font-light">
-                  We believe that exceptional software isn&apos;t just about lines of
-                  code; it&apos;s about the architecture of innovation. Our team
-                  deep-dives into every technical detail, from system scalability
-                  to micro-interactions, ensuring your digital ecosystem is
-                  robust, performant, and future-proof.
+                  We believe that exceptional software isn&apos;t just about
+                  lines of code; it&apos;s about the architecture of innovation.
+                  Our team deep-dives into every technical detail, from system
+                  scalability to micro-interactions, ensuring your digital
+                  ecosystem is robust, performant, and future-proof.
                 </p>
               </div>
             </div>
@@ -184,13 +184,13 @@ export function About() {
                 className="flex-1"
               >
                 <TiltCard className="relative p-6 md:p-8 min-h-[160px] rounded-2xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center h-full">
-                  <div 
+                  <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
                       background: `radial-gradient(300px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
                     }}
                   />
-                  <div 
+                  <div
                     className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
                     style={{
                       background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
@@ -199,10 +199,14 @@ export function About() {
                   />
                   <div className="relative z-10">
                     <div className="mb-2">
-                      <h4 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-sky-400">Our Vision</h4>
+                      <h4 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-sky-400">
+                        Our Vision
+                      </h4>
                     </div>
                     <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-light">
-                      To be the premier architect of digital innovation, creating software ecosystems that empower businesses to scale globally and lead their industries.
+                      To be the premier architect of digital innovation,
+                      creating software ecosystems that empower businesses to
+                      scale globally and lead their industries.
                     </p>
                   </div>
                 </TiltCard>
@@ -217,13 +221,13 @@ export function About() {
                 className="flex-1"
               >
                 <TiltCard className="relative p-6 md:p-8 min-h-[160px] rounded-2xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden flex flex-col justify-center h-full">
-                  <div 
+                  <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
                       background: `radial-gradient(300px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
                     }}
                   />
-                  <div 
+                  <div
                     className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
                     style={{
                       background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
@@ -232,10 +236,15 @@ export function About() {
                   />
                   <div className="relative z-10">
                     <div className="mb-2">
-                      <h4 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-sky-400">Our Mission</h4>
+                      <h4 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-sky-400">
+                        Our Mission
+                      </h4>
                     </div>
                     <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-light">
-                      To engineer high-performance, robust, and beautifully designed digital solutions through rigorous technical excellence, transparent collaboration, and a results-focused execution.
+                      To engineer high-performance, robust, and beautifully
+                      designed digital solutions through rigorous technical
+                      excellence, transparent collaboration, and a
+                      results-focused execution.
                     </p>
                   </div>
                 </TiltCard>
@@ -255,13 +264,13 @@ export function About() {
                 className="md:col-span-2"
               >
                 <TiltCard className="relative p-4 md:p-5 rounded-2xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-sm group overflow-hidden h-full">
-                  <div 
+                  <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
                       background: `radial-gradient(300px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
                     }}
                   />
-                  <div 
+                  <div
                     className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
                     style={{
                       background: `radial-gradient(150px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,
@@ -297,13 +306,13 @@ export function About() {
                   className={`${i === 2 ? "md:col-span-2" : ""}`}
                 >
                   <TiltCard className="relative p-4 rounded-2xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-sm group hover:bg-slate-900/30 transition-colors duration-500 h-full overflow-hidden">
-                    <div 
+                    <div
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                       style={{
                         background: `radial-gradient(250px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.08), transparent)`,
                       }}
                     />
-                    <div 
+                    <div
                       className="absolute -inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
                       style={{
                         background: `radial-gradient(120px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(56, 189, 248, 0.25), transparent)`,

@@ -64,7 +64,7 @@ export const processSteps = [
     description:
       "High-fidelity prototypes and system design documentation. We validate the architecture and UX with your team before development begins.",
     icon: "Palette",
-    duration: "Week 2–3",
+    duration: "Week 2-3",
   },
   {
     number: "03",
@@ -73,7 +73,7 @@ export const processSteps = [
     description:
       "We design scalable system architecture with security, performance, and maintainability as first-class concerns — built to grow with your business.",
     icon: "Layers",
-    duration: "Week 3–4",
+    duration: "Week 3-4",
   },
   {
     number: "04",
@@ -82,7 +82,7 @@ export const processSteps = [
     description:
       "Sprint-based development with CI/CD pipelines, automated testing, and weekly demos. You see real progress every single week.",
     icon: "Code2",
-    duration: "Week 4–12",
+    duration: "Week 4-12",
   },
   {
     number: "05",

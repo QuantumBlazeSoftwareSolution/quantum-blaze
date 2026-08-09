@@ -95,7 +95,8 @@ function ProjectCard({
                     style={{
                       border: `1px solid ${project.themeColor}30`,
                       boxShadow: `0 0 40px ${project.themeColor}15, 0 20px 50px rgba(0,0,0,0.5)`,
-                      aspectRatio: project.mockupType === "mobile" ? "9/19" : "16/10",
+                      aspectRatio:
+                        project.mockupType === "mobile" ? "9/19" : "16/10",
                       width: project.mockupType === "mobile" ? "55%" : "100%",
                       margin: "0 auto",
                     }}
@@ -171,7 +172,10 @@ function ProjectCard({
                 className="inline-flex items-center gap-2 text-sm font-semibold transition-all hover:underline"
                 style={{ color: project.themeColor }}
               >
-                View Case Study <span className="inline-block transition-transform duration-300 hover:translate-x-1">→</span>
+                View Case Study{" "}
+                <span className="inline-block transition-transform duration-300 hover:translate-x-1">
+                  →
+                </span>
               </Link>
             </div>
           </motion.div>
@@ -244,7 +248,6 @@ export function Projects({ projects }: { projects: Project[] }) {
     >
       {/* Section header */}
       <div className="container-wide pt-20 pb-10 text-center">
-
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -274,7 +277,12 @@ export function Projects({ projects }: { projects: Project[] }) {
       {/* Projects */}
       <div>
         {projects.map((project, i) => (
-          <ProjectCard key={project.id} project={project} index={i} total={projects.length} />
+          <ProjectCard
+            key={project.id}
+            project={project}
+            index={i}
+            total={projects.length}
+          />
         ))}
       </div>
 
@@ -292,7 +300,10 @@ export function Projects({ projects }: { projects: Project[] }) {
               size="lg"
               className="px-10 py-4 text-xs font-bold uppercase tracking-wider rounded-full cursor-pointer group"
             >
-              View All Projects <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5 ml-2">→</span>
+              View All Projects{" "}
+              <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5 ml-2">
+                →
+              </span>
             </GlowButton>
           </Link>
         </motion.div>

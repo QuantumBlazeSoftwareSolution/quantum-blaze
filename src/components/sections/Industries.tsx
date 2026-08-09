@@ -46,7 +46,6 @@ export function Industries() {
 
       <div className="container-wide relative z-10">
         <div className="text-center mb-16 lg:mb-24">
-
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -68,8 +67,8 @@ export function Industries() {
             className="mt-4 text-base max-w-xl mx-auto"
             style={{ color: "var(--text-muted)" }}
           >
-            We don&apos;t just build software; we engineer specialized solutions that
-            solve complex challenges across diverse sectors.
+            We don&apos;t just build software; we engineer specialized solutions
+            that solve complex challenges across diverse sectors.
           </motion.p>
         </div>
 

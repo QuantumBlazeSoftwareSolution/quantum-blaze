@@ -4,7 +4,15 @@ import React, { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Download, FileText, MapPin, MessageSquare, CheckCircle2 } from "lucide-react";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Download,
+  FileText,
+  MapPin,
+  MessageSquare,
+  CheckCircle2,
+} from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,18 +23,23 @@ export default function ProjectDetailPage() {
   const params = useParams();
   const router = useRouter();
   const slug = params?.slug as string;
-  
+
   // Find project
   const project = projects.find((p) => p.slug === slug);
-  
+
   // State for lightbox modal
-  const [activeScreenshot, setActiveScreenshot] = useState<Screenshot | null>(null);
+  const [activeScreenshot, setActiveScreenshot] = useState<Screenshot | null>(
+    null
+  );
 
   if (!project) {
     return (
       <div className="min-h-screen bg-[#050b14] text-white flex flex-col justify-center items-center px-4">
         <h1 className="text-2xl font-bold mb-4">Project Not Found</h1>
-        <Link href="/projects" className="text-sky-400 hover:underline flex items-center gap-2">
+        <Link
+          href="/projects"
+          className="text-sky-400 hover:underline flex items-center gap-2"
+        >
           <ArrowLeft className="w-4 h-4" /> Back to Projects
         </Link>
       </div>
@@ -43,8 +56,27 @@ export default function ProjectDetailPage() {
       .substring(0, 2);
   };
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": project.title,
+    "description": project.description,
+    "image": project.imageUrl || "https://quantumblaze.lk/original-logo.png",
+    "creator": {
+      "@type": "Organization",
+      "name": "Quantum Blaze",
+      "url": "https://quantumblaze.lk"
+    },
+    "genre": project.subtitle,
+    "keywords": project.techStack.join(", ")
+  };
+
   return (
     <div className="min-h-screen bg-[#050b14] text-slate-100 selection:bg-emerald-500/20 selection:text-emerald-400 relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
       <main className="max-w-6xl mx-auto px-6 pt-32 pb-24">
@@ -59,7 +91,7 @@ export default function ProjectDetailPage() {
 
         {/* Project Header Header */}
         <header className="border-b border-slate-800/80 pb-10 mb-12">
-          <p 
+          <p
             className="text-xs font-semibold tracking-widest uppercase mb-3"
             style={{ color: project.themeColor }}
           >
@@ -68,9 +100,33 @@ export default function ProjectDetailPage() {
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
             {project.title}
           </h1>
-          <p className="text-lg text-slate-400 font-light max-w-3xl leading-relaxed">
+          <p className="text-lg text-slate-400 font-light max-w-3xl leading-relaxed mb-6">
             {project.description}
           </p>
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-xs tracking-wider uppercase border transition-all duration-300 cursor-pointer"
+              style={{
+                borderColor: `${project.themeColor}33`,
+                backgroundColor: `${project.themeColor}10`,
+                color: project.themeColor,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = `${project.themeColor}22`;
+                e.currentTarget.style.borderColor = project.themeColor;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = `${project.themeColor}10`;
+                e.currentTarget.style.borderColor = `${project.themeColor}33`;
+              }}
+            >
+              Visit Live Application
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          )}
         </header>
 
         {/* Grid layout for base project details */}
@@ -105,11 +161,13 @@ export default function ProjectDetailPage() {
                     key={i}
                     className="p-5 bg-slate-900/20 border border-slate-800/60 rounded-xl flex items-start gap-3"
                   >
-                    <CheckCircle2 
+                    <CheckCircle2
                       className="w-4 h-4 mt-0.5 flex-shrink-0"
                       style={{ color: project.themeColor }}
                     />
-                    <span className="text-sm font-medium text-slate-200">{metric}</span>
+                    <span className="text-sm font-medium text-slate-200">
+                      {metric}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -134,9 +192,9 @@ export default function ProjectDetailPage() {
 
         {/* ─── Pharmacy POS Specific Modules ─── */}
         {project.screenshots && project.screenshots.length > 0 && (
-          <ScreenshotSlider 
-            screenshots={project.screenshots} 
-            themeColor={project.themeColor} 
+          <ScreenshotSlider
+            screenshots={project.screenshots}
+            themeColor={project.themeColor}
           />
         )}
 
@@ -147,7 +205,7 @@ export default function ProjectDetailPage() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {project.reports.map((report, idx) => (
-                <a 
+                <a
                   key={idx}
                   href={report.url}
                   target="_blank"
@@ -162,7 +220,9 @@ export default function ProjectDetailPage() {
                       <h3 className="font-semibold text-sm text-slate-200 group-hover:text-emerald-400 transition-colors">
                         {report.name}
                       </h3>
-                      <p className="text-xs text-slate-400">View Document (PDF)</p>
+                      <p className="text-xs text-slate-400">
+                        View Document (PDF)
+                      </p>
                     </div>
                   </div>
                   <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-emerald-400 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
@@ -177,36 +237,33 @@ export default function ProjectDetailPage() {
             <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white mb-6">
               Active Client Deployments
             </h2>
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {project.users.map((user, idx) => (
-                <div 
+                <div
                   key={idx}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between p-6 rounded-2xl border border-slate-800/80 bg-slate-900/10 gap-4"
+                  className="p-5 rounded-2xl border border-slate-800/80 bg-slate-900/10 flex items-center gap-4"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="w-11 h-11 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 text-sm font-bold overflow-hidden relative">
-                      {user.logo ? (
-                        <Image 
-                          src={user.logo} 
-                          alt={`${user.name} logo`} 
-                          fill
-                          className="object-cover"
-                        />
-                      ) : (
-                        getInitials(user.name)
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-slate-200">{user.name}</h3>
-                      <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-1">
-                        <MapPin className="w-3.5 h-3.5 text-slate-500" />
-                        {user.location}
-                      </div>
-                    </div>
+                  <div className="w-12 h-12 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-sky-400 text-sm font-bold overflow-hidden relative shrink-0">
+                    {user.logo ? (
+                      <Image
+                        src={user.logo}
+                        alt={`${user.name} logo`}
+                        fill
+                        className="object-contain p-0.5"
+                      />
+                    ) : (
+                      getInitials(user.name)
+                    )}
                   </div>
-                  <div className="text-sm font-medium text-slate-300 bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl sm:text-right">
-                    <span className="text-xs text-slate-500 block mb-0.5">Deployment Focus</span>
-                    {user.usage}
+                  <div className="min-w-0">
+                    <h3 className="font-bold text-slate-200 text-sm">
+                      {user.name}
+                    </h3>
+                    <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-0.5">
+                      <MapPin className="w-3 h-3 text-slate-500 shrink-0" />
+                      {user.location}
+                    </div>
+                    <p className="text-xs text-slate-500 mt-1">{user.usage}</p>
                   </div>
                 </div>
               ))}
@@ -221,7 +278,7 @@ export default function ProjectDetailPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {project.testimonials.map((feedback, idx) => (
-                <div 
+                <div
                   key={idx}
                   className="p-6 md:p-8 rounded-2xl border border-slate-800/80 bg-slate-900/10 flex flex-col justify-between"
                 >
@@ -232,21 +289,25 @@ export default function ProjectDetailPage() {
                     </p>
                   </div>
                   <div className="flex items-center gap-3.5 border-t border-slate-800/60 pt-4 mt-auto">
-                    <div className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 text-xs font-bold overflow-hidden relative">
+                    <div className="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-sky-400 text-xs font-bold overflow-hidden relative shrink-0">
                       {feedback.clientImage ? (
-                        <Image 
-                          src={feedback.clientImage} 
-                          alt={`${feedback.clientName} avatar`} 
+                        <Image
+                          src={feedback.clientImage}
+                          alt={`${feedback.clientName} avatar`}
                           fill
-                          className="object-cover"
+                          className="object-contain p-0.5"
                         />
                       ) : (
                         getInitials(feedback.clientName)
                       )}
                     </div>
                     <div>
-                      <h4 className="font-bold text-sm text-slate-200">{feedback.clientName}</h4>
-                      <p className="text-xs text-slate-400 mt-0.5">{feedback.pharmacyName}</p>
+                      <h4 className="font-bold text-sm text-slate-200">
+                        {feedback.clientName}
+                      </h4>
+                      <p className="text-xs text-slate-400 mt-0.5">
+                        {feedback.companyName}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -254,18 +315,17 @@ export default function ProjectDetailPage() {
             </div>
           </section>
         )}
-
       </main>
 
       {/* Lightbox image preview modal */}
       <AnimatePresence>
         {activeScreenshot && (
-          <div 
+          <div
             className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
             onClick={() => setActiveScreenshot(null)}
           >
             {/* Modal Box */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
@@ -275,9 +335,9 @@ export default function ProjectDetailPage() {
             >
               {/* Left Side: Screenshot Image */}
               <div className="lg:col-span-8 relative aspect-[16/10] bg-slate-900 border-b lg:border-b-0 lg:border-r border-slate-800">
-                <Image 
-                  src={activeScreenshot.url} 
-                  alt={activeScreenshot.title} 
+                <Image
+                  src={activeScreenshot.url}
+                  alt={activeScreenshot.title}
                   fill
                   className="object-contain"
                   priority
@@ -285,7 +345,7 @@ export default function ProjectDetailPage() {
               </div>
 
               {/* Right Side: Text details */}
-              <motion.div 
+              <motion.div
                 initial="hidden"
                 animate="visible"
                 variants={{
@@ -295,16 +355,20 @@ export default function ProjectDetailPage() {
                     transition: {
                       staggerChildren: 0.1,
                       delayChildren: 0.15,
-                    }
-                  }
+                    },
+                  },
                 }}
                 className="lg:col-span-4 p-8 flex flex-col justify-center bg-slate-950 text-slate-100"
               >
                 {/* Subtitle */}
-                <motion.span 
+                <motion.span
                   variants={{
                     hidden: { opacity: 0, y: 15 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.4, ease: "easeOut" },
+                    },
                   }}
                   className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2 block"
                 >
@@ -312,10 +376,14 @@ export default function ProjectDetailPage() {
                 </motion.span>
 
                 {/* Title */}
-                <motion.h3 
+                <motion.h3
                   variants={{
                     hidden: { opacity: 0, y: 15 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.4, ease: "easeOut" },
+                    },
                   }}
                   className="text-xl md:text-2xl font-bold text-white mb-6 tracking-tight"
                 >
@@ -323,29 +391,41 @@ export default function ProjectDetailPage() {
                 </motion.h3>
 
                 {/* Divider */}
-                <motion.div 
+                <motion.div
                   variants={{
                     hidden: { scaleX: 0 },
-                    visible: { scaleX: 1, transition: { duration: 0.4, ease: "easeOut" } }
+                    visible: {
+                      scaleX: 1,
+                      transition: { duration: 0.4, ease: "easeOut" },
+                    },
                   }}
                   className="h-px bg-slate-800 origin-left mb-6"
                 />
 
                 {/* Features list */}
-                <motion.div 
+                <motion.div
                   variants={{
                     hidden: { opacity: 0 },
-                    visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
+                    visible: {
+                      opacity: 1,
+                      transition: { staggerChildren: 0.08 },
+                    },
                   }}
                   className="space-y-3"
                 >
-                  <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest block mb-2">Key System Features</span>
+                  <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest block mb-2">
+                    Key System Features
+                  </span>
                   {activeScreenshot.features.map((feature, i) => (
-                    <motion.div 
+                    <motion.div
                       key={i}
                       variants={{
                         hidden: { opacity: 0, x: -10 },
-                        visible: { opacity: 1, x: 0, transition: { duration: 0.3 } }
+                        visible: {
+                          opacity: 1,
+                          x: 0,
+                          transition: { duration: 0.3 },
+                        },
                       }}
                       className="flex items-start gap-2 text-sm text-slate-300"
                     >
@@ -357,7 +437,7 @@ export default function ProjectDetailPage() {
               </motion.div>
 
               {/* Close Button overlay */}
-              <button 
+              <button
                 onClick={() => setActiveScreenshot(null)}
                 className="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 hover:border-slate-700 w-8 h-8 rounded-full flex items-center justify-center cursor-pointer transition-colors z-20"
               >

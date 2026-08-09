@@ -11,7 +11,10 @@ interface ScreenshotSliderProps {
   themeColor: string;
 }
 
-export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderProps) {
+export function ScreenshotSlider({
+  screenshots,
+  themeColor,
+}: ScreenshotSliderProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(0); // -1 for prev, 1 for next
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -47,11 +50,13 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
     if (isTransitioning) return;
     setIsTransitioning(true);
     setDirection(-1);
-    setActiveIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
+    setActiveIndex(
+      (prev) => (prev - 1 + screenshots.length) % screenshots.length
+    );
     setTimeout(() => setIsTransitioning(false), 850);
   };
 
-  // 1st eka last ekata yanna, 2nd eka 1st ekata enna widihata scroll queue eka dynamic ordered previews list ekak karamu
+  // Ordered queue: active item first, then next items in circular order
   const getOrderedPreviews = () => {
     const list = [];
     for (let offset = 0; offset < screenshots.length; offset++) {
@@ -80,7 +85,6 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
 
       {/* Main Container */}
       <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-950/40 border border-slate-900 rounded-3xl p-6 lg:p-10 overflow-hidden">
-        
         {/* Left Side: Main View Image (Circle Mask reveal transition) */}
         <div className="lg:col-span-8 relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl z-10">
           <AnimatePresence initial={false} mode="popLayout">
@@ -117,16 +121,20 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
                   hidden: { opacity: 0 },
                   visible: {
                     opacity: 1,
-                    transition: { staggerChildren: 0.08, delayChildren: 0.1 }
+                    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
                   },
-                  exit: { opacity: 0, y: -10, transition: { duration: 0.15 } }
+                  exit: { opacity: 0, y: -10, transition: { duration: 0.15 } },
                 }}
               >
                 {/* Subtitle */}
                 <motion.span
                   variants={{
                     hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.3 },
+                    },
                   }}
                   className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2 block"
                 >
@@ -137,7 +145,11 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
                 <motion.h3
                   variants={{
                     hidden: { opacity: 0, y: 12 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.3 },
+                    },
                   }}
                   className="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight"
                 >
@@ -148,7 +160,10 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
                 <motion.div
                   variants={{
                     hidden: { opacity: 0 },
-                    visible: { opacity: 1, transition: { staggerChildren: 0.06 } }
+                    visible: {
+                      opacity: 1,
+                      transition: { staggerChildren: 0.06 },
+                    },
                   }}
                   className="space-y-2 mt-4"
                 >
@@ -157,7 +172,11 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
                       key={i}
                       variants={{
                         hidden: { opacity: 0, x: -8 },
-                        visible: { opacity: 1, x: 0, transition: { duration: 0.25 } }
+                        visible: {
+                          opacity: 1,
+                          x: 0,
+                          transition: { duration: 0.25 },
+                        },
                       }}
                       className="flex items-start gap-2 text-xs md:text-sm text-slate-300"
                     >
@@ -172,41 +191,40 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
 
           {/* Cards Queue Section */}
           <div className="mt-8">
-            {/* Shifting Row Previews Container */}
-            <div className="flex items-center gap-3 overflow-hidden h-16 mb-4 relative w-full px-2">
-              <AnimatePresence mode="popLayout">
-                {orderedPreviews.map((card, i) => {
-                  const isActive = card.originalIndex === activeIndex;
-                  return (
-                    <motion.div
-                      key={card.originalIndex}
-                      layout
-                      initial={{ opacity: 0, x: 50, scale: 0.9 }}
-                      animate={{ 
-                        opacity: 1, 
-                        x: 0, 
-                        scale: 1,
-                        transition: { type: "spring", stiffness: 350, damping: 30 }
-                      }}
-                      exit={{ opacity: 0, x: -100, scale: 0.8, transition: { duration: 0.3 } }}
-                      onClick={() => selectCard(card.originalIndex)}
-                      className={`relative w-20 h-12 rounded-lg overflow-hidden cursor-pointer flex-shrink-0 border-2 transition-all duration-300 ${
-                        isActive 
-                          ? "border-emerald-400 scale-105 shadow-lg shadow-emerald-500/10 z-10" 
-                          : "border-slate-800 hover:border-slate-700 opacity-60 hover:opacity-85 z-0"
-                      }`}
-                    >
-                      <Image
-                        src={card.url}
-                        alt={card.title}
-                        fill
-                        className="object-cover"
-                        sizes="80px"
-                      />
-                    </motion.div>
-                  );
-                })}
-              </AnimatePresence>
+            {/* Sliding Thumbnail Queue — each item smoothly moves to its new position */}
+            <div className="flex items-center gap-3 h-16 mb-4 relative w-full px-2">
+              {orderedPreviews.map((card) => {
+                const isActive = card.originalIndex === activeIndex;
+                return (
+                  <motion.div
+                    key={`thumb-${card.originalIndex}`}
+                    layoutId={`thumb-${card.originalIndex}`}
+                    onClick={() => selectCard(card.originalIndex)}
+                    animate={{
+                      scale: isActive ? 1.08 : 1,
+                      opacity: isActive ? 1 : 0.5,
+                    }}
+                    transition={{
+                      layout: { type: "spring", stiffness: 300, damping: 30 },
+                      scale: { type: "spring", stiffness: 400, damping: 28 },
+                      opacity: { duration: 0.25 },
+                    }}
+                    className={`relative w-20 h-12 rounded-lg overflow-hidden cursor-pointer flex-shrink-0 border-2 transition-colors duration-300 ${
+                      isActive
+                        ? "border-emerald-400 shadow-lg shadow-emerald-500/10"
+                        : "border-slate-800 hover:border-slate-700 hover:opacity-85"
+                    }`}
+                  >
+                    <Image
+                      src={card.url}
+                      alt={card.title}
+                      fill
+                      className="object-cover"
+                      sizes="80px"
+                    />
+                  </motion.div>
+                );
+              })}
             </div>
 
             {/* Navigation Controls */}
@@ -228,11 +246,11 @@ export function ScreenshotSlider({ screenshots, themeColor }: ScreenshotSliderPr
                 </button>
               </div>
               <span className="text-xs text-slate-500 font-mono">
-                {String(activeIndex + 1).padStart(2, "0")} / {String(screenshots.length).padStart(2, "0")}
+                {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                {String(screenshots.length).padStart(2, "0")}
               </span>
             </div>
           </div>
-
         </div>
       </div>
     </section>

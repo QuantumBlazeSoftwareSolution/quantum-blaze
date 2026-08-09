@@ -3,7 +3,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Mail, MapPin, Clock, Phone, CheckCircle2, ChevronDown } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Clock,
+  Phone,
+  CheckCircle2,
+  ChevronDown,
+} from "lucide-react";
+import DotField from "../DotField";
 
 const projectTypes = [
   "Enterprise SaaS Platform",
@@ -92,13 +100,29 @@ export function Contact() {
       className="relative section-padding overflow-hidden"
       style={{ background: "var(--bg-primary)" }}
     >
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-100">
+        <DotField
+          dotRadius={1.0}
+          dotSpacing={16}
+          bulgeStrength={70}
+          glowRadius={100}
+          sparkle={false}
+          waveAmplitude={0}
+          cursorRadius={550}
+          cursorForce={0.12}
+          bulgeOnly
+          gradientFrom="#38bdf8"
+          gradientTo="#0ea5e9"
+          glowColor="#38bdf8"
+        />
+      </div>
       {/* Glow orb behind form */}
       <div
-        className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[600px] rounded-full blur-[150px] pointer-events-none"
+        className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[600px] rounded-full blur-[150px] pointer-events-none z-0"
         style={{ background: "rgba(14,165,233,0.03)" }}
       />
 
-      <div className="container-wide">
+      <div className="container-wide relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* Left Side: Headline and Info */}
           <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
@@ -142,23 +166,29 @@ export function Contact() {
                   icon: <Mail className="w-5 h-5 text-sky-400" />,
                   label: "contact@quantumblaze.lk",
                   sub: "Email Us",
+                  href: "mailto:contact@quantumblaze.lk",
                 },
                 {
                   icon: <Phone className="w-5 h-5 text-sky-400" />,
                   label: "+94 78 805 6838 / +94 71 968 1816",
                   sub: "Call Us",
+                  href: "tel:+94788056838",
                 },
                 {
                   icon: <MapPin className="w-5 h-5 text-sky-400" />,
                   label: "Urapola, Sri Lanka",
                   sub: "Our Office",
+                  href: "https://maps.google.com/?q=Urapola,+Sri+Lanka",
                 },
               ].map((item) => (
-                <div
+                <a
                   key={item.label}
-                  className="flex items-center gap-4 glass px-5 py-3 rounded-xl w-full sm:w-auto border border-sky-500/10 hover:border-sky-500/30 transition-colors"
+                  href={item.href}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="flex items-center gap-4 glass px-5 py-3 rounded-xl w-full sm:w-auto border border-sky-500/10 hover:border-sky-500/30 hover:bg-white/5 transition-all duration-300 group/chip"
                 >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-sky-500/5 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-sky-500/5 flex items-center justify-center group-hover/chip:bg-sky-500/10 transition-colors">
                     {item.icon}
                   </div>
                   <div className="flex flex-col text-left overflow-hidden flex-1">
@@ -166,13 +196,13 @@ export function Contact() {
                       {item.sub}
                     </span>
                     <span
-                      className="text-sm font-medium break-all sm:break-normal"
+                      className="text-sm font-medium break-all sm:break-normal transition-colors duration-200 group-hover/chip:text-sky-400"
                       style={{ color: "var(--text-secondary)" }}
                     >
                       {item.label}
                     </span>
                   </div>
-                </div>
+                </a>
               ))}
             </motion.div>
           </div>
@@ -269,7 +299,11 @@ export function Contact() {
                       color: formState.projectType ? "white" : "transparent",
                     }}
                   >
-                    <option value="" disabled style={{ background: "#0a1628" }}></option>
+                    <option
+                      value=""
+                      disabled
+                      style={{ background: "#0a1628" }}
+                    ></option>
                     {projectTypes.map((type) => (
                       <option
                         key={type}
@@ -299,9 +333,15 @@ export function Contact() {
                     value={formState.budget}
                     onChange={handleChange}
                     className={selectClass}
-                    style={{ color: formState.budget ? "white" : "transparent" }}
+                    style={{
+                      color: formState.budget ? "white" : "transparent",
+                    }}
                   >
-                    <option value="" disabled style={{ background: "#0a1628" }}></option>
+                    <option
+                      value=""
+                      disabled
+                      style={{ background: "#0a1628" }}
+                    ></option>
                     {[
                       "< 100,000 LKR",
                       "100,000 – 500,000 LKR",

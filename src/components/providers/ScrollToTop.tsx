@@ -15,7 +15,7 @@ export function ScrollToTop() {
     const body = document.body;
     if (html) html.style.scrollBehavior = "auto";
     if (body) body.style.scrollBehavior = "auto";
-    
+
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [pathname]);
 

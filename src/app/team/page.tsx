@@ -1,4 +1,3 @@
-
 import { TeamContent } from "@/components/pages/TeamContent";
 import { team as members } from "@/lib/data";
 

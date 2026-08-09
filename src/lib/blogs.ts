@@ -29,21 +29,22 @@ export const blogs: BlogPost[] = [
     slug: "why-nextjs-is-the-ultimate-framework-for-modern-saas",
     title: {
       en: "Why Next.js is the Ultimate Framework for Modern SaaS Applications",
-      si: "නවීන SaaS මෘදුකාංග සඳහා Next.js හොඳම තේරීමක් වන්නේ ඇයි?"
+      si: "නවීන SaaS මෘදුකාංග සඳහා Next.js හොඳම තේරීමක් වන්නේ ඇයි?",
     },
     description: {
       en: "Discover how Next.js delivers unparalleled performance, stellar SEO, and exceptional user experiences to drive business growth.",
-      si: "Next.js මගින් ඉහළ කාර්යසාධනයක්, විශිෂ්ට SEO මට්ටමක් සහ පරිශීලක අත්දැකීමක් ලබා දෙමින් ව්‍යාපාරික වර්ධනයක් ඇති කරන්නේ කෙසේදැයි දැනගන්න."
+      si: "Next.js මගින් ඉහළ කාර්යසාධනයක්, විශිෂ්ට SEO මට්ටමක් සහ පරිශීලක අත්දැකීමක් ලබා දෙමින් ව්‍යාපාරික වර්ධනයක් ඇති කරන්නේ කෙසේදැයි දැනගන්න.",
     },
     category: "Engineering",
     date: "July 12, 2026",
     readTime: "6 min read",
-    coverImage: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?auto=format&fit=crop&w=1200&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1618477388954-7852f32655ec?auto=format&fit=crop&w=1200&q=80",
     featured: true,
     author: {
       name: "Vihanga Heshan",
       role: "Founder & CEO",
-      image: "/team/vihanga-heshan-CEO.png"
+      image: "/team/vihanga-heshan-CEO.png",
     },
     content: {
       en: `
@@ -77,28 +78,29 @@ Images, Scripts සහ Fonts සඳහා Next.js සතු විශේෂි�
 දත්ත ලබා ගැනීම් සහ processing කටයුතු client browser එකේ සිදු නොකර Server-side එකෙහි සිදු කරන නිසා API keys සහ Database තොරතුරු පරිශීලකයින්ගෙන් සම්පූර්ණයෙන්ම සඟවා තැබිය හැක. මෙය මූල්‍ය හෝ රහස්‍ය දත්ත හසුරුවන SaaS මෘදුකාංග සඳහා අතිශය වැදගත් වේ.
 
 ඔබේ ව්‍යාපාරය සඳහා නිවැරදි තාක්ෂණික පදනම තෝරා ගැනීම ඉතා වැදගත්ය. Next.js පිළිබඳ මනා පළපුරුද්දක් ඇති වෘත්තීය ආයතනයක් හා සම්බන්ධ වීමෙන් ඔබේ ව්‍යාපාරයේ අනාගත වර්ධනය සුරක්ෂිත කර ගත හැක.
-      `
-    }
+      `,
+    },
   },
   {
     id: "2",
     slug: "building-digital-products-that-scale",
     title: {
       en: "Building Digital Products that Scale: A Guide to Software Architecture",
-      si: "පරිශීලකයින් මිලියන ගණනක් සඳහා ඔරොත්තු දෙන මෘදුකාංග නිර්මාණය කිරීමේ කලාව"
+      si: "පරිශීලකයින් මිලියන ගණනක් සඳහා ඔරොත්තු දෙන මෘදුකාංග නිර්මාණය කිරීමේ කලාව",
     },
     description: {
       en: "An in-depth look at designing resilient backend systems, database clustering, and API-first architectures to handle millions of requests.",
-      si: "මිලියන ගණනක ඉල්ලීම් හැසිරවිය හැකි පසුබිම් පද්ධති (backends), දත්ත සමුදායන් (databases) සහ API සැලසුම් නිර්මාණය කරන ආකාරය පිළිබඳ ගැඹුරු විශ්ලේෂණයක්."
+      si: "මිලියන ගණනක ඉල්ලීම් හැසිරවිය හැකි පසුබිම් පද්ධති (backends), දත්ත සමුදායන් (databases) සහ API සැලසුම් නිර්මාණය කරන ආකාරය පිළිබඳ ගැඹුරු විශ්ලේෂණයක්.",
     },
     category: "Architecture",
     date: "July 8, 2026",
     readTime: "8 min read",
-    coverImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
     author: {
       name: "Nethmina Sandeepa",
       role: "Lead Systems Architect",
-      image: "/team/nethmina-sandeepa.png"
+      image: "/team/nethmina-sandeepa.png",
     },
     content: {
       en: `
@@ -132,28 +134,29 @@ Monolithic (තනි විශාල) ක්‍රමයට වඩා පද්
 ඉක්මනින් scale වීමට ඇති ලාභදායී සහ සාර්ථකම ක්‍රමයක් වන්නේ Caching ය. Redis භාවිතයෙන් database queries ද, Edge caching මගින් ලෝකයේ විවිධ රටවල සිටින පරිශීලකයින්ට ආසන්නතම සර්වර්ස් වලින් දත්ත ලබා දීමටද කටයුතු කළ හැක.
 
 ව්‍යාපාරයක් ආරම්භයේදීම නිවැරදි ව්‍යුහයකට පද්ධතිය සැලසුම් කිරීමෙන්, අනාගතයේදී මෘදුකාංගය නැවත මුල සිට ලිවීමට වැය වන විශාල මුදලක් සහ කාලයක් ඉතිරි කර ගත හැක.
-      `
-    }
+      `,
+    },
   },
   {
     id: "3",
     slug: "the-power-of-clean-code-and-business-roi",
     title: {
       en: "The Power of Clean Code: How Quality Impacts Business ROI",
-      si: "පිළිවෙල කේතකරණයේ (Clean Code) බලය: එය ව්‍යාපාරයේ ලාභයට බලපාන්නේ කෙසේද?"
+      si: "පිළිවෙල කේතකරණයේ (Clean Code) බලය: එය ව්‍යාපාරයේ ලාභයට බලපාන්නේ කෙසේද?",
     },
     description: {
       en: "Why clean code is a financial asset. How writing maintainable software accelerates future development speed and mitigates software regression risks.",
-      si: "කේතකරණයේ පිරිසිදුකම මූල්‍යමය වාසියක් වන්නේ ඇයි? පහසුවෙන් නඩත්තු කළ හැකි මෘදුකාංග ලිවීම මඟින් සංවර්ධන වේගය වැඩි කරමින් අවදානම අවම කර ගන්නේ කෙසේද?"
+      si: "කේතකරණයේ පිරිසිදුකම මූල්‍යමය වාසියක් වන්නේ ඇයි? පහසුවෙන් නඩත්තු කළ හැකි මෘදුකාංග ලිවීම මඟින් සංවර්ධන වේගය වැඩි කරමින් අවදානම අවම කර ගන්නේ කෙසේද?",
     },
     category: "Product Strategy",
     date: "June 28, 2026",
     readTime: "5 min read",
-    coverImage: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80",
     author: {
       name: "Vihanga Heshan",
       role: "Founder & CEO",
-      image: "/team/vihanga-heshan-CEO.png"
+      image: "/team/vihanga-heshan-CEO.png",
     },
     content: {
       en: `
@@ -179,28 +182,29 @@ Code quality is directly tied to business agility. Treating code cleanliness as 
 * **කණ්ඩායම පුළුල් කිරීමේ පහසුව:** නවක සාමාජිකයින්ට පද්ධතිය තේරුම් ගැනීමට යන කාලය සති ගණනක සිට දින කිහිපයක් දක්වා අවම කර ගත හැක.
 
 කේතයේ ගුණාත්මකභාවය යනු ව්‍යාපාරයක සාර්ථකත්වය රඳා පවතින ප්‍රධාන සාධකයකි. ආරම්භයේදීම නිසි ප්‍රමිතියට කේතකරණය සිදු කිරීම අනාගත වියදම් විශාල ලෙස අවම කරයි.
-      `
-    }
+      `,
+    },
   },
   {
     id: "4",
     slug: "role-of-ui-ux-design-in-customer-trust",
     title: {
       en: "The Role of UI/UX Design in Customer Trust and Retention",
-      si: "පාරිභෝගික විශ්වාසය දිනා ගැනීමට සහ රඳවා ගැනීමට UI/UX Design දායක වන්නේ කෙසේද?"
+      si: "පාරිභෝගික විශ්වාසය දිනා ගැනීමට සහ රඳවා ගැනීමට UI/UX Design දායක වන්නේ කෙසේද?",
     },
     description: {
       en: "How premium aesthetics, micro-interactions, and accessibility standards build user confidence and foster long-term loyalty.",
-      si: "ඉහළ පෙළේ සෞන්දර්යය, ආකර්ශනීය මයික්‍රෝ-ඇනිමේෂන් සහ ප්‍රමිතීන්ට අනුකූල සැලසුම් මගින් පාරිභෝගික විශ්වාසය ගොඩනංවන්නේ කෙසේදැයි සොයා බලන්න."
+      si: "ඉහළ පෙළේ සෞන්දර්යය, ආකර්ශනීය මයික්‍රෝ-ඇනිමේෂන් සහ ප්‍රමිතීන්ට අනුකූල සැලසුම් මගින් පාරිභෝගික විශ්වාසය ගොඩනංවන්නේ කෙසේදැයි සොයා බලන්න.",
     },
     category: "Design",
     date: "June 15, 2026",
     readTime: "7 min read",
-    coverImage: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=1200&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=1200&q=80",
     author: {
       name: "Lakshan Bandara",
       role: "Lead UI/UX Designer",
-      image: "/team/lakshan-bandara.png"
+      image: "/team/lakshan-bandara.png",
     },
     content: {
       en: `
@@ -234,28 +238,29 @@ A premium UI/UX design sets a standard of excellence. When your product feels pr
  readability එක ඉහළ මට්ටමක තබා ගැනීම සහ ඕනෑම අයෙකුට (විශේෂ අවශ්‍යතා සහිත අයෙකුට වුවද) වෙබ් අඩවිය පරිහරණය කිරීමට ඇති පහසුව ව්‍යාපාරයක වගකීම සහ ගුණාත්මක බව පසක් කරයි.
 
 පාරිභෝගිකයාට වටිනාකමක් දෙන ව්‍යාපාරයකට ඉහළ මට්ටමේ UI/UX සැලසුම්කරණයක් අතිශය වැදගත් වේ. පද්ධතිය වෘත්තීය මට්ටමින් තිබෙන විට, පාරිභෝගිකයා ඔබේ සේවාවන් ගැන වැඩි විශ්වාසයක් තබයි.
-      `
-    }
+      `,
+    },
   },
   {
     id: "5",
     slug: "ultimate-guide-to-nextjs-image-optimization",
     title: {
       en: "The Ultimate Guide to Next.js Image Optimization",
-      si: "Next.js රූප රාමු ප්‍රශස්තකරණය (Image Optimization) පිළිබඳ මඟ පෙන්වීම"
+      si: "Next.js රූප රාමු ප්‍රශස්තකරණය (Image Optimization) පිළිබඳ මඟ පෙන්වීම",
     },
     description: {
       en: "Learn how to use Next.js next/image to automatically optimize formats, compress sizes, and prevent layout shifts.",
-      si: "Next.js Image component එක භාවිතයෙන් ස්වයංක්‍රීයව පින්තූරවල ප්‍රමාණයන් සහ ගුණාත්මකභාවය ප්‍රශස්ත කරගන්නා ආකාරය ඉගෙන ගන්න."
+      si: "Next.js Image component එක භාවිතයෙන් ස්වයංක්‍රීයව පින්තූරවල ප්‍රමාණයන් සහ ගුණාත්මකභාවය ප්‍රශස්ත කරගන්නා ආකාරය ඉගෙන ගන්න.",
     },
     category: "Engineering",
     date: "May 24, 2026",
     readTime: "5 min read",
-    coverImage: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=600&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=600&q=80",
     author: {
       name: "Vihanga Heshan",
       role: "Founder & CEO",
-      image: "/team/vihanga-heshan-CEO.png"
+      image: "/team/vihanga-heshan-CEO.png",
     },
     content: {
       en: `
@@ -281,28 +286,29 @@ Implementing next/image is one of the easiest ways to improve your website's per
 
 ### Layout Shift වැළැක්වීම
 පින්තූරය load වන විට layout එක එහා මෙහා වීම වැළැක්වීම සඳහා Next.js මඟින් image proportions කලින්ම ගණනය කර ඉඩ වෙන් කර තබයි. මෙය පරිශීලකයාගේ පහසුවට අතිශය උපකාරී වේ.
-      `
-    }
+      `,
+    },
   },
   {
     id: "6",
     slug: "why-tailwindcss-accelerates-rapid-ui-development",
     title: {
       en: "Why We Chose TailwindCSS for Rapid UI Development",
-      si: "වේගවත් UI සංවර්ධනයක් සඳහා අප TailwindCSS තෝරා ගත්තේ ඇයි?"
+      si: "වේගවත් UI සංවර්ධනයක් සඳහා අප TailwindCSS තෝරා ගත්තේ ඇයි?",
     },
     description: {
       en: "An analysis of utility-first CSS frameworks and why TailwindCSS is the industry standard for modern agencies in 2026.",
-      si: "Utility-first CSS ක්‍රමවේද සහ 2026 වසරේදී ප්‍රමුඛතම මෘදුකාංග ආයතන TailwindCSS තෝරා ගැනීමට හේතු පිළිබඳ විශ්ලේෂණයක්."
+      si: "Utility-first CSS ක්‍රමවේද සහ 2026 වසරේදී ප්‍රමුඛතම මෘදුකාංග ආයතන TailwindCSS තෝරා ගැනීමට හේතු පිළිබඳ විශ්ලේෂණයක්.",
     },
     category: "Design",
     date: "April 18, 2026",
     readTime: "6 min read",
-    coverImage: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80",
     author: {
       name: "Lakshan Bandara",
       role: "Lead UI/UX Designer",
-      image: "/team/lakshan-bandara.png"
+      image: "/team/lakshan-bandara.png",
     },
     content: {
       en: `
@@ -326,28 +332,29 @@ TailwindCSS වල ඇති වාසි:
 
 ### කුඩා CSS ගොනු ප්‍රමාණය (Small bundle size)
 භාවිතා නොකරන CSS විනාශ කර දමමින් භාවිතා කරන පේළි පමණක් compile කරන නිසා පද්ධතියේ වේගය සැලකිය යුතු ලෙස ඉහළ යයි.
-      `
-    }
+      `,
+    },
   },
   {
     id: "7",
     slug: "state-management-in-2026-redux-to-zustand",
     title: {
       en: "State Management in 2026: From Redux to Zustand",
-      si: "2026 වසරේ රාජ්‍ය කළමනාකරණය (State Management): Redux සිට Zustand දක්වා"
+      si: "2026 වසරේ රාජ්‍ය කළමනාකරණය (State Management): Redux සිට Zustand දක්වා",
     },
     description: {
       en: "How lightweight, store-based state managers like Zustand simplify codebases and eliminate boilerplate code.",
-      si: "Zustand වැනි සරල සහ සැහැල්ලු state managers මඟින් මෘදුකාංග පද්ධතියක අනවශ්‍ය කේතකරණයන් අවම කරන්නේ කෙසේද?"
+      si: "Zustand වැනි සරල සහ සැහැල්ලු state managers මඟින් මෘදුකාංග පද්ධතියක අනවශ්‍ය කේතකරණයන් අවම කරන්නේ කෙසේද?",
     },
     category: "Engineering",
     date: "March 29, 2026",
     readTime: "7 min read",
-    coverImage: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=600&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=600&q=80",
     author: {
       name: "Vihanga Heshan",
       role: "Founder & CEO",
-      image: "/team/vihanga-heshan-CEO.png"
+      image: "/team/vihanga-heshan-CEO.png",
     },
     content: {
       en: `
@@ -363,28 +370,29 @@ React රාජ්‍ය කළමනාකරණය (State Management) වර�
 ### Zustand වල ඇති විශේෂතා:
 * **සරල බව:** අනවශ්‍ය action creators හෝ සංකීර්ණ wrappers භාවිතයෙන් තොරව විනාඩි කිහිපයකින් store එකක් නිර්මාණය කළ හැක.
 * **ඉහළ වේගය:** පද්ධතියේ අනවශ්‍ය re-rendering කටයුතු සීමා කරමින් පරිශීලකයාට වේගවත් අත්දැකීමක් ලබා දෙයි.
-      `
-    }
+      `,
+    },
   },
   {
     id: "8",
     slug: "importance-of-api-first-design-in-microservices",
     title: {
       en: "The Importance of API-First Design in Modern Microservices",
-      si: "නවීන Microservices සඳහා API-First සැලසුම්කරණයේ ඇති වැදගත්කම"
+      si: "නවීන Microservices සඳහා API-First සැලසුම්කරණයේ ඇති වැදගත්කම",
     },
     description: {
       en: "Why defining your API contract before writing code leads to better collaboration, parallel workflows, and extensible systems.",
-      si: "කේතය ලිවීමට පෙර API සැලැස්ම (API contract) නිර්මාණය කිරීම මඟින් කණ්ඩායමේ සන්නිවේදනය සහ සංවර්ධන වේගය වැඩි කර ගන්නේ කෙසේද?"
+      si: "කේතය ලිවීමට පෙර API සැලැස්ම (API contract) නිර්මාණය කිරීම මඟින් කණ්ඩායමේ සන්නිවේදනය සහ සංවර්ධන වේගය වැඩි කර ගන්නේ කෙසේද?",
     },
     category: "Architecture",
     date: "February 12, 2026",
     readTime: "8 min read",
-    coverImage: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80",
     author: {
       name: "Nethmina Sandeepa",
       role: "Lead Systems Architect",
-      image: "/team/nethmina-sandeepa.png"
+      image: "/team/nethmina-sandeepa.png",
     },
     content: {
       en: `
@@ -396,28 +404,29 @@ By defining the OpenAPI specification first, frontend and backend teams can buil
 Microservices සැලසුම් කිරීමේදී විවිධ සේවාවන් අතර සන්නිවේදනය සාර්ථකව පවත්වා ගැනීම වැදගත් වේ. සංවර්ධනය අතරතුර ad-hoc ක්‍රමයට API සෑදීම වෙනුවට, ආරම්භයේදීම API සැලැස්ම ලිවීම මෙයින් සිදුවේ.
 
 OpenAPI specifications කලින්ම සැලසුම් කිරීමෙන්, frontend සහ backend කණ්ඩායම් දෙකටම එකවර සමාන්තරව (parallel) සංවර්ධන කටයුතු සිදු කිරීමට හැකිවේ.
-      `
-    }
+      `,
+    },
   },
   {
     id: "9",
     slug: "how-to-optimize-largest-contentful-paint-lcp",
     title: {
       en: "How to Optimize Largest Contentful Paint (LCP) for Next.js Sites",
-      si: "Next.js වෙබ් අඩවිවල Largest Contentful Paint (LCP) වේගය වැඩි කරගන්නේ කෙසේද?"
+      si: "Next.js වෙබ් අඩවිවල Largest Contentful Paint (LCP) වේගය වැඩි කරගන්නේ කෙසේද?",
     },
     description: {
       en: "Step-by-step techniques to optimize your site's LCP score and satisfy Google's SEO ranking signals.",
-      si: "වෙබ් අඩවියේ ප්‍රධානතම රූප හෝ අකුරු පෙනීමට ගතවන කාලය (LCP) අඩු කරගනිමින් Google සර්ච් ශ්‍රේණිගත කිරීම් වැඩි කරගන්නා අයුරු."
+      si: "වෙබ් අඩවියේ ප්‍රධානතම රූප හෝ අකුරු පෙනීමට ගතවන කාලය (LCP) අඩු කරගනිමින් Google සර්ච් ශ්‍රේණිගත කිරීම් වැඩි කරගන්නා අයුරු.",
     },
     category: "Engineering",
     date: "January 20, 2026",
     readTime: "6 min read",
-    coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
     author: {
       name: "Vihanga Heshan",
       role: "Founder & CEO",
-      image: "/team/vihanga-heshan-CEO.png"
+      image: "/team/vihanga-heshan-CEO.png",
     },
     content: {
       en: `
@@ -433,28 +442,29 @@ LCP මඟින් වෙබ් අඩවියේ ඇති විශාලත
 ### ප්‍රශස්ත කරන ආකාරය:
 * **Fetch Priority:** ප්‍රධාන banner image එක 'priority' ලෙස ලකුණු කිරීමෙන් browser එක මඟින් එය අනෙක් දේට පෙර load කරවයි.
 * **Server Response:** දත්ත සෙවීම් වේගවත් කිරීම සහ static rendering ක්‍රමවේද යොදා ගනිමින් layout එක ක්ෂණිකව පරිශීලකයාට පෙන්වීම.
-      `
-    }
+      `,
+    },
   },
   {
     id: "10",
     slug: "mastering-framer-motion-for-web-experiences",
     title: {
       en: "Mastering Framer Motion for Immersive Web Experiences",
-      si: "ආකර්ෂණීය වෙබ් අත්දැකීම් නිර්මාණය කිරීමට Framer Motion ප්‍රගුණ කිරීම"
+      si: "ආකර්ෂණීය වෙබ් අත්දැකීම් නිර්මාණය කිරීමට Framer Motion ප්‍රගුණ කිරීම",
     },
     description: {
       en: "How to use spring physics, scroll-driven layouts, and page transitions to make your React app feel alive.",
-      si: "React මෘදුකාංග පණ ගැන්වීමට (animate කිරීමට) spring physics, scroll animations සහ සුමට පිටු සංක්‍රමණ (page transitions) භාවිතා කරන ආකාරය."
+      si: "React මෘදුකාංග පණ ගැන්වීමට (animate කිරීමට) spring physics, scroll animations සහ සුමට පිටු සංක්‍රමණ (page transitions) භාවිතා කරන ආකාරය.",
     },
     category: "Design",
     date: "December 14, 2025",
     readTime: "7 min read",
-    coverImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80",
     author: {
       name: "Lakshan Bandara",
       role: "Lead UI/UX Designer",
-      image: "/team/lakshan-bandara.png"
+      image: "/team/lakshan-bandara.png",
     },
     content: {
       en: `
@@ -470,7 +480,7 @@ Static interfaces are boring. Immersive motion is what separates average website
 ### සාර්ථකව ඇනිමේෂන් භාවිතා කරන අයුරු:
 * **Spring Physics:** ඇනිමේෂන් සඳහා සාමාන්‍ය linear වේගයන් වෙනුවට භෞතික විද්‍යාත්මක spring values භාවිතා කිරීමෙන් ස්වභාවික නිමාවක් ලැබේ.
 * **Scroll Reveals:** පරිශීලකයා scroll කරන විට දත්ත සෙමෙන් මතුවීමට සැලැස්වීමෙන් වෙබ් අඩවියේ ආකර්ෂණය වැඩිවේ.
-      `
-    }
-  }
+      `,
+    },
+  },
 ];

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { GlowButton } from "@/components/ui/GlowButton";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { ChevronDown } from "lucide-react";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -13,7 +14,6 @@ const navLinks = [
   ...(process.env.NEXT_PUBLIC_TEAM_SECTION === "true"
     ? [{ label: "Team", href: "#team" }]
     : []),
-  { label: "Blog", href: "/blog" },
 ];
 
 export function Navbar() {
@@ -50,7 +50,6 @@ export function Navbar() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
     setMobileOpen(false);
   };
-
 
   return (
     <>
@@ -108,6 +107,30 @@ export function Navbar() {
                 {link.label}
               </motion.button>
             ))}
+
+            {/* Resources Dropdown */}
+            <div className="relative group flex items-center h-full py-1">
+              <button
+                className="text-sm font-medium transition-colors duration-200 hover:text-sky-400 cursor-pointer flex items-center gap-1"
+                style={{ color: "var(--text-muted)" }}
+              >
+                Resources <ChevronDown className="w-3.5 h-3.5" />
+              </button>
+              <div className="absolute top-[80%] left-0 mt-1 w-32 bg-slate-950/95 border border-slate-900 rounded-xl py-2 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <a
+                  href="/blog"
+                  className="block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[13px] font-semibold"
+                >
+                  Blog
+                </a>
+                <a
+                  href="/faq"
+                  className="block px-4 py-2 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors lowercase tracking-wider text-[13px] font-semibold"
+                >
+                  FAQ
+                </a>
+              </div>
+            </div>
           </motion.div>
 
           {/* CTA */}
@@ -120,7 +143,7 @@ export function Navbar() {
             <GlowButton
               size="sm"
               variant="outline"
-              onClick={() => scrollTo("#contact")}
+              onClick={() => scrollTo("/contact")}
             >
               Get in Touch
               <span className="text-sky-400">→</span>
@@ -165,7 +188,21 @@ export function Navbar() {
                 {link.label}
               </button>
             ))}
-            <GlowButton variant="outline" onClick={() => scrollTo("#contact")}>
+            <a
+              href="/blog"
+              onClick={() => setMobileOpen(false)}
+              className="text-left py-2 border-b border-sky-500/10 text-base font-medium text-sky-100 hover:text-sky-400 transition-colors block"
+            >
+              Blog
+            </a>
+            <a
+              href="/faq"
+              onClick={() => setMobileOpen(false)}
+              className="text-left py-2 border-b border-sky-500/10 text-base font-medium text-sky-100 hover:text-sky-400 transition-colors block"
+            >
+              FAQ
+            </a>
+            <GlowButton variant="outline" onClick={() => scrollTo("/contact")}>
               Get in Touch
             </GlowButton>
           </motion.div>

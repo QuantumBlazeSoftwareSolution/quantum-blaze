@@ -9,6 +9,7 @@ const footerLinks = {
     { label: "Services", href: "/#services" },
     { label: "Projects", href: "/projects" },
     { label: "Team", href: "/#team" },
+    { label: "Blog", href: "/blog" },
   ],
   Services: [
     { label: "Enterprise SaaS", href: "/#services" },
@@ -24,7 +25,7 @@ const footerLinks = {
     },
     { label: "+94 78 805 6838", href: "tel:+94788056838" },
     { label: "+94 71 968 1816", href: "tel:+94719681816" },
-    { label: "Urapola, Sri Lanka", href: "/#contact" },
+    { label: "Urapola, Sri Lanka", href: "/contact" },
   ],
 };
 
@@ -126,7 +127,8 @@ export function Footer() {
           style={{ borderColor: "rgba(56,189,248,0.08)" }}
         >
           <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-            © 2024 - {new Date().getFullYear()} Quantum Blaze. All rights reserved.
+            © 2024 - {new Date().getFullYear()} Quantum Blaze. All rights
+            reserved.
           </p>
           <div className="flex gap-6">
             {[

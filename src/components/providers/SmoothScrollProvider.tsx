@@ -6,7 +6,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
+export function SmoothScrollProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   useLenis();
 
   useEffect(() => {
