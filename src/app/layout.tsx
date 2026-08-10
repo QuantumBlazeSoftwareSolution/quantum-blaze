@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Space_Grotesk, Inter, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -101,6 +102,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <ScrollToTop />
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
