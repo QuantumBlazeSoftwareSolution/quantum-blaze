@@ -115,7 +115,7 @@ export default function RootLayout({
               sameAs: [
                 "https://www.linkedin.com/company/quantum-blaze-software-solution-pvt-ltd",
                 // "https://twitter.com/quantumblaze"
-                "https://www.facebook.com/QuantumBlazeSoftwareSolutions",
+                "https://www.facebook.com/Quantum.Blaze.Pvt.Ltd",
               ],
               contactPoint: {
                 "@type": "ContactPoint",
