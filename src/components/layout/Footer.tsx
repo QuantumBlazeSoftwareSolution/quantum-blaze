@@ -37,7 +37,7 @@ const socialLinks = [
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com/share/18mwK8iVng",
+    href: "https://www.facebook.com/Quantum.Blaze.Pvt.Ltd",
     icon: FaFacebook,
   },
 ];
