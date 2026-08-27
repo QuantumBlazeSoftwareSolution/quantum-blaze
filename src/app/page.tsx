@@ -9,6 +9,7 @@ import { TechStack } from "@/components/sections/TechStack";
 import { Team } from "@/components/sections/Team";
 import { Contact } from "@/components/sections/Contact";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { HeroBanner } from "@/components/ui/hero-banner";
 import { team as members, projects } from "@/lib/data";
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
   return (
     <SmoothScrollProvider>
       <main className="relative">
+        <HeroBanner />
         <Hero />
         <About />
         <Services />

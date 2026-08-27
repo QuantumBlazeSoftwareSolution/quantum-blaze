@@ -110,8 +110,20 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Quantum Blaze",
+              alternateName: "Quantum Blaze Software Solutions",
               url: "https://quantumblaze.lk",
               logo: "https://quantumblaze.lk/original-logo.png",
+              image: "https://quantumblaze.lk/og-image.png",
+              description:
+                "Quantum Blaze is a premium software development agency in Sri Lanka, specializing in custom web applications, mobile apps, enterprise SaaS solutions, and UI/UX design. We architect and engineer scalable, high-performance digital products for businesses worldwide.",
+              foundingDate: "2024",
+              industry: "Software Development",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Urapola",
+                addressRegion: "Southern Province",
+                addressCountry: "LK",
+              },
               sameAs: [
                 "https://www.linkedin.com/company/quantum-blaze-software-solution-pvt-ltd",
                 // "https://twitter.com/quantumblaze"
@@ -124,6 +136,16 @@ export default function RootLayout({
                 areaServed: "Global",
                 availableLanguage: ["English", "Sinhala"],
               },
+              knowsAbout: [
+                "Web Application Development",
+                "Mobile App Development",
+                "Enterprise SaaS",
+                "UI/UX Design",
+                "Cloud & DevOps",
+                "Next.js",
+                "Flutter",
+                "React",
+              ],
             }),
           }}
         />
